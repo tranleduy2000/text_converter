@@ -1,5 +1,5 @@
-# text_converter
-Send your friends the most special text and mysterious text  (android)
+# Text Converter
+Send your friends the most special text and mysterious text (Android)
 
 [<img src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png">](https://play.google.com/store/apps/details?id=duy.com.text_converter)
 
