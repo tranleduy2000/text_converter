@@ -1,5 +1,6 @@
 package teach.duy.com.texttool;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -20,8 +21,18 @@ public class MainActivity extends AbstractAppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+        String text = null;
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if (type.equals("text/plain")) {
+                text = intent.getStringExtra(Intent.EXTRA_TEXT);
+            }
+        }
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        PagerSectionAdapter adapter = new PagerSectionAdapter(getSupportFragmentManager());
+        PagerSectionAdapter adapter = new PagerSectionAdapter(getSupportFragmentManager(), text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
 

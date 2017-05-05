@@ -40,9 +40,5 @@ public class HexTool {
     }
 
     public static void main(String[] args) {
-        String inp = "tranleduy StringBuilder sb = new StringBuilder(s.length() / 2);";
-        System.out.println(inp);
-        System.out.println(textToHex(inp));
-        System.out.println(hexToTex(textToHex(inp)));
     }
 }

@@ -9,10 +9,16 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 9;
+    private static final int COUNT = 11;
+    private  String init;
 
     public PagerSectionAdapter(FragmentManager fm) {
         super(fm);
+    }
+
+    public PagerSectionAdapter(FragmentManager fm, String init) {
+        super(fm);
+        this.init = init;
     }
 
     @Override
@@ -24,22 +30,26 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return TextFragment.newInstance(TextFragment.TextType.ASCII);
+                return TextFragment.newInstance(TextFragment.TextType.ASCII, init);
             case 1:
-                return TextFragment.newInstance(TextFragment.TextType.BINARY);
+                return TextFragment.newInstance(TextFragment.TextType.BINARY, init);
             case 2:
-                return TextFragment.newInstance(TextFragment.TextType.HEX);
+                return TextFragment.newInstance(TextFragment.TextType.HEX, init);
             case 3:
-                return TextFragment.newInstance(TextFragment.TextType.OCTAL);
+                return TextFragment.newInstance(TextFragment.TextType.OCTAL, init);
             case 4:
-                return TextFragment.newInstance(TextFragment.TextType.REVERSER);
+                return TextFragment.newInstance(TextFragment.TextType.REVERSER, init);
             case 5:
-                return TextFragment.newInstance(TextFragment.TextType.UPPER);
+                return TextFragment.newInstance(TextFragment.TextType.UPPER, init);
             case 6:
-                return TextFragment.newInstance(TextFragment.TextType.LOWER);
+                return TextFragment.newInstance(TextFragment.TextType.LOWER, init);
             case 7:
-                return TextFragment.newInstance(TextFragment.TextType.UPSIDE_DOWNSIDE);
+                return TextFragment.newInstance(TextFragment.TextType.UPSIDE_DOWNSIDE, init);
             case 8:
+                return TextFragment.newInstance(TextFragment.TextType.SUPPER_SCRIPT, init);
+            case 9:
+                return TextFragment.newInstance(TextFragment.TextType.SUB_SCRIPT, init);
+            case 10:
                 return StyleListFragment.newInstance();
             default:
                 return null;
@@ -49,8 +59,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 8:
-                return "Style";
+
             case 0:
                 return "Ascii";
             case 1:
@@ -67,6 +76,12 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return "Lower";
             case 7:
                 return "Upside down";
+            case 8:
+                return "Supper script";
+            case 9:
+                return "Sub script";
+            case 10:
+                return "Style";
             default:
                 return "";
         }
