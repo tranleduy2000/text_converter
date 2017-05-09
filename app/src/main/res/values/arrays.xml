@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string-array name="convert_style">
+        <item>Ascii</item>
+        <item>Binary</item>
+        <item>Hex</item>
+        <item>Octal</item>
+        <item>Reverser</item>
+        <item>Upper</item>
+        <item>Lower</item>
+        <item>Upside down</item>
+        <item>Supper script</item>
+        <item>Sub script</item>
+    </string-array>
+</resources>

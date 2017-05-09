@@ -1,11 +1,9 @@
-package teach.duy.com.texttool.view;
+package com.duy.text_converter.view;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-
-import java.util.Locale;
 
 /**
  * Created by Duy on 23-Mar-17.

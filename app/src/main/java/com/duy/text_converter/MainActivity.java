@@ -1,4 +1,4 @@
-package teach.duy.com.texttool;
+package com.duy.text_converter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import teach.duy.com.texttool.fragment.PagerSectionAdapter;
+import com.duy.text_converter.fragment.PagerSectionAdapter;
+
+import teach.duy.com.texttool.R;
 
 public class MainActivity extends AbstractAppCompatActivity {
 
@@ -39,8 +41,6 @@ public class MainActivity extends AbstractAppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
 
-        viewPager.setCurrentItem(3);
-
     }
 
     @Override
@@ -63,4 +63,6 @@ public class MainActivity extends AbstractAppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

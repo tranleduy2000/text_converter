@@ -1,4 +1,4 @@
-package teach.duy.com.texttool.fragment;
+package com.duy.text_converter.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,18 +16,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.duy.text_converter.utils.StyleTool;
+import com.duy.text_converter.view.StyleAdapter;
+
 import java.util.ArrayList;
 
 import teach.duy.com.texttool.R;
-import teach.duy.com.texttool.utils.StyleTool;
-import teach.duy.com.texttool.view.StyleAdapter;
 
 /**
  * Created by DUy on 07-Feb-17.
  */
 
 public class StyleListFragment extends Fragment implements TextWatcher {
-    private static final String TAG = TextFragment.class.getSimpleName();
+    private static final String TAG = ConverterFragment.class.getSimpleName();
     public static String KEY = "STYLE_LiST";
     private View mRootView;
     private Context mContext;

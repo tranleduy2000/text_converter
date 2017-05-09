@@ -1,4 +1,4 @@
-package teach.duy.com.texttool.utils;
+package com.duy.text_converter.utils;
 
 import android.util.Log;
 

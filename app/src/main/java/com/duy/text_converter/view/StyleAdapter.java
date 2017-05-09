@@ -1,4 +1,4 @@
-package teach.duy.com.texttool.view;
+package com.duy.text_converter.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.duy.text_converter.utils.ClipboardManager;
+
 import java.util.ArrayList;
 
 import teach.duy.com.texttool.R;
-import teach.duy.com.texttool.utils.ClipboardManager;
 
 public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> {
     private final Activity context;

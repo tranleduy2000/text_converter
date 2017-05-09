@@ -1,7 +1,7 @@
-package teach.duy.com.texttool.utils;
+package com.duy.text_converter.utils;
 
-import static teach.duy.com.texttool.utils.Style.FLIP;
-import static teach.duy.com.texttool.utils.Style.NORMAL;
+import static com.duy.text_converter.utils.Style.FLIP;
+import static com.duy.text_converter.utils.Style.NORMAL;
 
 /**
  * Created by DUy on 06-Feb-17.

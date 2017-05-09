@@ -1,9 +1,9 @@
-package teach.duy.com.texttool.utils;
+package com.duy.text_converter.utils;
 
 import java.util.ArrayList;
 
-import static teach.duy.com.texttool.utils.Style.NORMAL;
-import static teach.duy.com.texttool.utils.Style.SIZE_OF_STYLE;
+import static com.duy.text_converter.utils.Style.NORMAL;
+import static com.duy.text_converter.utils.Style.SIZE_OF_STYLE;
 
 /**
  * Created by DUy on 07-Feb-17.

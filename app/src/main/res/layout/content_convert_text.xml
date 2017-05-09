@@ -36,16 +36,39 @@
                 android:src="@drawable/ic_share_white_24dp" />
         </LinearLayout>
 
-        <teach.duy.com.texttool.view.BaseEditText
+        <com.duy.text_converter.view.BaseEditText
             android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/bg_edit_text"
             android:gravity="top"
+            android:hint="@string/input_here"
             android:inputType="textMultiLine"
             android:padding="8dp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:gravity="center"
+            android:text="@string/choose_method"
+            android:textColor="?colorAccent" />
+
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_choose"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@drawable/bg_edit_text" />
     </LinearLayout>
 
     <LinearLayout
@@ -78,12 +101,13 @@
                 android:src="@drawable/ic_share_white_24dp" />
         </LinearLayout>
 
-        <teach.duy.com.texttool.view.BaseEditText
+        <com.duy.text_converter.view.BaseEditText
             android:id="@+id/edit_output"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_edit_text"
             android:gravity="top"
+            android:hint="@string/ouput_here"
             android:inputType="textMultiLine"
             android:padding="8dp" />
 

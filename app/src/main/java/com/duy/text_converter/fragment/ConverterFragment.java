@@ -1,4 +1,4 @@
-package teach.duy.com.texttool.fragment;
+package com.duy.text_converter.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,51 +12,87 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+
+import com.duy.text_converter.utils.ASCIITool;
+import com.duy.text_converter.utils.BinaryTool;
+import com.duy.text_converter.utils.ClipboardManager;
+import com.duy.text_converter.utils.HexTool;
+import com.duy.text_converter.utils.OctalTool;
+import com.duy.text_converter.utils.ReverserTool;
+import com.duy.text_converter.utils.SubScriptText;
+import com.duy.text_converter.utils.SupScriptText;
+import com.duy.text_converter.utils.UpperLowerTool;
+import com.duy.text_converter.utils.UpsideDownTool;
+import com.duy.text_converter.view.BaseEditText;
 
 import teach.duy.com.texttool.R;
-import teach.duy.com.texttool.utils.ASCIITool;
-import teach.duy.com.texttool.utils.BinaryTool;
-import teach.duy.com.texttool.utils.ClipboardManager;
-import teach.duy.com.texttool.utils.HexTool;
-import teach.duy.com.texttool.utils.OctalTool;
-import teach.duy.com.texttool.utils.ReverserTool;
-import teach.duy.com.texttool.utils.SubScriptText;
-import teach.duy.com.texttool.utils.SupScriptText;
-import teach.duy.com.texttool.utils.UpperLowerTool;
-import teach.duy.com.texttool.utils.UpsideDownTool;
-import teach.duy.com.texttool.view.BaseEditText;
 
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.ASCII;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.BINARY;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.HEX;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.KEY_TEXT;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.LOWER;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.OCTAL;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.REVERSER;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.SUB_SCRIPT;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.SUPPER_SCRIPT;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.UPPER;
-import static teach.duy.com.texttool.fragment.TextFragment.TextType.UPSIDE_DOWNSIDE;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.ASCII;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.BINARY;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.HEX;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.KEY_TEXT;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.LOWER;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.OCTAL;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.REVERSER;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.SUB_SCRIPT;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.SUPPER_SCRIPT;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.UPPER;
+import static com.duy.text_converter.fragment.ConverterFragment.TextType.UPSIDE_DOWNSIDE;
 
 /**
  * TextFragment
  * Created by DUy on 06-Feb-17.
  */
 
-public class TextFragment extends Fragment {
-    private static final String TAG = TextFragment.class.getSimpleName();
-    private static final String KEY = TextFragment.class.getSimpleName();
+public class ConverterFragment extends Fragment {
+    private static final String TAG = ConverterFragment.class.getSimpleName();
+    private static final String KEY = ConverterFragment.class.getSimpleName();
     private View mRootView;
     private Context mContext;
     private BaseEditText mInput, mOutput;
-    private Button btnTo, btnPre;
+    private Spinner mChoose;
+    TextWatcher outputWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (mOutput.isFocused()) convert(false);
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+    TextWatcher inputWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (mInput.isFocused()) convert(true);
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
     private View imgShareIn, imgShareOut, imgCopyIn, imgCopyOut;
 
-    public static TextFragment newInstance(int ID, String init) {
-        TextFragment fragment = new TextFragment();
+    public static ConverterFragment newInstance(String init) {
+        ConverterFragment fragment = new ConverterFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(KEY_TEXT, ID);
         if (init != null) {
             bundle.putString(Intent.EXTRA_TEXT, init);
         }
@@ -78,46 +114,25 @@ public class TextFragment extends Fragment {
         return mRootView;
     }
 
+
+    @Override
+    public void onDestroyView() {
+
+        mInput.removeTextChangedListener(inputWatcher);
+        mOutput.removeTextChangedListener(outputWatcher);
+
+        super.onDestroyView();
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mInput = (BaseEditText) mRootView.findViewById(R.id.edit_input);
         mOutput = (BaseEditText) mRootView.findViewById(R.id.edit_output);
+        mInput.addTextChangedListener(inputWatcher);
+        mOutput.addTextChangedListener(outputWatcher);
 
-        mInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mInput.isFocused()) convert(true);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        mOutput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mOutput.isFocused()) convert(false);
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        mChoose = (Spinner) mRootView.findViewById(R.id.spinner_choose);
 
         imgCopyIn = mRootView.findViewById(R.id.img_copy);
         imgShareIn = mRootView.findViewById(R.id.img_share);
@@ -125,30 +140,24 @@ public class TextFragment extends Fragment {
         imgShareIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, mInput.getText().toString());
-                intent.setType("text/plain");
-                getActivity().startActivity(intent);
+                doShareText(mInput);
             }
         });
+
         imgCopyIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager.setClipboard(mContext, mInput.getText().toString());
             }
         });
+
         imgCopyOut = mRootView.findViewById(R.id.img_copy_out);
         imgShareOut = mRootView.findViewById(R.id.img_share_out);
 
         imgShareOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, mOutput.getText().toString());
-                intent.setType("text/plain");
-                getActivity().startActivity(intent);
+                doShareText(mOutput);
             }
         });
         imgCopyOut.setOnClickListener(new View.OnClickListener() {
@@ -157,17 +166,39 @@ public class TextFragment extends Fragment {
                 ClipboardManager.setClipboard(mContext, mOutput.getText().toString());
             }
         });
-        mInput.setHint("Enter here ...");
-        convert(true);
+
+        String[] data = getResources().getStringArray(R.array.convert_style);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_list_item_1, data);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        mChoose.setAdapter(arrayAdapter);
+        mChoose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (mInput.hasFocus()) {
+                    convert(true);
+                } else {
+                    convert(false);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+    private void doShareText(EditText editText) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
+        intent.setType("text/plain");
+        getActivity().startActivity(intent);
     }
 
     private void convert(boolean to) {
-        int key = getArguments().getInt(KEY_TEXT);
+        int key = mChoose.getSelectedItemPosition();
         String inp = mInput.getText().toString();
         String out = mOutput.getText().toString();
         switch (key) {
@@ -277,15 +308,15 @@ public class TextFragment extends Fragment {
 
     public static final class TextType {
         static final String KEY_TEXT = "KEY_TEXT";
+        static final int ASCII = 0;
         static final int BINARY = 1;
         static final int HEX = 2;
-        static final int UPPER = 3;
-        static final int LOWER = 4;
-        static final int ASCII = 5;
-        static final int REVERSER = 6;
+        static final int OCTAL = 3;
+        static final int REVERSER = 4;
+        static final int UPPER = 5;
+        static final int LOWER = 6;
         static final int UPSIDE_DOWNSIDE = 7;
         static final int SUPPER_SCRIPT = 8;
         static final int SUB_SCRIPT = 9;
-        static final int OCTAL = 10;
     }
 }

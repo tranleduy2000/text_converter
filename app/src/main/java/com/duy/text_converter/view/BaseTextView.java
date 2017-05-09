@@ -1,10 +1,9 @@
-package teach.duy.com.texttool.view;
+package com.duy.text_converter.view;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 /**
  * Created by DUy on 07-Feb-17.

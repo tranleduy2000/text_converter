@@ -1,4 +1,4 @@
-package teach.duy.com.texttool.utils;
+package com.duy.text_converter.utils;
 
 /**
  * Created by DUy on 07-Feb-17.

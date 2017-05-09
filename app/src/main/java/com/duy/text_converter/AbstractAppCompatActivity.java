@@ -1,4 +1,4 @@
-package teach.duy.com.texttool;
+package com.duy.text_converter;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -18,6 +18,8 @@ import android.widget.EditText;
 import com.kobakei.ratethisapp.RateThisApp;
 
 import java.util.Locale;
+
+import teach.duy.com.texttool.BuildConfig;
 
 
 /**

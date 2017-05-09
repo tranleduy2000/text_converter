@@ -1,4 +1,4 @@
-package teach.duy.com.texttool;
+package com.duy.text_converter;
 
 import android.content.Context;
 import android.content.SharedPreferences;

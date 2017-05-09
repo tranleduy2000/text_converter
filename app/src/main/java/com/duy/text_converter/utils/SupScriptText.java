@@ -1,7 +1,7 @@
-package teach.duy.com.texttool.utils;
+package com.duy.text_converter.utils;
 
-import static teach.duy.com.texttool.utils.Style.NORMAL;
-import static teach.duy.com.texttool.utils.Style.SUPPER_SCRIPT;
+import static com.duy.text_converter.utils.Style.NORMAL;
+import static com.duy.text_converter.utils.Style.SUPPER_SCRIPT;
 
 /**
  * Created by Duy on 05-May-17.
