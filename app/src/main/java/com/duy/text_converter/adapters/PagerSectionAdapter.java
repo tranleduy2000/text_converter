@@ -1,15 +1,21 @@
-package com.duy.text_converter.fragment;
+package com.duy.text_converter.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.duy.text_converter.fragment.AdsFragment;
+import com.duy.text_converter.fragment.ConverterFragment;
+import com.duy.text_converter.fragment.DecorateFragment;
+import com.duy.text_converter.fragment.EffectFragment;
+import com.duy.text_converter.fragment.StylistFragment;
 
 /**
  * Created by DUy on 06-Feb-17.
  */
 
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 2;
+    private static final int COUNT = 5;
     private String init;
 
     public PagerSectionAdapter(FragmentManager fm, String init) {
@@ -28,7 +34,13 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 0:
                 return ConverterFragment.newInstance(init);
             case 1:
-                return StyleListFragment.newInstance();
+                return StylistFragment.newInstance();
+            case 2:
+                return AdsFragment.newInstance();
+            case 3:
+                return EffectFragment.newInstance();
+            case 4:
+                return DecorateFragment.newInstance();
             default:
                 return null;
         }
@@ -41,6 +53,12 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return "Converter";
             case 1:
                 return "Style";
+            case 2:
+                return "Ads";
+            case 3:
+                return "Effect";
+            case 4:
+                return "Decorate";
             default:
                 return "";
         }

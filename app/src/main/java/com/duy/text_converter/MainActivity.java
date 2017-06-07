@@ -1,26 +1,34 @@
 package com.duy.text_converter;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewTreeObserver;
 
-import com.duy.text_converter.fragment.PagerSectionAdapter;
+import com.duy.text_converter.adapters.PagerSectionAdapter;
 
 import teach.duy.com.texttool.R;
 
 public class MainActivity extends AbstractAppCompatActivity {
 
+    CoordinatorLayout coordinatorLayout;
+    Toolbar toolbar;
+    private KeyBoardEventListener keyBoardListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
@@ -41,6 +49,9 @@ public class MainActivity extends AbstractAppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
 
+        //attach listener hide/show keyboard
+        keyBoardListener = new KeyBoardEventListener(this);
+        coordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
     }
 
     @Override
@@ -62,6 +73,53 @@ public class MainActivity extends AbstractAppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * hide appbar layout when keyboard visible
+     */
+    private void hideAppBar() {
+        toolbar.setVisibility(View.GONE);
+    }
+
+    /**
+     * show appbar layout when keyboard gone
+     */
+    private void showAppBar() {
+        toolbar.setVisibility(View.VISIBLE);
+    }
+
+    protected void onShowKeyboard() {
+        hideAppBar();
+    }
+
+    protected void onHideKeyboard() {
+        showAppBar();
+    }
+
+    private class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
+        MainActivity activity;
+
+        KeyBoardEventListener(MainActivity activityIde) {
+            this.activity = activityIde;
+        }
+
+        public void onGlobalLayout() {
+            int i = 0;
+            int navHeight = this.activity.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+            navHeight = navHeight > 0 ? this.activity.getResources().getDimensionPixelSize(navHeight) : 0;
+            int statusBarHeight = this.activity.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (statusBarHeight > 0) {
+                i = this.activity.getResources().getDimensionPixelSize(statusBarHeight);
+            }
+            Rect rect = new Rect();
+            activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+            if (activity.coordinatorLayout.getRootView().getHeight() - ((navHeight + i) + rect.height()) <= 0) {
+                activity.onHideKeyboard();
+            } else {
+                activity.onShowKeyboard();
+            }
+        }
     }
 
 

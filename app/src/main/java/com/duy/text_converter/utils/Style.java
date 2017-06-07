@@ -14,7 +14,8 @@ public class Style {
      */
     public static final String FLIP = "ɐqɔpǝɟbɥıظʞlɯuodbɹsʇnʌʍxʎz‾'؛˙¿¡/\\,∀qϽᗡƎℲƃHIſʞ˥WNOԀὉᴚS⊥∩ΛMXʎZ0ƖᄅƐㄣϛ9ㄥ86";
 
-    /**l
+    /**
+     * l
      * circle text
      */
     public static final String CIRCLE = "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ_,;⨀?!⊘⦸'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ0①②③④⑤⑥⑦⑧⑨";
@@ -45,6 +46,8 @@ public class Style {
     public static final int SUB_SCRIPT_ID = 11;
     public static final int FAUX_CYRILLIC_ID = 12;
     public static final int SMALL_CAP_ID = 13;//    public static final int SQUARED_ID = 11;
+
+
 
     /**
      * return character of constant

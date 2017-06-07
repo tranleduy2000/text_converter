@@ -1,4 +1,4 @@
-package com.duy.text_converter.view;
+package com.duy.text_converter.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -38,7 +38,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.style_item, parent, false));
+        return new ViewHolder(inflater.inflate(R.layout.list_item_style, parent, false));
     }
 
     @Override
