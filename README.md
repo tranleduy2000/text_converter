@@ -21,7 +21,6 @@ Send your friends the most special text and mysterious text (Android)
 ### PLEASE DON'T RE UP THIS APPLICATION. USE THIS APP FOR YOUR STUDY OR RESEARCH
 
 ### Some Image
-
 ![](playstore/Screenshot_20170207-195616_framed.png)
 ![](playstore/Screenshot_20170207-195623_framed.png)
 
@@ -35,16 +34,16 @@ Send your friends the most special text and mysterious text (Android)
 ![](playstore/Screenshot_20170607-174749_framed.png)
 
 ## License
-   Copyright {yyyy} {name of copyright owner}
+       Copyright {yyyy} {name of copyright owner}
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+           http://www.apache.org/licenses/LICENSE-2.0
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
