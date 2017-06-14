@@ -21,6 +21,7 @@ import com.duy.text_converter.utils.ASCIITool;
 import com.duy.text_converter.utils.BinaryTool;
 import com.duy.text_converter.utils.ClipboardManager;
 import com.duy.text_converter.utils.HexTool;
+import com.duy.text_converter.utils.MorseTool;
 import com.duy.text_converter.utils.OctalTool;
 import com.duy.text_converter.utils.ReverserTool;
 import com.duy.text_converter.utils.SubScriptText;
@@ -31,17 +32,18 @@ import com.duy.text_converter.view.BaseEditText;
 
 import teach.duy.com.texttool.R;
 
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.ASCII;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.BINARY;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.HEX;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.KEY_TEXT;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.LOWER;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.OCTAL;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.REVERSER;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.SUB_SCRIPT;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.SUPPER_SCRIPT;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.UPPER;
-import static com.duy.text_converter.fragment.ConverterFragment.TextType.UPSIDE_DOWNSIDE;
+import static com.duy.text_converter.fragment.ConvertType.ASCII;
+import static com.duy.text_converter.fragment.ConvertType.BINARY;
+import static com.duy.text_converter.fragment.ConvertType.HEX;
+import static com.duy.text_converter.fragment.ConvertType.KEY_TEXT;
+import static com.duy.text_converter.fragment.ConvertType.LOWER;
+import static com.duy.text_converter.fragment.ConvertType.MORSE_CODE;
+import static com.duy.text_converter.fragment.ConvertType.OCTAL;
+import static com.duy.text_converter.fragment.ConvertType.REVERSER;
+import static com.duy.text_converter.fragment.ConvertType.SUB_SCRIPT;
+import static com.duy.text_converter.fragment.ConvertType.SUPPER_SCRIPT;
+import static com.duy.text_converter.fragment.ConvertType.UPPER;
+import static com.duy.text_converter.fragment.ConvertType.UPSIDE_DOWNSIDE;
 
 /**
  * TextFragment
@@ -55,7 +57,7 @@ public class ConverterFragment extends Fragment {
     private Context mContext;
     private BaseEditText mInput, mOutput;
     private Spinner mChoose;
-    TextWatcher outputWatcher = new TextWatcher() {
+    private TextWatcher mOutputWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -64,7 +66,6 @@ public class ConverterFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (mOutput.isFocused()) convert(false);
-
         }
 
         @Override
@@ -72,7 +73,7 @@ public class ConverterFragment extends Fragment {
 
         }
     };
-    TextWatcher inputWatcher = new TextWatcher() {
+    private TextWatcher mInputWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -118,8 +119,8 @@ public class ConverterFragment extends Fragment {
     @Override
     public void onDestroyView() {
 
-        mInput.removeTextChangedListener(inputWatcher);
-        mOutput.removeTextChangedListener(outputWatcher);
+        mInput.removeTextChangedListener(mInputWatcher);
+        mOutput.removeTextChangedListener(mOutputWatcher);
 
         super.onDestroyView();
     }
@@ -129,8 +130,8 @@ public class ConverterFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mInput = (BaseEditText) mRootView.findViewById(R.id.edit_input);
         mOutput = (BaseEditText) mRootView.findViewById(R.id.edit_output);
-        mInput.addTextChangedListener(inputWatcher);
-        mOutput.addTextChangedListener(outputWatcher);
+        mInput.addTextChangedListener(mInputWatcher);
+        mOutput.addTextChangedListener(mOutputWatcher);
 
         mChoose = (Spinner) mRootView.findViewById(R.id.spinner_choose);
 
@@ -168,10 +169,10 @@ public class ConverterFragment extends Fragment {
         });
 
         String[] data = getResources().getStringArray(R.array.convert_style);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, data);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        mChoose.setAdapter(arrayAdapter);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        mChoose.setAdapter(adapter);
         mChoose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -272,6 +273,13 @@ public class ConverterFragment extends Fragment {
                     mInput.setText(SubScriptText.subToText(out));
                 }
                 break;
+            case MORSE_CODE:
+                if (to) {
+                    mOutput.setText(MorseTool.textToMorse(inp));
+                } else {
+                    mInput.setText(MorseTool.morseToText(out));
+                }
+                break;
         }
         //reset cursor
         mInput.setSelection(mInput.getText().toString().length());
@@ -306,17 +314,5 @@ public class ConverterFragment extends Fragment {
         convert(true);
     }
 
-    public static final class TextType {
-        static final String KEY_TEXT = "KEY_TEXT";
-        static final int ASCII = 0;
-        static final int BINARY = 1;
-        static final int HEX = 2;
-        static final int OCTAL = 3;
-        static final int REVERSER = 4;
-        static final int UPPER = 5;
-        static final int LOWER = 6;
-        static final int UPSIDE_DOWNSIDE = 7;
-        static final int SUPPER_SCRIPT = 8;
-        static final int SUB_SCRIPT = 9;
-    }
+
 }
