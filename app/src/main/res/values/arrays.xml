@@ -12,5 +12,6 @@
         <item>Super script</item>
         <item>Sub script</item>
         <item>Morse code</item>
+        <item>Base64</item>
     </string-array>
 </resources>

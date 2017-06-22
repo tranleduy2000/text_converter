@@ -12,5 +12,6 @@ public final class ConvertType {
     public static final int SUPPER_SCRIPT = 8;
     public static final int SUB_SCRIPT = 9;
     public static final int MORSE_CODE = 10;
+    public static final int BASE_64 = 11;
     public static final String KEY_TEXT = "KEY_TEXT";
 }

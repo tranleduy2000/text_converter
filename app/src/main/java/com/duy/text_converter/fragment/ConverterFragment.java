@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.duy.text_converter.utils.ASCIITool;
+import com.duy.text_converter.utils.Base64Tool;
 import com.duy.text_converter.utils.BinaryTool;
 import com.duy.text_converter.utils.ClipboardManager;
 import com.duy.text_converter.utils.HexTool;
@@ -33,6 +34,7 @@ import com.duy.text_converter.view.BaseEditText;
 import teach.duy.com.texttool.R;
 
 import static com.duy.text_converter.fragment.ConvertType.ASCII;
+import static com.duy.text_converter.fragment.ConvertType.BASE_64;
 import static com.duy.text_converter.fragment.ConvertType.BINARY;
 import static com.duy.text_converter.fragment.ConvertType.HEX;
 import static com.duy.text_converter.fragment.ConvertType.KEY_TEXT;
@@ -204,81 +206,52 @@ public class ConverterFragment extends Fragment {
         String out = mOutput.getText().toString();
         switch (key) {
             case ASCII:
-                if (to) {
-                    mOutput.setText(ASCIITool.textToAscii(inp));
-                } else {
-                    mInput.setText(ASCIITool.asciiToText(out));
-                }
+                if (to) mOutput.setText(ASCIITool.textToAscii(inp));
+                else mInput.setText(ASCIITool.asciiToText(out));
                 break;
             case OCTAL:
-                if (to) {
-                    mOutput.setText(OctalTool.textToOctal(inp));
-                } else {
-                    mInput.setText(OctalTool.octalToText(out));
-                }
+                if (to) mOutput.setText(OctalTool.textToOctal(inp));
+                else mInput.setText(OctalTool.octalToText(out));
                 break;
             case BINARY:
-                if (to) {
-                    mOutput.setText(BinaryTool.textToBinary(inp));
-                } else {
-                    mInput.setText(BinaryTool.binaryToText(out));
-                }
+                if (to) mOutput.setText(BinaryTool.textToBinary(inp));
+                else mInput.setText(BinaryTool.binaryToText(out));
                 break;
             case HEX:
-                if (to) {
-                    mOutput.setText(HexTool.textToHex(inp));
-                } else {
-                    mInput.setText(HexTool.hexToTex(out));
-                }
+                if (to) mOutput.setText(HexTool.textToHex(inp));
+                else mInput.setText(HexTool.hexToTex(out));
                 break;
             case UPPER:
-                if (to) {
-                    mOutput.setText(UpperLowerTool.upperText(inp));
-                } else {
-                    mInput.setText(UpperLowerTool.lowerText(out));
-                }
+                if (to) mOutput.setText(UpperLowerTool.upperText(inp));
+                else mInput.setText(UpperLowerTool.lowerText(out));
                 break;
             case LOWER:
-                if (to) {
-                    mOutput.setText(UpperLowerTool.lowerText(inp));
-                } else {
-                    mInput.setText(UpperLowerTool.upperText(out));
-                }
+                if (to) mOutput.setText(UpperLowerTool.lowerText(inp));
+                else mInput.setText(UpperLowerTool.upperText(out));
                 break;
             case REVERSER:
-                if (to) {
-                    mOutput.setText(ReverserTool.reverseText(inp));
-                } else {
-                    mInput.setText(ReverserTool.reverseText(out));
-                }
+                if (to) mOutput.setText(ReverserTool.reverseText(inp));
+                else mInput.setText(ReverserTool.reverseText(out));
                 break;
             case UPSIDE_DOWNSIDE:
-                if (to) {
-                    mOutput.setText(UpsideDownTool.textToUpsideDown(inp));
-                } else {
-                    mInput.setText(UpsideDownTool.upsideDownToText(out));
-                }
+                if (to) mOutput.setText(UpsideDownTool.textToUpsideDown(inp));
+                else mInput.setText(UpsideDownTool.upsideDownToText(out));
                 break;
             case SUPPER_SCRIPT:
-                if (to) {
-                    mOutput.setText(SupScriptText.textToSup(inp));
-                } else {
-                    mInput.setText(SupScriptText.supToText(out));
-                }
+                if (to) mOutput.setText(SupScriptText.textToSup(inp));
+                else mInput.setText(SupScriptText.supToText(out));
                 break;
             case SUB_SCRIPT:
-                if (to) {
-                    mOutput.setText(SubScriptText.textToSub(inp));
-                } else {
-                    mInput.setText(SubScriptText.subToText(out));
-                }
+                if (to) mOutput.setText(SubScriptText.textToSub(inp));
+                else mInput.setText(SubScriptText.subToText(out));
                 break;
             case MORSE_CODE:
-                if (to) {
-                    mOutput.setText(MorseTool.textToMorse(inp));
-                } else {
-                    mInput.setText(MorseTool.morseToText(out));
-                }
+                if (to) mOutput.setText(MorseTool.textToMorse(inp));
+                else mInput.setText(MorseTool.morseToText(out));
+                break;
+            case BASE_64:
+                if (to) mOutput.setText(Base64Tool.base64Encode(inp));
+                else mInput.setText(Base64Tool.base64Decode(out));
                 break;
         }
         //reset cursor
