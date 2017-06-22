@@ -29,7 +29,7 @@ import teach.duy.com.texttool.R;
 
 public class StylistFragment extends Fragment implements TextWatcher {
     private static final String TAG = ConverterFragment.class.getSimpleName();
-    public static String KEY = "STYLE_LiST";
+    public static String KEY = "StylistFragment";
     private View mRootView;
     private Context mContext;
     private EditText mInput;

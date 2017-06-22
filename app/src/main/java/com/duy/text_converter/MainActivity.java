@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 
 import com.duy.text_converter.adapters.PagerSectionAdapter;
+import com.google.android.gms.ads.MobileAds;
 
 import teach.duy.com.texttool.R;
 
@@ -27,6 +28,9 @@ public class MainActivity extends AbstractAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(this, "ca-app-pub-7060049030570268/3354507032");
+
         this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

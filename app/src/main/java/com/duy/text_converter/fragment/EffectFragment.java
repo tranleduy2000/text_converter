@@ -29,7 +29,7 @@ import teach.duy.com.texttool.R;
 
 public class EffectFragment extends Fragment implements TextWatcher {
     private static final String TAG = EffectFragment.class.getSimpleName();
-    public static String KEY = "STYLE_LiST";
+    public static String KEY = "EffectFragment";
     private View mRootView;
     private Context mContext;
     private EditText mInput;
