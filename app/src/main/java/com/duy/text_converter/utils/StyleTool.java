@@ -1,37 +1,147 @@
 package com.duy.text_converter.utils;
 
 import java.util.ArrayList;
-
-import static com.duy.text_converter.utils.Style.NORMAL;
-import static com.duy.text_converter.utils.Style.SIZE_OF_STYLE;
+import java.util.Arrays;
 
 /**
- * Created by DUy on 07-Feb-17.
+ * Created by Duy on 07-Jun-17.
  */
 
 public class StyleTool {
+    /**
+     * original text
+     */
+    public static final String NORMAL;
+    public static final int MAX_LENGTH;
+    public static final ArrayList<String> STYLES;
 
+    private static final String[] ARRAY;
+    private static final String CIRCLE = "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ_,;⨀?!⊘⦸'ⒶⒷⒸⒹ" +
+            "ⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ0①②③④⑤⑥⑦⑧⑨";
+    private static final String FULL_WIDTH
+            = "ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ_，；．？！／\\＇ＡＢＣＤＥＦＧＨＩＪＫ" +
+            "ＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ０１２３４５６７８９";
+    private static final String A_CUTE
+            = "ábćdéfǵhíjḱĺḿńőṕqŕśtúvẃxӳź_,;.?!/\\'ÁBĆDÉFǴHíJḰĹḾŃŐṔQŔśTŰVẂXӲŹ0123456789";
+    private static final String CURVY_1
+            = "ค๒ƈɗﻉिﻭɦٱﻝᛕɭ๓กѻρ۹ɼรՇપ۷ฝซץչ_,;܁?!/\\'ค๒ƈɗﻉिﻭɦٱﻝᛕɭ๓กѻρ۹ɼรՇપ۷ฝซץչ0123456789";
+    private static final String CURVY_2
+            = "αв¢∂єƒﻭнιנкℓмησρ۹яѕтυνωχуչ_,;.?!/\\'αв¢∂єƒﻭнιנкℓмησρ۹яѕтυνωχуչ0123456789";
+    private static final String CURVY_3
+            = "ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ_,;.?!/\\'ค๒ς๔єŦﻮђเןкɭ๓ภ๏קợгรՇยשฬאץչ0123456789";
+    private static final String ROCK_DOT
+            = "äḅċḋëḟġḧïjḳḷṁṅöṗqṛṡẗüṿẅẍÿż_,;.?!/\\'ÄḄĊḊЁḞĠḦЇJḲḶṀṄÖṖQṚṠṪÜṾẄẌŸŻ012ӟ456789";
+    private static final String STROKE
+            = "Ⱥƀȼđɇfǥħɨɉꝁłmnøᵽꝗɍsŧᵾvwxɏƶ_,;.?!/\\'ȺɃȻĐɆFǤĦƗɈꝀŁMNØⱣꝖɌSŦᵾVWXɎƵ01ƻ3456789";
+    private static final String SUPPER_SCRIPT
+            = "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹";
+    private static final String SUB_SCRIPT
+            = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
+    private static final String FAUX_CYRILLIC
+            = "аъсↁэfБЂіјкlмиорqѓѕтцvшхЎz_,;.?!/\\'ДБҀↁЄFБНІЈЌLМИФРQЯЅГЦVЩЖЧZ0123456789";
+    private static final String SMALL_CAP
+            = "ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴩqʀꜱᴛᴜᴠᴡxyᴢ_,;.?!/\\'ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴩQʀꜱᴛᴜᴠᴡxYᴢ0123456789";
+    private static final String ANTROPHOBIA = "αв¢∂єfgнιנкℓмиσρqяѕтυνωχуz" +
+            "_,;.?!/\\'αв¢∂єfgнιנкℓмиσρqяѕтυνωχуz0123456789";
+    private static final String CURRENCY = "₳฿₵ĐɆ₣₲ⱧłJ₭Ⱡ₥₦Ø₱QⱤ₴₮ɄV₩ӾɎⱫ_,;.?!/\\'₳฿₵ĐɆ₣₲ⱧłJ₭Ⱡ₥" +
+            "₦Ø₱QⱤ₴₮ɄV₩ӾɎⱫ0123456789";
+    private static final String PARANORMAL = "αвcdєfghíjklmnσpqrstuvwхчz_,;.?!/\\'αвcdєfghíjklmnσpqrstuvwхчz0123456789";
+    private static final String SORCERER = "ǟɮƈɖɛʄɢɦɨʝӄʟʍռօքզʀֆȶʊʋաӼʏʐ_,;.?!/\\'ǟɮƈɖɛʄɢɦɨʝӄʟʍռօքզʀֆȶʊʋաӼʏʐ0123456789";
+    private static final String[] EFFECTS;
 
-    public static String convert(String text, int to) {
-        String result = "";
+    static {
+        NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        MAX_LENGTH = NORMAL.length();
+
+        ARRAY = new String[]{
+                "a͆b͆c͆d͆e͆f͆g͆h͆i͆j͆k͆l͆m͆n͆o͆p͆q͆r͆s͆t͆u͆v͆w͆x͆y͆z͆_,;.?!/\\'a͆b͆c͆d͆e͆f͆g͆h͆i͆j" +
+                        "͆k͆l͆m͆n͆o͆p͆q͆r͆s͆t͆u͆v͆w͆x͆y͆z͆0123456789",
+                "a̺b̺c̺d̺e̺f̺g̺h̺i̺j̺k̺l̺m̺n̺o̺p̺q̺r̺s̺t̺u̺v̺w̺x̺y̺z̺_,;.?!/\\'a̺b̺c̺d̺e̺f̺g̺h̺i̺j̺k̺l̺m̺n̺o̺p̺q̺r̺s̺t̺u̺v̺w̺x̺y̺z̺0123456789",
+                "a͙b͙c͙d͙e͙f͙g͙h͙i͙j͙k͙l͙m͙n͙o͙p͙q͙r͙s͙t͙u͙v͙w͙x͙y͙z͙_,;.?!/\\'a͙b͙c͙d͙e͙f͙g͙h͙i͙j͙k͙l͙m͙n͙o͙p͙q͙r͙s͙t͙u͙v͙w͙x͙y͙z͙0123456789",
+                "a̟b̟c̟d̟e̟f̟g̟h̟i̟j̟k̟l̟m̟n̟o̟p̟q̟r̟s̟t̟u̟v̟w̟x̟y̟z̟_,;.?!/\\'a̟b̟c̟d̟e̟f̟g̟h̟i̟j̟k̟l̟m̟n̟o̟p̟q̟r̟s̟t̟u̟v̟w̟x̟y̟z̟0123456789",
+                "a͎b͎c͎d͎e͎f͎g͎h͎i͎j͎k͎l͎m͎n͎o͎p͎q͎r͎s͎t͎u͎v͎w͎x͎y͎z͎_,;.?!/\\'a͎b͎c͎d͎e͎f͎g͎h͎i͎j͎k͎l͎m͎n͎o͎p͎q͎r͎s͎t͎u͎v͎w͎x͎y͎z͎0123456789",
+                "a͓̽b͓̽c͓̽d͓̽e͓̽f͓̽g͓̽h͓̽i͓̽j͓̽k͓̽l͓̽m͓̽n͓̽o͓̽p͓̽q͓̽r͓̽s͓̽t͓̽u͓̽v͓̽w͓̽x͓̽y͓̽z͓̽_,;.?!/\\'a͓̽b͓̽c͓̽d͓̽e͓̽f͓̽g͓̽h͓̽i͓̽j̽" +
+                        "͓k͓̽l͓̽m͓̽n͓̽o͓̽p͓̽q͓̽r͓̽s͓̽t͓̽u͓̽v͓̽w͓̽x͓̽y͓̽z͓̽0123456789",
+                "【a】【b】【c】【d】【e】【f】【g】【h】【i】【j】【k】【l】【m】【n】【o】【p】【q】" +
+                        "【r】【s】【t】【u】【v】【w】【x】【y】【z】_,;.?!/\\'【a】【b】【c】【d】" +
+                        "【e】【f】【g】【h】【i】【j】【k】【l】【m】【n】【o】【p】【q】【r】【s】" +
+                        "【t】【u】【v】【w】【x】【y】【z】0123456789",
+                "『a』『b』『c』『d』『e』『f』『g』『h』『i』『j』『k』『l』『m』『n』『o』『p』『q』" +
+                        "『r』『s』『t』『u』『v』『w』『x』『y』『z』_,;.?!/\\'『a』『b』『c』『d』『" +
+                        "e』『f』『g』『h』『i』『j』『k』『l』『m』『n』『o』『p』『q』『r』『s』『t" +
+                        "』『u』『v』『w』『x』『y』『z』0123456789",
+                "a̶b̶c̶d̶e̶f̶g̶h̶i̶j̶k̶l̶m̶n̶o̶p̶q̶r̶s̶t̶u̶v̶w̶x̶y̶z̶_,;.?!/\\'a̶b̶c̶d̶e̶f̶g̶h̶i̶j" +
+                        "̶k̶l̶m̶n̶o̶p̶q̶r̶s̶t̶u̶v̶w̶x̶y̶z̶0123456789",
+                "a̴b̴c̴d̴e̴f̴g̴h̴i̴j̴k̴l̴m̴n̴o̴p̴q̴r̴s̴t̴u̴v̴w̴x̴y̴z̴_,;.?!/\\'a̴b̴c̴d̴e̴f̴g̴h̴i̴j̴" +
+                        "k̴l̴m̴n̴o̴p̴q̴r̴s̴t̴u̴v̴w̴x̴y̴z̴0123456789",
+                "a̷b̷c̷d̷e̷f̷g̷h̷i̷j̷k̷l̷m̷n̷o̷p̷q̷r̷s̷t̷u̷v̷w̷x̷y̷z̷_,;.?!/\\'a̷b̷c̷d̷e̷f̷g̷h̷i̷j̷" +
+                        "k̷l̷m̷n̷o̷p̷q̷r̷s̷t̷u̷v̷w̷x̷y̷z̷0123456789",
+                "a̲b̲c̲d̲e̲f̲g̲h̲i̲j̲k̲l̲m̲n̲o̲p̲q̲r̲s̲t̲u̲v̲w̲x̲y̲z̲_,;.?!/\\'a̲b̲c̲d̲e̲f̲g̲h̲i̲j̲k̲l̲m̲n̲o̲p̲q̲r̲s̲t̲u̲v̲w̲x̲y̲z̲0123456789",
+                "a̳b̳c̳d̳e̳f̳g̳h̳i̳j̳k̳l̳m̳n̳o̳p̳q̳r̳s̳t̳u̳v̳w̳x̳y̳z̳_,;.?!/\\'a̳b̳c̳d̳e̳f̳g̳h̳i̳j̳k̳l̳m̳n̳o̳p̳q̳r̳s̳t̳u̳v̳w̳x̳y̳z̳0123456789",
+                "[̲̅a̲̅][̲̅b̲̅][̲̅c̲̅][̲̅d̲̅][̲̅e̲̅][̲̅f̲̅][̲̅g̲̅][̲̅h̲̅][̲̅i̲̅][̲̅j̲̅][̲̅k̲̅][̲̅l̲̅][̲̅m̲̅][̲̅n̲̅][̲̅o̲̅][̲̅p̲̅][̲̅" +
+                        "q̲̅][̲̅r̲̅][̲̅s̲̅][̲̅t̲̅][̲̅u̲̅][̲̅v̲̅][̲̅w̲̅][̲̅x̲̅][̲̅y̲̅][̲̅z̲̅]_,;.?!/\\'[̲̅a̲̅][̲̅b̲̅][̲̅c̲̅][̲" +
+                        "̅d̲̅][̲̅e̲̅][̲̅f̲̅][̲̅g̲̅][̲̅h̲̅][̲̅i̲̅][̲̅j̲̅][̲̅k̲̅][̲̅l̲̅][̲̅m̲̅][̲̅n̲̅][̲̅o̲̅][̲̅p̲̅][̲̅q̲̅][̲̅r̲̅]" +
+                        "[̲̅s̲̅][̲̅t̲̅][̲̅u̲̅][̲̅v̲̅][̲̅w̲̅][̲̅x̲̅][̲̅y̲̅][̲̅z̲̅]0123456789",
+                "a̾b̾c̾d̾e̾f̾g̾h̾i̾j̾k̾l̾m̾n̾o̾p̾q̾r̾s̾t̾u̾v̾w̾x̾y̾z̾_,;.?!/\\'a̾b̾c̾d̾e̾f̾g̾h̾i̾j̾" +
+                        "k̾l̾m̾n̾o̾p̾q̾r̾s̾t̾u̾v̾w̾x̾y̾z̾0123456789"
+        };
+
+        EFFECTS = new String[]{
+                "ąβȼď€ƒǥhɨjЌℓʍɲ๏ρǭя$ţµ˅ώж¥ƶ_,;.?!/\\'ąβȼď€ƒǥhɨjЌℓʍɲ๏ρǭя$ţµ˅ώж¥ƶ0123456789",
+                "åβçď£ƒğȟȋjķȽɱñ¤קǭȑ§țɥ√Ψ×ÿž_,;.?!/\\'åβçď£ƒğȟȋjķȽɱñ¤קǭȑ§țɥ√Ψ×ÿž0123456789",
+                "ąþȼȡƹƒǥɦɨǰƙŁʍɲǿρǭřȿƮµ˅ώж¥ƶ_,;.?!/\\'ąþȼȡƹƒǥɦɨǰƙŁʍɲǿρǭřȿƮµ˅ώж¥ƶ0123456789",
+                "άвςȡέғģħίјķĻмήόρqŕşţùνώxчž_,;.?!/\\'άвςȡέғģħίјķĻмήόρqŕşţùνώxчž0123456789",
+                "ÃβČĎẸƑĞĤĮĴЌĹϻŇỖƤǪŘŜŤǗϋŴЖЎŻ_,;.?!/\\'ÃβČĎẸƑĞĤĮĴЌĹϻŇỖƤǪŘŜŤǗϋŴЖЎŻ0123456789",
+                "αв¢∂єfgнιנкℓмиσρqяѕтυνωχуz_,;.?!/\\'αв¢∂єfgнιנкℓмиσρqяѕтυνωχуz0123456789",
+                "ค๒ς๔єŦﻮђเןкl๓ภ๏קợгรtยשฬץאz_,;.?!/\\'ค๒ς๔єŦﻮђเןкl๓ภ๏קợгรtยשฬץאz0123456789",
+                "ĂβČĎĔŦĞĤĨĴĶĹМŃŐРQŔŚŤÚVŴЖŶŹ_,;.?!/\\'ĂβČĎĔŦĞĤĨĴĶĹМŃŐРQŔŚŤÚVŴЖŶŹ0123456789",
+                "48(d3f9h!jk1mn0pqr57uvwxy2_,;.?!/\\'48(d3f9h!jk1mn0pqr57uvwxy20123456789",
+                "ɐqɔpǝɟƃɥ!ɾʞןɯuodbɹsʇnʌʍxʎz_,;.?!/\\'ɐqɔpǝɟƃɥ!ɾʞןɯuodbɹsʇnʌʍxʎz0123456789",
+                "9876543210zʎxʍʌnʇsɹbdouɯןʞɾ!ɥƃɟǝpɔqɐ'\\/!?.;,_zʎxʍʌnʇsɹbdouɯןʞɾ!ɥƃɟǝpɔqɐ",
+                "aвcdeғgнιjĸlмnopqrѕтυvwхyz_,;.?!/\\'aвcdeғgнιjĸlмnopqrѕтυvwхyz0123456789",
+                "მჩეძპfცhἶქκlოῆõρგΓჰནυὗwჯყɀ_,;.?!/\\'მჩეძპfცhἶქκlოῆõρგΓჰནυὗwჯყɀ0123456789",
+                "ÄBĊĐË₣ĠȞÏĴĶĻMŅÖPǬŖŚȚŮVŴXŸŹ_,;.?!/\\'ÄBĊĐË₣ĠȞÏĴĶĻMŅÖPǬŖŚȚŮVŴXŸŹ0123456789",
+                "αвc∂εғgнιנкℓмησρqяsтυvωxүz_,;.?!/\\'αвc∂εғgнιנкℓмησρqяsтυvωxүz0123456789",
+                "äḅċďệḟġḧïjḳŀṃńöṗqŕṩẗüṿẅẍÿẓ_,;.?!/\\'äḅċďệḟġḧïjḳŀṃńöṗqŕṩẗüṿẅẍÿẓ0123456789",
+                "ḀḃḉḊḕḟḠḧḭjḲḶṁṆṏṖqṙṠṮṳṼẇẌẏẒ_,;.?!/\\'ḀḃḉḊḕḟḠḧḭjḲḶṁṆṏṖqṙṠṮṳṼẇẌẏẒ0123456789"};
+
+        STYLES = new ArrayList<>();
+        STYLES.addAll(Arrays.asList(EFFECTS));
+        STYLES.add(CIRCLE);
+        STYLES.add(FULL_WIDTH);
+        STYLES.add(A_CUTE);
+        STYLES.add(CURVY_1);
+        STYLES.add(CURVY_2);
+        STYLES.add(CURVY_3);
+        STYLES.add(ROCK_DOT);
+        STYLES.add(STROKE);
+        STYLES.add(SUPPER_SCRIPT);
+        STYLES.add(SUB_SCRIPT);
+        STYLES.add(FAUX_CYRILLIC);
+        STYLES.add(SMALL_CAP);
+        STYLES.add(ANTROPHOBIA);
+        STYLES.add(CURRENCY);
+        STYLES.add(PARANORMAL);
+        STYLES.add(SORCERER);
+
+    }
+
+    public static StringBuilder convert(String text, String data) {
+        StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
-            int a = NORMAL.indexOf(letter);
-            result += (a != -1) ? Style.get(a, to) : letter;
+            int index = NORMAL.indexOf(letter);
+            result.append((index != -1) ? data.charAt(index) : letter);
         }
         return result;
     }
 
     public static ArrayList<String> convert(String text) {
         ArrayList<String> arrayList = new ArrayList<>();
-        for (int i = 0; i < SIZE_OF_STYLE; i++) {
-            arrayList.add(convert(text, i));
+        for (String effect : STYLES) {
+            arrayList.add(convert(text, effect).toString());
         }
         return arrayList;
-    }
-
-    public static void main(String[] args) {
-
     }
 }

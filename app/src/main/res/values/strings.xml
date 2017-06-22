@@ -7,5 +7,6 @@
     <string name="choose_method">Choose method</string>
     <string name="ouput_here">Output here…</string>
     <string name="input_here">Input here…</string>
-    <string name="banner_ad_unit_id">ca-app-pub-7060049030570268/3354507032</string>
+    <string name="ad_unit_id">ca-app-pub-7060049030570268/3354507032</string>
+    <string name="ads_msg">This ad help developers to continue writing free applications</string>
 </resources>

@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.duy.text_converter.utils.StyleTool;
 import com.duy.text_converter.adapters.StyleAdapter;
+import com.duy.text_converter.utils.StyleTool;
 
 import java.util.ArrayList;
 

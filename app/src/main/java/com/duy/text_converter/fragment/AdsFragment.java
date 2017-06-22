@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.NativeExpressAdView;
 
 import teach.duy.com.texttool.R;
 
@@ -17,7 +17,7 @@ import teach.duy.com.texttool.R;
  */
 
 public class AdsFragment extends Fragment {
-    private AdView mAdView;
+    private NativeExpressAdView mAdView;
 
     public static AdsFragment newInstance() {
 
@@ -37,16 +37,10 @@ public class AdsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAdView = (AdView) view.findViewById(R.id.ad_view);
+        mAdView = (NativeExpressAdView) view.findViewById(R.id.ad_view);
 
-        // Create an ad request. Check your logcat output for the hashed device ID to
-        // get test ads on a physical device. e.g.
-        // "Use AdRequest.Builder.addTestDevice("ABCDEF012345") to get test ads on this device."
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
         // Start loading the ad in the background.
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(new AdRequest.Builder().build());
     }
 
     /**
