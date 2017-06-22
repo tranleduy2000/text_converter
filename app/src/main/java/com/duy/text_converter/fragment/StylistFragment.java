@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +71,9 @@ public class StylistFragment extends Fragment implements TextWatcher {
 
     private void convert() {
         String inp = mInput.getText().toString();
-        Log.d(TAG, "convert: " + inp);
+        if (inp.isEmpty()) {
+            inp = mInput.getHint().toString();
+        }
         ArrayList<String> translate = StyleTool.convert(inp);
         mAdapter.setData(translate);
     }
