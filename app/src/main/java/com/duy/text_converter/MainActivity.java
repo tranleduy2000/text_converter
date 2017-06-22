@@ -1,5 +1,6 @@
 package com.duy.text_converter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -12,8 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.InputMethodManager;
 
 import com.duy.text_converter.adapters.PagerSectionAdapter;
+import com.duy.text_converter.fragment.AdsFragment;
 
 import teach.duy.com.texttool.R;
 
@@ -22,6 +25,8 @@ public class MainActivity extends AbstractAppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     Toolbar toolbar;
     private KeyBoardEventListener keyBoardListener;
+    private ViewPager viewPager;
+    private PagerSectionAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +49,27 @@ public class MainActivity extends AbstractAppCompatActivity {
             }
         }
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        PagerSectionAdapter adapter = new PagerSectionAdapter(getSupportFragmentManager(), text);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        adapter = new PagerSectionAdapter(getSupportFragmentManager(), text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position == AdsFragment.INDEX) {
+                    hideKeyboard();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
@@ -55,6 +77,14 @@ public class MainActivity extends AbstractAppCompatActivity {
         //attach listener hide/show keyboard
         keyBoardListener = new KeyBoardEventListener(this);
         coordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
+    }
+
+    private void hideKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     @Override

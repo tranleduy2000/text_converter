@@ -52,7 +52,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return "Style";
             case 2:
                 return "Ads";
-            case 4:
+            case 3:
                 return "Decorate";
             default:
                 return "";

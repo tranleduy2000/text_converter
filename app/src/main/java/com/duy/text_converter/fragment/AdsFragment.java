@@ -17,6 +17,7 @@ import teach.duy.com.texttool.R;
  */
 
 public class AdsFragment extends Fragment {
+    public static final int INDEX = 2;
     private NativeExpressAdView mAdView;
 
     public static AdsFragment newInstance() {
@@ -39,8 +40,10 @@ public class AdsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAdView = (NativeExpressAdView) view.findViewById(R.id.ad_view);
 
+        AdRequest adRequest = new AdRequest.Builder().build();
+
         // Start loading the ad in the background.
-        mAdView.loadAd(new AdRequest.Builder().build());
+        mAdView.loadAd(adRequest);
     }
 
     /**
