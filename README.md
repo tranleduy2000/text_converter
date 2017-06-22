@@ -1,7 +1,7 @@
 # Text Converter
 Send your friends the most special text and mysterious text (Android)
 
-[<img src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png">](https://play.google.com/store/apps/details?id=duy.com.text_converter)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width=300>](https://play.google.com/store/apps/details?id=duy.com.text_converter)
 
 - Upside down text ``(hello -> oןןǝɥ)``
 - Text to ascii ``(ab -> 97 98)`` and inverse
@@ -16,22 +16,18 @@ Send your friends the most special text and mysterious text (Android)
 - Circle ``ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ``
 - Full width ``ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ``
 - Morse code ``-- --- .-. ... . / -.-. --- -.. . / - .-. .- -. ... .-.. .- - --- .-.``
+- Base64 encode, decode
+- More stylist text
 - And more ...
 
 ### PLEASE DON'T RE UP THIS APPLICATION. USE THIS APP FOR YOUR STUDY OR RESEARCH
 
 ### Some Image
-![](playstore/Screenshot_20170207-195616_framed.png)
-![](playstore/Screenshot_20170207-195623_framed.png)
-
-![](playstore/Screenshot_20170207-195630_framed.png)
-![](playstore/Screenshot_20170207-195637_framed.png)
-
-![](playstore/Screenshot_20170207-195650_framed.png)
-![](playstore/Screenshot_20170207-195657_framed.png)
-
-![](playstore/Screenshot_20170207-195704_framed.png)
-![](playstore/Screenshot_20170607-174749_framed.png)
+![](art/Screenshot_1498128234.png)
+![](art/Screenshot_1498128316.png)
+![](art/Screenshot_1498128356.png)
+![](art/Screenshot_1498128234.png)
+![](art/Screenshot_1498128370.png)
 
 ## License
        Copyright {yyyy} {name of copyright owner}
