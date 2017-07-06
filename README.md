@@ -22,14 +22,7 @@ Send your friends the most special text and mysterious text (Android)
 
 ### PLEASE DON'T RE UP THIS APPLICATION. USE THIS APP FOR YOUR STUDY OR RESEARCH
 
-### Some Image
-![](art/Screenshot_1498128234.png)
-![](art/Screenshot_1498128316.png)
-![](art/Screenshot_1498128356.png)
-![](art/Screenshot_1498128234.png)
-![](art/Screenshot_1498128370.png)
-
-## License
+### License
        Copyright {yyyy} {name of copyright owner}
 
        Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,3 +36,12 @@ Send your friends the most special text and mysterious text (Android)
        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
        See the License for the specific language governing permissions and
        limitations under the License.
+
+### Some Image
+
+![](art/Screenshot_1498128234.png)
+![](art/Screenshot_1498128316.png)
+![](art/Screenshot_1498128356.png)
+![](art/Screenshot_1498128234.png)
+![](art/Screenshot_1498128370.png)
+

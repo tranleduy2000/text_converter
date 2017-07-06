@@ -17,13 +17,14 @@
 package com.duy.text_converter.utils;
 
 import static com.duy.text_converter.utils.Style.NORMAL;
-import static com.duy.text_converter.utils.Style.SUPPER_SCRIPT;
 
 /**
  * Created by Duy on 05-May-17.
  */
 
 public class SupScriptText {
+    public static final String SUPPER_SCRIPT = "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹";
+
     public static String textToSup(String text) {
         String result = "";
         char letter;

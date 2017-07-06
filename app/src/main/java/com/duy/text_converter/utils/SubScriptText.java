@@ -17,13 +17,13 @@
 package com.duy.text_converter.utils;
 
 import static com.duy.text_converter.utils.Style.NORMAL;
-import static com.duy.text_converter.utils.Style.SUB_SCRIPT;
 
 /**
  * Created by Duy on 05-May-17.
  */
 
-public class SubScriptText {
+public class SubScriptText {    public static final String SUB_SCRIPT = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
+
     public static String textToSub(String text) {
         String result = "";
         char letter;
