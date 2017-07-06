@@ -15,11 +15,12 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
+
     android:orientation="horizontal">
 
     <LinearLayout
@@ -35,7 +36,7 @@
             android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/copy"
             android:padding="8dp"
-            android:src="@drawable/ic_content_copy_white_24dp" />
+            android:src="@drawable/ic_content_copy_white_24dp"/>
 
         <ImageButton
             android:id="@+id/img_share"
@@ -45,23 +46,26 @@
             android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/copy"
             android:padding="8dp"
-            android:src="@drawable/ic_share_white_24dp" />
+            android:src="@drawable/ic_share_white_24dp"/>
     </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:scrollbarSize="4dp">
 
         <com.duy.text_converter.view.BaseTextView
             android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:singleLine="true"
-            android:text="Rounded Corners Generator (compatible with IE)"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Rounded Corners Generator (compatible with IE)"/>
     </HorizontalScrollView>
 
 </LinearLayout>

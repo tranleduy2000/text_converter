@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -51,9 +52,14 @@ public class StylistFragment extends Fragment implements TextWatcher {
     private StyleAdapter mAdapter;
 
     public static StylistFragment newInstance() {
+
+        Bundle args = new Bundle();
+
         StylistFragment fragment = new StylistFragment();
+        fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -72,10 +78,10 @@ public class StylistFragment extends Fragment implements TextWatcher {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mInput = (EditText) view.findViewById(R.id.edit_input);
-        mListResult = (RecyclerView) view.findViewById(R.id.list_out);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        mListResult.setLayoutManager(linearLayoutManager);
+        mInput = view.findViewById(R.id.edit_input);
+        mListResult = view.findViewById(R.id.list_out);
+        mListResult.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mListResult.setLayoutManager(new LinearLayoutManager(mContext));
         mListResult.setHasFixedSize(true);
 
         mAdapter = new StyleAdapter(getActivity());
