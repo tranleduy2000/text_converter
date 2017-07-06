@@ -21,8 +21,8 @@
     <string name="rate">Rate</string>
     <string name="more_app">More app</string>
     <string name="choose_method">Choose method</string>
-    <string name="ouput_here">Output here…</string>
-    <string name="input_here">Input here…</string>
+    <string name="ouput_here">Enter here for decode…</string>
+    <string name="input_here">Enter here for encode…</string>
     <!--<string name="ad_unit_id">ca-app-pub-7060049030570268/3354507032</string>-->
     <string name="ad_unit_id">ca-app-pub-3940256099942544/2177258514</string>
     <string name="ads_msg">This ad help developers to continue writing free applications</string>

@@ -31,6 +31,8 @@ import android.widget.EditText;
 
 import com.duy.text_converter.adapters.StyleAdapter;
 import com.duy.text_converter.utils.ArrayEffectTool;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -44,14 +46,19 @@ public class SpecialEffectFragment extends StylistFragment {
     private static final String TAG = "SpecialEffectFragment";
     private static final String KEY = "SpecialEffectFragment";
 
-    private View mRootView;
     private Context mContext;
     private EditText mInput;
     private RecyclerView mListResult;
     private StyleAdapter mAdapter;
+    @Nullable
+    private AdView mAdView;
 
-    public static StylistFragment newInstance() {
-        StylistFragment fragment = new StylistFragment();
+    public static SpecialEffectFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        SpecialEffectFragment fragment = new SpecialEffectFragment();
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -65,15 +72,14 @@ public class SpecialEffectFragment extends StylistFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_style_list, container, false);
-        return mRootView;
+        return inflater.inflate(R.layout.fragment_array_effect, container, false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mInput = (EditText) mRootView.findViewById(R.id.edit_input);
-        mListResult = (RecyclerView) mRootView.findViewById(R.id.list_out);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mInput = (EditText) view.findViewById(R.id.edit_input);
+        mListResult = (RecyclerView) view.findViewById(R.id.list_out);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         mListResult.setLayoutManager(linearLayoutManager);
         mListResult.setHasFixedSize(true);
@@ -82,7 +88,20 @@ public class SpecialEffectFragment extends StylistFragment {
         mListResult.setAdapter(mAdapter);
 
         mInput.addTextChangedListener(this);
+
+        mAdView = (AdView) view.findViewById(R.id.ad_view);
+
+        loadAdView();
+
     }
+
+    private void loadAdView() {
+        AdRequest adRequest = new AdRequest.Builder().build();
+        if (mAdView != null) {
+            mAdView.loadAd(adRequest);
+        }
+    }
+
 
     public void convert() {
         String inp = mInput.getText().toString();
@@ -121,12 +140,26 @@ public class SpecialEffectFragment extends StylistFragment {
     @Override
     public void onPause() {
         super.onPause();
+        if (mAdView != null) {
+            mAdView.pause();
+        }
         save();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
         restore();
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroyView();
     }
 }

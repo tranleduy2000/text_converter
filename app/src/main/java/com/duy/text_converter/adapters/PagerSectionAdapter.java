@@ -23,6 +23,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.duy.text_converter.fragment.AdsFragment;
 import com.duy.text_converter.fragment.ConverterFragment;
 import com.duy.text_converter.fragment.DecorateFragment;
+import com.duy.text_converter.fragment.SpecialEffectFragment;
 import com.duy.text_converter.fragment.StylistFragment;
 
 /**
@@ -30,7 +31,7 @@ import com.duy.text_converter.fragment.StylistFragment;
  */
 
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 4;
+    private static final int COUNT = 5;
     private String init;
 
     public PagerSectionAdapter(FragmentManager fm, String init) {
@@ -54,6 +55,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return AdsFragment.newInstance();
             case 3:
                 return DecorateFragment.newInstance();
+            case 4:
+                return SpecialEffectFragment.newInstance();
             default:
                 return null;
         }
@@ -70,6 +73,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return "Ads";
             case 3:
                 return "Decorate";
+            case 4:
+                return "Special";
             default:
                 return "";
         }

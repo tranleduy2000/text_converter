@@ -15,17 +15,17 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
 
     <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ad_container"
-        android:layout_margin="4dp"
+        android:layout_margin="8dp"
         android:orientation="vertical"
         app:cardBackgroundColor="?colorPrimary"
         app:cardCornerRadius="4dp">
@@ -51,26 +51,6 @@
                 android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
-
-
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/ad_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="4dp"
-        app:cardBackgroundColor="?colorPrimary"
-        app:cardCornerRadius="4dp">
-
-        <com.google.android.gms.ads.AdView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:adSize="SMART_BANNER"
-            app:adUnitId="ca-app-pub-9351804859208340/8981525113">
-
-        </com.google.android.gms.ads.AdView>
-    </android.support.v7.widget.CardView>
-</RelativeLayout>
+</LinearLayout>

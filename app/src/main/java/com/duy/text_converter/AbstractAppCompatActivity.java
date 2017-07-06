@@ -20,20 +20,17 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.kobakei.ratethisapp.RateThisApp;
-
-import java.util.Locale;
 
 import teach.duy.com.texttool.BuildConfig;
 
@@ -60,42 +57,13 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            Window w = getWindow(); // in Activity's onCreate() for instance
-//            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-//        }
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setLocale(false);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         //set theme for app
         setTheme(false);
-    }
-
-    /**
-     * set language
-     *
-     * @param create
-     */
-
-    private void setLocale(boolean create) {
-        Locale locale = new Locale("en");
-//        String code = mPreferences.getString(getString(R.string.key_pref_lang), "default_lang");
-//        if (code.equals("default_lang")) {
-//            Log.d(TAG, "setLocale: default");
-//            locale = Locale.getDefault();
-//        } else {
-//            locale = new Locale(code);
-//        }
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        Resources resources = getResources();
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-        if (create) recreate();
     }
 
 

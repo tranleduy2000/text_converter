@@ -45,7 +45,6 @@ import teach.duy.com.texttool.R;
 public class StylistFragment extends Fragment implements TextWatcher {
     private static final String TAG = ConverterFragment.class.getSimpleName();
     public static String KEY = "StylistFragment";
-    private View mRootView;
     private Context mContext;
     private EditText mInput;
     private RecyclerView mListResult;
@@ -66,15 +65,15 @@ public class StylistFragment extends Fragment implements TextWatcher {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_style_list, container, false);
-        return mRootView;
+        return inflater.inflate(R.layout.fragment_style_list, container, false);
+
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mInput = (EditText) mRootView.findViewById(R.id.edit_input);
-        mListResult = (RecyclerView) mRootView.findViewById(R.id.list_out);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mInput = (EditText) view.findViewById(R.id.edit_input);
+        mListResult = (RecyclerView) view.findViewById(R.id.list_out);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         mListResult.setLayoutManager(linearLayoutManager);
         mListResult.setHasFixedSize(true);
@@ -84,6 +83,7 @@ public class StylistFragment extends Fragment implements TextWatcher {
 
         mInput.addTextChangedListener(this);
     }
+
 
     public void convert() {
         String inp = mInput.getText().toString();
