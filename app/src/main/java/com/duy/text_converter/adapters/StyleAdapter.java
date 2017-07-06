@@ -71,7 +71,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
                 context.startActivity(intent);
             }
         });
-        holder.textView.setOnClickListener(new View.OnClickListener() {
+        holder.imgCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager.setClipboard(context, str);

@@ -64,6 +64,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textIsSelectable="true"
             android:textStyle="bold"
             tools:text="Rounded Corners Generator (compatible with IE)"/>
     </HorizontalScrollView>
