@@ -80,7 +80,6 @@ public class StylistFragment extends Fragment implements TextWatcher {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
         mListResult = view.findViewById(R.id.list_out);
-        mListResult.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mListResult.setLayoutManager(new LinearLayoutManager(mContext));
         mListResult.setHasFixedSize(true);
 

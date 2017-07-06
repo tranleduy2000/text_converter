@@ -21,7 +21,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -83,7 +82,6 @@ public class SpecialEffectFragment extends StylistFragment {
         mListResult = view.findViewById(R.id.list_out);
         mListResult.setLayoutManager(new LinearLayoutManager(mContext));
         mListResult.setHasFixedSize(true);
-        mListResult.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
         mAdapter = new StyleAdapter(getActivity());
         mListResult.setAdapter(mAdapter);
