@@ -44,8 +44,9 @@ import teach.duy.com.texttool.R;
  */
 
 public class DecorateFragment extends Fragment implements TextWatcher {
-    private static final String TAG = DecorateFragment.class.getSimpleName();
-    public static String KEY = "DecorateFragment";
+    private static final String KEY = "DecorateFragment";
+    private static final String TAG = "DecorateFragment";
+
     private View mRootView;
     private Context mContext;
     private EditText mInput;

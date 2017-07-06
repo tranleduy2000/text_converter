@@ -21,30 +21,29 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.text_converter.adapters.StyleAdapter;
-import com.duy.text_converter.utils.StyleTool;
+import com.duy.text_converter.utils.ArrayEffectTool;
 
 import java.util.ArrayList;
 
 import teach.duy.com.texttool.R;
 
 /**
- * Created by DUy on 07-Feb-17.
+ * Created by Duy on 06-Jul-17.
  */
 
-public class StylistFragment extends Fragment implements TextWatcher {
-    private static final String TAG = ConverterFragment.class.getSimpleName();
-    public static String KEY = "StylistFragment";
+public class SpecialEffectFragment extends StylistFragment {
+    private static final String TAG = "SpecialEffectFragment";
+    private static final String KEY = "SpecialEffectFragment";
+
     private View mRootView;
     private Context mContext;
     private EditText mInput;
@@ -90,7 +89,7 @@ public class StylistFragment extends Fragment implements TextWatcher {
         if (inp.isEmpty()) {
             inp = mInput.getHint().toString();
         }
-        ArrayList<String> translate = StyleTool.convert(inp);
+        ArrayList<String> translate = ArrayEffectTool.convert(inp);
         mAdapter.setData(translate);
     }
 
