@@ -23,7 +23,7 @@ Send your friends the most special text and mysterious text (Android)
 ### PLEASE DON'T RE UP THIS APPLICATION. USE THIS APP FOR YOUR STUDY OR RESEARCH
 
 ### License
-       Copyright {yyyy} {name of copyright owner}
+       Copyright 2017 by Tran Le Duy
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
