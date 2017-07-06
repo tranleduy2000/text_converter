@@ -129,7 +129,7 @@ public class ConverterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.content_convert_text, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_convert_text, container, false);
         return mRootView;
     }
 

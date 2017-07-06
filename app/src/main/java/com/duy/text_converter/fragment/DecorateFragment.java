@@ -73,7 +73,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.content_style_list, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_style_list, container, false);
         return mRootView;
     }
 
