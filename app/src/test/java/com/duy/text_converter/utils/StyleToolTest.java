@@ -51,7 +51,7 @@ public class StyleToolTest extends TestCase {
         int size = StyleTool.STYLES.get(0).length();
         for (String style : StyleTool.STYLES) {
             if (style.length() != size) {
-                System.out.println(style + " " + size);
+                System.out.println(style + " " + style.length() + " " + size);
                 assertTrue(false);
             }
         }
