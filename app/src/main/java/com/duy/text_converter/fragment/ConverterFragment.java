@@ -146,12 +146,12 @@ public class ConverterFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mInput = (BaseEditText) mRootView.findViewById(R.id.edit_input);
-        mOutput = (BaseEditText) mRootView.findViewById(R.id.edit_output);
+        mInput = mRootView.findViewById(R.id.edit_input);
+        mOutput = mRootView.findViewById(R.id.edit_output);
         mInput.addTextChangedListener(mInputWatcher);
         mOutput.addTextChangedListener(mOutputWatcher);
 
-        mChoose = (Spinner) mRootView.findViewById(R.id.spinner_choose);
+        mChoose = mRootView.findViewById(R.id.spinner_choose);
 
         imgCopyIn = mRootView.findViewById(R.id.img_copy);
         imgShareIn = mRootView.findViewById(R.id.img_share);
@@ -187,9 +187,9 @@ public class ConverterFragment extends Fragment {
         });
 
         String[] data = getResources().getStringArray(R.array.convert_style);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, data);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         mChoose.setAdapter(adapter);
         mChoose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
