@@ -23,8 +23,8 @@ android {
         applicationId "duy.com.text_converter"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 12
-        versionName "2.1"
+        versionCode 13
+        versionName "2.2"
     }
     buildTypes {
         release {
@@ -48,5 +48,6 @@ dependencies {
     compile 'io.github.kobakei:ratethisapp:1.1.1'
     compile 'com.google.android.gms:play-services-ads:11.0.2'
     compile 'com.google.firebase:firebase-core:11.0.2'
+    compile 'com.google.firebase:firebase-crash:11.0.2'
 }
 apply plugin: 'com.google.gms.google-services'

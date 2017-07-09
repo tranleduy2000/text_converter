@@ -109,6 +109,7 @@
     <orderEntry type="library" exported="" name="play-services-ads-lite-11.0.2" level="project" />
     <orderEntry type="library" exported="" name="play-services-basement-11.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="firebase-crash-11.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-v4-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="firebase-iid-11.0.2" level="project" />

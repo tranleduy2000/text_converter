@@ -34,6 +34,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.duy.text_converter.adapters.PagerSectionAdapter;
 import com.duy.text_converter.fragment.AdsFragment;
 
+import teach.duy.com.texttool.BuildConfig;
 import teach.duy.com.texttool.R;
 
 public class MainActivity extends AbstractAppCompatActivity {
@@ -112,14 +113,23 @@ public class MainActivity extends AbstractAppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_more:
-                moreApp(null);
+            case R.id.action_share:
+                shareApp();
                 break;
-            case R.id.action_rate:
-                rateApp(null);
+            case R.id.action_get_ascii:
+                gotoPlayStore("com.duy.asciiart");
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void shareApp() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id="
+                + BuildConfig.APPLICATION_ID);
+        intent.setType("text/plain");
+        startActivity(intent);
+
     }
 
     /**

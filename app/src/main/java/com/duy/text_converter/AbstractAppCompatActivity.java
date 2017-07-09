@@ -47,11 +47,7 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity
     public static final String APP_ID = BuildConfig.APPLICATION_ID;
     protected SharedPreferences mPreferences;
 
-    /**
-     * set theme and init mHistoryDatabase for history
-     *
-     * @param savedInstanceState
-     */
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +56,6 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 */
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-        //set theme for app
-        setTheme(false);
     }
 
 
@@ -83,7 +76,7 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity
         RateThisApp.setCallback(new RateThisApp.Callback() {
             @Override
             public void onYesClicked() {
-                rateApp(null);
+                gotoPlayStore(MainActivity.APP_ID);
             }
 
             @Override
@@ -102,23 +95,6 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity
         super.onResume();
     }
 
-    /**
-     * set theme for app
-     *
-     * @param recreate -call method onCreate
-     */
-    protected void setTheme(boolean recreate) {
-//        String name = mPreferences.getString(getResources().getString(R.string.key_pref_theme), "");
-//        ThemeEngine themeEngine = new ThemeEngine(getApplicationContext());
-//        int themeId = themeEngine.getTheme(name);
-//        if (themeId != ThemeEngine.THEME_NOT_FOUND) {
-//            super.setTheme(themeId);
-//            if (recreate) recreate();
-//            Log.d(TAG, "Set theme ok");
-//        } else {
-//            Log.d(TAG, "Theme not found");
-//        }
-    }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
@@ -182,7 +158,7 @@ public abstract class AbstractAppCompatActivity extends AppCompatActivity
     }
 
 
-    public void rateApp(View view) {
+    public void gotoPlayStore(String APP_ID) {
         Uri uri = Uri.parse("market://details?id=" + APP_ID);
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
         // To count with Play market backstack, After pressing back button,
