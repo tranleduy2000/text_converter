@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
 
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (BuildConfig.DEBUG) {
+            FirebaseCrash.setCrashCollectionEnabled(false);
+        }
+
         setContentView(R.layout.activity_main);
 
         this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);

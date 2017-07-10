@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,9 +24,13 @@
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="4dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         app:cardBackgroundColor="?colorPrimary"
         app:cardUseCompatPadding="true">
 
@@ -55,4 +59,14 @@
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn_pro_version"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cardView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/cardView"
+        android:text="Donate for develop, remove ads, get pro version!"
+        android:textAllCaps="false"/>
+</RelativeLayout>

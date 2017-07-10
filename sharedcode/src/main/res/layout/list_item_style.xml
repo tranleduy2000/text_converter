@@ -55,7 +55,7 @@
         android:fillViewport="true"
         android:scrollbarSize="4dp">
 
-        <com.duy.text_converter.view.BaseTextView
+        <com.duy.sharedcode.view.BaseTextView
             android:id="@+id/text_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
