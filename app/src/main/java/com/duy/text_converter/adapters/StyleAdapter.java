@@ -29,7 +29,7 @@ import com.duy.text_converter.utils.ClipboardManager;
 
 import java.util.ArrayList;
 
-import teach.duy.com.texttool.R;
+
 
 public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> {
     private final Activity context;

@@ -37,7 +37,7 @@ import com.duy.text_converter.utils.StyleTool;
 
 import java.util.ArrayList;
 
-import teach.duy.com.texttool.R;
+
 
 /**
  * Created by DUy on 07-Feb-17.

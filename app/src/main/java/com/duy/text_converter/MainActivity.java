@@ -35,7 +35,7 @@ import com.duy.text_converter.adapters.PagerSectionAdapter;
 import com.duy.text_converter.fragment.AdsFragment;
 
 import teach.duy.com.texttool.BuildConfig;
-import teach.duy.com.texttool.R;
+
 
 public class MainActivity extends AbstractAppCompatActivity {
 

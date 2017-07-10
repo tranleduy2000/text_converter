@@ -1,0 +1,31 @@
+<!--
+  ~ Copyright (c) 2017 by Tran Le Duy
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">Text Converter</string>
+    <string name="copy">Copy</string>
+    <string name="share">Share</string>
+    <string name="rate">Rate</string>
+    <string name="more_app">More app</string>
+    <string name="choose_method">Choose method</string>
+    <string name="ouput_here">Enter here for decode…</string>
+    <string name="input_here">Enter here for encode…</string>
+    <!--<string name="ad_unit_id">ca-app-pub-7060049030570268/3354507032</string>-->
+    <string name="ad_unit_id">ca-app-pub-3940256099942544/2177258514</string>
+    <string name="ads_msg">This ad help developers to continue writing free applications</string>
+    <string name="type_something">Type something</string>
+    <string name="get_ascii_app">Get Ascii Art app</string>
+</resources>

@@ -47,7 +47,7 @@ import com.duy.text_converter.utils.UpperLowerTool;
 import com.duy.text_converter.utils.UpsideDownTool;
 import com.duy.text_converter.view.BaseEditText;
 
-import teach.duy.com.texttool.R;
+
 
 import static com.duy.text_converter.fragment.ConvertType.ASCII;
 import static com.duy.text_converter.fragment.ConvertType.BASE_64;

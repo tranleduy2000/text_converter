@@ -26,7 +26,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
 
-import teach.duy.com.texttool.R;
+
 
 /**
  * Created by Duy on 07-Jun-17.

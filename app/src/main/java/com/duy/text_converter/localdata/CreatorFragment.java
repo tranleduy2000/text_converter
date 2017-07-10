@@ -25,7 +25,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import teach.duy.com.texttool.R;
+
 
 /**
  * Created by Duy on 09-Jul-17.

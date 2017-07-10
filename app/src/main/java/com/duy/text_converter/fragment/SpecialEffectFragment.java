@@ -36,7 +36,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
-import teach.duy.com.texttool.R;
+
 
 /**
  * Created by Duy on 06-Jul-17.
