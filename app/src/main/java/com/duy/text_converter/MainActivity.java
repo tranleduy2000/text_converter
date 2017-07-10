@@ -35,6 +35,8 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.fragment.AdsFragment;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.InterstitialAd;
 import com.kobakei.ratethisapp.RateThisApp;
 
 
@@ -222,6 +224,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        showAdActivity();
         super.onBackPressed();
+    }
+
+    private void showAdActivity() {
+        InterstitialAd interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdListener(new AdListener());
+        interstitialAd.show();
     }
 }
