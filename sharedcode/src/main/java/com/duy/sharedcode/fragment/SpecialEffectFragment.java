@@ -32,7 +32,6 @@ import android.widget.EditText;
 import com.duy.sharedcode.adapters.StyleAdapter;
 import com.duy.sharedcode.utils.ArrayEffectTool;
 import com.duy.textconverter.sharedcode.R;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
@@ -88,19 +87,8 @@ public class SpecialEffectFragment extends StylistFragment {
         mListResult.setAdapter(mAdapter);
 
         mInput.addTextChangedListener(this);
-
-        mAdView = (AdView) view.findViewById(R.id.ad_view);
-
-        loadAdView();
-
     }
 
-    private void loadAdView() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        if (mAdView != null) {
-            mAdView.loadAd(adRequest);
-        }
-    }
 
 
     public void convert() {
@@ -140,26 +128,17 @@ public class SpecialEffectFragment extends StylistFragment {
     @Override
     public void onPause() {
         super.onPause();
-        if (mAdView != null) {
-            mAdView.pause();
-        }
         save();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (mAdView != null) {
-            mAdView.resume();
-        }
         restore();
     }
 
     @Override
     public void onDestroyView() {
-        if (mAdView != null) {
-            mAdView.destroy();
-        }
         super.onDestroyView();
     }
 }

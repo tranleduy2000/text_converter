@@ -22,7 +22,7 @@ android {
 
     defaultConfig {
         applicationId "com.duy.text_converter.pro"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -43,6 +43,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
+
+    compile project(':sharedcode')
 }
+apply plugin: 'com.google.gms.google-services'

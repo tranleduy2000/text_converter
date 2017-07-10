@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.adapters;
+package com.duy.text_converter.pro;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.duy.text_converter.fragment.AdsFragment;
-import com.duy.text_converter.fragment.ConverterFragment;
-import com.duy.text_converter.fragment.DecorateFragment;
-import com.duy.text_converter.fragment.SpecialEffectFragment;
-import com.duy.text_converter.fragment.StylistFragment;
+import com.duy.sharedcode.fragment.ConverterFragment;
+import com.duy.sharedcode.fragment.DecorateFragment;
+import com.duy.sharedcode.fragment.SpecialEffectFragment;
+import com.duy.sharedcode.fragment.StylistFragment;
+
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -52,10 +52,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 1:
                 return StylistFragment.newInstance();
             case 2:
-                return AdsFragment.newInstance();
-            case 3:
                 return DecorateFragment.newInstance();
-            case 4:
+            case 3:
                 return SpecialEffectFragment.newInstance();
             default:
                 return null;
@@ -70,10 +68,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 1:
                 return "Style";
             case 2:
-                return "Ads";
-            case 3:
                 return "Decorate";
-            case 4:
+            case 3:
                 return "Special";
             default:
                 return "";

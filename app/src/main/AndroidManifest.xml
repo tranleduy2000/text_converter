@@ -16,7 +16,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="teach.duy.com.texttool">
+          package="com.duy.text_converter">
 
     <application
         android:allowBackup="true"
@@ -27,18 +27,18 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.duy.text_converter.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
             <!-- Clip board filter -->
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
 
-                <data android:mimeType="text/plain" />
+                <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
     </application>

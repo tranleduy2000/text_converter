@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter;
+package com.duy.text_converter.pro;
 
 import android.content.Context;
 import android.content.Intent;
@@ -37,8 +37,8 @@ import com.duy.sharedcode.fragment.AdsFragment;
 
 public class MainActivity extends AbstractAppCompatActivity {
 
-    CoordinatorLayout coordinatorLayout;
-    Toolbar toolbar;
+    private CoordinatorLayout coordinatorLayout;
+    private Toolbar toolbar;
     private KeyBoardEventListener keyBoardListener;
     private ViewPager viewPager;
     private PagerSectionAdapter adapter;

@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.adapters;
+package com.duy.text_converter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.duy.text_converter.fragment.AdsFragment;
-import com.duy.text_converter.fragment.ConverterFragment;
-import com.duy.text_converter.fragment.DecorateFragment;
-import com.duy.text_converter.fragment.SpecialEffectFragment;
-import com.duy.text_converter.fragment.StylistFragment;
+import com.duy.sharedcode.fragment.AdsFragment;
+import com.duy.sharedcode.fragment.ConverterFragment;
+import com.duy.sharedcode.fragment.DecorateFragment;
+import com.duy.sharedcode.fragment.SpecialEffectFragment;
+import com.duy.sharedcode.fragment.StylistFragment;
+
 
 /**
  * Created by DUy on 06-Feb-17.
