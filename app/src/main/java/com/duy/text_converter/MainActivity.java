@@ -16,11 +16,9 @@
 
 package com.duy.text_converter;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
@@ -34,7 +32,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
-import com.duy.sharedcode.fragment.AdsFragment;
+import com.duy.sharedcode.ActivityUtil;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.crash.FirebaseCrash;
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 shareApp();
                 break;
             case R.id.action_get_ascii:
-                gotoPlayStore("com.duy.asciiart");
+                ActivityUtil.gotoPlayStore(this, "com.duy.asciiart");
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -173,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         RateThisApp.setCallback(new RateThisApp.Callback() {
             @Override
             public void onYesClicked() {
-                gotoPlayStore(BuildConfig.APPLICATION_ID);
+                ActivityUtil.gotoPlayStore(MainActivity.this, BuildConfig.APPLICATION_ID);
             }
 
             @Override
@@ -187,20 +185,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void gotoPlayStore(String APP_ID) {
-        Uri uri = Uri.parse("market://details?id=" + APP_ID);
-        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-        // To count with Play market backstack, After pressing back button,
-        // to taken back to our application, we need to add following flags to intent.
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+    @Override
+    public void onBackPressed() {
+        showAdActivity();
+        super.onBackPressed();
+    }
 
-                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        try {
-            startActivity(goToMarket);
-        } catch (ActivityNotFoundException e) {
-            startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://play.google.com/store/apps/details?id=" + APP_ID)));
-        }
+    private void showAdActivity() {
+        InterstitialAd interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdListener(new AdListener());
+        interstitialAd.show();
     }
 
     private class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
@@ -226,17 +220,5 @@ public class MainActivity extends AppCompatActivity {
                 activity.onShowKeyboard();
             }
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        showAdActivity();
-        super.onBackPressed();
-    }
-
-    private void showAdActivity() {
-        InterstitialAd interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdListener(new AdListener());
-        interstitialAd.show();
     }
 }

@@ -20,7 +20,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.duy.sharedcode.fragment.AdsFragment;
 import com.duy.sharedcode.fragment.ConverterFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.SpecialEffectFragment;
