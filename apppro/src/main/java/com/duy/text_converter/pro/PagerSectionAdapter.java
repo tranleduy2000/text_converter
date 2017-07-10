@@ -31,7 +31,7 @@ import com.duy.sharedcode.fragment.StylistFragment;
  */
 
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 5;
+    private static final int COUNT = 4;
     private String init;
 
     public PagerSectionAdapter(FragmentManager fm, String init) {

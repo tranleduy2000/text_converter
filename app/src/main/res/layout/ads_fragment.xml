@@ -27,7 +27,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
+        android:layout_above="@+id/btn_pro_version"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
