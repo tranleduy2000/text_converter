@@ -16,13 +16,16 @@
 
 package com.duy.text_converter.pro;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -31,11 +34,10 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
-import com.duy.sharedcode.AbstractAppCompatActivity;
-import com.duy.sharedcode.fragment.AdsFragment;
+import com.kobakei.ratethisapp.RateThisApp;
 
 
-public class MainActivity extends AbstractAppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private CoordinatorLayout coordinatorLayout;
     private Toolbar toolbar;
@@ -66,23 +68,6 @@ public class MainActivity extends AbstractAppCompatActivity {
         adapter = new PagerSectionAdapter(getSupportFragmentManager(), text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position == AdsFragment.INDEX) {
-                    hideKeyboard();
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
         tabLayout.setupWithViewPager(viewPager);
@@ -152,6 +137,46 @@ public class MainActivity extends AbstractAppCompatActivity {
         showAppBar();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Monitor launch times and interval from installation
+        RateThisApp.onStart(this);
+        // If the criteria is satisfied, "Rate this app" dialog will be shown
+        RateThisApp.showRateDialogIfNeeded(this);
+        RateThisApp.setCallback(new RateThisApp.Callback() {
+            @Override
+            public void onYesClicked() {
+                gotoPlayStore(BuildConfig.APPLICATION_ID);
+            }
+
+            @Override
+            public void onNoClicked() {
+            }
+
+            @Override
+            public void onCancelClicked() {
+            }
+        });
+
+    }
+
+    public void gotoPlayStore(String APP_ID) {
+        Uri uri = Uri.parse("market://details?id=" + APP_ID);
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + APP_ID)));
+        }
+    }
+
     private class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
         MainActivity activity;
 
@@ -176,6 +201,4 @@ public class MainActivity extends AbstractAppCompatActivity {
             }
         }
     }
-
-
 }

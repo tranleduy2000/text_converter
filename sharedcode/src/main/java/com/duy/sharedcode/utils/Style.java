@@ -25,14 +25,6 @@ public class Style {
      */
     public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    /**
-     * upside down text
-     */
-    public static final String FLIP = "ɐqɔpǝɟbɥıظʞlɯuodbɹsʇnʌʍxʎz‾'؛˙¿¡/\\,∀qϽᗡƎℲƃHIſʞ˥WNOԀὉᴚS⊥∩ΛMXʎZ0ƖᄅƐㄣϛ9ㄥ86";
-
-
-
-
 
 
 }

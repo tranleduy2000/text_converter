@@ -16,7 +16,8 @@
 
 package com.duy.sharedcode.utils;
 
-import static com.duy.text_converter.utils.Style.NORMAL;
+
+import static com.duy.sharedcode.utils.Style.NORMAL;
 
 /**
  * Created by Duy on 05-May-17.

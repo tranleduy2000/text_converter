@@ -25,7 +25,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.duy.text_converter.utils.ClipboardManager;
+import com.duy.sharedcode.utils.ClipboardManager;
+import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;
 
