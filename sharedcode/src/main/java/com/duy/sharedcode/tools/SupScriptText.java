@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.utils;
+package com.duy.sharedcode.tools;
 
 
-import static com.duy.sharedcode.utils.Style.NORMAL;
+import static com.duy.sharedcode.tools.Style.NORMAL;
 
 /**
  * Created by Duy on 05-May-17.

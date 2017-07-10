@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.utils;
+package com.duy.sharedcode.tools;
 
 import java.math.BigInteger;
 

@@ -32,7 +32,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.sharedcode.adapters.StyleAdapter;
-import com.duy.sharedcode.utils.StyleTool;
+import com.duy.sharedcode.tools.StyleTool;
 import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;

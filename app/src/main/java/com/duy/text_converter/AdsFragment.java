@@ -33,7 +33,7 @@ import com.google.android.gms.ads.NativeExpressAdView;
  */
 
 public class AdsFragment extends Fragment {
-    public static final int INDEX = 2;
+    public static final int INDEX = 1;
     private NativeExpressAdView mAdView;
 
     public static AdsFragment newInstance() {
