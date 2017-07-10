@@ -23,7 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.duy.sharedcode.ActivityUtil;
+import com.duy.sharedcode.StoreUtil;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
 
@@ -57,7 +57,7 @@ public class AdsFragment extends Fragment {
         view.findViewById(R.id.btn_pro_version).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityUtil.gotoPlayStore(getActivity(), "com.duy.text_converter.pro");
+                StoreUtil.gotoPlayStore(getActivity(), "com.duy.text_converter.pro");
             }
         });
         mAdView = view.findViewById(R.id.ad_view);

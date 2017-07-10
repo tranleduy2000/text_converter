@@ -32,9 +32,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
-import com.duy.sharedcode.ActivityUtil;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.InterstitialAd;
+import com.duy.sharedcode.StoreUtil;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
@@ -56,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_main);
+        bindView();
+    }
+
+
+
+    private void bindView() {
 
         this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -101,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         coordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
     }
 
+
     private void hideKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -121,22 +126,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_share:
-                shareApp();
+                StoreUtil.shareApp(this, BuildConfig.APPLICATION_ID);
                 break;
             case R.id.action_get_ascii:
-                ActivityUtil.gotoPlayStore(this, "com.duy.asciiart");
+                StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void shareApp() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id="
-                + BuildConfig.APPLICATION_ID);
-        intent.setType("text/plain");
-        startActivity(intent);
-
     }
 
     /**
@@ -171,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         RateThisApp.setCallback(new RateThisApp.Callback() {
             @Override
             public void onYesClicked() {
-                ActivityUtil.gotoPlayStore(MainActivity.this, BuildConfig.APPLICATION_ID);
+                StoreUtil.gotoPlayStore(MainActivity.this, BuildConfig.APPLICATION_ID);
             }
 
             @Override
@@ -185,19 +181,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-//        showAdActivity();
-           super.onBackPressed();
-    }
-
-    private void showAdActivity() {
-        // TODO: 10-Jul-17
-        InterstitialAd interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdListener(new AdListener());
-        interstitialAd.setAdUnitId("asdasdasdasd");
-        interstitialAd.show();
-    }
 
     private class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
         MainActivity activity;
