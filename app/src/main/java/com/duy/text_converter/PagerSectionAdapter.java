@@ -49,9 +49,9 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return ConverterFragment.newInstance(init);
-            case 1:
-                return StylistFragment.newInstance();
             case 2:
+                return StylistFragment.newInstance();
+            case 1:
                 return AdsFragment.newInstance();
             case 3:
                 return DecorateFragment.newInstance();
@@ -67,9 +67,9 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return "Converter";
-            case 1:
-                return "Style";
             case 2:
+                return "Style";
+            case 1:
                 return "Ads";
             case 3:
                 return "Decorate";

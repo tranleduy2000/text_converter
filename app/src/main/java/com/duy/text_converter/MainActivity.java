@@ -187,13 +187,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        showAdActivity();
-        //   super.onBackPressed();
+//        showAdActivity();
+           super.onBackPressed();
     }
 
     private void showAdActivity() {
+        // TODO: 10-Jul-17
         InterstitialAd interstitialAd = new InterstitialAd(this);
         interstitialAd.setAdListener(new AdListener());
+        interstitialAd.setAdUnitId("asdasdasdasd");
         interstitialAd.show();
     }
 
