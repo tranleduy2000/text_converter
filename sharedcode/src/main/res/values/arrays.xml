@@ -29,5 +29,6 @@
         <item>Sub script</item>
         <item>Morse code</item>
         <item>Base64</item>
+        <item>Zalgo</item>
     </string-array>
 </resources>

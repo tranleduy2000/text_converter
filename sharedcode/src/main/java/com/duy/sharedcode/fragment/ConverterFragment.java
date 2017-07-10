@@ -32,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.duy.sharedcode.tools.ASCIITool;
 import com.duy.sharedcode.tools.Base64Tool;
@@ -45,6 +46,7 @@ import com.duy.sharedcode.tools.SubScriptText;
 import com.duy.sharedcode.tools.SupScriptText;
 import com.duy.sharedcode.tools.UpperLowerTool;
 import com.duy.sharedcode.tools.UpsideDownTool;
+import com.duy.sharedcode.tools.ZalgoTool;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 
@@ -61,6 +63,7 @@ import static com.duy.sharedcode.fragment.ConvertType.SUB_SCRIPT;
 import static com.duy.sharedcode.fragment.ConvertType.SUPPER_SCRIPT;
 import static com.duy.sharedcode.fragment.ConvertType.UPPER;
 import static com.duy.sharedcode.fragment.ConvertType.UPSIDE_DOWNSIDE;
+import static com.duy.sharedcode.fragment.ConvertType.ZALGO;
 
 
 /**
@@ -268,6 +271,12 @@ public class ConverterFragment extends Fragment {
             case BASE_64:
                 if (to) mOutput.setText(Base64Tool.base64Encode(inp));
                 else mInput.setText(Base64Tool.base64Decode(out));
+                break;
+            case ZALGO:
+                if (to) mOutput.setText(ZalgoTool.convert(inp, true, true, true, true, true));
+                else {
+                    Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
         //reset cursor
