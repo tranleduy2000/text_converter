@@ -41,8 +41,10 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:text="@string/ads_msg"/>
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:text="@string/ads_msg"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
             <com.google.android.gms.ads.NativeExpressAdView
                 android:id="@+id/ad_view"

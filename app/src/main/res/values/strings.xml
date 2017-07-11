@@ -17,4 +17,6 @@
 <resources>
     <string name="app_name">Text Converter</string>
     <string name="donate_for_develop_remove_ads_get_pro_version">Donate for develop, remove ads, get pro version!</string>
+    <string name="ad_unit_id">ca-app-pub-3940256099942544/2177258514</string>
+    <string name="ads_msg">This ad help developers to continue writing free applications</string>
 </resources>
