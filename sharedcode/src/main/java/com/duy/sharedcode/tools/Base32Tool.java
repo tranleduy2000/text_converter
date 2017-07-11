@@ -17,34 +17,25 @@
 package com.duy.sharedcode.tools;
 
 import android.support.annotation.NonNull;
-import android.util.Base64;
 
-import java.nio.charset.Charset;
+import org.apache.commons.codec.binary.Base32;
 
 /**
- * Created by Duy on 22-Jun-17.
+ * Created by Duy on 11-Jul-17.
  */
 
-public class Base64Tool implements Encoder, Decoder {
+public class Base32Tool implements Encoder, Decoder {
     @NonNull
     @Override
-    public String encode(@NonNull String token) {
-        try {
-            byte[] encodedBytes = Base64.encode(token.getBytes(), Base64.DEFAULT);
-            return new String(encodedBytes, Charset.forName("UTF-8"));
-        } catch (Exception e) {
-            return token;
-        }
+    public String encode(@NonNull String text) {
+        Base32 base32 = new Base32();
+        return new String(base32.encode(text.getBytes()));
     }
 
     @NonNull
     @Override
-    public String decode(@NonNull String token) {
-        try {
-            byte[] decodedBytes = Base64.decode(token.getBytes(), Base64.DEFAULT);
-            return new String(decodedBytes, Charset.forName("UTF-8"));
-        } catch (Exception e) {
-            return token;
-        }
+    public String decode(@NonNull String text) {
+        Base32 base32 = new Base32();
+        return new String(base32.decode(text.getBytes()));
     }
 }

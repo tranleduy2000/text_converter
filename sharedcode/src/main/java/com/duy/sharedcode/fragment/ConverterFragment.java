@@ -50,21 +50,6 @@ import com.duy.sharedcode.tools.ZalgoTool;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 
-import static com.duy.sharedcode.fragment.ConvertType.ASCII;
-import static com.duy.sharedcode.fragment.ConvertType.BASE_64;
-import static com.duy.sharedcode.fragment.ConvertType.BINARY;
-import static com.duy.sharedcode.fragment.ConvertType.HEX;
-import static com.duy.sharedcode.fragment.ConvertType.KEY_TEXT;
-import static com.duy.sharedcode.fragment.ConvertType.LOWER;
-import static com.duy.sharedcode.fragment.ConvertType.MORSE_CODE;
-import static com.duy.sharedcode.fragment.ConvertType.OCTAL;
-import static com.duy.sharedcode.fragment.ConvertType.REVERSER;
-import static com.duy.sharedcode.fragment.ConvertType.SUB_SCRIPT;
-import static com.duy.sharedcode.fragment.ConvertType.SUPPER_SCRIPT;
-import static com.duy.sharedcode.fragment.ConvertType.UPPER;
-import static com.duy.sharedcode.fragment.ConvertType.UPSIDE_DOWNSIDE;
-import static com.duy.sharedcode.fragment.ConvertType.ZALGO;
-
 
 /**
  * TextFragment
@@ -74,6 +59,7 @@ import static com.duy.sharedcode.fragment.ConvertType.ZALGO;
 public class ConverterFragment extends Fragment {
     private static final String TAG = ConverterFragment.class.getSimpleName();
     private static final String KEY = ConverterFragment.class.getSimpleName();
+    private static final String KEY_TEXT = "KEY_TEXT";
     private View mRootView;
     private Context mContext;
     private BaseEditText mInput, mOutput;
@@ -220,10 +206,11 @@ public class ConverterFragment extends Fragment {
     }
 
     private void convert(boolean to) {
-        int key = mChoose.getSelectedItemPosition();
+        int index = mChoose.getSelectedItemPosition();
+        ConvertMethod convertMethod = ConvertMethod.values()[index];
         String inp = mInput.getText().toString();
         String out = mOutput.getText().toString();
-        switch (key) {
+        switch (convertMethod) {
             case ASCII:
                 if (to) mOutput.setText(ASCIITool.textToAscii(inp));
                 else mInput.setText(ASCIITool.asciiToText(out));
@@ -269,8 +256,8 @@ public class ConverterFragment extends Fragment {
                 else mInput.setText(MorseTool.morseToText(out));
                 break;
             case BASE_64:
-                if (to) mOutput.setText(Base64Tool.base64Encode(inp));
-                else mInput.setText(Base64Tool.base64Decode(out));
+                if (to) mOutput.setText(new Base64Tool().encode(inp));
+                else mInput.setText(new Base64Tool().decode(out));
                 break;
             case ZALGO:
                 if (to) mOutput.setText(ZalgoTool.convert(inp, true, true, true, true, true));

@@ -16,19 +16,24 @@
 
 package com.duy.sharedcode.fragment;
 
-public final class ConvertType {
-    public static final int ASCII = 0;
-    public static final int BINARY = 1;
-    public static final int HEX = 2;
-    public static final int OCTAL = 3;
-    public static final int REVERSER = 4;
-    public static final int UPPER = 5;
-    public static final int LOWER = 6;
-    public static final int UPSIDE_DOWNSIDE = 7;
-    public static final int SUPPER_SCRIPT = 8;
-    public static final int SUB_SCRIPT = 9;
-    public static final int MORSE_CODE = 10;
-    public static final int BASE_64 = 11;
-    public static final int ZALGO = 12;
-    public static final String KEY_TEXT = "KEY_TEXT";
+public enum ConvertMethod {
+    ASCII(0),
+    BINARY(1),
+    HEX(2),
+    OCTAL(3),
+    REVERSER(4),
+    UPPER(5),
+    LOWER(6),
+    UPSIDE_DOWNSIDE(7),
+    SUPPER_SCRIPT(8),
+    SUB_SCRIPT(9),
+    MORSE_CODE(10),
+    BASE_64(11),
+    ZALGO(12),;
+
+    private int i;
+
+    ConvertMethod(int i) {
+        this.i = i;
+    }
 }
