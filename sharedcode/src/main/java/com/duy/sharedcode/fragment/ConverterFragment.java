@@ -216,20 +216,20 @@ public class ConverterFragment extends Fragment {
         String out = mOutput.getText().toString();
         switch (convertMethod) {
             case ASCII:
-                if (to) mOutput.setText(ASCIITool.textToAscii(inp));
-                else mInput.setText(ASCIITool.asciiToText(out));
+                if (to) mOutput.setText(new ASCIITool().encode(inp));
+                else mInput.setText(new ASCIITool().decode(out));
                 break;
             case OCTAL:
-                if (to) mOutput.setText(OctalTool.textToOctal(inp));
-                else mInput.setText(OctalTool.octalToText(out));
+                if (to) mOutput.setText(new OctalTool().encode(inp));
+                else mInput.setText(new OctalTool().decode(out));
                 break;
             case BINARY:
-                if (to) mOutput.setText(BinaryTool.textToBinary(inp));
-                else mInput.setText(BinaryTool.binaryToText(out));
+                if (to) mOutput.setText(new BinaryTool().encode(inp));
+                else mInput.setText(new BinaryTool().decode(out));
                 break;
             case HEX:
-                if (to) mOutput.setText(HexTool.textToHex(inp));
-                else mInput.setText(HexTool.hexToTex(out));
+                if (to) mOutput.setText(new HexTool().encode(inp));
+                else mInput.setText(new HexTool().decode(out));
                 break;
             case UPPER:
                 if (to) mOutput.setText(UpperLowerTool.upperText(inp));
@@ -248,16 +248,16 @@ public class ConverterFragment extends Fragment {
                 else mInput.setText(UpsideDownTool.upsideDownToText(out));
                 break;
             case SUPPER_SCRIPT:
-                if (to) mOutput.setText(SupScriptText.textToSup(inp));
-                else mInput.setText(SupScriptText.supToText(out));
+                if (to) mOutput.setText(new SupScriptText().encode(inp));
+                else mInput.setText(new SupScriptText().decode(out));
                 break;
             case SUB_SCRIPT:
-                if (to) mOutput.setText(SubScriptText.textToSub(inp));
-                else mInput.setText(SubScriptText.subToText(out));
+                if (to) mOutput.setText(new SubScriptText().encode(inp));
+                else mInput.setText(new SubScriptText().decode(out));
                 break;
             case MORSE_CODE:
-                if (to) mOutput.setText(MorseTool.textToMorse(inp));
-                else mInput.setText(MorseTool.morseToText(out));
+                if (to) mOutput.setText(new MorseTool().encode(inp));
+                else mInput.setText(new MorseTool().decode(out));
                 break;
             case BASE_64:
                 if (to) mOutput.setText(new Base64Tool().encode(inp));

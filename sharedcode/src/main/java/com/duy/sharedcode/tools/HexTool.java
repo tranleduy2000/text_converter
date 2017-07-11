@@ -16,13 +16,15 @@
 
 package com.duy.sharedcode.tools;
 
+import android.support.annotation.NonNull;
+
 import java.math.BigInteger;
 
 /**
  * Created by DUy on 06-Feb-17.
  */
 
-public class HexTool {
+public class HexTool implements Encoder, Decoder {
 
     /**
      * convert text to hex
@@ -56,5 +58,21 @@ public class HexTool {
     }
 
     public static void main(String[] args) {
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return textToHex(text);
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return hexToTex(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 }

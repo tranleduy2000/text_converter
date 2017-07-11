@@ -16,11 +16,13 @@
 
 package com.duy.sharedcode.tools;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by DUy on 06-Feb-17.
  */
 
-public class BinaryTool {
+public class BinaryTool implements Encoder, Decoder {
 
     /**
      * convert text to binary
@@ -66,5 +68,21 @@ public class BinaryTool {
         String binary = textToBinary(inp);
         System.out.println("Text to binary: " + inp + " ->> " + binary);
         System.out.println("Binary to text: " + binary + " ->> " + binaryToText(binary));
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return textToBinary(text);
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return binaryToText(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 }

@@ -16,11 +16,13 @@
 
 package com.duy.sharedcode.tools;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by DUy on 06-Feb-17.
  */
 
-public class ASCIITool {
+public class ASCIITool implements Encoder, Decoder {
     public static String asciiToText(String text) {
         String[] arr = text.split(" ");
         StringBuilder result = new StringBuilder();
@@ -43,10 +45,19 @@ public class ASCIITool {
         return result.toString();
     }
 
-    public static void main(String[] args) {
-        String original = "Converting ASCII code to char in Java";
-        System.out.println(original);
-        System.out.println(textToAscii(original));
-        System.out.println(asciiToText(textToAscii(original)));
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return textToAscii(text);
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return asciiToText(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 }

@@ -16,13 +16,14 @@
 
 package com.duy.sharedcode.tools;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 /**
  * Created by DUy on 06-Feb-17.
  */
 
-public class OctalTool {
+public class OctalTool implements Encoder, Decoder {
     private static final String TAG = "OctalTool";
 
     public static void main(String[] args) {
@@ -55,5 +56,21 @@ public class OctalTool {
             }
         }
         return result.toString();
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return textToOctal(text);
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return octalToText(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 }

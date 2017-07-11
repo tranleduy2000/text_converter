@@ -17,13 +17,15 @@
 package com.duy.sharedcode.tools;
 
 
+import android.support.annotation.NonNull;
+
 import static com.duy.sharedcode.tools.Style.NORMAL;
 
 /**
  * Created by Duy on 05-May-17.
  */
 
-public class SupScriptText {
+public class SupScriptText implements Encoder, Decoder {
     public static final String SUPPER_SCRIPT = "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹";
 
     public static String textToSup(String text) {
@@ -54,4 +56,23 @@ public class SupScriptText {
         System.out.println(supToText(x));
     }
 
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        try {
+            return textToSup(text);
+        }catch (Exception e){
+            return text;
+        }
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return supToText(text);
+        }catch (Exception e){
+            return text;
+        }
+    }
 }

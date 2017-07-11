@@ -16,13 +16,15 @@
 
 package com.duy.sharedcode.tools;
 
+import android.support.annotation.NonNull;
+
 import java.util.HashMap;
 
 /**
  * Created by Duy on 15-Jun-17.
  */
 
-public class MorseTool {
+public class MorseTool implements Encoder, Decoder {
     public static final char ALPHABET[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
             'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '};
 
@@ -71,5 +73,25 @@ public class MorseTool {
             }
         }
         return converted.toString();
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        try {
+            return textToMorse(text);
+        } catch (Exception e) {
+            return text;
+        }
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return morseToText(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 }

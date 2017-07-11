@@ -17,15 +17,18 @@
 package com.duy.sharedcode.tools;
 
 
+import android.support.annotation.NonNull;
+
 import static com.duy.sharedcode.tools.Style.NORMAL;
 
 /**
  * Created by Duy on 05-May-17.
  */
 
-public class SubScriptText {    public static final String SUB_SCRIPT = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
+public class SubScriptText implements Encoder, Decoder {
+    private static final String SUB_SCRIPT = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
 
-    public static String textToSub(String text) {
+    private static String textToSub(String text) {
         String result = "";
         char letter;
         for (int i = 0; i < text.length(); i++) {
@@ -36,7 +39,7 @@ public class SubScriptText {    public static final String SUB_SCRIPT = "ₐbcd�
         return result;
     }
 
-    public static String subToText(String text) {
+    private static String subToText(String text) {
         String result = "";
         char letter;
         for (int i = 0; i < text.length(); i++) {
@@ -47,10 +50,23 @@ public class SubScriptText {    public static final String SUB_SCRIPT = "ₐbcd�
         return result;
     }
 
-    public static void main(String[] args) {
-        String x = textToSub("abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-        System.out.println(x);
-        System.out.println(subToText(x));
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        try {
+            return textToSub(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return subToText(text);
+        } catch (Exception e) {
+            return text;
+        }
+    }
 }
