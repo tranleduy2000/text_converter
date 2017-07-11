@@ -33,6 +33,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void bindView() {
 
         this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         if (Intent.ACTION_SEND.equals(action) && type != null) {
             if (type.equals("text/plain")) {
                 text = intent.getStringExtra(Intent.EXTRA_TEXT);
+                FirebaseAnalytics.getInstance(this).logEvent("open_from_another_app", new Bundle());
             }
         }
 
@@ -126,9 +127,11 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_share:
+                FirebaseAnalytics.getInstance(this).logEvent("click_share", new Bundle());
                 StoreUtil.shareApp(this, BuildConfig.APPLICATION_ID);
                 break;
             case R.id.action_get_ascii:
+                FirebaseAnalytics.getInstance(this).logEvent("click_ascii", new Bundle());
                 StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
                 break;
         }
@@ -167,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
         RateThisApp.setCallback(new RateThisApp.Callback() {
             @Override
             public void onYesClicked() {
+                FirebaseAnalytics.getInstance(MainActivity.this).logEvent("click_rate", new Bundle());
                 StoreUtil.gotoPlayStore(MainActivity.this, BuildConfig.APPLICATION_ID);
             }
 
