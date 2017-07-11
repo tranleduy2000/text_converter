@@ -69,7 +69,9 @@
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clickable="true"
             android:fillViewport="true"
+            android:foreground="?attr/selectableItemBackground"
             android:scrollbarSize="4dp">
 
             <com.duy.sharedcode.view.BaseTextView
@@ -79,11 +81,10 @@
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textIsSelectable="true"
-                android:textStyle="bold"
-                tools:text="Rounded Corners Generator (compatible with IE)"/>
+                tools:text="The quick brown fox jumps over the lazy dog"/>
         </HorizontalScrollView>
 
     </LinearLayout>
