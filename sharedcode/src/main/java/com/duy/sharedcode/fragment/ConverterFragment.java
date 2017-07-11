@@ -35,15 +35,19 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.duy.sharedcode.tools.ASCIITool;
+import com.duy.sharedcode.tools.Base32Tool;
 import com.duy.sharedcode.tools.Base64Tool;
 import com.duy.sharedcode.tools.BinaryTool;
 import com.duy.sharedcode.tools.ClipboardManager;
 import com.duy.sharedcode.tools.HexTool;
+import com.duy.sharedcode.tools.Md5Tool;
 import com.duy.sharedcode.tools.MorseTool;
 import com.duy.sharedcode.tools.OctalTool;
 import com.duy.sharedcode.tools.ReverserTool;
+import com.duy.sharedcode.tools.Sha2Tool;
 import com.duy.sharedcode.tools.SubScriptText;
 import com.duy.sharedcode.tools.SupScriptText;
+import com.duy.sharedcode.tools.URLTool;
 import com.duy.sharedcode.tools.UpperLowerTool;
 import com.duy.sharedcode.tools.UpsideDownTool;
 import com.duy.sharedcode.tools.ZalgoTool;
@@ -264,6 +268,26 @@ public class ConverterFragment extends Fragment {
                 else {
                     Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
                 }
+                break;
+            case BASE32:
+                if (to) mOutput.setText(new Base32Tool().encode(inp));
+                else mInput.setText(new Base32Tool().decode(out));
+                break;
+            case MD5:
+                if (to) mOutput.setText(new Md5Tool().encode(inp));
+                else {
+                    Toast.makeText(mContext, "You can't decode Crypt", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case SHA_2:
+                if (to) mOutput.setText(new Sha2Tool().encode(inp));
+                else {
+                    Toast.makeText(mContext, "You can't decode Crypt", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case URL:
+                if (to) mOutput.setText(new URLTool().encode(inp));
+                else mInput.setText(new URLTool().decode(out));
                 break;
         }
         //reset cursor

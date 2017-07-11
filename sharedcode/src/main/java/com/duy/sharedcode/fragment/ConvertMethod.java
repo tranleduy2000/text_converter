@@ -29,7 +29,11 @@ public enum ConvertMethod {
     SUB_SCRIPT(9),
     MORSE_CODE(10),
     BASE_64(11),
-    ZALGO(12),;
+    ZALGO(12),
+    BASE32(13),
+    MD5(14),
+    SHA_2(15),
+    URL(16);
 
     private int i;
 

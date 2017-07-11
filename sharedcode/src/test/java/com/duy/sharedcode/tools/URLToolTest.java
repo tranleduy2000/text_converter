@@ -18,16 +18,19 @@ package com.duy.sharedcode.tools;
 
 import junit.framework.TestCase;
 
-import org.apache.commons.codec.net.URLCodec;
-
 /**
  * Created by Duy on 11-Jul-17.
  */
 public class URLToolTest extends TestCase {
 
-    public void testEncode(){
+    public void testEncode() {
         URLTool urlTool = new URLTool();
-        URLCodec urlCodec = new URLCodec();
+        String encode = urlTool.encode("https://commons.apache.org/proper/commons" +
+                "-codec/apidocs/org/apache/commons/codec/net/URLCodec.html");
+        System.out.println(encode);
+
+        String decode = urlTool.decode(encode);
+        System.out.println(decode);
     }
 
 }

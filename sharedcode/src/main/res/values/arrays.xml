@@ -30,5 +30,9 @@
         <item>Morse code</item>
         <item>Base64</item>
         <item>Zalgo</item>
+        <item>Base32</item>
+        <item>MD5</item>
+        <item>SHA-2</item>
+        <item>URL</item>
     </string-array>
 </resources>
