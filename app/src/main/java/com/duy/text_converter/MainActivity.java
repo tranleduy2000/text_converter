@@ -134,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAnalytics.getInstance(this).logEvent("click_ascii", new Bundle());
                 StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
                 break;
+            case R.id.action_review:
+                StoreUtil.gotoPlayStore(this, BuildConfig.APPLICATION_ID);
+                break;
+            case R.id.action_more:
+                StoreUtil.moreApp(this);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

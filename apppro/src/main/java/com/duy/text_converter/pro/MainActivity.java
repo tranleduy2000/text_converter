@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
+import com.duy.sharedcode.StoreUtil;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
@@ -107,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_get_ascii:
                 gotoPlayStore("com.duy.asciiart");
+                break;case R.id.action_review:
+                StoreUtil.gotoPlayStore(this,BuildConfig.APPLICATION_ID);
+                break;
+            case R.id.action_more:
+                StoreUtil.moreApp(this);
                 break;
         }
         return super.onOptionsItemSelected(item);

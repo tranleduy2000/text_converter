@@ -28,4 +28,14 @@
         android:icon="@drawable/ic_share_white_24dp"
         android:title="@string/share"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_review"
+        android:icon="@drawable/ic_rate_review_white_24dp"
+        android:title="@string/write_review_in_playstore"/>
+
+    <item
+        android:id="@+id/action_more"
+        android:icon="@drawable/ic_file_download_white_24dp"
+        android:title="@string/more_app"/>
 </menu>

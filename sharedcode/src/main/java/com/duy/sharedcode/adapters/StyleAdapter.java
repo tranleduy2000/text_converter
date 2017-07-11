@@ -17,7 +17,6 @@
 package com.duy.sharedcode.adapters;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -25,11 +24,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.duy.sharedcode.ShareManager;
 import com.duy.sharedcode.tools.ClipboardManager;
 import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;
-
 
 
 public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> {
@@ -65,17 +64,19 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_TEXT, str);
-                intent.setType("text/plain");
-                context.startActivity(intent);
+                ShareManager.share(str, context);
             }
         });
         holder.imgCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardManager.setClipboard(context, str);
+            }
+        });
+        holder.shareMsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShareManager.shareMsg(str, context);
             }
         });
     }
@@ -87,13 +88,14 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
-        View imgCopy, imgShare;
+        View imgCopy, imgShare, shareMsg;
 
         ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.text_view);
+            textView = itemView.findViewById(R.id.text_view);
             imgCopy = itemView.findViewById(R.id.img_copy);
             imgShare = itemView.findViewById(R.id.img_share);
+            shareMsg = itemView.findViewById(R.id.img_share_msg);
         }
     }
 }
