@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode;
+package com.duy.sharedcode.tools;
 
-import org.junit.Test;
+import junit.framework.TestCase;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Created by Duy on 11-Jul-17.
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+public class ArrayEffectToolTest extends TestCase {
+    public void testConvert() throws Exception {
+        ArrayList<String> convert = ArrayEffectTool.convert("the quick brown fox jumps over the lazy dog");
+        for (String s : convert) {
+            System.out.println(s);
+        }
     }
+
 }
