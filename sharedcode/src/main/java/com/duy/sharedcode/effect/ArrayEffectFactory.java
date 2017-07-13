@@ -170,11 +170,11 @@ public class ArrayEffectFactory {
             encoders.add(new LeftRightStyle(pair.first, pair.second));
         }
 
-        ArrayList<String> rights = createRight();
-        for (String s : rights) encoders.add(new LeftEffect(s));
-
         ArrayList<String> lefts = createLeft();
         for (String s : lefts) encoders.add(new LeftEffect(s));
+
+        ArrayList<String> rights = createRight();
+        for (String s : rights) encoders.add(new LeftEffect(s));
 
         return encoders;
     }
