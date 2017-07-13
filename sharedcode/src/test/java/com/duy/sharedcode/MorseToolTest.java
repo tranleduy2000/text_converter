@@ -16,7 +16,7 @@
 
 package com.duy.sharedcode;
 
-import com.duy.sharedcode.tools.MorseTool;
+import com.duy.sharedcode.codec.MorseTool;
 
 import junit.framework.TestCase;
 

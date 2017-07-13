@@ -14,22 +14,33 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.effect;
+
 
 import android.support.annotation.NonNull;
 
-import org.apache.commons.codec.digest.Sha2Crypt;
+import com.duy.sharedcode.codec.Encoder;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 13-Jul-17.
  */
 
-public class Sha2Tool implements Encoder {
+public class LeftRightStyle implements Encoder {
+    @NonNull
+    private String left, right;
+
+    public LeftRightStyle(@NonNull String left, @NonNull String right) {
+        this.left = left;
+        this.right = right;
+    }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return Sha2Crypt.sha256Crypt(text.getBytes());
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            result.append(left).append(text.charAt(i)).append(right);
+        }
+        return result.toString();
     }
-
 }

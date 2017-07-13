@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
+
+import org.apache.commons.codec.digest.Md5Crypt;
 
 /**
  * Created by Duy on 11-Jul-17.
  */
 
-public interface Decoder {
+public class Md5Tool implements Encoder {
     @NonNull
-    String decode(@NonNull String text);
+    @Override
+    public String encode(@NonNull String text) {
+        return Md5Crypt.md5Crypt(text.getBytes());
+    }
 }

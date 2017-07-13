@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
-import com.duy.sharedcode.effect.ArrayEffectEncoder;
-
-import junit.framework.TestCase;
-
-import java.util.ArrayList;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Duy on 11-Jul-17.
  */
-public class ArrayEffectToolTest extends TestCase {
-    public void testConvert() throws Exception {
-        ArrayList<String> convert = ArrayEffectEncoder.convert("the quick brown fox jumps over the lazy dog");
-        for (String s : convert) {
-            System.out.println(s);
-        }
-    }
 
+public interface Decoder {
+    @NonNull
+    String decode(@NonNull String text);
 }

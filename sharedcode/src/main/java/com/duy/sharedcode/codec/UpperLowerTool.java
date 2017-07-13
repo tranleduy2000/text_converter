@@ -14,28 +14,24 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
-
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.binary.Base32;
+package com.duy.sharedcode.codec;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by DUy on 06-Feb-17.
  */
 
-public class Base32Tool implements Encoder, Decoder {
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        Base32 base32 = new Base32();
-        return new String(base32.encode(text.getBytes()));
+public class UpperLowerTool {
+    public static void main(String[] args) {
+        String inp = "adgasdasd";
+        System.out.println(inp);
+        System.out.println(upperText(inp));
+        System.out.println(lowerText(inp));
+    }
+    public static String upperText(String text) {
+        return text.toUpperCase();
     }
 
-    @NonNull
-    @Override
-    public String decode(@NonNull String text) {
-        Base32 base32 = new Base32();
-        return new String(base32.decode(text.getBytes()));
+    public static String lowerText(String text) {
+        return text.toLowerCase();
     }
 }

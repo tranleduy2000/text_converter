@@ -14,43 +14,42 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
+
+import java.math.BigInteger;
 
 /**
  * Created by DUy on 06-Feb-17.
  */
 
-public class OctalTool implements Encoder, Decoder {
-    private static final String TAG = "OctalTool";
+public class HexTool implements Encoder, Decoder {
 
-    public static void main(String[] args) {
-        String ori = "Octal to text in Java";
-        System.out.println(ori);
-        System.out.println(textToOctal(ori));
-        System.out.println(octalToText(textToOctal(ori)));
-    }
-
-    public static String textToOctal(String text) {
+    /**
+     * convert text to hex
+     */
+    public static String textToHex(String text) {
+        String tmp = String.format("%x", new BigInteger(1, text.getBytes(/*YOUR_CHARSET?*/)));
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            result.append(Integer.toOctalString(c));
-            result.append(" ");
+        if (text.length() == 0) return "";
+        for (int i = 0; i < tmp.length(); i += 2) {
+            String str = tmp.substring(i, i + 2);
+            result.append(str).append(" ");
         }
-        Log.d(TAG, "textToOctal: " + result.toString());
         return result.toString();
     }
 
-    public static String octalToText(String text) {
-        String[] arr = text.split(" ");
+    /**
+     * convert text to hex
+     */
+    public static String hexToTex(String text) {
         StringBuilder result = new StringBuilder();
+        String[] arr = text.split(" ");
+
         for (String arg : arr) {
             try {
-                char c = (char) Integer.parseInt(arg, 8);
-                result.append(c);
+                result.append((char) Integer.parseInt(arg, 16));
             } catch (Exception e) {
                 result.append(" ").append(arg).append(" ");
             }
@@ -58,17 +57,20 @@ public class OctalTool implements Encoder, Decoder {
         return result.toString();
     }
 
+    public static void main(String[] args) {
+    }
+
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return textToOctal(text);
+        return textToHex(text);
     }
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
         try {
-            return octalToText(text);
+            return hexToTex(text);
         } catch (Exception e) {
             return text;
         }

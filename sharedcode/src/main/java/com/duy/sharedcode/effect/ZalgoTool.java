@@ -14,9 +14,13 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.effect;
 
-public class ZalgoTool {
+import android.support.annotation.NonNull;
+
+import com.duy.sharedcode.codec.Encoder;
+
+public class ZalgoTool implements Encoder {
 
     private static final char[] zalgo_up =
             {'\u030d', /*     Ì?     */'\u030e', /*     ÌŽ     */'\u0304', /*     Ì„     */'\u0305', /*     Ì…     */
@@ -137,4 +141,9 @@ public class ZalgoTool {
     }
 
 
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return convert(text, true, true, true, true, true);
+    }
 }

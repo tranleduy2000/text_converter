@@ -33,7 +33,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.sharedcode.adapters.StyleAdapter;
-import com.duy.sharedcode.tools.DecorateTool;
+import com.duy.sharedcode.codec.DecorateTool;
 import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;

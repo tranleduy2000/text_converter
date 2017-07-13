@@ -14,18 +14,17 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 
 import android.support.annotation.NonNull;
-
-import static com.duy.sharedcode.tools.Style.NORMAL;
 
 /**
  * Created by Duy on 05-May-17.
  */
 
 public class SubScriptText implements Encoder, Decoder {
+    public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final String SUB_SCRIPT = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
 
     private static String textToSub(String text) {

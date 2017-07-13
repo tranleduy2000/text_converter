@@ -16,7 +16,7 @@
 
 package com.duy.sharedcode;
 
-import com.duy.sharedcode.tools.StyleTool;
+import com.duy.sharedcode.effect.StyleTool;
 
 import junit.framework.TestCase;
 

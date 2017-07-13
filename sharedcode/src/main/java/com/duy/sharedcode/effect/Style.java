@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
-
-import com.duy.sharedcode.effect.ArrayEffectEncoder;
-
-import junit.framework.TestCase;
+package com.duy.sharedcode.effect;
 
 import java.util.ArrayList;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by DUy on 07-Feb-17.
  */
-public class ArrayEffectToolTest extends TestCase {
-    public void testConvert() throws Exception {
-        ArrayList<String> convert = ArrayEffectEncoder.convert("the quick brown fox jumps over the lazy dog");
-        for (String s : convert) {
-            System.out.println(s);
-        }
-    }
-
+public interface Style {
+    ArrayList<String> generate(String input);
 }

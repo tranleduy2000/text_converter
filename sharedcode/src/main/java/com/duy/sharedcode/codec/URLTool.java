@@ -14,37 +14,40 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
-import android.util.Base64;
 
-import java.nio.charset.Charset;
+import org.apache.commons.codec.DecoderException;
+import org.apache.commons.codec.EncoderException;
+import org.apache.commons.codec.net.URLCodec;
 
 /**
- * Created by Duy on 22-Jun-17.
+ * Created by Duy on 11-Jul-17.
  */
 
-public class Base64Tool implements Encoder, Decoder {
+public class URLTool implements Encoder, Decoder {
     @NonNull
     @Override
-    public String encode(@NonNull String token) {
+    public String encode(@NonNull String text) {
+        URLCodec urlCodec = new URLCodec();
         try {
-            byte[] encodedBytes = Base64.encode(token.getBytes(), Base64.DEFAULT);
-            return new String(encodedBytes, Charset.forName("UTF-8"));
-        } catch (Exception e) {
-            return token;
+            return urlCodec.encode(text);
+        } catch (EncoderException e) {
+            e.printStackTrace();
+            return text;
         }
     }
 
     @NonNull
     @Override
-    public String decode(@NonNull String token) {
+    public String decode(@NonNull String text) {
+        URLCodec urlCodec = new URLCodec();
         try {
-            byte[] decodedBytes = Base64.decode(token.getBytes(), Base64.DEFAULT);
-            return new String(decodedBytes, Charset.forName("UTF-8"));
-        } catch (Exception e) {
-            return token;
+            return urlCodec.decode(text);
+        } catch (DecoderException e) {
+            e.printStackTrace();
+            return text;
         }
     }
 }

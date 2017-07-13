@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 /**
  * Created by DUy on 06-Feb-17.

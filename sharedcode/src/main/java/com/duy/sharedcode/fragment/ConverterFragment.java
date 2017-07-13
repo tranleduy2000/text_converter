@@ -34,23 +34,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.duy.sharedcode.tools.ASCIITool;
-import com.duy.sharedcode.tools.Base32Tool;
-import com.duy.sharedcode.tools.Base64Tool;
-import com.duy.sharedcode.tools.BinaryTool;
-import com.duy.sharedcode.tools.ClipboardManager;
-import com.duy.sharedcode.tools.HexTool;
-import com.duy.sharedcode.tools.Md5Tool;
-import com.duy.sharedcode.tools.MorseTool;
-import com.duy.sharedcode.tools.OctalTool;
-import com.duy.sharedcode.tools.ReverserTool;
-import com.duy.sharedcode.tools.Sha2Tool;
-import com.duy.sharedcode.tools.SubScriptText;
-import com.duy.sharedcode.tools.SupScriptText;
-import com.duy.sharedcode.tools.URLTool;
-import com.duy.sharedcode.tools.UpperLowerTool;
-import com.duy.sharedcode.tools.UpsideDownTool;
-import com.duy.sharedcode.tools.ZalgoTool;
+import com.duy.sharedcode.codec.ASCIITool;
+import com.duy.sharedcode.codec.Base32Tool;
+import com.duy.sharedcode.codec.Base64Tool;
+import com.duy.sharedcode.codec.BinaryTool;
+import com.duy.sharedcode.ClipboardManager;
+import com.duy.sharedcode.codec.HexTool;
+import com.duy.sharedcode.codec.Md5Tool;
+import com.duy.sharedcode.codec.MorseTool;
+import com.duy.sharedcode.codec.OctalTool;
+import com.duy.sharedcode.codec.ReverserTool;
+import com.duy.sharedcode.codec.Sha2Tool;
+import com.duy.sharedcode.codec.SubScriptText;
+import com.duy.sharedcode.codec.SupScriptText;
+import com.duy.sharedcode.codec.URLTool;
+import com.duy.sharedcode.codec.UpperLowerTool;
+import com.duy.sharedcode.codec.UpsideDownTool;
+import com.duy.sharedcode.effect.ZalgoTool;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 
@@ -264,7 +264,7 @@ public class ConverterFragment extends Fragment {
                 else mInput.setText(new Base64Tool().decode(out));
                 break;
             case ZALGO:
-                if (to) mOutput.setText(ZalgoTool.convert(inp, true, true, true, true, true));
+                if (to) mOutput.setText(new ZalgoTool().encode(inp));
                 else {
                     Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
                 }

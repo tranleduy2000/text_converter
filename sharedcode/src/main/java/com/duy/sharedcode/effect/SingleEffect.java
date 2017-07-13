@@ -14,16 +14,28 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.effect;
+
 
 import android.support.annotation.NonNull;
 
+import com.duy.sharedcode.codec.Encoder;
+
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 13-Jul-17.
  */
 
-interface Encoder {
-    @NonNull
-    String encode(@NonNull String text);
+public abstract class SingleEffect implements Encoder {
 
+    public abstract char getChar();
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            result.append(text.charAt(i)).append(getChar());
+        }
+        return result.toString();
+    }
 }

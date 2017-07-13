@@ -14,63 +14,48 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
-
-import java.math.BigInteger;
 
 /**
  * Created by DUy on 06-Feb-17.
  */
 
-public class HexTool implements Encoder, Decoder {
-
-    /**
-     * convert text to hex
-     */
-    public static String textToHex(String text) {
-        String tmp = String.format("%x", new BigInteger(1, text.getBytes(/*YOUR_CHARSET?*/)));
-        StringBuilder result = new StringBuilder();
-        if (text.length() == 0) return "";
-        for (int i = 0; i < tmp.length(); i += 2) {
-            String str = tmp.substring(i, i + 2);
-            result.append(str).append(" ");
-        }
-        return result.toString();
-    }
-
-    /**
-     * convert text to hex
-     */
-    public static String hexToTex(String text) {
-        StringBuilder result = new StringBuilder();
+public class ASCIITool implements Encoder, Decoder {
+    public static String asciiToText(String text) {
         String[] arr = text.split(" ");
-
+        StringBuilder result = new StringBuilder();
         for (String arg : arr) {
             try {
-                result.append((char) Integer.parseInt(arg, 16));
+                char c = (char) Integer.parseInt(arg);
+                result.append(c);
             } catch (Exception e) {
-                result.append(" ").append(arg).append(" ");
+                result.append(arg);
             }
         }
         return result.toString();
     }
 
-    public static void main(String[] args) {
+    public static String textToAscii(String text) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            result.append((int) text.charAt(i)).append(" ");
+        }
+        return result.toString();
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return textToHex(text);
+        return textToAscii(text);
     }
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
         try {
-            return hexToTex(text);
+            return asciiToText(text);
         } catch (Exception e) {
             return text;
         }

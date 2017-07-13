@@ -16,6 +16,8 @@
 
 package com.duy.sharedcode.tools;
 
+import com.duy.sharedcode.codec.URLTool;
+
 import junit.framework.TestCase;
 
 /**

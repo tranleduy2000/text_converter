@@ -14,17 +14,28 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
+
+import android.support.annotation.NonNull;
+
+import org.apache.commons.codec.binary.Base32;
 
 /**
- * Created by DUy on 07-Feb-17.
+ * Created by Duy on 11-Jul-17.
  */
-public class Style {
-    /**
-     * original text
-     */
-    public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+public class Base32Tool implements Encoder, Decoder {
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        Base32 base32 = new Base32();
+        return new String(base32.encode(text.getBytes()));
+    }
 
-
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        Base32 base32 = new Base32();
+        return new String(base32.decode(text.getBytes()));
+    }
 }

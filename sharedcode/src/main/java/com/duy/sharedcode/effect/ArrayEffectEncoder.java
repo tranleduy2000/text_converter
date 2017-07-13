@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.effect;
+
+import android.support.annotation.NonNull;
+
+import com.duy.sharedcode.codec.Encoder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Duy on 06-Jul-17.
  */
 
-public class ArrayEffectTool {
+public class ArrayEffectEncoder implements Encoder {
     private static final String NORMAL;
     private static final String[][] EFFECTS;
 
@@ -125,40 +128,6 @@ public class ArrayEffectTool {
                 "a♥b♥c♥d♥e♥f♥g♥h♥i♥j♥k♥l♥m♥n♥o♥p♥q♥r♥s♥t♥u♥v♥w♥x♥y♥z♥a♥" +
                         "b♥c♥d♥e♥f♥g♥h♥i♥j♥k♥l♥m♥n♥o♥p♥q♥r♥s♥t♥u♥v♥w♥x♥y♥z♥",
 
-                "『a』『b』『c』『d』『e』『f』『g』『h』『i』『j』『k』『l』『m』『n』『o』『p』『q』『r』" +
-                        "『s』『t』『u』『v』『w』『x』『y』『z』『a』『b』『c』『d』『e』『f』『g』『h』" +
-                        "『i』『j』『k』『l』『m』『n』『o』『p』『q』『r』『s』『t』『u』『v』『w』『x』" +
-                        "『y』『z』",
-
-                "〖a〗〖b〗〖c〗〖d〗〖e〗〖f〗〖g〗〖h〗〖i〗〖j〗〖k〗〖l〗〖m〗〖n〗〖o〗〖p〗〖q〗" +
-                        "〖r〗〖s〗〖t〗〖u〗〖v〗〖w〗〖x〗〖y〗〖z〗〖A〗〖B〗〖C〗〖D〗〖E〗〖F〗" +
-                        "〖G〗〖H〗〖I〗〖J〗〖K〗〖L〗〖M〗〖N〗〖O〗〖P〗〖Q〗〖R〗〖S〗〖T〗〖U〗" +
-                        "〖V〗〖W〗〖X〗〖Y〗〖Z〗",
-
-                "〘a〙〘b〙〘c〙〘d〙〘e〙〘f〙〘g〙〘h〙〘i〙〘j〙〘k〙〘l〙〘m〙〘n〙〘o〙〘p〙〘q〙" +
-                        "〘r〙〘s〙〘t〙〘u〙〘v〙〘w〙〘x〙〘y〙〘z〙〘A〙〘B〙〘C〙〘D〙〘E〙〘F〙" +
-                        "〘G〙〘H〙〘I〙〘J〙〘K〙〘L〙〘M〙〘N〙〘O〙〘P〙〘Q〙〘R〙〘S〙〘T〙〘U〙" +
-                        "〘V〙〘W〙〘X〙〘Y〙〘Z〙",
-
-                "〚a〛〚b〛〚c〛〚d〛〚e〛〚f〛〚g〛〚h〛〚i〛〚j〛〚k〛〚l〛〚m〛〚n〛〚o〛" +
-                        "〚p〛〚q〛〚r〛〚s〛〚t〛〚u〛〚v〛〚w〛〚x〛〚y〛〚z〛〚A〛〚B〛" +
-                        "〚C〛〚D〛〚E〛〚F〛〚G〛〚H〛〚I〛〚J〛〚K〛〚L〛〚M〛〚N〛〚O〛" +
-                        "〚P〛〚Q〛〚R〛〚S〛〚T〛〚U〛〚V〛〚W〛〚X〛〚Y〛〚Z〛",
-
-                "《a》《b》《c》《d》《e》《f》《g》《h》《i》《j》《k》《l》《m》《n》《o》《p》" +
-                        "《q》《r》《s》《t》《u》《v》《w》《x》《y》《z》《A》《B》《C》《D》《E》" +
-                        "《F》《G》《H》《I》《J》《K》《L》《M》《N》《O》《P》《Q》《R》《S》《T》" +
-                        "《U》《V》《W》《X》《Y》《Z》",
-
-                "〔a〕〔b〕〔c〕〔d〕〔e〕〔f〕〔g〕〔h〕〔i〕〔j〕〔k〕〔l〕〔m〕〔n〕〔o〕〔p〕" +
-                        "〔q〕〔r〕〔s〕〔t〕〔u〕〔v〕〔w〕〔x〕〔y〕〔z〕〔A〕〔B〕〔C〕〔D〕" +
-                        "〔E〕〔F〕〔G〕〔H〕〔I〕〔J〕〔K〕〔L〕〔M〕〔N〕〔O〕〔P〕〔Q〕〔R〕" +
-                        "〔S〕〔T〕〔U〕〔V〕〔W〕〔X〕〔Y〕〔Z〕",
-
-                "【a】【b】【c】【d】【e】【f】【g】【h】【i】【j】【k】【l】【m】【n】【o】【p】" +
-                        "【q】【r】【s】【t】【u】【v】【w】【x】【y】【z】【A】【B】【C】【D】" +
-                        "【E】【F】【G】【H】【I】【J】【K】【L】【M】【N】【O】【P】【Q】【R】" +
-                        "【S】【T】【U】【V】【W】【X】【Y】【Z】",
 
                 "ãb̃c̃d̃ẽf̃g̃h̃ĩj̃k̃l̃m̃ñõp̃q̃r̃s̃t̃ũṽw̃x̃ỹz̃ÃB̃C̃D̃ẼF̃G̃H̃ĨJ̃K̃L̃M̃ÑÕP̃Q̃R̃S̃T̃ŨṼW̃X̃ỸZ̃",
 
@@ -197,7 +166,40 @@ public class ArrayEffectTool {
                         "w\u2E3Ex\u2E3Ey\u2E3Ez\u2E3EA\u2E3EB\u2E3EC\u2E3ED\u2E3EE\u2E3EF\u2E3EG\u2E3E" +
                         "H\u2E3EI\u2E3EJ\u2E3EK\u2E3EL\u2E3EM\u2E3EN\u2E3EO\u2E3EP\u2E3EQ\u2E3ER\u2E3E" +
                         "S\u2E3ET\u2E3EU\u2E3EV\u2E3EW\u2E3EX\u2E3EY\u2E3EZ\u2E3E",
+                "『a』『b』『c』『d』『e』『f』『g』『h』『i』『j』『k』『l』『m』『n』『o』『p』『q』『r』" +
+                        "『s』『t』『u』『v』『w』『x』『y』『z』『a』『b』『c』『d』『e』『f』『g』『h』" +
+                        "『i』『j』『k』『l』『m』『n』『o』『p』『q』『r』『s』『t』『u』『v』『w』『x』" +
+                        "『y』『z』",
 
+                "〖a〗〖b〗〖c〗〖d〗〖e〗〖f〗〖g〗〖h〗〖i〗〖j〗〖k〗〖l〗〖m〗〖n〗〖o〗〖p〗〖q〗" +
+                        "〖r〗〖s〗〖t〗〖u〗〖v〗〖w〗〖x〗〖y〗〖z〗〖A〗〖B〗〖C〗〖D〗〖E〗〖F〗" +
+                        "〖G〗〖H〗〖I〗〖J〗〖K〗〖L〗〖M〗〖N〗〖O〗〖P〗〖Q〗〖R〗〖S〗〖T〗〖U〗" +
+                        "〖V〗〖W〗〖X〗〖Y〗〖Z〗",
+
+                "〘a〙〘b〙〘c〙〘d〙〘e〙〘f〙〘g〙〘h〙〘i〙〘j〙〘k〙〘l〙〘m〙〘n〙〘o〙〘p〙〘q〙" +
+                        "〘r〙〘s〙〘t〙〘u〙〘v〙〘w〙〘x〙〘y〙〘z〙〘A〙〘B〙〘C〙〘D〙〘E〙〘F〙" +
+                        "〘G〙〘H〙〘I〙〘J〙〘K〙〘L〙〘M〙〘N〙〘O〙〘P〙〘Q〙〘R〙〘S〙〘T〙〘U〙" +
+                        "〘V〙〘W〙〘X〙〘Y〙〘Z〙",
+
+                "〚a〛〚b〛〚c〛〚d〛〚e〛〚f〛〚g〛〚h〛〚i〛〚j〛〚k〛〚l〛〚m〛〚n〛〚o〛" +
+                        "〚p〛〚q〛〚r〛〚s〛〚t〛〚u〛〚v〛〚w〛〚x〛〚y〛〚z〛〚A〛〚B〛" +
+                        "〚C〛〚D〛〚E〛〚F〛〚G〛〚H〛〚I〛〚J〛〚K〛〚L〛〚M〛〚N〛〚O〛" +
+                        "〚P〛〚Q〛〚R〛〚S〛〚T〛〚U〛〚V〛〚W〛〚X〛〚Y〛〚Z〛",
+
+                "《a》《b》《c》《d》《e》《f》《g》《h》《i》《j》《k》《l》《m》《n》《o》《p》" +
+                        "《q》《r》《s》《t》《u》《v》《w》《x》《y》《z》《A》《B》《C》《D》《E》" +
+                        "《F》《G》《H》《I》《J》《K》《L》《M》《N》《O》《P》《Q》《R》《S》《T》" +
+                        "《U》《V》《W》《X》《Y》《Z》",
+
+                "〔a〕〔b〕〔c〕〔d〕〔e〕〔f〕〔g〕〔h〕〔i〕〔j〕〔k〕〔l〕〔m〕〔n〕〔o〕〔p〕" +
+                        "〔q〕〔r〕〔s〕〔t〕〔u〕〔v〕〔w〕〔x〕〔y〕〔z〕〔A〕〔B〕〔C〕〔D〕" +
+                        "〔E〕〔F〕〔G〕〔H〕〔I〕〔J〕〔K〕〔L〕〔M〕〔N〕〔O〕〔P〕〔Q〕〔R〕" +
+                        "〔S〕〔T〕〔U〕〔V〕〔W〕〔X〕〔Y〕〔Z〕",
+
+                "【a】【b】【c】【d】【e】【f】【g】【h】【i】【j】【k】【l】【m】【n】【o】【p】" +
+                        "【q】【r】【s】【t】【u】【v】【w】【x】【y】【z】【A】【B】【C】【D】" +
+                        "【E】【F】【G】【H】【I】【J】【K】【L】【M】【N】【O】【P】【Q】【R】" +
+                        "【S】【T】【U】【V】【W】【X】【Y】【Z】",
                 "☾a☽☾b☽☾c☽☾d☽☾e☽☾f☽☾g☽☾h☽☾i☽☾j☽☾k☽☾l☽☾m☽☾n☽☾o☽☾p☽☾q☽☾r☽☾s☽☾t☽☾u☽☾v☽☾w☽☾x☽" +
                         "☾y☽☾z☽☾a☽☾b☽☾c☽☾d☽☾e☽☾f☽☾g☽☾h☽☾i☽☾j☽☾k☽☾l☽☾m☽☾n☽☾o☽☾p☽☾q☽☾r☽☾s☽☾t☽" +
                         "☾u☽☾v☽☾w☽☾x☽☾y☽☾z☽",
@@ -278,6 +280,13 @@ public class ArrayEffectTool {
         }
     }
 
+    private ArrayList<Encoder> mEncoders;
+
+    public ArrayEffectEncoder() {
+        ArrayEffectFactory factory = new ArrayEffectFactory();
+        mEncoders = factory.getEncoders();
+    }
+
     public static StringBuilder convert(String text, String[] data) {
         StringBuilder result = new StringBuilder();
         char letter;
@@ -301,8 +310,9 @@ public class ArrayEffectTool {
         return arrayList;
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(EFFECTS));
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return null;
     }
 }

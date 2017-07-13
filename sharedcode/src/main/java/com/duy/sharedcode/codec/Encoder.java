@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
+
+import android.support.annotation.NonNull;
 
 /**
- * Created by DUy on 06-Feb-17.
+ * Created by Duy on 11-Jul-17.
  */
 
-public class UpperLowerTool {
-    public static void main(String[] args) {
-        String inp = "adgasdasd";
-        System.out.println(inp);
-        System.out.println(upperText(inp));
-        System.out.println(lowerText(inp));
-    }
-    public static String upperText(String text) {
-        return text.toUpperCase();
-    }
-
-    public static String lowerText(String text) {
-        return text.toLowerCase();
-    }
+public interface Encoder {
+    @NonNull
+    String encode(@NonNull String text);
 }

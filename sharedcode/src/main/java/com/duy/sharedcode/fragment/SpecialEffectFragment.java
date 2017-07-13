@@ -30,7 +30,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.sharedcode.adapters.StyleAdapter;
-import com.duy.sharedcode.tools.ArrayEffectTool;
+import com.duy.sharedcode.effect.ArrayEffectEncoder;
 import com.duy.textconverter.sharedcode.R;
 import com.google.android.gms.ads.AdView;
 
@@ -96,7 +96,7 @@ public class SpecialEffectFragment extends StylistFragment {
         if (inp.isEmpty()) {
             inp = mInput.getHint().toString();
         }
-        ArrayList<String> translate = ArrayEffectTool.convert(inp);
+        ArrayList<String> translate = ArrayEffectEncoder.convert(inp);
         mAdapter.setData(translate);
     }
 

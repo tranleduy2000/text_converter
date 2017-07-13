@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 
 import android.support.annotation.NonNull;
 
-import static com.duy.sharedcode.tools.Style.NORMAL;
+import com.duy.sharedcode.effect.Style;
 
 /**
  * Created by Duy on 05-May-17.
@@ -27,6 +27,7 @@ import static com.duy.sharedcode.tools.Style.NORMAL;
 
 public class SupScriptText implements Encoder, Decoder {
     public static final String SUPPER_SCRIPT = "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹";
+    public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
     public static String textToSup(String text) {
         String result = "";
@@ -61,7 +62,7 @@ public class SupScriptText implements Encoder, Decoder {
     public String encode(@NonNull String text) {
         try {
             return textToSup(text);
-        }catch (Exception e){
+        } catch (Exception e) {
             return text;
         }
     }
@@ -71,7 +72,7 @@ public class SupScriptText implements Encoder, Decoder {
     public String decode(@NonNull String text) {
         try {
             return supToText(text);
-        }catch (Exception e){
+        } catch (Exception e) {
             return text;
         }
     }
