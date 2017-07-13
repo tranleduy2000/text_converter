@@ -26,7 +26,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
-import static com.duy.sharedcode.codec.ZalgoTool.convert;
+import static com.duy.sharedcode.codec.ZalgoMiniTool.convert;
 
 /**
  * Created by Duy on 10-Jul-17.

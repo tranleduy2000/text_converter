@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.codec;
 
 import junit.framework.TestCase;
 
 /**
  * Created by Duy on 13-Jul-17.
  */
-public class BlueEffectTest extends TestCase {
+public class ZalgoBigToolTest extends TestCase {
     public void testEncode() throws Exception {
-        System.out.println(new BlueEffect().encode("HELLO EVERYONE"));
+        System.out.println(new ZalgoBigTool().encode("xin chào"));
     }
 
 }

@@ -18,9 +18,9 @@ package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
 
-public class ZalgoTool implements Encoder {
+public class ZalgoMiniTool implements Encoder {
 
-    private static final char[] zalgo_up =
+    public static final char[] zalgo_up =
             {'\u030d', /*     Ì?     */'\u030e', /*     ÌŽ     */'\u0304', /*     Ì„     */'\u0305', /*     Ì…     */
                     '\u033f', /*     Ì¿     */'\u0311', /*     Ì‘     */'\u0306', /*     Ì†     */'\u0310', /*     Ì?     */
                     '\u0352', /*     Í’     */'\u0357', /*     Í—     */'\u0351', /*     Í‘     */'\u0307', /*     Ì‡     */
@@ -36,7 +36,7 @@ public class ZalgoTool implements Encoder {
                     '\u0346', /*     Í†     */'\u031a' /*     Ìš     */
             };
 
-    private static final char[] zalgo_down =
+    public static final char[] zalgo_down =
             {'\u0316', /*     Ì–     */'\u0317', /*     Ì—     */'\u0318', /*     Ì˜     */'\u0319', /*     Ì™     */
                     '\u031c', /*     Ìœ     */'\u031d', /*     Ì?     */'\u031e', /*     Ìž     */'\u031f', /*     ÌŸ     */
                     '\u0320', /*     Ì      */'\u0324', /*     Ì¤     */'\u0325', /*     Ì¥     */'\u0326', /*     Ì¦     */
@@ -50,7 +50,7 @@ public class ZalgoTool implements Encoder {
             };
 
     //those always stay in the middle
-    private static final char[] zalgo_mid =
+    public static final char[] zalgo_mid =
             {'\u0315', /*     Ì•     */'\u031b', /*     Ì›     */'\u0340', /*     Ì€     */'\u0341', /*     Ì?     */
                     '\u0358', /*     Í˜     */'\u0321', /*     Ì¡     */'\u0322', /*     Ì¢     */'\u0327', /*     Ì§     */
                     '\u0328', /*     Ì¨     */'\u0334', /*     Ì´     */'\u0335', /*     Ìµ     */'\u0336', /*     Ì¶     */
@@ -142,6 +142,6 @@ public class ZalgoTool implements Encoder {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return convert(text, true, true, true, true, true);
+        return convert(text, true, false, true, true, true);
     }
 }

@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.codec;
 
-import junit.framework.TestCase;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Duy on 13-Jul-17.
  */
-public class BlueEffectTest extends TestCase {
-    public void testEncode() throws Exception {
-        System.out.println(new BlueEffect().encode("HELLO EVERYONE"));
-    }
 
+public class ZalgoBigTool implements Encoder {
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return ZalgoMiniTool.convert(text, false, false, true, true, true);
+    }
 }

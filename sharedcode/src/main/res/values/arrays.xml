@@ -29,7 +29,9 @@
         <item>Sub script</item>
         <item>Morse code</item>
         <item>Base64</item>
-        <item>Zalgo</item>
+        <item>Zalgo mini</item>
+        <item>Zalgo normal</item>
+        <item>Zalgo big</item>
         <item>Base32</item>
         <item>MD5</item>
         <item>SHA-2</item>

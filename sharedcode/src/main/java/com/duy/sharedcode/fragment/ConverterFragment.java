@@ -34,11 +34,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.duy.sharedcode.ClipboardManager;
 import com.duy.sharedcode.codec.ASCIITool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
-import com.duy.sharedcode.ClipboardManager;
 import com.duy.sharedcode.codec.HexTool;
 import com.duy.sharedcode.codec.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
@@ -50,7 +50,9 @@ import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
 import com.duy.sharedcode.codec.UpperLowerTool;
 import com.duy.sharedcode.codec.UpsideDownTool;
-import com.duy.sharedcode.codec.ZalgoTool;
+import com.duy.sharedcode.codec.ZalgoBigTool;
+import com.duy.sharedcode.codec.ZalgoMiniTool;
+import com.duy.sharedcode.codec.ZalgoNormalTool;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 
@@ -263,8 +265,20 @@ public class ConverterFragment extends Fragment {
                 if (to) mOutput.setText(new Base64Tool().encode(inp));
                 else mInput.setText(new Base64Tool().decode(out));
                 break;
-            case ZALGO:
-                if (to) mOutput.setText(new ZalgoTool().encode(inp));
+            case ZALGO_MINI:
+                if (to) mOutput.setText(new ZalgoMiniTool().encode(inp));
+                else {
+                    Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case ZALGO_NORMAL:
+                if (to) mOutput.setText(new ZalgoNormalTool().encode(inp));
+                else {
+                    Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case ZALGO_BIG:
+                if (to) mOutput.setText(new ZalgoBigTool().encode(inp));
                 else {
                     Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
                 }

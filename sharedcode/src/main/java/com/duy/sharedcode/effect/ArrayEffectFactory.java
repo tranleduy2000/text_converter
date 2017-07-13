@@ -18,6 +18,7 @@ package com.duy.sharedcode.effect;
 
 
 import com.duy.sharedcode.codec.Encoder;
+import com.duy.sharedcode.codec.ZalgoMiniTool;
 
 import java.util.ArrayList;
 
@@ -56,23 +57,10 @@ public class ArrayEffectFactory {
         list.add(new Pair<>("『", "』"));
         list.add(new Pair<>("┋", "┋"));
         list.add(new Pair<>("[\u0332\u0305", "\u0332\u0305]"));
+
         return list;
     }
 
-    public ArrayList<Encoder> getEncoders() {
-        ArrayList<Encoder> encoders = new ArrayList<>();
-        ArrayList<Pair<String, String>> leftRightPair = createLeftRightPair();
-        for (Pair<String, String> pair : leftRightPair) {
-            encoders.add(new LeftRightStyle(pair.first, pair.second));
-        }
-
-        ArrayList<String> lefts = createLeft();
-        for (String s : lefts) encoders.add(new LeftEffect(s));
-
-        ArrayList<String> rights = createRight();
-        for (String s : rights) encoders.add(new LeftEffect(s));
-        return encoders;
-    }
 
     private ArrayList<String> createRight() {
         ArrayList<String> list = new ArrayList<>();
@@ -99,19 +87,37 @@ public class ArrayEffectFactory {
         list.add("\u0337");
         list.add("\u0334");
         list.add("\u0336");
+
+        for (char c : ZalgoMiniTool.zalgo_up) list.add(c + "");
+        for (char c : ZalgoMiniTool.zalgo_down) list.add(c + "");
+        for (char c : ZalgoMiniTool.zalgo_mid) list.add(c + "");
         return list;
     }
 
+    public ArrayList<Encoder> getEncoders() {
+        ArrayList<Encoder> encoders = new ArrayList<>();
+        ArrayList<Pair<String, String>> leftRightPair = createLeftRightPair();
+        for (Pair<String, String> pair : leftRightPair) {
+            encoders.add(new LeftRightStyle(pair.first, pair.second));
+        }
+
+        ArrayList<String> lefts = createLeft();
+        for (String s : lefts) encoders.add(new LeftEffect(s));
+
+        ArrayList<String> rights = createRight();
+        for (String s : rights) encoders.add(new LeftEffect(s));
+        return encoders;
+    }
 
     /**
      * Created by Duy on 13-Jul-17.
      */
 
-    public static class Pair<F, S> {
+    private static class Pair<F, S> {
         public F first;
         public S second;
 
-        public Pair(F first, S second) {
+        Pair(F first, S second) {
             this.first = first;
             this.second = second;
         }
