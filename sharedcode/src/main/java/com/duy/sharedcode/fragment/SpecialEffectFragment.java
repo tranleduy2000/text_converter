@@ -19,6 +19,7 @@ package com.duy.sharedcode.fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,7 +33,6 @@ import android.widget.EditText;
 import com.duy.sharedcode.adapters.StyleAdapter;
 import com.duy.sharedcode.effect.ArrayEffectEncoder;
 import com.duy.textconverter.sharedcode.R;
-import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 
@@ -44,13 +44,16 @@ import java.util.ArrayList;
 public class SpecialEffectFragment extends StylistFragment {
     private static final String TAG = "SpecialEffectFragment";
     private static final String KEY = "SpecialEffectFragment";
-
+    private final Handler handler = new Handler();
     private Context mContext;
     private EditText mInput;
-    private RecyclerView mListResult;
     private StyleAdapter mAdapter;
-    @Nullable
-    private AdView mAdView;
+    private final Runnable process = new Runnable() {
+        @Override
+        public void run() {
+            convert();
+        }
+    };
 
     public static SpecialEffectFragment newInstance() {
 
@@ -78,16 +81,15 @@ public class SpecialEffectFragment extends StylistFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
-        mListResult = view.findViewById(R.id.list_out);
-        mListResult.setLayoutManager(new LinearLayoutManager(mContext));
-        mListResult.setHasFixedSize(true);
+        RecyclerView recyclerView = view.findViewById(R.id.list_out);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        recyclerView.setHasFixedSize(true);
 
         mAdapter = new StyleAdapter(getActivity());
-        mListResult.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
 
         mInput.addTextChangedListener(this);
     }
-
 
     public void convert() {
         String inp = mInput.getText().toString();
@@ -102,7 +104,8 @@ public class SpecialEffectFragment extends StylistFragment {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        convert();
+        handler.removeCallbacks(process);
+        handler.postDelayed(process, 100);
     }
 
     @Override

@@ -39,7 +39,7 @@ class LeftEffect implements Encoder {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == ' ') {
-                result.append(" ");
+                result.append(left).append(" ");
             } else {
                 result.append(left).append(text.charAt(i));
             }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.sharedcode.effect;
 
 import java.util.ArrayList;
 
@@ -60,7 +60,9 @@ public class DecorateTool {
             "▁ ▂ ▄ ▅ ▆ ▇ █ [ %1$s ] █ ▇ ▆ ▅ ▄ ▂ ▁",
             "▀▄▀▄▀▄ [ %1$s ] ▄▀▄▀▄▀",
             "(-_-) [ %1$s ] (-_-)",
-            "▌│█║▌║▌║ [ %1$s ] ║▌║▌║█│▌"
+            "▌│█║▌║▌║ [ %1$s ] ║▌║▌║█│▌",
+            "•♥•♥•♥•♥•♥ [ %1$s ] ♥•♥•♥•♥•♥•",
+            "˙·٠•●♥ [ %1$s ] ♥●•٠·˙"
     };
 
     public static ArrayList<String> generate(String input) {

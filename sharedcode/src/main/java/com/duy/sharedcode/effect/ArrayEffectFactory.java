@@ -27,18 +27,85 @@ import java.util.ArrayList;
  */
 
 public class ArrayEffectFactory {
-    public ArrayList<String> createLeft() {
+    private ArrayList<String> createLeft() {
         ArrayList<String> strings = new ArrayList<>();
         strings.add("\u0e56\u06e3\u06dc");
         strings.add("\u2E3E");
         strings.add("\u2E3D");
         strings.add("\u2E3E\u2E3E");
         strings.add("\u2E3D\u2E3D");
+
+
+        strings.add("☢");
+        strings.add("☣");
+        strings.add("☠");
+        strings.add("⚠");
+        strings.add("☤");
+        strings.add("⚕");
+        strings.add("⚚");
+        strings.add("†");
+        strings.add("☯");
+        strings.add("⚖");
+        strings.add("☮");
+        strings.add("⚘");
+        strings.add("⚔");
+        strings.add("☭");
+        strings.add("⚒");
+        strings.add("⚓");
+        strings.add("⚛");
+        strings.add("⚜");
+        strings.add("⚡");
+        strings.add("⚶");
+        strings.add("☥");
+        strings.add("✠");
+        strings.add("✙");
+        strings.add("✞");
+        strings.add("✟");
+        strings.add("✧");
+        strings.add("⋆");
+        strings.add("★");
+        strings.add("☆");
+        strings.add("✪");
+        strings.add("✫");
+        strings.add("✬");
+        strings.add("✭");
+        strings.add("✮");
+        strings.add("✯");
+        strings.add("☸");
+        strings.add("✵");
+        strings.add("❂");
+        strings.add("☘");
+        strings.add("♡");
+        strings.add("♥");
+        strings.add("❤");
+        strings.add("⚘");
+        strings.add("❀");
+        strings.add("❃");
+        strings.add("❁");
+        strings.add("✼");
+        strings.add("☀");
+        strings.add("✌");
+        strings.add("♫");
+        strings.add("♪");
+        strings.add("☃");
+        strings.add("❄");
+        strings.add("❅");
+        strings.add("❆");
+        strings.add("☕");
+        strings.add("☂");
+        strings.add("❦");
+        strings.add("✈");
+        strings.add("♕");
+        strings.add("♛");
+        strings.add("♖");
+        strings.add("♜");
+        strings.add("☁");
+        strings.add("☾");
         return strings;
     }
 
 
-    public ArrayList<Pair<String, String>> createLeftRightPair() {
+    private ArrayList<Pair<String, String>> createLeftRightPair() {
         ArrayList<Pair<String, String>> list = new ArrayList<>();
         list.add(new Pair<>("⫷", "⫸"));
         list.add(new Pair<>("╰", "╯"));
@@ -91,6 +158,8 @@ public class ArrayEffectFactory {
         for (char c : ZalgoMiniTool.zalgo_up) list.add(c + "");
         for (char c : ZalgoMiniTool.zalgo_down) list.add(c + "");
         for (char c : ZalgoMiniTool.zalgo_mid) list.add(c + "");
+
+
         return list;
     }
 
@@ -101,11 +170,12 @@ public class ArrayEffectFactory {
             encoders.add(new LeftRightStyle(pair.first, pair.second));
         }
 
+        ArrayList<String> rights = createRight();
+        for (String s : rights) encoders.add(new LeftEffect(s));
+
         ArrayList<String> lefts = createLeft();
         for (String s : lefts) encoders.add(new LeftEffect(s));
 
-        ArrayList<String> rights = createRight();
-        for (String s : rights) encoders.add(new LeftEffect(s));
         return encoders;
     }
 
