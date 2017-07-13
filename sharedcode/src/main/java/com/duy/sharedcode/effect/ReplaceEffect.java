@@ -23,7 +23,7 @@ import java.util.Arrays;
  * Created by Duy on 07-Jun-17.
  */
 
-public class StyleTool {
+public class ReplaceEffect implements Style {
     /**
      * original text
      */
@@ -163,5 +163,10 @@ public class StyleTool {
             arrayList.add(convert(text, effect).toString());
         }
         return arrayList;
+    }
+
+    @Override
+    public ArrayList<String> generate(String input) {
+        return convert(input);
     }
 }

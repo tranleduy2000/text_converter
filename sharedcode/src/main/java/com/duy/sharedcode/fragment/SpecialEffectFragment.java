@@ -37,7 +37,6 @@ import com.google.android.gms.ads.AdView;
 import java.util.ArrayList;
 
 
-
 /**
  * Created by Duy on 06-Jul-17.
  */
@@ -90,13 +89,10 @@ public class SpecialEffectFragment extends StylistFragment {
     }
 
 
-
     public void convert() {
         String inp = mInput.getText().toString();
-        if (inp.isEmpty()) {
-            inp = mInput.getHint().toString();
-        }
-        ArrayList<String> translate = ArrayEffectEncoder.convert(inp);
+        if (inp.isEmpty()) inp = mInput.getHint().toString();
+        ArrayList<String> translate = new ArrayEffectEncoder().generate(inp);
         mAdapter.setData(translate);
     }
 

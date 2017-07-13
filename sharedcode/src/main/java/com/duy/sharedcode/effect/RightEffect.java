@@ -25,16 +25,24 @@ import com.duy.sharedcode.codec.Encoder;
  * Created by Duy on 13-Jul-17.
  */
 
-public abstract class SingleEffect implements Encoder {
+class RightEffect implements Encoder {
 
-    public abstract char getChar();
+    private String text;
+
+    public RightEffect(String text) {
+        this.text = text;
+    }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
-            result.append(text.charAt(i)).append(getChar());
+            if (text.charAt(i) == ' ') {
+                result.append(" ");
+            } else {
+                result.append(text.charAt(i)).append(text);
+            }
         }
         return result.toString();
     }

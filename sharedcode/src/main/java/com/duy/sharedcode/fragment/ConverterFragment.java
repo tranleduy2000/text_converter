@@ -50,7 +50,7 @@ import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
 import com.duy.sharedcode.codec.UpperLowerTool;
 import com.duy.sharedcode.codec.UpsideDownTool;
-import com.duy.sharedcode.effect.ZalgoTool;
+import com.duy.sharedcode.codec.ZalgoTool;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 

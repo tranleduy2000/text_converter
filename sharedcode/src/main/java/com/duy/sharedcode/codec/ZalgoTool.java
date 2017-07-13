@@ -14,11 +14,9 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
-
-import com.duy.sharedcode.codec.Encoder;
 
 public class ZalgoTool implements Encoder {
 

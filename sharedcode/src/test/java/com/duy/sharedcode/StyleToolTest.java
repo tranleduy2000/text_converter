@@ -16,7 +16,7 @@
 
 package com.duy.sharedcode;
 
-import com.duy.sharedcode.effect.StyleTool;
+import com.duy.sharedcode.effect.ReplaceEffect;
 
 import junit.framework.TestCase;
 
@@ -27,21 +27,21 @@ import java.util.ArrayList;
  */
 public class StyleToolTest extends TestCase {
     public void testConvert() {
-        ArrayList<String> converted = StyleTool.convert("package com.duy.text_converter.utils;");
+        ArrayList<String> converted =  new ReplaceEffect().generate("package com.duy.text_converter.utils;");
         for (String s : converted) {
             System.out.println(s);
         }
     }
 
     public void test1() {
-        String effect = StyleTool.STYLES.get(0);
+        String effect = ReplaceEffect.STYLES.get(0);
         for (int i = 0; i < effect.length(); i++) {
             System.out.println(i + " " + effect.charAt(i));
         }
     }
 
     public void test2() {
-        ArrayList<String> converted = StyleTool.convert("How developers work\n" +
+        ArrayList<String> converted = new ReplaceEffect().generate("How developers work\n" +
                 "Support your workflow with lightweight tools and features. Then work how you work best—we'll follow your lead.");
         for (String s : converted) {
             System.out.println(s);
@@ -50,8 +50,8 @@ public class StyleToolTest extends TestCase {
 
 
     public void testLength() {
-        int size = StyleTool.STYLES.get(0).length();
-        for (String style : StyleTool.STYLES) {
+        int size = ReplaceEffect.STYLES.get(0).length();
+        for (String style : ReplaceEffect.STYLES) {
             if (style.length() != size) {
                 System.out.println(style + " " + style.length() + " " + size);
                 assertTrue(false);

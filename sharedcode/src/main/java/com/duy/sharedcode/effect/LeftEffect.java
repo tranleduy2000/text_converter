@@ -24,13 +24,13 @@ import com.duy.sharedcode.codec.Encoder;
 /**
  * Created by Duy on 13-Jul-17.
  */
-class LeftRightStyle implements Encoder {
-    @NonNull
-    private String left, right;
 
-    public LeftRightStyle(@NonNull String left, @NonNull String right) {
+class LeftEffect implements Encoder {
+
+    private String left;
+
+    public LeftEffect(String left) {
         this.left = left;
-        this.right = right;
     }
 
     @NonNull
@@ -41,9 +41,10 @@ class LeftRightStyle implements Encoder {
             if (text.charAt(i) == ' ') {
                 result.append(" ");
             } else {
-                result.append(left).append(text.charAt(i)).append(right);
+                result.append(left).append(text.charAt(i));
             }
         }
+        result.append(left);
         return result.toString();
     }
 }
