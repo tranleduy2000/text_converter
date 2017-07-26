@@ -14,7 +14,7 @@
   ~ limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.duy.text_converter.pro">
+    package="com.duy.converter.pro">
 
     <application
         android:allowBackup="true"
@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.duy.text.converter.pro.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,17 +40,33 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".notification.StyleReceiver">
+        <receiver
+            android:name="com.duy.text.converter.pro.notification.EncodeReceiver"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_1" />
-                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_2" />
-                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_3" />
-                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_4" />
-                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_5" />
+                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_1" />
+                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_2" />
+                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_3" />
+                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_4" />
+                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_5" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".SettingActivity" />
+        <receiver
+            android:name="com.duy.text.converter.pro.notification.DecodeReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_1" />
+                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_2" />
+                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_3" />
+                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_4" />
+                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_5" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name="com.duy.text.converter.pro.SettingActivity" />
 
     </application>
 

@@ -25,7 +25,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.duy.sharedcode.ShareManager;
-import com.duy.sharedcode.ClipboardManager;
+import com.duy.sharedcode.ClipboardUtil;
 import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;
@@ -70,7 +70,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
         holder.imgCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClipboardManager.setClipboard(context, str);
+                ClipboardUtil.setClipboard(context, str);
             }
         });
         holder.shareMsg.setOnClickListener(new View.OnClickListener() {

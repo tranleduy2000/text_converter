@@ -43,6 +43,42 @@
         <item>SHA-2</item>
         <item>URL</item>
     </string-array>
+
+    <string-array name="decode_style">
+        <item>@string/ascii</item>
+        <item>@string/binary</item>
+        <item>@string/hex</item>
+        <item>Octal</item>
+        <item>@string/reverser</item>
+        <item>Upper</item>
+        <item>Lower</item>
+        <item>Upside down</item>
+        <item>Super script</item>
+        <item>Sub script</item>
+        <item>Morse code</item>
+        <item>Base64</item>
+        <item>Base32</item>
+        <item>URL</item>
+    </string-array>
+
+    <string-array name="decode_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+    </string-array>
+
+
     <string-array name="convert_style_value">
         <item>0</item>
         <item>1</item>

@@ -34,7 +34,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.duy.sharedcode.ClipboardManager;
+import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.codec.ASCIITool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
@@ -161,7 +161,7 @@ public class ConverterFragment extends Fragment {
         imgCopyIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClipboardManager.setClipboard(mContext, mInput.getText().toString());
+                ClipboardUtil.setClipboard(mContext, mInput.getText().toString());
             }
         });
 
@@ -177,7 +177,7 @@ public class ConverterFragment extends Fragment {
         imgCopyOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClipboardManager.setClipboard(mContext, mOutput.getText().toString());
+                ClipboardUtil.setClipboard(mContext, mOutput.getText().toString());
             }
         });
 
@@ -213,10 +213,10 @@ public class ConverterFragment extends Fragment {
 
     private void convert(boolean to) {
         int index = mChoose.getSelectedItemPosition();
-        ConvertMethod convertMethod = ConvertMethod.values()[index];
+        EncodeMethod encodeMethod = EncodeMethod.values()[index];
         String inp = mInput.getText().toString();
         String out = mOutput.getText().toString();
-        switch (convertMethod) {
+        switch (encodeMethod) {
             case ASCII:
                 if (to) mOutput.setText(new ASCIITool().encode(inp));
                 else mInput.setText(new ASCIITool().decode(out));

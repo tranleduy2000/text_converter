@@ -16,41 +16,79 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
-        android:key="@string/pref_key_enable_notifi"
-        android:summary="You can fast convert by click notification"
-        android:title="Enable notification" />
+        android:key="@string/pref_key_enable_encode"
+        android:summary="You can encode by click notification"
+        android:title="Encode notification" />
+    <SwitchPreference
+        android:key="@string/pref_key_enable_decode"
+        android:summary="You can decode by click notification"
+        android:title="Decode notification" />
 
-    <PreferenceCategory android:title="Fast convert style">
+    <PreferenceCategory android:title="Encode style">
         <ListPreference
             android:defaultValue="@string/ascii"
             android:entries="@array/convert_style"
             android:entryValues="@array/convert_style_value"
-            android:key="pref_style_1"
+            android:key="pref_encode_style_1"
             android:title="Style 1" />
         <ListPreference
             android:defaultValue="@string/binary"
             android:entries="@array/convert_style"
             android:entryValues="@array/convert_style_value"
-            android:key="pref_style_2"
+            android:key="pref_encode_style_2"
             android:title="Style 2" />
         <ListPreference
             android:defaultValue="@string/hex"
             android:entries="@array/convert_style"
             android:entryValues="@array/convert_style_value"
-            android:key="pref_style_3"
+            android:key="pref_encode_style_3"
             android:title="Style 3" />
         <ListPreference
             android:defaultValue="@string/zalgo_mini"
             android:entries="@array/convert_style"
             android:entryValues="@array/convert_style_value"
-            android:key="pref_style_4"
+            android:key="pref_encode_style_4"
             android:title="Style 4" />
 
         <ListPreference
             android:defaultValue="@string/reverser"
             android:entries="@array/convert_style"
             android:entryValues="@array/convert_style_value"
-            android:key="pref_style_5"
+            android:key="pref_encode_style_5"
+            android:title="Style 5" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Decode style">
+        <ListPreference
+            android:defaultValue="@string/ascii"
+            android:entries="@array/decode_style"
+            android:entryValues="@array/decode_value"
+            android:key="pref_decode_style_1"
+            android:title="Style 1" />
+        <ListPreference
+            android:defaultValue="@string/binary"
+            android:entries="@array/decode_style"
+            android:entryValues="@array/decode_value"
+            android:key="pref_decode_style_2"
+            android:title="Style 2" />
+        <ListPreference
+            android:defaultValue="@string/hex"
+            android:entries="@array/decode_style"
+            android:entryValues="@array/decode_value"
+            android:key="pref_decode_style_3"
+            android:title="Style 3" />
+        <ListPreference
+            android:defaultValue="@string/zalgo_mini"
+            android:entries="@array/decode_style"
+            android:entryValues="@array/decode_value"
+            android:key="pref_decode_style_4"
+            android:title="Style 4" />
+
+        <ListPreference
+            android:defaultValue="@string/reverser"
+            android:entries="@array/decode_style"
+            android:entryValues="@array/decode_value"
+            android:key="pref_decode_style_5"
             android:title="Style 5" />
     </PreferenceCategory>
 
