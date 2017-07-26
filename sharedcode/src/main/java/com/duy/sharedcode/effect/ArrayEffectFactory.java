@@ -35,7 +35,6 @@ public class ArrayEffectFactory {
         strings.add("\u2E3E\u2E3E");
         strings.add("\u2E3D\u2E3D");
 
-
         strings.add("☢");
         strings.add("☣");
         strings.add("☠");
@@ -165,6 +164,7 @@ public class ArrayEffectFactory {
 
     public ArrayList<Encoder> getEncoders() {
         ArrayList<Encoder> encoders = new ArrayList<>();
+        encoders.add(new BlueEffect());
         ArrayList<Pair<String, String>> leftRightPair = createLeftRightPair();
         for (Pair<String, String> pair : leftRightPair) {
             encoders.add(new LeftRightStyle(pair.first, pair.second));

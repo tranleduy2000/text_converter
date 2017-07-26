@@ -34,6 +34,9 @@ public class ArrayEffectEncoder implements Style {
         mEncoders = factory.getEncoders();
     }
 
+    public ArrayList<Encoder> getEncoders() {
+        return mEncoders;
+    }
 
     @Override
     public ArrayList<String> generate(String input) {

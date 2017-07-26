@@ -16,6 +16,9 @@
 
 package com.duy.text_converter.pro;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +27,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,8 +37,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.RemoteViews;
 
 import com.duy.sharedcode.StoreUtil;
+import com.duy.text_converter.pro.notification.StyleNotification;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
@@ -82,6 +88,45 @@ public class MainActivity extends AppCompatActivity {
         //attach listener hide/show keyboard
         keyBoardListener = new KeyBoardEventListener(this);
         coordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
+
+        showNotification();
+    }
+
+    private void showNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setSmallIcon(R.mipmap.ic_launcher)
+                .setAutoCancel(false);
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification);
+
+        Intent intent1 = new Intent();
+        intent1.setAction(StyleNotification.ACTION_STYLE_1);
+        PendingIntent pendingIntentStyle1 = PendingIntent.getBroadcast(this, 12345, intent1,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.img_one, pendingIntentStyle1);
+
+        Intent intent2 = new Intent();
+        intent2.setAction(StyleNotification.ACTION_STYLE_2);
+        PendingIntent pendingIntentStyle2 = PendingIntent.getBroadcast(this, 12345, intent2,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.img_two, pendingIntentStyle2);
+
+        Intent intent3 = new Intent();
+        intent3.setAction(StyleNotification.ACTION_STYLE_3);
+        PendingIntent pendingIntentStyle3 = PendingIntent.getBroadcast(this, 12345, intent3,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.img_three, pendingIntentStyle3);
+
+        Intent intent4 = new Intent();
+        intent4.setAction(StyleNotification.ACTION_STYLE_4);
+        PendingIntent pendingIntentStyle4 = PendingIntent.getBroadcast(this, 12345, intent4,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        remoteViews.setOnClickPendingIntent(R.id.img_four, pendingIntentStyle4);
+
+        builder.setContent(remoteViews);
+
+        Notification notification = builder.build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notification);
     }
 
     private void hideKeyboard() {
@@ -108,8 +153,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_get_ascii:
                 gotoPlayStore("com.duy.asciiart");
-                break;case R.id.action_review:
-                StoreUtil.gotoPlayStore(this,BuildConfig.APPLICATION_ID);
+                break;
+            case R.id.action_review:
+                StoreUtil.gotoPlayStore(this, BuildConfig.APPLICATION_ID);
                 break;
             case R.id.action_more:
                 StoreUtil.moreApp(this);

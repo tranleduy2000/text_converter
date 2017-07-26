@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,11 +12,9 @@
   ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
-  -->
-
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
-          package="com.duy.text_converter.pro">
+    package="com.duy.text_converter.pro">
 
     <application
         android:allowBackup="true"
@@ -25,24 +23,32 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
             <!-- Clip board filter -->
             <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
+                <action android:name="android.intent.action.SEND" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:mimeType="text/plain"/>
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-    </application>
 
+        <receiver android:name=".notification.StyleReceiver">
+            <intent-filter>
+                <action android:name="com.duy.text.converter.ACTION_STYLE_1" />
+                <action android:name="com.duy.text.converter.ACTION_STYLE_2" />
+                <action android:name="com.duy.text.converter.ACTION_STYLE_3" />
+                <action android:name="com.duy.text.converter.ACTION_STYLE_4" />
+            </intent-filter>
+        </receiver>
+
+    </application>
 
 </manifest>
