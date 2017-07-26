@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showNotification() {
         StyleNotificationManager.showNotificationDecodeIfNeed(this);
-        StyleNotificationManager.showNotificationDecodeIfNeed(this);
+        StyleNotificationManager.showNotificationEncodeIfNeed(this);
     }
 
     private void hideKeyboard() {

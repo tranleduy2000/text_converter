@@ -17,12 +17,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
     android:orientation="horizontal"
-    android:paddingBottom="16dp"
+    android:paddingBottom="8dp"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
-    android:paddingTop="16dp"
-    android:weightSum="6">
+    android:paddingTop="8dp"
+    android:weightSum="5">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/e"
+        android:textColor="@color/colorAccent" />
 
     <ImageView
         android:id="@+id/img_one"
@@ -30,7 +39,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:src="@drawable/ic_one" />
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_one"
+        android:tint="@color/colorAccent" />
 
     <ImageView
         android:id="@+id/img_two"
@@ -38,7 +49,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:src="@drawable/ic_two" />
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_two"
+        android:tint="@color/colorAccent" />
 
     <ImageView
         android:id="@+id/img_three"
@@ -46,7 +59,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:src="@drawable/ic_three" />
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_three"
+        android:tint="@color/colorAccent" />
 
     <ImageView
         android:id="@+id/img_four"
@@ -54,7 +69,9 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:src="@drawable/ic_four" />
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_four"
+        android:tint="@color/colorAccent" />
 
     <ImageView
         android:id="@+id/img_five"
@@ -62,12 +79,16 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center"
-        android:src="@drawable/ic_five" />
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_five"
+        android:tint="@color/colorAccent" />
 
-    <ImageView
-        android:id="@+id/img_close"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:src="@drawable/ic_close" />
+    <!--<ImageView-->
+    <!--android:id="@+id/img_close"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:scaleType="centerInside"-->
+    <!--android:src="@drawable/ic_close"-->
+    <!--android:tint="@color/colorAccent" />-->
 </LinearLayout>

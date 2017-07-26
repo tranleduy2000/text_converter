@@ -44,6 +44,7 @@ import com.duy.sharedcode.codec.ZalgoBigTool;
 import com.duy.sharedcode.codec.ZalgoMiniTool;
 import com.duy.sharedcode.codec.ZalgoNormalTool;
 import com.duy.sharedcode.fragment.EncodeMethod;
+import com.duy.text.converter.pro.R;
 
 /**
  * Created by Duy on 26-Jul-17.
@@ -58,28 +59,29 @@ public class EncodeReceiver extends BroadcastReceiver {
 
         Log.d(TAG, "onReceive() called with: context = [" + context + "], intent = [" + intent + "]");
         if (intent != null) {
-            String indexStr = "";
+            String name = "";
             if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_1)) {
-                indexStr = preferences.getString("pref_encode_style_1", "");
+                name = preferences.getString("pref_encode_style_1", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_2)) {
-                indexStr = preferences.getString("pref_encode_style_2", "");
+                name = preferences.getString("pref_encode_style_2", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_3)) {
-                indexStr = preferences.getString("pref_encode_style_3", "");
+                name = preferences.getString("pref_encode_style_3", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_4)) {
-                indexStr = preferences.getString("pref_encode_style_4", "");
+                name = preferences.getString("pref_encode_style_4", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_5)) {
-                indexStr = preferences.getString("pref_encode_style_5", "");
+                name = preferences.getString("pref_encode_style_5", "");
             }
-            if (indexStr.isEmpty()) {
+            if (name.isEmpty()) {
                 complainNotSet(context);
                 return;
             }
+            String[] array = context.getResources().getStringArray(R.array.convert_style);
             int pos;
-            try {
-                pos = Integer.parseInt(indexStr);
-            } catch (Exception e) {
-                //number format exception
-                return;
+            for (pos = 0; pos < array.length; pos++) {
+                String s = array[pos];
+                if (s.equals(name)) {
+                    break;
+                }
             }
             EncodeMethod encodeMethod = EncodeMethod.values()[pos];
             String inp = ClipboardUtil.getClipboard(context);

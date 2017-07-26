@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
@@ -15,9 +16,5 @@
   -->
 
 <resources>
-    <string name="app_name">(Pro) Text Converter</string>
-    <string name="setting">Setting</string>
-    <string name="pref_key_enable_encode">pref_encode_notification</string>
-    <string name="pref_key_enable_decode">pref_decode_notification</string>
-    <string name="e">En\ncode</string>
+    <color name="notification_color">#757575</color>
 </resources>

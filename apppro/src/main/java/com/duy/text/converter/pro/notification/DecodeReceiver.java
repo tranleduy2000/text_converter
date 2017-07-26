@@ -39,6 +39,7 @@ import com.duy.sharedcode.codec.URLTool;
 import com.duy.sharedcode.codec.UpperLowerTool;
 import com.duy.sharedcode.codec.UpsideDownTool;
 import com.duy.sharedcode.fragment.DecodeMethod;
+import com.duy.text.converter.pro.R;
 
 /**
  * Created by Duy on 26-Jul-17.
@@ -53,23 +54,30 @@ public class DecodeReceiver extends BroadcastReceiver {
         Log.d(TAG, "onReceive() called with: context = [" + context + "], intent = [" + intent + "]");
 
         if (intent != null) {
-            String indexStr = "";
+            String name = "";
             if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_1)) {
-                indexStr = preferences.getString("pref_decode_style_1", "");
+                name = preferences.getString("pref_decode_style_1", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_2)) {
-                indexStr = preferences.getString("pref_decode_style_2", "");
+                name = preferences.getString("pref_decode_style_2", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_3)) {
-                indexStr = preferences.getString("pref_decode_style_3", "");
+                name = preferences.getString("pref_decode_style_3", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_4)) {
-                indexStr = preferences.getString("pref_decode_style_4", "");
+                name = preferences.getString("pref_decode_style_4", "");
             } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_5)) {
-                indexStr = preferences.getString("pref_decode_style_5", "");
+                name = preferences.getString("pref_decode_style_5", "");
             }
-            if (indexStr.isEmpty()) {
+            if (name.isEmpty()) {
                 complainNotSet(context);
                 return;
             }
-            int pos = Integer.parseInt(indexStr);
+            String[] array = context.getResources().getStringArray(R.array.decode_style);
+            int pos;
+            for (pos = 0; pos < array.length; pos++) {
+                String s = array[pos];
+                if (s.equals(name)) {
+                    break;
+                }
+            }
             DecodeMethod encodeMethod = DecodeMethod.values()[pos];
             String inp = ClipboardUtil.getClipboard(context);
             if (inp == null) {
