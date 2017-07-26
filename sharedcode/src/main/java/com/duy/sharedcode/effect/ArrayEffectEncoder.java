@@ -43,7 +43,6 @@ public class ArrayEffectEncoder implements Style {
         ArrayList<String> result = new ArrayList<>();
         for (Encoder encoder : mEncoders) {
             String encode = encoder.encode(input);
-            System.out.println(encode);
             result.add(encode);
         }
         return result;

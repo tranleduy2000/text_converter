@@ -62,17 +62,4 @@ public class UpsideDownTool {
         return new StringBuilder(result).reverse().toString();
     }
 
-    public static void main(String[] args) {
-        String inp = "\"upside down\" will create the illusion of an upside down page/text via string reversal and character substitution for letters a to z.";
-        System.out.println("Test case 1: ");
-        System.out.println(inp);
-        System.out.println(textToUpsideDown(inp));
-        System.out.println(textToUpsideDown(textToUpsideDown(inp)));
-
-        System.out.println("Test case 2: ");
-        inp = "abcdefghijklmnopqrstuvwxyz'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        System.out.println(inp);
-        System.out.println(textToUpsideDown(inp));
-        System.out.println(textToUpsideDown(textToUpsideDown(inp)));
-    }
 }

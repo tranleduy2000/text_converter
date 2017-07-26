@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/apppro/apppro.iml" filepath="$PROJECT_DIR$/apppro/apppro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lvl/lvl.iml" filepath="$PROJECT_DIR$/lvl/lvl.iml" />
       <module fileurl="file://$PROJECT_DIR$/sharedcode/sharedcode.iml" filepath="$PROJECT_DIR$/sharedcode/sharedcode.iml" />
       <module fileurl="file://$PROJECT_DIR$/text_converter.iml" filepath="$PROJECT_DIR$/text_converter.iml" />
     </modules>

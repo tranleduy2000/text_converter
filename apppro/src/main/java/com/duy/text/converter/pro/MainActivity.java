@@ -16,18 +16,23 @@
 
 package com.duy.text.converter.pro;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,29 +41,58 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
+import com.duy.text.converter.pro.license.Installation;
+import com.duy.text.converter.pro.license.Key;
+import com.duy.text.converter.pro.license.PolicyFactory;
+import com.duy.text.converter.pro.license.Premium;
 import com.duy.text.converter.pro.notification.StyleNotificationManager;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.vending.licensing.LicenseChecker;
+import com.google.android.vending.licensing.LicenseCheckerCallback;
+import com.google.android.vending.licensing.Policy;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     private CoordinatorLayout coordinatorLayout;
     private Toolbar toolbar;
     private KeyBoardEventListener keyBoardListener;
     private ViewPager viewPager;
     private PagerSectionAdapter adapter;
+    private LicenseChecker mChecker;
+    private CheckLicenseCallBack mCallBack;
+    private Handler mHandler;
+    @Nullable
+    private InterstitialAd interstitialAd = null;
+    private AtomicBoolean canShowAds = new AtomicBoolean(true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-        if (BuildConfig.DEBUG) {
-            FirebaseCrash.setCrashCollectionEnabled(false);
-        }
-
+        if (BuildConfig.DEBUG) FirebaseCrash.setCrashCollectionEnabled(false);
         setContentView(R.layout.activity_main);
+        checkLicense();
+        bindView();
+        showNotification();
+    }
 
+    private void checkLicense() {
+        mHandler = new Handler();
+        mChecker = new LicenseChecker(this, PolicyFactory.createPolicy(this, getPackageName()),
+                Key.BASE_64_PUBLIC_KEY);
+        mCallBack = new CheckLicenseCallBack();
+        mChecker.checkAccess(mCallBack);
+    }
+
+    private void bindView() {
         this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -85,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
         keyBoardListener = new KeyBoardEventListener(this);
         coordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
 
-        showNotification();
     }
 
     private void showNotification() {
@@ -203,6 +236,74 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void showDialogCrack() {
+        Log.d(TAG, "showDialogCrack() called");
+        Premium.PREMIUM = false;
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                initializerAds();
+                Bundle bundle = new Bundle();
+                bundle.putString("device_id", Installation.id(MainActivity.this));
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setMessage(R.string.pirated);
+                builder.setPositiveButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.create().show();
+            }
+        });
+    }
+
+    private void initializerAds() {
+        canShowAds.set(true);
+        MobileAds.initialize(MainActivity.this);
+        interstitialAd = new InterstitialAd(MainActivity.this);
+        if (BuildConfig.DEBUG) {
+            interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        } else {
+            interstitialAd.setAdUnitId("ca-app-pub-9351804859208340/5317328332");
+        }
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        Runnable showAds = new Runnable() {
+            @Override
+            public void run() {
+                while (canShowAds.get()) {
+                    Log.d(TAG, "run() called");
+
+                    try {
+                        Thread.sleep(20 * 1000); //20s
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (interstitialAd != null && !isFinishing() && !Premium.PREMIUM) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (interstitialAd.isLoaded()) {
+                                    interstitialAd.show();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        };
+        new Thread(showAds).start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy() called");
+
+        canShowAds.set(false);
+        interstitialAd = null;
+    }
+
     private class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
         MainActivity activity;
 
@@ -225,6 +326,29 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 activity.onShowKeyboard();
             }
+        }
+    }
+
+    private class CheckLicenseCallBack implements LicenseCheckerCallback {
+
+        private static final String TAG = "CheckLicenseCallBack";
+
+        @Override
+        public void allow(int reason) {
+        }
+
+        @Override
+        public void dontAllow(int reason) {
+            if (isFinishing()) {
+                return;
+            }
+            if (reason == Policy.NOT_LICENSED) {
+                showDialogCrack();
+            }
+        }
+
+        @Override
+        public void applicationError(int errorCode) {
         }
     }
 }

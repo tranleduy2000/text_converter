@@ -19,5 +19,7 @@
     <string name="setting">Setting</string>
     <string name="pref_key_enable_encode">pref_encode_notification</string>
     <string name="pref_key_enable_decode">pref_decode_notification</string>
-    <string name="e">En\ncode</string>
+    <string name="encode">En\ncode</string>
+    <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
+
 </resources>

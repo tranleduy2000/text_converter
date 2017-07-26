@@ -14,4 +14,12 @@
  * limitations under the License.
  */
 
-include ':app', ':sharedcode', ':apppro' , ':lvl'
+package com.duy.text.converter.pro.license;
+
+/**
+ * Created by Duy on 26-Jul-17.
+ */
+
+public class Premium {
+    public static boolean PREMIUM = true;
+}
