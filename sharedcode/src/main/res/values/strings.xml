@@ -28,4 +28,5 @@
     <string name="type_something">Type something</string>
     <string name="get_ascii_app">Get Ascii Art app</string>
     <string name="write_review_in_playstore">Write review in PlayStore</string>
+    <string name="setting">Setting</string>
 </resources>

@@ -27,18 +27,21 @@ import static com.duy.text_converter.pro.notification.PrefUtil.bindPreferenceSum
  * This fragment shows notification preferences only. It is used when the
  * activity is showing a two-pane settings UI.
  */
-public class NotificationPreferenceFragment extends PreferenceFragment {
+public class SettingFragment extends PreferenceFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-        setHasOptionsMenu(true);
 
         // Bind the summaries of EditText/List/Dialog/Ringtone preferences
         // to their values. When their values change, their summaries are
         // updated to reflect the new value, per the Android Design
         // guidelines.
-        bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
+        bindPreferenceSummaryToValue(findPreference("pref_style_1"));
+        bindPreferenceSummaryToValue(findPreference("pref_style_2"));
+        bindPreferenceSummaryToValue(findPreference("pref_style_3"));
+        bindPreferenceSummaryToValue(findPreference("pref_style_4"));
+        bindPreferenceSummaryToValue(findPreference("pref_style_5"));
     }
 
 }

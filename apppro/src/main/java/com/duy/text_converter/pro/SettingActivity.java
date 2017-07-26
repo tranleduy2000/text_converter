@@ -16,11 +16,28 @@
 
 package com.duy.text_converter.pro;
 
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
+import com.duy.text_converter.pro.notification.SettingFragment;
 
 /**
  * Created by Duy on 26-Jul-17.
  */
 
 public class SettingActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_setting);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setTitle(R.string.setting);
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.content, new SettingFragment()).commit();
+    }
 }

@@ -22,7 +22,7 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
     android:paddingTop="16dp"
-    android:weightSum="5">
+    android:weightSum="6">
 
     <ImageView
         android:id="@+id/img_one"
@@ -50,6 +50,14 @@
 
     <ImageView
         android:id="@+id/img_four"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:src="@drawable/ic_four" />
+
+    <ImageView
+        android:id="@+id/img_five"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

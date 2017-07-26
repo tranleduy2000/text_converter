@@ -21,8 +21,9 @@ package com.duy.text_converter.pro.notification;
  */
 
 public class StyleNotification {
-    public static final String ACTION_STYLE_1 = "com.duy.text.converter.ACTION_STYLE_1";
-    public static final String ACTION_STYLE_2 = "com.duy.text.converter.ACTION_STYLE_2";
-    public static final String ACTION_STYLE_3 = "com.duy.text.converter.ACTION_STYLE_3";
-    public static final String ACTION_STYLE_4 = "com.duy.text.converter.ACTION_STYLE_4";
+    public static final String ACTION_CONVERT_STYLE_1 = "com.duy.text.converter.ACTION_CONVERT_STYLE_1";
+    public static final String ACTION_CONVERT_STYLE_2 = "com.duy.text.converter.ACTION_CONVERT_STYLE_2";
+    public static final String ACTION_CONVERT_STYLE_3 = "com.duy.text.converter.ACTION_CONVERT_STYLE_3";
+    public static final String ACTION_CONVERT_STYLE_4 = "com.duy.text.converter.ACTION_CONVERT_STYLE_4";
+    public static final String ACTION_CONVERT_STYLE_5 = "com.duy.text.converter.ACTION_CONVERT_STYLE_5";
 }

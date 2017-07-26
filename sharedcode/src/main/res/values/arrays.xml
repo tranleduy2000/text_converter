@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +15,19 @@
   -->
 
 <resources>
+
+    <string name="ascii">Ascii</string>
+    <string name="binary">Binary</string>
+    <string name="hex">Hex</string>
+    <string name="zalgo_mini">Zalog mini</string>
+    <string name="reverser">Reverser</string>
+
     <string-array name="convert_style">
-        <item>Ascii</item>
-        <item>Binary</item>
-        <item>Hex</item>
+        <item>@string/ascii</item>
+        <item>@string/binary</item>
+        <item>@string/hex</item>
         <item>Octal</item>
-        <item>Reverser</item>
+        <item>@string/reverser</item>
         <item>Upper</item>
         <item>Lower</item>
         <item>Upside down</item>
@@ -29,12 +35,33 @@
         <item>Sub script</item>
         <item>Morse code</item>
         <item>Base64</item>
-        <item>Zalgo mini</item>
+        <item>@string/zalgo_mini</item>
         <item>Zalgo normal</item>
         <item>Zalgo big</item>
         <item>Base32</item>
         <item>MD5</item>
         <item>SHA-2</item>
         <item>URL</item>
+    </string-array>
+    <string-array name="convert_style_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
     </string-array>
 </resources>

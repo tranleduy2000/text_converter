@@ -22,9 +22,11 @@ import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         if (BuildConfig.DEBUG) {
             FirebaseCrash.setCrashCollectionEnabled(false);
         }
@@ -93,40 +95,43 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showNotification() {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setSmallIcon(R.mipmap.ic_launcher)
-                .setAutoCancel(false);
-        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (sharedPreferences.getBoolean(getString(R.string.pref_key_enable_notifi), false)){
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+            builder.setSmallIcon(R.mipmap.ic_launcher)
+                    .setAutoCancel(false);
+            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification);
 
-        Intent intent1 = new Intent();
-        intent1.setAction(StyleNotification.ACTION_STYLE_1);
-        PendingIntent pendingIntentStyle1 = PendingIntent.getBroadcast(this, 12345, intent1,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        remoteViews.setOnClickPendingIntent(R.id.img_one, pendingIntentStyle1);
+            Intent intent1 = new Intent();
+            intent1.setAction(StyleNotification.ACTION_CONVERT_STYLE_1);
+            PendingIntent pendingIntentStyle1 = PendingIntent.getBroadcast(this, 12345, intent1,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setOnClickPendingIntent(R.id.img_one, pendingIntentStyle1);
 
-        Intent intent2 = new Intent();
-        intent2.setAction(StyleNotification.ACTION_STYLE_2);
-        PendingIntent pendingIntentStyle2 = PendingIntent.getBroadcast(this, 12345, intent2,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        remoteViews.setOnClickPendingIntent(R.id.img_two, pendingIntentStyle2);
+            Intent intent2 = new Intent();
+            intent2.setAction(StyleNotification.ACTION_CONVERT_STYLE_2);
+            PendingIntent pendingIntentStyle2 = PendingIntent.getBroadcast(this, 12345, intent2,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setOnClickPendingIntent(R.id.img_two, pendingIntentStyle2);
 
-        Intent intent3 = new Intent();
-        intent3.setAction(StyleNotification.ACTION_STYLE_3);
-        PendingIntent pendingIntentStyle3 = PendingIntent.getBroadcast(this, 12345, intent3,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        remoteViews.setOnClickPendingIntent(R.id.img_three, pendingIntentStyle3);
+            Intent intent3 = new Intent();
+            intent3.setAction(StyleNotification.ACTION_CONVERT_STYLE_3);
+            PendingIntent pendingIntentStyle3 = PendingIntent.getBroadcast(this, 12345, intent3,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setOnClickPendingIntent(R.id.img_three, pendingIntentStyle3);
 
-        Intent intent4 = new Intent();
-        intent4.setAction(StyleNotification.ACTION_STYLE_4);
-        PendingIntent pendingIntentStyle4 = PendingIntent.getBroadcast(this, 12345, intent4,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-        remoteViews.setOnClickPendingIntent(R.id.img_four, pendingIntentStyle4);
+            Intent intent4 = new Intent();
+            intent4.setAction(StyleNotification.ACTION_CONVERT_STYLE_4);
+            PendingIntent pendingIntentStyle4 = PendingIntent.getBroadcast(this, 12345, intent4,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            remoteViews.setOnClickPendingIntent(R.id.img_four, pendingIntentStyle4);
 
-        builder.setContent(remoteViews);
+            builder.setContent(remoteViews);
 
-        Notification notification = builder.build();
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);
+            Notification notification = builder.build();
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.notify(0, notification);
+        }
     }
 
     private void hideKeyboard() {
@@ -141,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+        menu.findItem(R.id.action_setting).setVisible(true);
         return true;
     }
 
@@ -159,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_more:
                 StoreUtil.moreApp(this);
+                break;
+            case R.id.action_setting:
+                startActivity(new Intent(this, SettingActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

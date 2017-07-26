@@ -42,12 +42,15 @@
 
         <receiver android:name=".notification.StyleReceiver">
             <intent-filter>
-                <action android:name="com.duy.text.converter.ACTION_STYLE_1" />
-                <action android:name="com.duy.text.converter.ACTION_STYLE_2" />
-                <action android:name="com.duy.text.converter.ACTION_STYLE_3" />
-                <action android:name="com.duy.text.converter.ACTION_STYLE_4" />
+                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_1" />
+                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_2" />
+                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_3" />
+                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_4" />
+                <action android:name="com.duy.text.converter.ACTION_CONVERT_STYLE_5" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".SettingActivity" />
 
     </application>
 

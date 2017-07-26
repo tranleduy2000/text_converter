@@ -15,29 +15,43 @@
   -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="@string/pref_key_enable_notifi"
+        android:summary="You can fast convert by click notification"
+        android:title="Enable notification" />
 
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/convert_style"
-        android:entryValues="@array/convert_style"
-        android:key="list_preference_1"
-        android:title="List preference" />
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/convert_style"
-        android:entryValues="@array/convert_style"
-        android:key="list_preference_1"
-        android:title="List preference" />
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/convert_style"
-        android:entryValues="@array/convert_style"
-        android:key="list_preference_1"
-        android:title="List preference" />
-    <ListPreference
-        android:defaultValue="1"
-        android:entries="@array/convert_style"
-        android:entryValues="@array/convert_style"
-        android:key="list_preference_1"
-        android:title="List preference" />
+    <PreferenceCategory android:title="Fast convert style">
+        <ListPreference
+            android:defaultValue="@string/ascii"
+            android:entries="@array/convert_style"
+            android:entryValues="@array/convert_style_value"
+            android:key="pref_style_1"
+            android:title="Style 1" />
+        <ListPreference
+            android:defaultValue="@string/binary"
+            android:entries="@array/convert_style"
+            android:entryValues="@array/convert_style_value"
+            android:key="pref_style_2"
+            android:title="Style 2" />
+        <ListPreference
+            android:defaultValue="@string/hex"
+            android:entries="@array/convert_style"
+            android:entryValues="@array/convert_style_value"
+            android:key="pref_style_3"
+            android:title="Style 3" />
+        <ListPreference
+            android:defaultValue="@string/zalgo_mini"
+            android:entries="@array/convert_style"
+            android:entryValues="@array/convert_style_value"
+            android:key="pref_style_4"
+            android:title="Style 4" />
+
+        <ListPreference
+            android:defaultValue="@string/reverser"
+            android:entries="@array/convert_style"
+            android:entryValues="@array/convert_style_value"
+            android:key="pref_style_5"
+            android:title="Style 5" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

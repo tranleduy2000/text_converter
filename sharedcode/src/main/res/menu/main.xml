@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,26 +15,33 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_get_ascii"
         android:icon="@drawable/ic_ascii"
         android:title="@string/get_ascii_app"
-        app:showAsAction="always"/>
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_share_white_24dp"
         android:title="@string/share"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_setting"
+        android:icon="@drawable/ic_settings_white_24dp"
+        android:title="@string/setting"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_review"
         android:icon="@drawable/ic_rate_review_white_24dp"
-        android:title="@string/write_review_in_playstore"/>
+        android:title="@string/write_review_in_playstore" />
 
     <item
         android:id="@+id/action_more"
         android:icon="@drawable/ic_file_download_white_24dp"
-        android:title="@string/more_app"/>
+        android:title="@string/more_app" />
 </menu>
