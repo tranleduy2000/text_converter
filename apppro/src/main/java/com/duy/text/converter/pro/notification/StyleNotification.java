@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro.notification;
+package com.duy.text.converter.pro.notification;
 
 /**
  * Created by Duy on 26-Jul-17.

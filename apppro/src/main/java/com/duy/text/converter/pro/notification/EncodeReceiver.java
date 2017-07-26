@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro.notification;
+package com.duy.text.converter.pro.notification;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -30,47 +30,58 @@ import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
 import com.duy.sharedcode.codec.HexTool;
+import com.duy.sharedcode.codec.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
 import com.duy.sharedcode.codec.ReverserTool;
+import com.duy.sharedcode.codec.Sha2Tool;
 import com.duy.sharedcode.codec.SubScriptText;
 import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
 import com.duy.sharedcode.codec.UpperLowerTool;
 import com.duy.sharedcode.codec.UpsideDownTool;
-import com.duy.sharedcode.fragment.DecodeMethod;
+import com.duy.sharedcode.codec.ZalgoBigTool;
+import com.duy.sharedcode.codec.ZalgoMiniTool;
+import com.duy.sharedcode.codec.ZalgoNormalTool;
+import com.duy.sharedcode.fragment.EncodeMethod;
 
 /**
  * Created by Duy on 26-Jul-17.
  */
 
-public class DecodeReceiver extends BroadcastReceiver {
-    private static final String TAG = "DecodeReceiver";
+public class EncodeReceiver extends BroadcastReceiver {
+    private static final String TAG = "StyleReceiver";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Log.d(TAG, "onReceive() called with: context = [" + context + "], intent = [" + intent + "]");
 
+        Log.d(TAG, "onReceive() called with: context = [" + context + "], intent = [" + intent + "]");
         if (intent != null) {
             String indexStr = "";
-            if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_1)) {
-                indexStr = preferences.getString("pref_decode_style_1", "");
-            } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_2)) {
-                indexStr = preferences.getString("pref_decode_style_2", "");
-            } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_3)) {
-                indexStr = preferences.getString("pref_decode_style_3", "");
-            } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_4)) {
-                indexStr = preferences.getString("pref_decode_style_4", "");
-            } else if (intent.getAction().equals(StyleNotification.ACTION_DECODE_STYLE_5)) {
-                indexStr = preferences.getString("pref_decode_style_5", "");
+            if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_1)) {
+                indexStr = preferences.getString("pref_encode_style_1", "");
+            } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_2)) {
+                indexStr = preferences.getString("pref_encode_style_2", "");
+            } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_3)) {
+                indexStr = preferences.getString("pref_encode_style_3", "");
+            } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_4)) {
+                indexStr = preferences.getString("pref_encode_style_4", "");
+            } else if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_5)) {
+                indexStr = preferences.getString("pref_encode_style_5", "");
             }
             if (indexStr.isEmpty()) {
                 complainNotSet(context);
                 return;
             }
-            int pos = Integer.parseInt(indexStr);
-            DecodeMethod encodeMethod = DecodeMethod.values()[pos];
+            int pos;
+            try {
+                pos = Integer.parseInt(indexStr);
+            } catch (Exception e) {
+                //number format exception
+                return;
+            }
+            EncodeMethod encodeMethod = EncodeMethod.values()[pos];
             String inp = ClipboardUtil.getClipboard(context);
             if (inp == null) {
                 Toast.makeText(context, "Clipboard is empty", Toast.LENGTH_SHORT).show();
@@ -78,16 +89,16 @@ public class DecodeReceiver extends BroadcastReceiver {
             }
             switch (encodeMethod) {
                 case ASCII:
-                    setText(context, new ASCIITool().decode(inp));
+                    setText(context, new ASCIITool().encode(inp));
                     break;
                 case OCTAL:
-                    setText(context, new OctalTool().decode(inp));
+                    setText(context, new OctalTool().encode(inp));
                     break;
                 case BINARY:
-                    setText(context, new BinaryTool().decode(inp));
+                    setText(context, new BinaryTool().encode(inp));
                     break;
                 case HEX:
-                    setText(context, new HexTool().decode(inp));
+                    setText(context, new HexTool().encode(inp));
                     break;
                 case UPPER:
                     setText(context, UpperLowerTool.upperText(inp));
@@ -102,22 +113,37 @@ public class DecodeReceiver extends BroadcastReceiver {
                     setText(context, UpsideDownTool.textToUpsideDown(inp));
                     break;
                 case SUPPER_SCRIPT:
-                    setText(context, new SupScriptText().decode(inp));
+                    setText(context, new SupScriptText().encode(inp));
                     break;
                 case SUB_SCRIPT:
-                    setText(context, new SubScriptText().decode(inp));
+                    setText(context, new SubScriptText().encode(inp));
                     break;
                 case MORSE_CODE:
-                    setText(context, new MorseTool().decode(inp));
+                    setText(context, new MorseTool().encode(inp));
                     break;
                 case BASE_64:
-                    setText(context, new Base64Tool().decode(inp));
+                    setText(context, new Base64Tool().encode(inp));
+                    break;
+                case ZALGO_MINI:
+                    setText(context, new ZalgoMiniTool().encode(inp));
+                    break;
+                case ZALGO_NORMAL:
+                    setText(context, new ZalgoNormalTool().encode(inp));
+                    break;
+                case ZALGO_BIG:
+                    setText(context, new ZalgoBigTool().encode(inp));
                     break;
                 case BASE32:
-                    setText(context, new Base32Tool().decode(inp));
+                    setText(context, new Base32Tool().encode(inp));
+                    break;
+                case MD5:
+                    setText(context, new Md5Tool().encode(inp));
+                    break;
+                case SHA_2:
+                    setText(context, new Sha2Tool().encode(inp));
                     break;
                 case URL:
-                    setText(context, new URLTool().decode(inp));
+                    setText(context, new URLTool().encode(inp));
                     break;
             }
         }
@@ -125,12 +151,13 @@ public class DecodeReceiver extends BroadcastReceiver {
     }
 
     private void closeStatusBar(Context context) {
+
         Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         context.sendBroadcast(it);
     }
 
-    private void setText(Context context, String decode) {
-        ClipboardUtil.setClipboard(context, decode);
+    private void setText(Context context, String encode) {
+        ClipboardUtil.setClipboard(context, encode);
     }
 
     private void complainNotSet(Context context) {

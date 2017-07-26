@@ -16,7 +16,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.duy.converter">
+          package="com.duy.text.converter">
 
     <application
         android:allowBackup="true"

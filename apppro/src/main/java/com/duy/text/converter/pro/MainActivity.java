@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro;
+package com.duy.text.converter.pro;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -36,7 +36,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
-import com.duy.converter.pro.notification.StyleNotificationManager;
+import com.duy.text.converter.pro.notification.StyleNotificationManager;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 

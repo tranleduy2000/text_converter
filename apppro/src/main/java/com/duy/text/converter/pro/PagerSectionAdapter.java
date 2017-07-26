@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro;
+package com.duy.text.converter.pro;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

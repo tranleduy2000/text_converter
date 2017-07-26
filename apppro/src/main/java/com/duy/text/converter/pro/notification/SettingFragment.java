@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro.notification;
+package com.duy.text.converter.pro.notification;
 
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-import com.duy.converter.pro.R;
+import com.duy.text.converter.pro.R;
 
-import static com.duy.converter.pro.notification.PrefUtil.bindPreferenceSummaryToValue;
+import static com.duy.text.converter.pro.notification.PrefUtil.bindPreferenceSummaryToValue;
 
 /**
  * This fragment shows notification preferences only. It is used when the

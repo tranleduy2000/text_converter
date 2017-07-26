@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro.notification;
+package com.duy.text.converter.pro.notification;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -27,7 +27,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
-import com.duy.converter.pro.R;
+import com.duy.text.converter.pro.R;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 

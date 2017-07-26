@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter;
+package com.duy.text.converter;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

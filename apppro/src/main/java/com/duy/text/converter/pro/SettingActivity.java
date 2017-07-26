@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro;
+package com.duy.text.converter.pro;
 
 import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
@@ -25,8 +25,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.duy.converter.pro.notification.SettingFragment;
-import com.duy.converter.pro.notification.StyleNotificationManager;
+import com.duy.text.converter.pro.notification.SettingFragment;
+import com.duy.text.converter.pro.notification.StyleNotificationManager;
 
 /**
  * Created by Duy on 26-Jul-17.

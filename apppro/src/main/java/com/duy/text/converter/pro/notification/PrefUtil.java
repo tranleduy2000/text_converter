@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.converter.pro.notification;
+package com.duy.text.converter.pro.notification;
 
 import android.preference.ListPreference;
 import android.preference.Preference;
