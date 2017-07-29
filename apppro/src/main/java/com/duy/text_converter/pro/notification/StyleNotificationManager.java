@@ -47,7 +47,6 @@ public class StyleNotificationManager {
             builder.setSmallIcon(R.mipmap.ic_launcher)
                     .setAutoCancel(true);
 
-
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.encode_notification);
             remoteViews.setTextViewText(R.id.title, "En\ncode");
 

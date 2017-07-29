@@ -21,6 +21,7 @@
     <string name="hex">Hex</string>
     <string name="zalgo_mini">Zalog mini</string>
     <string name="reverser">Reverser</string>
+    <string name="morse_code">Morse code</string>
 
     <string-array name="convert_style">
         <item>@string/ascii</item>
@@ -33,7 +34,7 @@
         <item>Upside down</item>
         <item>Super script</item>
         <item>Sub script</item>
-        <item>Morse code</item>
+        <item>@string/morse_code</item>
         <item>Base64</item>
         <item>@string/zalgo_mini</item>
         <item>Zalgo normal</item>
@@ -55,7 +56,7 @@
         <item>Upside down</item>
         <item>Super script</item>
         <item>Sub script</item>
-        <item>Morse code</item>
+        <item>@string/morse_code</item>
         <item>Base64</item>
         <item>Base32</item>
         <item>URL</item>

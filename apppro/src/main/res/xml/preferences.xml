@@ -80,7 +80,7 @@
             android:key="pref_decode_style_3"
             android:title="Style 3" />
         <ListPreference
-            android:defaultValue="@string/zalgo_mini"
+            android:defaultValue="@string/morse_code"
             android:entries="@array/decode_style"
             android:entryValues="@array/decode_style"
             android:key="pref_decode_style_4"
