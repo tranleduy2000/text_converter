@@ -21,5 +21,8 @@
     <string name="pref_key_enable_decode">pref_decode_notification</string>
     <string name="encode">En\ncode</string>
     <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
+    <string name="encode_">Encode</string>
+    <string name="decode_">Decode</string>
+
 
 </resources>

@@ -94,4 +94,20 @@
             android:title="Style 5" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="Menu text (Android M and above)">
+        <ListPreference
+            android:defaultValue="@string/binary"
+            android:entries="@array/convert_style"
+            android:entryValues="@array/convert_style"
+            android:key="pref_key_encode_menu"
+            android:title="Encode" />
+
+        <ListPreference
+            android:defaultValue="@string/binary"
+            android:entries="@array/decode_style"
+            android:entryValues="@array/decode_style"
+            android:key="pref_key_decode_menu"
+            android:title="Decode" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

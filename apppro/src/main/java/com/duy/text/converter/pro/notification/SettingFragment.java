@@ -48,6 +48,9 @@ public class SettingFragment extends PreferenceFragment {
         bindPreferenceSummaryToValue(findPreference("pref_decode_style_3"));
         bindPreferenceSummaryToValue(findPreference("pref_decode_style_4"));
         bindPreferenceSummaryToValue(findPreference("pref_decode_style_5"));
+
+        bindPreferenceSummaryToValue(findPreference("pref_key_encode_menu"));
+        bindPreferenceSummaryToValue(findPreference("pref_key_decode_menu"));
     }
 
 }

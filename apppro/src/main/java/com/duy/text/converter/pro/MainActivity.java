@@ -52,6 +52,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
 import com.google.android.vending.licensing.Policy;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
@@ -237,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showDialogCrack() {
-        Log.d(TAG, "showDialogCrack() called");
+        FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());
         Premium.PREMIUM = false;
         mHandler.post(new Runnable() {
             @Override

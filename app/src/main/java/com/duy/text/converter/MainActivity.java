@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+        menu.findItem(R.id.action_upgrade).setVisible(true);
         return true;
     }
 
@@ -139,6 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_more:
                 StoreUtil.moreApp(this);
+                break;
+            case R.id.action_upgrade:
+                FirebaseAnalytics.getInstance(this).logEvent("click_upgrade", new Bundle());
+                StoreUtil.gotoPlayStore(this, "com.duy.text_converter.pro");
                 break;
         }
         return super.onOptionsItemSelected(item);
