@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter;
+package com.duy.text_converter.pro;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,7 +31,7 @@ import com.duy.sharedcode.fragment.StylistFragment;
  */
 
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 5;
+    private static final int COUNT = 4;
     private String init;
 
     public PagerSectionAdapter(FragmentManager fm, String init) {
@@ -49,13 +49,11 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return ConverterFragment.newInstance(init);
-            case 2:
-                return StylistFragment.newInstance();
             case 1:
-                return AdsFragment.newInstance();
-            case 3:
+                return StylistFragment.newInstance();
+            case 2:
                 return DecorateFragment.newInstance();
-            case 4:
+            case 3:
                 return SpecialEffectFragment.newInstance();
             default:
                 return null;
@@ -67,13 +65,11 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return "Converter";
-            case 2:
-                return "Style";
             case 1:
-                return "Ads";
-            case 3:
+                return "Style";
+            case 2:
                 return "Decorate";
-            case 4:
+            case 3:
                 return "Special";
             default:
                 return "";

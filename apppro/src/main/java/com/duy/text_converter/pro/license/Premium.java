@@ -14,20 +14,12 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.converter.utils;
-
-import junit.framework.TestCase;
+package com.duy.text_converter.pro.license;
 
 /**
- * Created by Duy on 22-Jun-17.
+ * Created by Duy on 26-Jul-17.
  */
-public class Base64ToolTest extends TestCase {
-    public void testBase64Encode() throws Exception {
 
-    }
-
-    public void testBase64Decode() throws Exception {
-
-    }
-
+public class Premium {
+    public static boolean PREMIUM = true;
 }

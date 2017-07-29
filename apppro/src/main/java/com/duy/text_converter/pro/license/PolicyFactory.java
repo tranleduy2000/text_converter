@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.converter.utils;
+package com.duy.text_converter.pro.license;
 
-import junit.framework.TestCase;
+import android.content.Context;
+import android.support.annotation.NonNull;
+
+import com.google.android.vending.licensing.AESObfuscator;
+import com.google.android.vending.licensing.Policy;
+import com.google.android.vending.licensing.ServerManagedPolicy;
 
 /**
- * Created by Duy on 22-Jun-17.
+ * Created by Duy on 12-Jul-17.
  */
-public class Base64ToolTest extends TestCase {
-    public void testBase64Encode() throws Exception {
 
+public class PolicyFactory {
+    public static Policy createPolicy(@NonNull Context context, @NonNull String packageName) {
+        String deviceID = Installation.id(context);
+        return new ServerManagedPolicy(context, new AESObfuscator(Key.SALT, packageName, deviceID));
     }
-
-    public void testBase64Decode() throws Exception {
-
-    }
-
 }

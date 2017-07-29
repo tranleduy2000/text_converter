@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.pro;
+package com.duy.text_converter.pro;
 
 import org.junit.Test;
 

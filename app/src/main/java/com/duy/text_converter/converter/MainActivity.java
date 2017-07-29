@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter;
+package com.duy.text_converter.converter;
 
 import android.content.Context;
 import android.content.Intent;
