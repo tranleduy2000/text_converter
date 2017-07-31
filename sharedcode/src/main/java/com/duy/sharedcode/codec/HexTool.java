@@ -18,8 +18,6 @@ package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
 
-import java.math.BigInteger;
-
 /**
  * Created by DUy on 06-Feb-17.
  */
@@ -30,12 +28,10 @@ public class HexTool implements Encoder, Decoder {
      * convert text to hex
      */
     public static String textToHex(String text) {
-        String tmp = String.format("%x", new BigInteger(1, text.getBytes(/*YOUR_CHARSET?*/)));
         StringBuilder result = new StringBuilder();
-        if (text.length() == 0) return "";
-        for (int i = 0; i < tmp.length(); i += 2) {
-            String str = tmp.substring(i, i + 2);
-            result.append(str).append(" ");
+        char[] chars = text.toCharArray();
+        for (char c :chars) {
+            result.append(Integer.toHexString(c)).append(" ");
         }
         return result.toString();
     }
@@ -46,10 +42,9 @@ public class HexTool implements Encoder, Decoder {
     public static String hexToTex(String text) {
         StringBuilder result = new StringBuilder();
         String[] arr = text.split(" ");
-
         for (String arg : arr) {
             try {
-                result.append((char) Integer.parseInt(arg, 16));
+                result.append(Character.toChars(Integer.parseInt(arg, 16)));
             } catch (Exception e) {
                 result.append(" ").append(arg).append(" ");
             }
@@ -57,8 +52,6 @@ public class HexTool implements Encoder, Decoder {
         return result.toString();
     }
 
-    public static void main(String[] args) {
-    }
 
     @NonNull
     @Override

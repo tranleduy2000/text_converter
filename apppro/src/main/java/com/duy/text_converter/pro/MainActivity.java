@@ -46,6 +46,7 @@ import com.duy.text_converter.pro.license.Key;
 import com.duy.text_converter.pro.license.PolicyFactory;
 import com.duy.text_converter.pro.license.Premium;
 import com.duy.text_converter.pro.notification.StyleNotificationManager;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
@@ -269,6 +270,12 @@ public class MainActivity extends AppCompatActivity {
             interstitialAd.setAdUnitId("ca-app-pub-9351804859208340/5317328332");
         }
         interstitialAd.loadAd(new AdRequest.Builder().build());
+        interstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
         Runnable showAds = new Runnable() {
             @Override
             public void run() {
