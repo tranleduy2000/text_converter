@@ -14,20 +14,24 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.sharedcode.crypto;
 
 import android.support.annotation.NonNull;
 
-import org.apache.commons.codec.digest.Md5Crypt;
+import com.duy.sharedcode.codec.Encoder;
+
+import org.apache.commons.codec.digest.Sha2Crypt;
 
 /**
  * Created by Duy on 11-Jul-17.
  */
 
-public class Md5Tool implements Encoder {
+public class Sha2Tool implements Encoder {
+
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return Md5Crypt.md5Crypt(text.getBytes());
+        return Sha2Crypt.sha256Crypt(text.getBytes());
     }
+
 }
