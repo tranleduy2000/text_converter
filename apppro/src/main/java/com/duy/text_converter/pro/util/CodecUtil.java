@@ -23,6 +23,7 @@ import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
 import com.duy.sharedcode.codec.HexTool;
+import com.duy.sharedcode.codec.RandomCaseTool;
 import com.duy.sharedcode.crypto.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
@@ -55,9 +56,9 @@ public class CodecUtil {
                 break;
             }
         }
-        DecodeMethod encodeMethod = DecodeMethod.values()[pos];
+        DecodeMethod decodeMethod = DecodeMethod.values()[pos];
 
-        switch (encodeMethod) {
+        switch (decodeMethod) {
             case ASCII:
                 return new ASCIITool().decode(inp);
 
@@ -153,6 +154,8 @@ public class CodecUtil {
                 return new Sha2Tool().encode(inp);
             case URL:
                 return new URLTool().encode(inp);
+            case RANDOM_CASE:
+                return new RandomCaseTool().encode(inp);
         }
         return inp;
     }

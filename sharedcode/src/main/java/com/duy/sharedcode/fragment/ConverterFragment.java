@@ -40,6 +40,7 @@ import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
 import com.duy.sharedcode.codec.HexTool;
+import com.duy.sharedcode.codec.RandomCaseTool;
 import com.duy.sharedcode.crypto.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
@@ -302,6 +303,12 @@ public class ConverterFragment extends Fragment {
             case URL:
                 if (to) mOutput.setText(new URLTool().encode(inp));
                 else mInput.setText(new URLTool().decode(out));
+                break;
+            case RANDOM_CASE:
+                if (to) mOutput.setText(new RandomCaseTool().encode(inp));
+                else {
+                    Toast.makeText(mContext, "You can't decode random case", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
         //reset cursor

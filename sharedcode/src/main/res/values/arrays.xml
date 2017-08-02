@@ -39,10 +39,11 @@
         <item>@string/zalgo_mini</item>
         <item>Zalgo normal</item>
         <item>Zalgo big</item>
-        <item>Base32</item>
-        <item>MD5</item>
-        <item>SHA-2</item>
+        <item>Base32 (crypto)</item>
+        <item>MD5 (crypto)</item>
+        <item>SHA-2 (crypto)</item>
         <item>URL</item>
+        <item>Random Case</item>
     </string-array>
 
     <string-array name="decode_style">

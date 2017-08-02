@@ -14,33 +14,22 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.fragment;
+package com.duy.sharedcode.codec;
 
-public enum EncodeMethod {
-    ASCII(0),
-    BINARY(1),
-    HEX(2),
-    OCTAL(3),
-    REVERSER(4),
-    UPPER(5),
-    LOWER(6),
-    UPSIDE_DOWNSIDE(7),
-    SUPPER_SCRIPT(8),
-    SUB_SCRIPT(9),
-    MORSE_CODE(10),
-    BASE_64(11),
-    ZALGO_MINI(12),
-    ZALGO_NORMAL(17),
-    ZALGO_BIG(18),
-    BASE32(13),
-    MD5(14),
-    SHA_2(15),
-    URL(16),
-    RANDOM_CASE(17);
+import android.support.annotation.NonNull;
 
-    private int i;
+/**
+ * Created by Duy on 02-Aug-17.
+ */
 
-    EncodeMethod(int i) {
-        this.i = i;
+public class RandomCaseTool implements Encoder {
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        StringBuilder result = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            result.append(Math.random() < 0.5d ? c : Character.toUpperCase(c));
+        }
+        return result.toString();
     }
 }

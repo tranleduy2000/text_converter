@@ -29,14 +29,11 @@ public class BinaryTool implements Encoder, Decoder {
      * foo ->  01100110 01101111 01101111
      */
     public static String textToBinary(String text) {
-        byte[] bytes = text.getBytes();
+        char[] bytes = text.toCharArray();
         StringBuilder binary = new StringBuilder();
-        for (byte b : bytes) {
-            int val = b;
-            for (int i = 0; i < 8; i++) {
-                binary.append((val & 128) == 0 ? 0 : 1);
-                val <<= 1;
-            }
+        for (char c : bytes) {
+            String string = Integer.toBinaryString(c);
+            binary.append(string);
             binary.append(' ');
         }
         return binary.toString();
@@ -55,7 +52,7 @@ public class BinaryTool implements Encoder, Decoder {
         for (String arg : arr) {
             try {
                 int charCode = Integer.parseInt(arg, 2);
-                stringBuilder.append((char) charCode);
+                stringBuilder.append(Character.toChars(charCode));
             } catch (Exception e) {
                 stringBuilder.append(" ").append(arg).append(" ");
             }
@@ -63,12 +60,6 @@ public class BinaryTool implements Encoder, Decoder {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        String inp = "tranleduy";
-        String binary = textToBinary(inp);
-        System.out.println("Text to binary: " + inp + " ->> " + binary);
-        System.out.println("Binary to text: " + binary + " ->> " + binaryToText(binary));
-    }
 
     @NonNull
     @Override
