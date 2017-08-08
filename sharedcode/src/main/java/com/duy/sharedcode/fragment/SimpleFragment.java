@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.crypto;
+package com.duy.sharedcode.fragment;
 
-import android.support.annotation.NonNull;
-
-import com.duy.sharedcode.codec.Encoder;
-
-import org.apache.commons.codec.digest.Md5Crypt;
+import android.content.Context;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 08-Aug-17.
  */
 
-public class Md5Tool implements Encoder {
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return Md5Crypt.md5Crypt(text.getBytes());
-    }
+interface SimpleFragment {
+    String getTitle(Context context);
 }

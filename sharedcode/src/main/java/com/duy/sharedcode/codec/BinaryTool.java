@@ -52,7 +52,7 @@ public class BinaryTool implements Encoder, Decoder {
         for (String arg : arr) {
             try {
                 int charCode = Integer.parseInt(arg, 2);
-                stringBuilder.append(Character.toChars(charCode));
+                stringBuilder.append(Character.valueOf((char) charCode));
             } catch (Exception e) {
                 stringBuilder.append(" ").append(arg).append(" ");
             }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,11 +15,11 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="8dp"
-              android:weightSum="100">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:weightSum="100">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,7 +39,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/copy"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp"/>
+                android:src="@drawable/ic_content_copy_white_24dp" />
 
             <ImageButton
                 android:id="@+id/img_share"
@@ -49,18 +48,35 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/share"
                 android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp"/>
+                android:src="@drawable/ic_share_white_24dp" />
         </LinearLayout>
 
-        <com.duy.sharedcode.view.BaseEditText
-            android:id="@+id/edit_input"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_edit_text"
-            android:gravity="top"
-            android:hint="@string/input_here"
-            android:inputType="textMultiLine"
-            android:padding="8dp"/>
+            android:orientation="vertical">
+
+            <com.duy.sharedcode.view.BaseEditText
+                android:id="@+id/edit_input"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="top"
+                android:hint="@string/input_here"
+                android:inputType="textMultiLine"
+                android:padding="8dp" />
+
+            <com.duy.sharedcode.view.BaseEditText
+                android:id="@+id/edit_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="@string/key"
+                android:inputType="textMultiLine"
+                android:padding="8dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -76,15 +92,14 @@
             android:layout_marginRight="16dp"
             android:gravity="center"
             android:text="@string/choose_method"
-            android:textColor="?colorAccent"/>
-
+            android:textColor="?colorAccent" />
 
         <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/spinner_choose"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:background="@drawable/bg_edit_text"/>
+            android:background="@drawable/bg_edit_text" />
     </LinearLayout>
 
     <LinearLayout
@@ -105,7 +120,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/copy"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp"/>
+                android:src="@drawable/ic_content_copy_white_24dp" />
 
             <ImageButton
                 android:id="@+id/img_share_out"
@@ -114,7 +129,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/share"
                 android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp"/>
+                android:src="@drawable/ic_share_white_24dp" />
         </LinearLayout>
 
         <com.duy.sharedcode.view.BaseEditText
@@ -125,7 +140,7 @@
             android:gravity="top"
             android:hint="@string/ouput_here"
             android:inputType="textMultiLine"
-            android:padding="8dp"/>
+            android:padding="8dp" />
 
 
     </LinearLayout>

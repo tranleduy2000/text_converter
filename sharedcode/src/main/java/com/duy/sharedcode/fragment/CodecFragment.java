@@ -41,11 +41,11 @@ import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
 import com.duy.sharedcode.codec.HexTool;
 import com.duy.sharedcode.codec.RandomCaseTool;
-import com.duy.sharedcode.crypto.Md5Tool;
+import com.duy.sharedcode.hash.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
 import com.duy.sharedcode.codec.ReverserTool;
-import com.duy.sharedcode.crypto.Sha2Tool;
+import com.duy.sharedcode.hash.Sha2Tool;
 import com.duy.sharedcode.codec.SubScriptText;
 import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
@@ -63,9 +63,9 @@ import com.duy.textconverter.sharedcode.R;
  * Created by DUy on 06-Feb-17.
  */
 
-public class ConverterFragment extends Fragment {
-    private static final String TAG = ConverterFragment.class.getSimpleName();
-    private static final String KEY = ConverterFragment.class.getSimpleName();
+public class CodecFragment extends Fragment {
+    private static final String TAG = CodecFragment.class.getSimpleName();
+    private static final String KEY = CodecFragment.class.getSimpleName();
     private static final String KEY_TEXT = "KEY_TEXT";
     private View mRootView;
     private Context mContext;
@@ -105,8 +105,8 @@ public class ConverterFragment extends Fragment {
     };
     private View imgShareIn, imgShareOut, imgCopyIn, imgCopyOut;
 
-    public static ConverterFragment newInstance(String init) {
-        ConverterFragment fragment = new ConverterFragment();
+    public static CodecFragment newInstance(String init) {
+        CodecFragment fragment = new CodecFragment();
         Bundle bundle = new Bundle();
         if (init != null) {
             bundle.putString(Intent.EXTRA_TEXT, init);
@@ -125,7 +125,7 @@ public class ConverterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_convert_text, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_codec, container, false);
         return mRootView;
     }
 

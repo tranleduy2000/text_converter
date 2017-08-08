@@ -16,12 +16,14 @@
 
 package com.duy.text_converter.converter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.duy.sharedcode.fragment.ConverterFragment;
+import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
+import com.duy.sharedcode.fragment.HashFragment;
 import com.duy.sharedcode.fragment.SpecialEffectFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
 
@@ -29,13 +31,14 @@ import com.duy.sharedcode.fragment.StylistFragment;
 /**
  * Created by DUy on 06-Feb-17.
  */
-
 public class PagerSectionAdapter extends FragmentPagerAdapter {
     private static final int COUNT = 5;
+    private Context context;
     private String init;
 
-    public PagerSectionAdapter(FragmentManager fm, String init) {
+    public PagerSectionAdapter(Context context, FragmentManager fm, String init) {
         super(fm);
+        this.context = context;
         this.init = init;
     }
 
@@ -48,7 +51,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return ConverterFragment.newInstance(init);
+                return CodecFragment.newInstance(init);
             case 2:
                 return StylistFragment.newInstance();
             case 1:
@@ -57,6 +60,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return DecorateFragment.newInstance();
             case 4:
                 return SpecialEffectFragment.newInstance();
+            case 5:
+                return HashFragment.newInstance();
             default:
                 return null;
         }
@@ -66,7 +71,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Converter";
+                return context.getString(R.string.codec);
             case 2:
                 return "Style";
             case 1:
@@ -75,6 +80,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return "Decorate";
             case 4:
                 return "Special";
+            case 5:
+                return context.getString(R.string.hash_function);
             default:
                 return "";
         }

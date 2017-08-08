@@ -44,7 +44,7 @@ import java.util.ArrayList;
  */
 
 public class StylistFragment extends Fragment implements TextWatcher {
-    private static final String TAG = ConverterFragment.class.getSimpleName();
+    private static final String TAG = CodecFragment.class.getSimpleName();
     public static String KEY = "StylistFragment";
     private Context mContext;
     private EditText mInput;

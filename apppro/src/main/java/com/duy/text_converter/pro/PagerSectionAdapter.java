@@ -20,7 +20,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.duy.sharedcode.fragment.ConverterFragment;
+import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.SpecialEffectFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
@@ -48,7 +48,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return ConverterFragment.newInstance(init);
+                return CodecFragment.newInstance(init);
             case 1:
                 return StylistFragment.newInstance();
             case 2:
