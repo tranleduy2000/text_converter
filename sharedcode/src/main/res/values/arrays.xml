@@ -42,23 +42,8 @@
         <item>Base64</item>
         <item>URL</item>
         <item>Random Case</item>
+        <item>Caesar offset 1</item>
     </string-array>
 
-    <string-array name="decode_style">
-        <item>@string/ascii</item>
-        <item>@string/binary</item>
-        <item>@string/hex</item>
-        <item>Octal</item>
-        <item>@string/reverser</item>
-        <item>Upper</item>
-        <item>Lower</item>
-        <item>Upside down</item>
-        <item>Super script</item>
-        <item>Sub script</item>
-        <item>@string/morse_code</item>
-        <item>Base32</item>
-        <item>Base64</item>
-        <item>URL</item>
-    </string-array>
 
 </resources>

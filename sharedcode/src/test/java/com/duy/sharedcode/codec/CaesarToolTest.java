@@ -16,23 +16,23 @@
 
 package com.duy.sharedcode.codec;
 
-public enum EncodeMethod {
-    ASCII,
-    BINARY,
-    HEX,
-    OCTAL,
-    REVERSER,
-    UPPER,
-    LOWER,
-    UPSIDE_DOWNSIDE,
-    SUPPER_SCRIPT,
-    SUB_SCRIPT,
-    MORSE_CODE,
-    ZALGO_MINI,
-    ZALGO_NORMAL,
-    ZALGO_BIG,
-    BASE_32,
-    BASE_64,
-    URL,
-    RANDOM_CASE;
+import junit.framework.TestCase;
+
+/**
+ * Created by Duy on 08-Aug-17.
+ */
+public class CaesarToolTest extends TestCase {
+    public void testDecode() throws Exception {
+        String inp = "Ifmq xf bsf cfjoh buubdlfe";
+        String decode = new CaesarTool().decode(inp);
+        System.out.println("decode = " + decode);
+        assertEquals(decode, "Help we are being attacked");
+    }
+
+    public void testEncode() throws Exception {
+        String inp = "Help we are being attacked";
+        String encode = new CaesarTool().encode(inp);
+        assertEquals(encode, "Ifmq xf bsf cfjoh buubdlfe");
+    }
+
 }

@@ -38,7 +38,7 @@ import com.duy.sharedcode.codec.ASCIITool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
-import com.duy.sharedcode.codec.EncodeMethod;
+import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.HexTool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
@@ -212,7 +212,7 @@ public class CodecFragment extends Fragment {
 
     private void convert(boolean to) {
         int index = mChoose.getSelectedItemPosition();
-        EncodeMethod encodeMethod = EncodeMethod.values()[index];
+        CodecMethod encodeMethod = CodecMethod.values()[index];
         String inp = mInput.getText().toString();
         String out = mOutput.getText().toString();
         switch (encodeMethod) {

@@ -16,7 +16,7 @@
 
 package com.duy.sharedcode.codec;
 
-public enum DecodeMethod {
+public enum CodecMethod {
     ASCII,
     BINARY,
     HEX,
@@ -28,7 +28,12 @@ public enum DecodeMethod {
     SUPPER_SCRIPT,
     SUB_SCRIPT,
     MORSE_CODE,
-    BASE32,
+    ZALGO_MINI,
+    ZALGO_NORMAL,
+    ZALGO_BIG,
+    BASE_32,
     BASE_64,
-    URL
+    URL,
+    RANDOM_CASE,
+    CAESAR;
 }

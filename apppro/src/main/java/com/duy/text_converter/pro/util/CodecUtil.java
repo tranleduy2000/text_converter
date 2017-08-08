@@ -22,13 +22,13 @@ import com.duy.sharedcode.codec.ASCIITool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
+import com.duy.sharedcode.codec.CaesarTool;
+import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.HexTool;
-import com.duy.sharedcode.codec.RandomCaseTool;
-import com.duy.sharedcode.hashfunction.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
+import com.duy.sharedcode.codec.RandomCaseTool;
 import com.duy.sharedcode.codec.ReverserTool;
-import com.duy.sharedcode.hashfunction.Sha256Tool;
 import com.duy.sharedcode.codec.SubScriptText;
 import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
@@ -37,8 +37,6 @@ import com.duy.sharedcode.codec.UpsideDownTool;
 import com.duy.sharedcode.codec.ZalgoBigTool;
 import com.duy.sharedcode.codec.ZalgoMiniTool;
 import com.duy.sharedcode.codec.ZalgoNormalTool;
-import com.duy.sharedcode.codec.DecodeMethod;
-import com.duy.sharedcode.codec.EncodeMethod;
 import com.duy.text_converter.pro.R;
 
 /**
@@ -56,8 +54,7 @@ public class CodecUtil {
                 break;
             }
         }
-        DecodeMethod decodeMethod = DecodeMethod.values()[pos];
-
+        CodecMethod decodeMethod = CodecMethod.values()[pos];
         switch (decodeMethod) {
             case ASCII:
                 return new ASCIITool().decode(inp);
@@ -76,31 +73,32 @@ public class CodecUtil {
 
             case LOWER:
                 return UpperLowerTool.lowerText(inp);
-
             case REVERSER:
                 return ReverserTool.reverseText(inp);
-
             case UPSIDE_DOWNSIDE:
                 return UpsideDownTool.textToUpsideDown(inp);
-
             case SUPPER_SCRIPT:
                 return new SupScriptText().decode(inp);
-
             case SUB_SCRIPT:
                 return new SubScriptText().decode(inp);
-
             case MORSE_CODE:
                 return new MorseTool().decode(inp);
-
             case BASE_64:
                 return new Base64Tool().decode(inp);
-
-            case BASE32:
+            case ZALGO_MINI:
+                break;
+            case ZALGO_NORMAL:
+                break;
+            case ZALGO_BIG:
+                break;
+            case BASE_32:
                 return new Base32Tool().decode(inp);
-
             case URL:
                 return new URLTool().decode(inp);
-
+            case RANDOM_CASE:
+                return new RandomCaseTool().decode(inp);
+            case CAESAR:
+                return new CaesarTool().decode(inp);
         }
         return inp;
     }
@@ -114,7 +112,7 @@ public class CodecUtil {
                 break;
             }
         }
-        EncodeMethod encodeMethod = EncodeMethod.values()[pos];
+        CodecMethod encodeMethod = CodecMethod.values()[pos];
         switch (encodeMethod) {
             case ASCII:
                 return new ASCIITool().encode(inp);
@@ -148,14 +146,12 @@ public class CodecUtil {
                 return new ZalgoBigTool().encode(inp);
             case BASE_32:
                 return new Base32Tool().encode(inp);
-            case MD5:
-                return new Md5Tool().encode(inp);
-            case SHA_2:
-                return new Sha256Tool().encode(inp);
             case URL:
                 return new URLTool().encode(inp);
             case RANDOM_CASE:
                 return new RandomCaseTool().encode(inp);
+            case CAESAR:
+                return new CaesarTool().encode(inp);
         }
         return inp;
     }
