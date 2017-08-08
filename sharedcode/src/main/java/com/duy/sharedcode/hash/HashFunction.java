@@ -16,24 +16,13 @@
 
 package com.duy.sharedcode.hash;
 
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.digest.Md5Crypt;
-
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 08-Aug-17.
  */
 
-public class Md5Tool implements HashFunction {
-    @Override
-    public String getName() {
-        return "MD5";
-    }
+public interface HashFunction {
+    String getName();
 
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return Md5Crypt.md5Crypt(text.getBytes());
-    }
+    String encode(String data);
 
 }

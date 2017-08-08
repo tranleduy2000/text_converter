@@ -28,7 +28,7 @@ import com.duy.sharedcode.hash.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
 import com.duy.sharedcode.codec.ReverserTool;
-import com.duy.sharedcode.hash.Sha2Tool;
+import com.duy.sharedcode.hash.Sha256Tool;
 import com.duy.sharedcode.codec.SubScriptText;
 import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
@@ -151,7 +151,7 @@ public class CodecUtil {
             case MD5:
                 return new Md5Tool().encode(inp);
             case SHA_2:
-                return new Sha2Tool().encode(inp);
+                return new Sha256Tool().encode(inp);
             case URL:
                 return new URLTool().encode(inp);
             case RANDOM_CASE:

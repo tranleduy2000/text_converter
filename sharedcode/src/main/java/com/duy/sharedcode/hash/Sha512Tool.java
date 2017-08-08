@@ -18,22 +18,22 @@ package com.duy.sharedcode.hash;
 
 import android.support.annotation.NonNull;
 
-import org.apache.commons.codec.digest.Md5Crypt;
+import org.apache.commons.codec.digest.Sha2Crypt;
 
 /**
  * Created by Duy on 11-Jul-17.
  */
 
-public class Md5Tool implements HashFunction {
+public class Sha512Tool implements HashFunction {
+
     @Override
     public String getName() {
-        return "MD5";
+        return "SHA-512";
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return Md5Crypt.md5Crypt(text.getBytes());
+        return Sha2Crypt.sha512Crypt(text.getBytes());
     }
-
 }

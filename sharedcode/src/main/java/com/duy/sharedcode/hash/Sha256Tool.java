@@ -18,21 +18,24 @@ package com.duy.sharedcode.hash;
 
 import android.support.annotation.NonNull;
 
-import com.duy.sharedcode.codec.Encoder;
-
-import org.apache.commons.codec.digest.Md5Crypt;
 import org.apache.commons.codec.digest.Sha2Crypt;
 
 /**
  * Created by Duy on 11-Jul-17.
  */
 
-public class Sha2Tool implements Encoder {
+public class Sha256Tool implements HashFunction {
+
+    @Override
+    public String getName() {
+        return "SHA-256";
+    }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
         return Sha2Crypt.sha256Crypt(text.getBytes());
     }
+
 
 }
