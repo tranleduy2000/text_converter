@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.fragment;
+package com.duy.sharedcode.stylist;
 
-import android.content.Context;
+import junit.framework.TestCase;
+
+import java.util.ArrayList;
 
 /**
  * Created by Duy on 08-Aug-17.
  */
+public class StylistGeneratorTest extends TestCase {
+    public void testGenerate() throws Exception {
+        ArrayList<String> generate = new StylistGenerator().generate("package com.duy.sharedcode.stylist;");
+        for (String s : generate) {
+            System.out.println(generate);
+        }
+    }
 
-interface SimpleFragment {
-    String getTitle(Context context);
 }

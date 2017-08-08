@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
-        adapter = new PagerSectionAdapter(getSupportFragmentManager(), text);
+        adapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
 

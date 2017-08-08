@@ -24,7 +24,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.HashFragment;
-import com.duy.sharedcode.fragment.SpecialEffectFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
 
 
@@ -32,7 +31,7 @@ import com.duy.sharedcode.fragment.StylistFragment;
  * Created by DUy on 06-Feb-17.
  */
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 6;
+    private static final int COUNT = 5;
     private Context context;
     private String init;
 
@@ -53,15 +52,13 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 0:
                 return CodecFragment.newInstance(init);
             case 1:
-                return AdsFragment.newInstance();
-            case 2:
-                return StylistFragment.newInstance();
-            case 3:
-                return DecorateFragment.newInstance();
-            case 4:
-                return SpecialEffectFragment.newInstance();
-            case 5:
                 return HashFragment.newInstance();
+            case 2:
+                return AdsFragment.newInstance();
+            case 3:
+                return StylistFragment.newInstance();
+            case 4:
+                return DecorateFragment.newInstance();
             default:
                 return null;
         }
@@ -73,18 +70,15 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 0:
                 return context.getString(R.string.codec);
             case 1:
-                return "Ads";
-            case 2:
-                return "Style";
-            case 3:
-                return "Decorate";
-            case 4:
-                return "Special";
-            case 5:
                 return context.getString(R.string.hash_function);
-            default:
-                return "";
+            case 2:
+                return context.getString(R.string.ads);
+            case 3:
+                return context.getString(R.string.stylist);
+            case 4:
+                return context.getString(R.string.decorate);
         }
+        return super.getPageTitle(position);
     }
 
 }

@@ -16,13 +16,14 @@
 
 package com.duy.text_converter.pro;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
-import com.duy.sharedcode.fragment.SpecialEffectFragment;
+import com.duy.sharedcode.fragment.HashFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
 
 
@@ -33,9 +34,11 @@ import com.duy.sharedcode.fragment.StylistFragment;
 public class PagerSectionAdapter extends FragmentPagerAdapter {
     private static final int COUNT = 4;
     private String init;
+private Context context;
 
-    public PagerSectionAdapter(FragmentManager fm, String init) {
+    public PagerSectionAdapter(Context context, FragmentManager fm, String init) {
         super(fm);
+        this.context = context;
         this.init = init;
     }
 
@@ -50,11 +53,11 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 0:
                 return CodecFragment.newInstance(init);
             case 1:
-                return StylistFragment.newInstance();
+                return HashFragment.newInstance();
             case 2:
-                return DecorateFragment.newInstance();
+                return StylistFragment.newInstance();
             case 3:
-                return SpecialEffectFragment.newInstance();
+                return DecorateFragment.newInstance();
             default:
                 return null;
         }
@@ -64,16 +67,16 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Converter";
+                return context.getString(R.string.codec);
             case 1:
-                return "Style";
+                return context.getString(R.string.hash_function);
             case 2:
-                return "Decorate";
+                return context.getString(R.string.ads);
             case 3:
-                return "Special";
-            default:
-                return "";
+                return context.getString(R.string.stylist);
+            case 4:
+                return context.getString(R.string.decorate);
         }
+        return super.getPageTitle(position);
     }
-
 }

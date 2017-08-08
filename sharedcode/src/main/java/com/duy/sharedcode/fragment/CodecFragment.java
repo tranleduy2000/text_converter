@@ -32,7 +32,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.codec.ASCIITool;
@@ -261,26 +260,16 @@ public class CodecFragment extends Fragment {
                 if (to) mOutput.setText(new MorseTool().encode(inp));
                 else mInput.setText(new MorseTool().decode(out));
                 break;
-
             case ZALGO_MINI:
                 if (to) mOutput.setText(new ZalgoMiniTool().encode(inp));
-                else {
-                    Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
-                }
                 break;
             case ZALGO_NORMAL:
                 if (to) mOutput.setText(new ZalgoNormalTool().encode(inp));
-                else {
-                    Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
-                }
                 break;
             case ZALGO_BIG:
                 if (to) mOutput.setText(new ZalgoBigTool().encode(inp));
-                else {
-                    Toast.makeText(mContext, "Don't support decode zalgo", Toast.LENGTH_SHORT).show();
-                }
                 break;
-            case BASE32:
+            case BASE_32:
                 if (to) mOutput.setText(new Base32Tool().encode(inp));
                 else mInput.setText(new Base32Tool().decode(out));
                 break;
@@ -294,9 +283,7 @@ public class CodecFragment extends Fragment {
                 break;
             case RANDOM_CASE:
                 if (to) mOutput.setText(new RandomCaseTool().encode(inp));
-                else {
-                    Toast.makeText(mContext, "You can't decode random case", Toast.LENGTH_SHORT).show();
-                }
+                else mInput.setText(new RandomCaseTool().decode(out));
                 break;
         }
         //reset cursor

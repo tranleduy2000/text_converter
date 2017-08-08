@@ -146,7 +146,7 @@ public class CodecUtil {
                 return new ZalgoNormalTool().encode(inp);
             case ZALGO_BIG:
                 return new ZalgoBigTool().encode(inp);
-            case BASE32:
+            case BASE_32:
                 return new Base32Tool().encode(inp);
             case MD5:
                 return new Md5Tool().encode(inp);

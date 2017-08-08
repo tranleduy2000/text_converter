@@ -32,7 +32,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.sharedcode.adapters.StyleAdapter;
-import com.duy.sharedcode.stylist.model.ReplaceEffect;
+import com.duy.sharedcode.stylist.StylistGenerator;
 import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;
@@ -92,10 +92,8 @@ public class StylistFragment extends Fragment implements TextWatcher {
 
     public void convert() {
         String inp = mInput.getText().toString();
-        if (inp.isEmpty()) {
-            inp = mInput.getHint().toString();
-        }
-        ArrayList<String> translate = ReplaceEffect.convert(inp);
+        if (inp.isEmpty()) inp = mInput.getHint().toString();
+        ArrayList<String> translate = new StylistGenerator().generate(inp);
         mAdapter.setData(translate);
     }
 

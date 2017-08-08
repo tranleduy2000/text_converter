@@ -31,7 +31,7 @@ public enum EncodeMethod {
     ZALGO_MINI,
     ZALGO_NORMAL,
     ZALGO_BIG,
-    BASE32,
+    BASE_32,
     BASE_64,
     URL,
     RANDOM_CASE;
