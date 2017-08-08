@@ -14,25 +14,28 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.sharedcode.hashfunction;
 
-public enum EncodeMethod {
-    ASCII,
-    BINARY,
-    HEX,
-    OCTAL,
-    REVERSER,
-    UPPER,
-    LOWER,
-    UPSIDE_DOWNSIDE,
-    SUPPER_SCRIPT,
-    SUB_SCRIPT,
-    MORSE_CODE,
-    ZALGO_MINI,
-    ZALGO_NORMAL,
-    ZALGO_BIG,
-    BASE32,
-    BASE_64,
-    URL,
-    RANDOM_CASE;
+import android.support.annotation.NonNull;
+
+import org.apache.commons.codec.digest.Sha2Crypt;
+
+/**
+ * Created by Duy on 11-Jul-17.
+ */
+
+public class Sha256Tool implements HashFunction {
+
+    @Override
+    public String getName() {
+        return "SHA-256";
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return Sha2Crypt.sha256Crypt(text.getBytes());
+    }
+
+
 }

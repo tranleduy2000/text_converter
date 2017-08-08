@@ -17,24 +17,18 @@
 package com.duy.sharedcode.codec;
 
 public enum DecodeMethod {
-    ASCII(0),
-    BINARY(1),
-    HEX(2),
-    OCTAL(3),
-    REVERSER(4),
-    UPPER(5),
-    LOWER(6),
-    UPSIDE_DOWNSIDE(7),
-    SUPPER_SCRIPT(8),
-    SUB_SCRIPT(9),
-    MORSE_CODE(10),
-    BASE_64(11),
-    BASE32(13),
-    URL(16);
-
-    private int i;
-
-    DecodeMethod(int i) {
-        this.i = i;
-    }
+    ASCII,
+    BINARY,
+    HEX,
+    OCTAL,
+    REVERSER,
+    UPPER,
+    LOWER,
+    UPSIDE_DOWNSIDE,
+    SUPPER_SCRIPT,
+    SUB_SCRIPT,
+    MORSE_CODE,
+    BASE32,
+    BASE_64,
+    URL
 }

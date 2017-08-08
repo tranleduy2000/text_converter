@@ -24,11 +24,11 @@ import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
 import com.duy.sharedcode.codec.HexTool;
 import com.duy.sharedcode.codec.RandomCaseTool;
-import com.duy.sharedcode.hash.Md5Tool;
+import com.duy.sharedcode.hashfunction.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
 import com.duy.sharedcode.codec.ReverserTool;
-import com.duy.sharedcode.hash.Sha256Tool;
+import com.duy.sharedcode.hashfunction.Sha256Tool;
 import com.duy.sharedcode.codec.SubScriptText;
 import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
@@ -106,7 +106,7 @@ public class CodecUtil {
     }
 
     public static String encode(String name, Context context, String inp) {
-        String[] array = context.getResources().getStringArray(R.array.convert_style);
+        String[] array = context.getResources().getStringArray(R.array.codec_methods);
         int pos;
         for (pos = 0; pos < array.length; pos++) {
             String s = array[pos];

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.hash;
+package com.duy.sharedcode.hashfunction;
 
 import android.support.annotation.NonNull;
 

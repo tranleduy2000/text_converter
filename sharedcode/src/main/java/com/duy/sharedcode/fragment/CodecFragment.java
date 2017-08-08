@@ -41,12 +41,10 @@ import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
 import com.duy.sharedcode.codec.EncodeMethod;
 import com.duy.sharedcode.codec.HexTool;
-import com.duy.sharedcode.codec.RandomCaseTool;
-import com.duy.sharedcode.hash.Md5Tool;
 import com.duy.sharedcode.codec.MorseTool;
 import com.duy.sharedcode.codec.OctalTool;
+import com.duy.sharedcode.codec.RandomCaseTool;
 import com.duy.sharedcode.codec.ReverserTool;
-import com.duy.sharedcode.hash.Sha256Tool;
 import com.duy.sharedcode.codec.SubScriptText;
 import com.duy.sharedcode.codec.SupScriptText;
 import com.duy.sharedcode.codec.URLTool;
@@ -183,7 +181,7 @@ public class CodecFragment extends Fragment {
             }
         });
 
-        String[] data = getResources().getStringArray(R.array.convert_style);
+        String[] data = getResources().getStringArray(R.array.codec_methods);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, data);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
@@ -263,10 +261,7 @@ public class CodecFragment extends Fragment {
                 if (to) mOutput.setText(new MorseTool().encode(inp));
                 else mInput.setText(new MorseTool().decode(out));
                 break;
-            case BASE_64:
-                if (to) mOutput.setText(new Base64Tool().encode(inp));
-                else mInput.setText(new Base64Tool().decode(out));
-                break;
+
             case ZALGO_MINI:
                 if (to) mOutput.setText(new ZalgoMiniTool().encode(inp));
                 else {
@@ -289,17 +284,9 @@ public class CodecFragment extends Fragment {
                 if (to) mOutput.setText(new Base32Tool().encode(inp));
                 else mInput.setText(new Base32Tool().decode(out));
                 break;
-            case MD5:
-                if (to) mOutput.setText(new Md5Tool().encode(inp));
-                else {
-                    Toast.makeText(mContext, "You can't decode Crypt", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case SHA_2:
-                if (to) mOutput.setText(new Sha256Tool().encode(inp));
-                else {
-                    Toast.makeText(mContext, "You can't decode Crypt", Toast.LENGTH_SHORT).show();
-                }
+            case BASE_64:
+                if (to) mOutput.setText(new Base64Tool().encode(inp));
+                else mInput.setText(new Base64Tool().decode(out));
                 break;
             case URL:
                 if (to) mOutput.setText(new URLTool().encode(inp));

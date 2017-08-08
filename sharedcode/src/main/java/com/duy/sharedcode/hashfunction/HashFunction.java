@@ -14,26 +14,15 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.hash;
-
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.digest.Sha2Crypt;
+package com.duy.sharedcode.hashfunction;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 08-Aug-17.
  */
 
-public class Sha512Tool implements HashFunction {
+public interface HashFunction {
+    String getName();
 
-    @Override
-    public String getName() {
-        return "SHA-512";
-    }
+    String encode(String data);
 
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return Sha2Crypt.sha512Crypt(text.getBytes());
-    }
 }

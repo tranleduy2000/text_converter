@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.stylist;
+
+import com.duy.sharedcode.stylist.model.BlueEffect;
 
 import junit.framework.TestCase;
 
@@ -23,7 +25,7 @@ import junit.framework.TestCase;
  */
 public class BlueEffectTest extends TestCase {
     public void testEncode() throws Exception {
-        System.out.println(new BlueEffect().encode("HELLO EVERYONE"));
+        System.out.println(new BlueEffect().generate("HELLO EVERYONE"));
     }
 
 }

@@ -14,26 +14,18 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.hash;
+package com.duy.sharedcode.hashfunction;
 
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.digest.Md5Crypt;
+import junit.framework.TestCase;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 08-Aug-17.
  */
-
-public class Md5Tool implements HashFunction {
-    @Override
-    public String getName() {
-        return "MD5";
-    }
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return Md5Crypt.md5Crypt(text.getBytes());
+public class Sha1ToolTest extends TestCase {
+    public void testEncode() throws Exception {
+        String input = "asdhasdasdasdasd";
+        String encode = new Sha1Tool().encode(input);
+        System.out.println(encode);
     }
 
 }

@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.stylist;
 
 
-import com.duy.sharedcode.codec.Encoder;
 import com.duy.sharedcode.codec.ZalgoMiniTool;
+import com.duy.sharedcode.stylist.model.BlueEffect;
+import com.duy.sharedcode.stylist.model.LeftEffect;
+import com.duy.sharedcode.stylist.model.LeftRightStyle;
+import com.duy.sharedcode.stylist.model.ReplaceEffect;
+import com.duy.sharedcode.stylist.model.RightEffect;
 
 import java.util.ArrayList;
 
@@ -26,8 +30,8 @@ import java.util.ArrayList;
  * Created by Duy on 13-Jul-17.
  */
 
-public class ArrayEffectFactory {
-    private ArrayList<String> createLeft() {
+public class StylistFactory {
+    private static ArrayList<String> createLeft() {
         ArrayList<String> strings = new ArrayList<>();
         strings.add("\u0e56\u06e3\u06dc");
         strings.add("\u2E3E");
@@ -104,7 +108,7 @@ public class ArrayEffectFactory {
     }
 
 
-    private ArrayList<Pair<String, String>> createLeftRightPair() {
+    private static ArrayList<Pair<String, String>> createLeftRightPair() {
         ArrayList<Pair<String, String>> list = new ArrayList<>();
         list.add(new Pair<>("⫷", "⫸"));
         list.add(new Pair<>("╰", "╯"));
@@ -128,7 +132,7 @@ public class ArrayEffectFactory {
     }
 
 
-    private ArrayList<String> createRight() {
+    private static ArrayList<String> createRight() {
         ArrayList<String> list = new ArrayList<>();
         list.add("\u20e0");
         list.add("\u033e");
@@ -157,25 +161,27 @@ public class ArrayEffectFactory {
         for (char c : ZalgoMiniTool.zalgo_up) list.add(c + "");
         for (char c : ZalgoMiniTool.zalgo_down) list.add(c + "");
         for (char c : ZalgoMiniTool.zalgo_mid) list.add(c + "");
-
-
         return list;
     }
 
-    public ArrayList<Encoder> getEncoders() {
-        ArrayList<Encoder> encoders = new ArrayList<>();
+    public static ArrayList<Style> makeStyle() {
+        ArrayList<Style> encoders = new ArrayList<>();
+        //blue text style
         encoders.add(new BlueEffect());
+        //replace style
+        encoders.addAll(ReplaceEffect.createStyle());
+
+        //left-right style
         ArrayList<Pair<String, String>> leftRightPair = createLeftRightPair();
         for (Pair<String, String> pair : leftRightPair) {
             encoders.add(new LeftRightStyle(pair.first, pair.second));
         }
-
+        //left style
         ArrayList<String> lefts = createLeft();
         for (String s : lefts) encoders.add(new LeftEffect(s));
-
+        //right style
         ArrayList<String> rights = createRight();
-        for (String s : rights) encoders.add(new LeftEffect(s));
-
+        for (String s : rights) encoders.add(new RightEffect(s));
         return encoders;
     }
 

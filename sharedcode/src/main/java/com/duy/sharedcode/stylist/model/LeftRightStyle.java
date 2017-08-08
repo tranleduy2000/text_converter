@@ -14,34 +14,34 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.stylist.model;
 
 
 import android.support.annotation.NonNull;
 
-import com.duy.sharedcode.codec.Encoder;
+import com.duy.sharedcode.stylist.Style;
 
 /**
  * Created by Duy on 13-Jul-17.
  */
+public class LeftRightStyle implements Style {
+    @NonNull
+    private String left, right;
 
-class RightEffect implements Encoder {
-
-    private String text;
-
-    public RightEffect(String text) {
-        this.text = text;
+    public LeftRightStyle(@NonNull String left, @NonNull String right) {
+        this.left = left;
+        this.right = right;
     }
 
     @NonNull
     @Override
-    public String encode(@NonNull String text) {
+    public String generate(@NonNull String text) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == ' ') {
                 result.append(" ");
             } else {
-                result.append(text.charAt(i)).append(text);
+                result.append(left).append(text.charAt(i)).append(right);
             }
         }
         return result.toString();

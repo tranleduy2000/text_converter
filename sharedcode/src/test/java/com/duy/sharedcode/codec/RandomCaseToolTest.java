@@ -14,18 +14,26 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.hash;
+package com.duy.sharedcode.codec;
 
 import junit.framework.TestCase;
 
 /**
  * Created by Duy on 08-Aug-17.
  */
-public class Sha1ToolTest extends TestCase {
+public class RandomCaseToolTest extends TestCase {
     public void testEncode() throws Exception {
-        String input = "asdhasdasdasdasd";
-        String encode = new Sha1Tool().encode(input);
-        System.out.println(encode);
+        String inp = "RandomCaseToolTest";
+        String out = new RandomCaseTool().encode(inp);
+        System.out.println(out);
+        assertEquals(inp.toLowerCase(), out.toLowerCase());
+    }
+
+    public void testDecode() throws Exception {
+        String inp = "RandomCaseToolTest";
+        String out = new RandomCaseTool().decode(inp);
+        System.out.println(out);
+        assertEquals(inp.toLowerCase(), out.toLowerCase());
     }
 
 }

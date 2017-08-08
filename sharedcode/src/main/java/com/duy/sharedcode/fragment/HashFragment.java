@@ -35,11 +35,11 @@ import android.widget.Spinner;
 
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.StoreUtil;
-import com.duy.sharedcode.hash.HashFunction;
-import com.duy.sharedcode.hash.Md5Tool;
-import com.duy.sharedcode.hash.Sha1Tool;
-import com.duy.sharedcode.hash.Sha256Tool;
-import com.duy.sharedcode.hash.Sha512Tool;
+import com.duy.sharedcode.hashfunction.HashFunction;
+import com.duy.sharedcode.hashfunction.Md5Tool;
+import com.duy.sharedcode.hashfunction.Sha1Tool;
+import com.duy.sharedcode.hashfunction.Sha256Tool;
+import com.duy.sharedcode.hashfunction.Sha512Tool;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 

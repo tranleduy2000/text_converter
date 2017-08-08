@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.stylist.model;
 
 import android.support.annotation.NonNull;
 
-import com.duy.sharedcode.codec.Encoder;
+import com.duy.sharedcode.stylist.Style;
 
 /**
  * Created by Duy on 13-Jul-17.
  */
 
-public class BlueEffect implements Encoder {
+public class BlueEffect implements Style {
     private static final String NORMAL = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String[] EFFECTS;
 
@@ -49,7 +49,7 @@ public class BlueEffect implements Encoder {
 
     @NonNull
     @Override
-    public String encode(@NonNull String text) {
+    public String generate(@NonNull String text) {
         StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {

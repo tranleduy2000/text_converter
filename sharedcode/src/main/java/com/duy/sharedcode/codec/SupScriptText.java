@@ -19,8 +19,6 @@ package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
 
-import com.duy.sharedcode.effect.Style;
-
 /**
  * Created by Duy on 05-May-17.
  */

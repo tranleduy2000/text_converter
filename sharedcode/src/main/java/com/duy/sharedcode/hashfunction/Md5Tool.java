@@ -14,13 +14,26 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.hashfunction;
 
-import java.util.ArrayList;
+import android.support.annotation.NonNull;
+
+import org.apache.commons.codec.digest.Md5Crypt;
 
 /**
- * Created by DUy on 07-Feb-17.
+ * Created by Duy on 11-Jul-17.
  */
-public interface Style {
-    ArrayList<String> generate(String input);
+
+public class Md5Tool implements HashFunction {
+    @Override
+    public String getName() {
+        return "MD5";
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return Md5Crypt.md5Crypt(text.getBytes());
+    }
+
 }

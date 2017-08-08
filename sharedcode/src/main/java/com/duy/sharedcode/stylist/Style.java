@@ -14,28 +14,11 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.hash;
-
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.digest.Sha2Crypt;
+package com.duy.sharedcode.stylist;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by DUy on 07-Feb-17.
  */
-
-public class Sha256Tool implements HashFunction {
-
-    @Override
-    public String getName() {
-        return "SHA-256";
-    }
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return Sha2Crypt.sha256Crypt(text.getBytes());
-    }
-
-
+public interface Style {
+    String generate(String input);
 }

@@ -14,37 +14,26 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
-
+package com.duy.sharedcode.hashfunction;
 
 import android.support.annotation.NonNull;
 
-import com.duy.sharedcode.codec.Encoder;
+import org.apache.commons.codec.digest.Sha2Crypt;
 
 /**
- * Created by Duy on 13-Jul-17.
+ * Created by Duy on 11-Jul-17.
  */
 
-class LeftEffect implements Encoder {
+public class Sha512Tool implements HashFunction {
 
-    private String left;
-
-    public LeftEffect(String left) {
-        this.left = left;
+    @Override
+    public String getName() {
+        return "SHA-512";
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) == ' ') {
-                result.append(left).append(" ");
-            } else {
-                result.append(left).append(text.charAt(i));
-            }
-        }
-        result.append(left);
-        return result.toString();
+        return Sha2Crypt.sha512Crypt(text.getBytes());
     }
 }

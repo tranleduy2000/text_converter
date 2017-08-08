@@ -29,33 +29,33 @@
     <PreferenceCategory android:title="Encode style">
         <ListPreference
             android:defaultValue="@string/ascii"
-            android:entries="@array/convert_style"
-            android:entryValues="@array/convert_style"
+            android:entries="@array/codec_methods"
+            android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_1"
             android:title="Style 1" />
         <ListPreference
             android:defaultValue="@string/binary"
-            android:entries="@array/convert_style"
-            android:entryValues="@array/convert_style"
+            android:entries="@array/codec_methods"
+            android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_2"
             android:title="Style 2" />
         <ListPreference
             android:defaultValue="@string/hex"
-            android:entries="@array/convert_style"
-            android:entryValues="@array/convert_style"
+            android:entries="@array/codec_methods"
+            android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_3"
             android:title="Style 3" />
         <ListPreference
             android:defaultValue="@string/zalgo_mini"
-            android:entries="@array/convert_style"
-            android:entryValues="@array/convert_style"
+            android:entries="@array/codec_methods"
+            android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_4"
             android:title="Style 4" />
 
         <ListPreference
             android:defaultValue="@string/reverser"
-            android:entries="@array/convert_style"
-            android:entryValues="@array/convert_style"
+            android:entries="@array/codec_methods"
+            android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_5"
             android:title="Style 5" />
     </PreferenceCategory>
@@ -97,8 +97,8 @@
     <PreferenceCategory android:title="Menu text (Android M and above)">
         <ListPreference
             android:defaultValue="@string/binary"
-            android:entries="@array/convert_style"
-            android:entryValues="@array/convert_style"
+            android:entries="@array/codec_methods"
+            android:entryValues="@array/codec_methods"
             android:key="pref_key_encode_menu"
             android:title="Encode" />
 

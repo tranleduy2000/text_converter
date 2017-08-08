@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.effect;
+package com.duy.sharedcode.stylist.model;
+
+import com.duy.sharedcode.stylist.Style;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -106,16 +108,16 @@ public class ReplaceEffect implements Style {
                 "ḀḃḉḊḕḟḠḧḭjḲḶṁṆṏṖqṙṠṮṳṼẇẌẏẒ_,;.?!/\\'ḀḃḉḊḕḟḠḧḭjḲḶṁṆṏṖqṙṠṮṳṼẇẌẏẒ0123456789",
                 "⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵_,;.?!/\\'⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵0123456789",
 
-                //parentheses up case
-                "\uD83C\uDD10\uD83C\uDD11\uD83C\uDD12\uD83C\uDD13\uD83C\uDD14\uD83C\uDD15\uD83C" +
-                        "\uDD16\uD83C\uDD17\uD83C\uDD18\uD83C\uDD19\uD83C\uDD1A\uD83C\uDD1B\uD83C" +
-                        "\uDD1C\uD83C\uDD1D\uD83C\uDD1E\uD83C\uDD1F\uD83C\uDD20\uD83C\uDD21\uD83C" +
-                        "\uDD22\uD83C\uDD23\uD83C\uDD24\uD83C\uDD25\uD83C\uDD26\uD83C\uDD27\uD83C" +
-                        "\uDD28\uD83C\uDD29_,;.?!/\\'\uD83C\uDD10\uD83C\uDD11\uD83C\uDD12\uD83C" +
-                        "\uDD13\uD83C\uDD14\uD83C\uDD15\uD83C\uDD16\uD83C\uDD17\uD83C\uDD18\uD83C" +
-                        "\uDD19\uD83C\uDD1A\uD83C\uDD1B\uD83C\uDD1C\uD83C\uDD1D\uD83C\uDD1E\uD83C" +
-                        "\uDD1F\uD83C\uDD20\uD83C\uDD21\uD83C\uDD22\uD83C\uDD23\uD83C\uDD24\uD83C" +
-                        "\uDD25\uD83C\uDD26\uD83C\uDD27\uD83C\uDD28\uD83C\uDD290123456789",
+//                //parentheses up case
+//                "\uD83C\uDD10\uD83C\uDD11\uD83C\uDD12\uD83C\uDD13\uD83C\uDD14\uD83C\uDD15\uD83C" +
+//                        "\uDD16\uD83C\uDD17\uD83C\uDD18\uD83C\uDD19\uD83C\uDD1A\uD83C\uDD1B\uD83C" +
+//                        "\uDD1C\uD83C\uDD1D\uD83C\uDD1E\uD83C\uDD1F\uD83C\uDD20\uD83C\uDD21\uD83C" +
+//                        "\uDD22\uD83C\uDD23\uD83C\uDD24\uD83C\uDD25\uD83C\uDD26\uD83C\uDD27\uD83C" +
+//                        "\uDD28\uD83C\uDD29_,;.?!/\\'\uD83C\uDD10\uD83C\uDD11\uD83C\uDD12\uD83C" +
+//                        "\uDD13\uD83C\uDD14\uD83C\uDD15\uD83C\uDD16\uD83C\uDD17\uD83C\uDD18\uD83C" +
+//                        "\uDD19\uD83C\uDD1A\uD83C\uDD1B\uD83C\uDD1C\uD83C\uDD1D\uD83C\uDD1E\uD83C" +
+//                        "\uDD1F\uD83C\uDD20\uD83C\uDD21\uD83C\uDD22\uD83C\uDD23\uD83C\uDD24\uD83C" +
+//                        "\uDD25\uD83C\uDD26\uD83C\uDD27\uD83C\uDD28\uD83C\uDD290123456789",
 
                 "αЪċđэךּġЋїפֿқľmήŏÞףřšŧŭνώאַỶż_,;.?!/\\'αЪċđэךּġЋїפֿқľmήŏÞףřšŧŭνώאַỶż0123456789",
                 "αвς∂єfgнιנкℓмиσρףяѕтυνωאָуz_,;.?!/\\'αвς∂єfgнιנкℓмиσρףяѕтυνωאָуz0123456789",
@@ -143,7 +145,13 @@ public class ReplaceEffect implements Style {
         STYLES.add(CURRENCY);
         STYLES.add(PARANORMAL);
         STYLES.add(SORCERER);
+    }
 
+    private String replacement = "";
+
+    public ReplaceEffect(String replacement) {
+
+        this.replacement = replacement;
     }
 
     public static StringBuilder convert(String text, String data) {
@@ -165,8 +173,23 @@ public class ReplaceEffect implements Style {
         return arrayList;
     }
 
+    public static ArrayList<Style> createStyle() {
+        ArrayList<Style> styles = new ArrayList<>();
+        for (String style : STYLES) {
+            styles.add(new ReplaceEffect(style));
+        }
+        return styles;
+    }
+
     @Override
-    public ArrayList<String> generate(String input) {
-        return convert(input);
+    public String generate(String input) {
+        StringBuilder result = new StringBuilder();
+        char letter;
+        for (int i = 0; i < input.length(); i++) {
+            letter = input.charAt(i);
+            int index = NORMAL.indexOf(letter);
+            result.append((index != -1) ? replacement.charAt(index) : letter);
+        }
+        return result.toString();
     }
 }

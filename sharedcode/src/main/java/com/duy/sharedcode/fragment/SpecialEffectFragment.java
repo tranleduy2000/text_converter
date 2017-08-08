@@ -31,7 +31,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.sharedcode.adapters.StyleAdapter;
-import com.duy.sharedcode.effect.ArrayEffectEncoder;
+import com.duy.sharedcode.stylist.StylistGenerator;
 import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;
@@ -94,7 +94,7 @@ public class SpecialEffectFragment extends StylistFragment {
     public void convert() {
         String inp = mInput.getText().toString();
         if (inp.isEmpty()) inp = mInput.getHint().toString();
-        ArrayList<String> translate = new ArrayEffectEncoder().generate(inp);
+        ArrayList<String> translate = new StylistGenerator().generate(inp);
         mAdapter.setData(translate);
     }
 

@@ -14,28 +14,36 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.sharedcode.stylist.model;
+
 
 import android.support.annotation.NonNull;
 
+import com.duy.sharedcode.stylist.Style;
+
 /**
- * Created by Duy on 02-Aug-17.
+ * Created by Duy on 13-Jul-17.
  */
 
-public class RandomCaseTool implements Encoder, Decoder {
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        StringBuilder result = new StringBuilder();
-        for (char c : text.toCharArray()) {
-            result.append(Math.random() < 0.5d ? c : Character.toUpperCase(c));
-        }
-        return result.toString();
+public class RightEffect implements Style {
+
+    private String character;
+
+    public RightEffect(String text) {
+        this.character = text;
     }
 
     @NonNull
     @Override
-    public String decode(@NonNull String text) {
-        return encode(text);
+    public String generate(@NonNull String input) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == ' ') {
+                result.append(" ");
+            } else {
+                result.append(input.charAt(i)).append(character);
+            }
+        }
+        return result.toString();
     }
 }
