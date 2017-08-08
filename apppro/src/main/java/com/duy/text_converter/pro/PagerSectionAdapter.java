@@ -71,10 +71,8 @@ private Context context;
             case 1:
                 return context.getString(R.string.hash_function);
             case 2:
-                return context.getString(R.string.ads);
-            case 3:
                 return context.getString(R.string.stylist);
-            case 4:
+            case 3:
                 return context.getString(R.string.decorate);
         }
         return super.getPageTitle(position);
