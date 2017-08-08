@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.fragment;
+package com.duy.sharedcode.codec;
 
 public enum DecodeMethod {
     ASCII(0),

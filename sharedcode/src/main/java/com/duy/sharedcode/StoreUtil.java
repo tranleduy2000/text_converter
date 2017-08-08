@@ -18,6 +18,7 @@ package com.duy.sharedcode;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
@@ -62,4 +63,13 @@ public class StoreUtil {
                     Uri.parse("http://play.google.com/store/search?q=pub:Trần Lê Duy")));
         }
     }
+
+    public static void shareText(Context context, String text) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, text);
+        intent.setType("text/plain");
+        context.startActivity(intent);
+    }
+
 }

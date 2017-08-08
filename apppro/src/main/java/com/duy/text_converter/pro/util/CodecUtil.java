@@ -37,8 +37,8 @@ import com.duy.sharedcode.codec.UpsideDownTool;
 import com.duy.sharedcode.codec.ZalgoBigTool;
 import com.duy.sharedcode.codec.ZalgoMiniTool;
 import com.duy.sharedcode.codec.ZalgoNormalTool;
-import com.duy.sharedcode.fragment.DecodeMethod;
-import com.duy.sharedcode.fragment.EncodeMethod;
+import com.duy.sharedcode.codec.DecodeMethod;
+import com.duy.sharedcode.codec.EncodeMethod;
 import com.duy.text_converter.pro.R;
 
 /**

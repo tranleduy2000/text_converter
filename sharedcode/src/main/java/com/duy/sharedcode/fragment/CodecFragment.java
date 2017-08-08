@@ -39,6 +39,7 @@ import com.duy.sharedcode.codec.ASCIITool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
+import com.duy.sharedcode.codec.EncodeMethod;
 import com.duy.sharedcode.codec.HexTool;
 import com.duy.sharedcode.codec.RandomCaseTool;
 import com.duy.sharedcode.hash.Md5Tool;
