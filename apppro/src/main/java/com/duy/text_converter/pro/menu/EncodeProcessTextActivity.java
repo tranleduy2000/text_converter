@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.duy.text_converter.pro.util.CodecUtil;
 
@@ -36,6 +37,12 @@ public class EncodeProcessTextActivity extends Activity {
 
         if (!readonly && text != null && !text.toString().isEmpty()) {
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+            if (pref.getBoolean("pirate", false)) {
+                Toast.makeText(this, "Pirate version", Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+            }
+
             String method = pref.getString("pref_key_encode_menu", "");
             if (method.isEmpty()) {
                 finish();

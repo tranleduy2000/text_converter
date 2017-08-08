@@ -22,7 +22,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+//import android.util.Log;
 import android.widget.Toast;
 
 import com.duy.sharedcode.ClipboardUtil;
@@ -40,8 +40,10 @@ public class EncodeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         FirebaseAnalytics.getInstance(context).logEvent("encode_notification", new Bundle());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        Log.d(TAG, "onReceive() called with: context = [" + context + "], intent = [" + intent + "]");
+        if (preferences.getBoolean("pirate", false)) {
+            Toast.makeText(context, "Pirate version", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (intent != null) {
             String name = "";
             if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_1)) {

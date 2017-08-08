@@ -44,9 +44,8 @@ import com.duy.text_converter.pro.R;
  */
 
 public class CodecUtil {
-
     public static String decode(String method, Context context, String inp) {
-        String[] array = context.getResources().getStringArray(R.array.decode_style);
+        String[] array = context.getResources().getStringArray(R.array.codec_methods);
         int pos;
         for (pos = 0; pos < array.length; pos++) {
             String s = array[pos];
@@ -58,19 +57,14 @@ public class CodecUtil {
         switch (decodeMethod) {
             case ASCII:
                 return new ASCIITool().decode(inp);
-
             case OCTAL:
                 return new OctalTool().decode(inp);
-
             case BINARY:
                 return new BinaryTool().decode(inp);
-
             case HEX:
                 return new HexTool().decode(inp);
-
             case UPPER:
                 return UpperLowerTool.upperText(inp);
-
             case LOWER:
                 return UpperLowerTool.lowerText(inp);
             case REVERSER:

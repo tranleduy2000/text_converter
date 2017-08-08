@@ -47,7 +47,7 @@ public class StyleNotificationManager {
             builder.setSmallIcon(R.mipmap.ic_launcher)
                     .setAutoCancel(true);
 
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.encode_notification);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.codec_notification);
             remoteViews.setTextViewText(R.id.title, "En\ncode");
 
             Intent intent1 = new Intent();
@@ -78,13 +78,17 @@ public class StyleNotificationManager {
             intent5.setAction(StyleNotification.ACTION_ENCODE_STYLE_5);
             PendingIntent pendingIntentStyle5 = PendingIntent.getBroadcast(context, 12345, intent5,
                     PendingIntent.FLAG_UPDATE_CURRENT);
-            remoteViews.setOnClickPendingIntent(R.id.img_four, pendingIntentStyle4);
+            remoteViews.setOnClickPendingIntent(R.id.img_five, pendingIntentStyle5);
 
             builder.setContent(remoteViews);
             Notification notification = builder.build();
             NotificationManager notificationManager = (NotificationManager)
                     context.getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(NOTIFICATION_ENCODE_ID, notification);
+        } else {
+            NotificationManager notificationManager = (NotificationManager)
+                    context.getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.cancel(NOTIFICATION_ENCODE_ID);
         }
     }
 
@@ -95,7 +99,7 @@ public class StyleNotificationManager {
             builder.setSmallIcon(R.mipmap.ic_launcher)
                     .setAutoCancel(true);
 
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.encode_notification);
+            RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.codec_notification);
             remoteViews.setTextViewText(R.id.title, "De\ncode");
 
             Intent intent1 = new Intent();
@@ -126,7 +130,7 @@ public class StyleNotificationManager {
             intent5.setAction(StyleNotification.ACTION_DECODE_STYLE_5);
             PendingIntent pendingIntentStyle5 = PendingIntent.getBroadcast(context, 12345, intent5,
                     PendingIntent.FLAG_UPDATE_CURRENT);
-            remoteViews.setOnClickPendingIntent(R.id.img_four, pendingIntentStyle5);
+            remoteViews.setOnClickPendingIntent(R.id.img_five, pendingIntentStyle5);
 
             builder.setContent(remoteViews);
 
@@ -134,6 +138,10 @@ public class StyleNotificationManager {
             NotificationManager notificationManager = (NotificationManager)
                     context.getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(NOTIFICATION_DECODE_ID, notification);
+        } else {
+            NotificationManager notificationManager = (NotificationManager)
+                    context.getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.cancel(NOTIFICATION_DECODE_ID);
         }
     }
 }
