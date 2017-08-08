@@ -18,13 +18,27 @@ package com.duy.sharedcode.hash;
 
 import android.support.annotation.NonNull;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by Duy on 11-Jul-17.
  */
 
 public class Sha1Tool implements HashFunction {
+    private static String convertToHex(byte[] data) {
+        StringBuilder buf = new StringBuilder();
+        for (byte b : data) {
+            int halfbyte = (b >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do {
+                buf.append((0 <= halfbyte) && (halfbyte <= 9) ? (char) ('0' + halfbyte) : (char) ('a' + (halfbyte - 10)));
+                halfbyte = b & 0x0F;
+            } while (two_halfs++ < 1);
+        }
+        return buf.toString();
+    }
+
     @Override
     public String getName() {
         return "SHA-1";
@@ -33,7 +47,16 @@ public class Sha1Tool implements HashFunction {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return new String(DigestUtils.sha1(text));
-    }
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] textBytes = text.getBytes();
+            md.update(textBytes, 0, textBytes.length);
+            byte[] sha1Hash = md.digest();
+            return convertToHex(sha1Hash);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return "Not found SHA-1 algorithm";
+        }
 
+    }
 }

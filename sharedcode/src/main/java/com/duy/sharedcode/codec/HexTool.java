@@ -68,4 +68,5 @@ public class HexTool implements Encoder, Decoder {
             return text;
         }
     }
+
 }

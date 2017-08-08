@@ -36,7 +36,6 @@ import android.widget.Spinner;
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.StoreUtil;
 import com.duy.sharedcode.hash.HashFunction;
-import com.duy.sharedcode.hash.Md2Tool;
 import com.duy.sharedcode.hash.Md5Tool;
 import com.duy.sharedcode.hash.Sha1Tool;
 import com.duy.sharedcode.hash.Sha256Tool;
@@ -71,7 +70,7 @@ public class HashFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             mHandler.removeCallbacks(convertRunnable);
-            mHandler.postDelayed(convertRunnable, 100);
+            mHandler.postDelayed(convertRunnable, 300);
         }
 
         @Override
@@ -92,18 +91,23 @@ public class HashFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         mHashFunctions.clear();
-        mHashFunctions.add(new Md2Tool());
         mHashFunctions.add(new Md5Tool());
         mHashFunctions.add(new Sha1Tool());
         mHashFunctions.add(new Sha256Tool());
         mHashFunctions.add(new Sha512Tool());
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mHashFunctions.clear();
+    }
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_hash, container, false);
     }
 

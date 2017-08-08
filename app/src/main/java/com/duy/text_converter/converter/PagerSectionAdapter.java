@@ -32,7 +32,7 @@ import com.duy.sharedcode.fragment.StylistFragment;
  * Created by DUy on 06-Feb-17.
  */
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 5;
+    private static final int COUNT = 6;
     private Context context;
     private String init;
 
@@ -52,10 +52,10 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return CodecFragment.newInstance(init);
-            case 2:
-                return StylistFragment.newInstance();
             case 1:
                 return AdsFragment.newInstance();
+            case 2:
+                return StylistFragment.newInstance();
             case 3:
                 return DecorateFragment.newInstance();
             case 4:
@@ -72,10 +72,10 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return context.getString(R.string.codec);
-            case 2:
-                return "Style";
             case 1:
                 return "Ads";
+            case 2:
+                return "Style";
             case 3:
                 return "Decorate";
             case 4:
