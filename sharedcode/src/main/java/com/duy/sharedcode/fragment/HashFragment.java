@@ -40,6 +40,7 @@ import com.duy.sharedcode.hashfunction.Md5Tool;
 import com.duy.sharedcode.hashfunction.Sha1Tool;
 import com.duy.sharedcode.hashfunction.Sha256Tool;
 import com.duy.sharedcode.hashfunction.Sha512Tool;
+import com.duy.sharedcode.hashfunction.UnixCryptTool;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 
@@ -96,6 +97,7 @@ public class HashFragment extends Fragment {
         mHashFunctions.add(new Sha1Tool());
         mHashFunctions.add(new Sha256Tool());
         mHashFunctions.add(new Sha512Tool());
+        mHashFunctions.add(new UnixCryptTool());
     }
 
     @Override

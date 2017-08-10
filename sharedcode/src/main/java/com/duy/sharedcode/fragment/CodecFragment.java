@@ -35,9 +35,11 @@ import android.widget.Spinner;
 
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.codec.ASCIITool;
+import com.duy.sharedcode.codec.AtbashTool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
+import com.duy.sharedcode.codec.CaesarTool;
 import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.HexTool;
 import com.duy.sharedcode.codec.MorseTool;
@@ -285,6 +287,14 @@ public class CodecFragment extends Fragment {
                 if (to) mOutput.setText(new RandomCaseTool().encode(inp));
                 else mInput.setText(new RandomCaseTool().decode(out));
                 break;
+            case CAESAR:
+                if (to) mOutput.setText(new CaesarTool().encode(inp));
+                else mInput.setText(new CaesarTool().decode(out));
+                break;
+            case ATBASH:
+                if (to) mOutput.setText(new AtbashTool().encode(inp));
+                else mInput.setText(new AtbashTool().decode(out));
+            break;
         }
         //reset cursor
         mInput.setSelection(mInput.getText().toString().length());

@@ -18,14 +18,13 @@ package com.duy.sharedcode.adapters;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.duy.sharedcode.ShareManager;
 import com.duy.sharedcode.ClipboardUtil;
+import com.duy.sharedcode.ShareManager;
 import com.duy.textconverter.sharedcode.R;
 
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String str = mList.get(position);
-        holder.textView.setText(Html.fromHtml(mList.get(position)));
+        holder.textView.setText(mList.get(position));
         holder.imgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +75,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
         holder.shareMsg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareManager.shareMsg(str, context);
+                ShareManager.shareMessenger(str, context);
             }
         });
     }

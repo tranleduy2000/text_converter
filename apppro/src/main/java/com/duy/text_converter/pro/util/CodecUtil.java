@@ -19,6 +19,7 @@ package com.duy.text_converter.pro.util;
 import android.content.Context;
 
 import com.duy.sharedcode.codec.ASCIITool;
+import com.duy.sharedcode.codec.AtbashTool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
 import com.duy.sharedcode.codec.BinaryTool;
@@ -93,6 +94,8 @@ public class CodecUtil {
                 return new RandomCaseTool().decode(inp);
             case CAESAR:
                 return new CaesarTool().decode(inp);
+            case ATBASH:
+                return new AtbashTool().decode(inp);
         }
         return inp;
     }
@@ -146,6 +149,8 @@ public class CodecUtil {
                 return new RandomCaseTool().encode(inp);
             case CAESAR:
                 return new CaesarTool().encode(inp);
+            case ATBASH:
+                return new AtbashTool().encode(inp);
         }
         return inp;
     }

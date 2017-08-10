@@ -16,27 +16,22 @@
 
 package com.duy.sharedcode.codec;
 
-public enum CodecMethod {
-    ASCII,
-    BINARY,
-    HEX,
-    OCTAL,
-    REVERSER,
-    UPPER,
-    LOWER,
-    UPSIDE_DOWNSIDE,
-    SUPPER_SCRIPT,
-    SUB_SCRIPT,
-    MORSE_CODE,
-    ZALGO_MINI,
-    ZALGO_NORMAL,
-    ZALGO_BIG,
-    BASE_32,
-    BASE_64,
-    URL,
-    RANDOM_CASE,
-    CAESAR,
-    ATBASH
+import junit.framework.TestCase;
 
+/**
+ * Created by Duy on 10-Aug-17.
+ */
+public class AtbashToolTest extends TestCase {
+    public void testDecode() throws Exception {
+        String abcdef = new AtbashTool().encode("ABCDEF");
+        System.out.println(abcdef);
+        String decode = new AtbashTool().decode(abcdef);
+        System.out.println("decode = " + decode);
+        assertEquals("ABCDEF", decode);
+    }
+
+    public void testEncode() throws Exception {
+
+    }
 
 }

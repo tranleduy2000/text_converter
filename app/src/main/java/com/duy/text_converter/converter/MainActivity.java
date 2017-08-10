@@ -33,13 +33,16 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private InterstitialAd mInterstitialAd;
     private CoordinatorLayout coordinatorLayout;
     private Toolbar toolbar;
     private KeyBoardEventListener keyBoardListener;
@@ -56,8 +59,30 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         bindView();
+        loadAdView();
     }
 
+    private void loadAdView() {
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(" ca-app-pub-7060049030570268/4640781697");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+            mInterstitialAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                    finish();
+                }
+            });
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     private void bindView() {
 

@@ -14,29 +14,26 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.sharedcode.hashfunction;
 
-public enum CodecMethod {
-    ASCII,
-    BINARY,
-    HEX,
-    OCTAL,
-    REVERSER,
-    UPPER,
-    LOWER,
-    UPSIDE_DOWNSIDE,
-    SUPPER_SCRIPT,
-    SUB_SCRIPT,
-    MORSE_CODE,
-    ZALGO_MINI,
-    ZALGO_NORMAL,
-    ZALGO_BIG,
-    BASE_32,
-    BASE_64,
-    URL,
-    RANDOM_CASE,
-    CAESAR,
-    ATBASH
+import android.support.annotation.NonNull;
 
+import org.apache.commons.codec.digest.UnixCrypt;
 
+/**
+ * Created by Duy on 11-Jul-17.
+ */
+
+public class UnixCryptTool implements HashFunction {
+
+    @Override
+    public String getName() {
+        return "Crypt (Unix)";
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return UnixCrypt.crypt(text.getBytes());
+    }
 }

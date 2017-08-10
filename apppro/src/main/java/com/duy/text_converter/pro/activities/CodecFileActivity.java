@@ -14,29 +14,20 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.text_converter.pro.activities;
 
-public enum CodecMethod {
-    ASCII,
-    BINARY,
-    HEX,
-    OCTAL,
-    REVERSER,
-    UPPER,
-    LOWER,
-    UPSIDE_DOWNSIDE,
-    SUPPER_SCRIPT,
-    SUB_SCRIPT,
-    MORSE_CODE,
-    ZALGO_MINI,
-    ZALGO_NORMAL,
-    ZALGO_BIG,
-    BASE_32,
-    BASE_64,
-    URL,
-    RANDOM_CASE,
-    CAESAR,
-    ATBASH
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
+/**
+ * Created by Duy on 10-Aug-17.
+ */
+
+public class CodecFileActivity extends AppCompatActivity{
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
 }

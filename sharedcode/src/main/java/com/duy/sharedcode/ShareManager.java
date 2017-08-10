@@ -33,7 +33,7 @@ public class ShareManager {
         context.startActivity(intent);
     }
 
-    public static void shareMsg(String text, Context context) {
+    public static void shareMessenger(String text, Context context) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, text);

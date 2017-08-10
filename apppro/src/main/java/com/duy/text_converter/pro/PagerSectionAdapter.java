@@ -25,6 +25,7 @@ import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.HashFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
+import com.duy.text_converter.pro.fragment.ToolFragment;
 
 
 /**
@@ -32,7 +33,7 @@ import com.duy.sharedcode.fragment.StylistFragment;
  */
 
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 4;
+    private static final int COUNT = 5;
     private String init;
 private Context context;
 
@@ -58,6 +59,8 @@ private Context context;
                 return StylistFragment.newInstance();
             case 3:
                 return DecorateFragment.newInstance();
+            case 4:
+                return ToolFragment.newInstance();
             default:
                 return null;
         }
@@ -74,6 +77,8 @@ private Context context;
                 return context.getString(R.string.stylist);
             case 3:
                 return context.getString(R.string.decorate);
+            case 4:
+                return context.getString(R.string.tool);
         }
         return super.getPageTitle(position);
     }
