@@ -25,7 +25,7 @@ import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.HashFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
-import com.duy.text_converter.pro.fragment.ToolFragment;
+import com.duy.text_converter.pro.fragment.CodecFileFragment;
 
 
 /**
@@ -60,7 +60,7 @@ private Context context;
             case 3:
                 return DecorateFragment.newInstance();
             case 4:
-                return ToolFragment.newInstance();
+                return CodecFileFragment.newInstance();
             default:
                 return null;
         }

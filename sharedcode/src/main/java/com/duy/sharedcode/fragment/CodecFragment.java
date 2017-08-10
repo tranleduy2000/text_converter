@@ -294,7 +294,7 @@ public class CodecFragment extends Fragment {
             case ATBASH:
                 if (to) mOutput.setText(new AtbashTool().encode(inp));
                 else mInput.setText(new AtbashTool().decode(out));
-            break;
+                break;
         }
         //reset cursor
         mInput.setSelection(mInput.getText().toString().length());
