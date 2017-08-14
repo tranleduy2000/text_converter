@@ -55,14 +55,13 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 1:
                 return BarCodeFragment.newInstance();
             case 2:
-                return HashFragment.newInstance();
-            case 3:
                 return AdsFragment.newInstance();
-            case 4:
+            case 3:
                 return StylistFragment.newInstance();
-            case 5:
+            case 4:
                 return DecorateFragment.newInstance();
-
+            case 5:
+                return HashFragment.newInstance();
             default:
                 return null;
         }
@@ -74,13 +73,15 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 0:
                 return context.getString(R.string.codec);
             case 1:
-                return context.getString(R.string.hash_function);
+                return context.getString(R.string.barcode);
             case 2:
                 return context.getString(R.string.ads);
             case 3:
                 return context.getString(R.string.stylist);
             case 4:
                 return context.getString(R.string.decorate);
+            case 5:
+                return context.getString(R.string.hash_function);
         }
         return super.getPageTitle(position);
     }

@@ -21,11 +21,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.duy.sharedcode.fragment.BarCodeFragment;
 import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.HashFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
-import com.duy.text_converter.pro.fragment.CodecFileFragment;
 
 
 /**
@@ -35,7 +35,7 @@ import com.duy.text_converter.pro.fragment.CodecFileFragment;
 public class PagerSectionAdapter extends FragmentPagerAdapter {
     private static final int COUNT = 5;
     private String init;
-private Context context;
+    private Context context;
 
     public PagerSectionAdapter(Context context, FragmentManager fm, String init) {
         super(fm);
@@ -54,13 +54,13 @@ private Context context;
             case 0:
                 return CodecFragment.newInstance(init);
             case 1:
-                return HashFragment.newInstance();
+                return BarCodeFragment.newInstance();
             case 2:
                 return StylistFragment.newInstance();
             case 3:
                 return DecorateFragment.newInstance();
             case 4:
-                return CodecFileFragment.newInstance();
+                return HashFragment.newInstance();
             default:
                 return null;
         }
@@ -72,14 +72,15 @@ private Context context;
             case 0:
                 return context.getString(R.string.codec);
             case 1:
-                return context.getString(R.string.hash_function);
+                return context.getString(R.string.barcode);
             case 2:
                 return context.getString(R.string.stylist);
             case 3:
                 return context.getString(R.string.decorate);
             case 4:
-                return context.getString(R.string.tool);
+                return context.getString(R.string.hash_function);
         }
         return super.getPageTitle(position);
     }
+
 }
