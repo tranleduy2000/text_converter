@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.duy.sharedcode.fragment.BarCodeFragment;
 import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.HashFragment;
@@ -31,7 +32,7 @@ import com.duy.sharedcode.fragment.StylistFragment;
  * Created by DUy on 06-Feb-17.
  */
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 5;
+    private static final int COUNT = 6;
     private Context context;
     private String init;
 
@@ -59,6 +60,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return StylistFragment.newInstance();
             case 4:
                 return DecorateFragment.newInstance();
+            case 5:
+                return BarCodeFragment.newInstance();
             default:
                 return null;
         }
