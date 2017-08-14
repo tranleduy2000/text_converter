@@ -53,15 +53,16 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 0:
                 return CodecFragment.newInstance(init);
             case 1:
-                return HashFragment.newInstance();
-            case 2:
-                return AdsFragment.newInstance();
-            case 3:
-                return StylistFragment.newInstance();
-            case 4:
-                return DecorateFragment.newInstance();
-            case 5:
                 return BarCodeFragment.newInstance();
+            case 2:
+                return HashFragment.newInstance();
+            case 3:
+                return AdsFragment.newInstance();
+            case 4:
+                return StylistFragment.newInstance();
+            case 5:
+                return DecorateFragment.newInstance();
+
             default:
                 return null;
         }

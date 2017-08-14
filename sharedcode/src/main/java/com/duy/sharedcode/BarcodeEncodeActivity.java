@@ -33,11 +33,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -74,15 +74,17 @@ public class BarcodeEncodeActivity extends AppCompatActivity {
             BitMatrix bitMatrix = multiFormatWriter.encode(text, format, 512, 512);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             setCurrentBarcode(barcodeEncoder.createBitmap(bitMatrix));
-        } catch (WriterException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void setCurrentBarcode(Bitmap currentBarcode) {
-        this.currentBarcode = currentBarcode;
+    public void setCurrentBarcode(Bitmap bitmap) {
+        if (currentBarcode != null && !currentBarcode.isRecycled()) currentBarcode.recycle();
+        this.currentBarcode = bitmap;
         ImageView imageView = (ImageView) findViewById(R.id.image_view);
-        imageView.setImageBitmap(currentBarcode);
+        imageView.setImageBitmap(bitmap);
     }
 
     @Override
@@ -123,6 +125,7 @@ public class BarcodeEncodeActivity extends AppCompatActivity {
                 Uri bitmapUri = Uri.parse(bitmapPath);
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_STREAM, bitmapUri);
+                intent.setType("image/*");
                 try {
                     startActivity(Intent.createChooser(intent, "Share via ..."));
                 } catch (ActivityNotFoundException ex) {
@@ -132,5 +135,11 @@ public class BarcodeEncodeActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (currentBarcode != null && !currentBarcode.isRecycled()) currentBarcode.recycle();
     }
 }
