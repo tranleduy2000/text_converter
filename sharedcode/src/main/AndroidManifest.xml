@@ -2,37 +2,13 @@
           package="com.duy.textconverter.sharedcode">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
         <activity
-            android:name="com.duy.sharedcode.BarcodeActivity"
-            android:stateNotNeeded="true">
-            <intent-filter>
-                <action android:name="com.google.zxing.client.android.ENCODE"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-            <!-- This allows us to handle the Share button in Contacts. -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/x-vcard"/>
-            </intent-filter>
-            <!-- This allows us to handle sharing any plain text . -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
-            </intent-filter>
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+            android:name="com.duy.sharedcode.BarcodeEncodeActivity"/>
     </application>
 
 </manifest>
