@@ -28,13 +28,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.duy.sharedcode.BarcodeEncodeActivity;
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
+
+import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -140,8 +144,26 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == IntentIntegrator.REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                final String contents = data.getStringExtra(Intents.Scan.RESULT);
+//                final String formatName = data.getStringExtra(Intents.Scan.RESULT_FORMAT);
+                mInput.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mInput.setText(contents);
+                        Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+    }
+
     private void decodeBarcode() {
-        IntentIntegrator integrator = new IntentIntegrator(getActivity());
+        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
         integrator.initiateScan();
     }
 
