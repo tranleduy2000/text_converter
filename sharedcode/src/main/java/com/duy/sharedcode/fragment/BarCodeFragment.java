@@ -150,14 +150,15 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         if (requestCode == IntentIntegrator.REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 final String contents = data.getStringExtra(Intents.Scan.RESULT);
-//                final String formatName = data.getStringExtra(Intents.Scan.RESULT_FORMAT);
-                mInput.post(new Runnable() {
+                mInput.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         mInput.setText(contents);
-                        Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
+                        if (getContext() != null) {
+                            Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                });
+                }, 200);
             }
         }
     }

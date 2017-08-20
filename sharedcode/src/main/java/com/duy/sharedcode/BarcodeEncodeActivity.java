@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;

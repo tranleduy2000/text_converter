@@ -47,23 +47,23 @@
     </string-array>
 
     <string-array name="barcode_format">
-        <item>Aztec 2D barcode format</item>
-        <item>CODABAR 1D format</item>
-        <item>Code 39 1D format</item>
-        <item>Code 93 1D format</item>
-        <item>Code 128 1D format</item>
-        <item>Data Matrix 2D barcode format</item>
-        <item>EAN-8 1D format</item>
-        <item>EAN-13 1D format</item>
-        <item>ITF (Interleaved Two of Five) 1D format</item>
-        <item>MaxiCode 2D barcode format</item>
-        <item>PDF417 format</item>
-        <item>QR Code 2D barcode format</item>
+        <item>Aztec 2D barcode</item>
+        <item>CODABAR 1D</item>
+        <item>Code 39 1D</item>
+        <item>Code 93 1D</item>
+        <item>Code 128 1D</item>
+        <item>Data Matrix 2D barcode</item>
+        <item>EAN-8 1D</item>
+        <item>EAN-13 1D</item>
+        <item>ITF (Interleaved Two of Five) 1D</item>
+        <item>MaxiCode 2D barcode</item>
+        <item>PDF417</item>
+        <item>QR Code 2D barcode</item>
         <item>RSS 14</item>
         <item>RSS EXPANDED</item>
-        <item>UPC-A 1D format</item>
-        <item>UPC-E 1D format</item>
-        <item>UPC/EAN extension format</item>
+        <item>UPC-A 1D</item>
+        <item>UPC-E 1D</item>
+        <item>UPC/EAN extension</item>
     </string-array>
 
 </resources>
