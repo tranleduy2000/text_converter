@@ -38,7 +38,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.duy.textconverter.sharedcode.BuildConfig;
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -46,7 +45,6 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -157,8 +155,8 @@ public class BarcodeEncoderFragment extends Fragment {
             if (file != null) {
                 Uri bitmapUri;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    bitmapUri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID
-                            + ".fileprovider", file);
+                    bitmapUri = FileProvider.getUriForFile(getContext(),
+                            getContext().getPackageName() + ".fileprovider", file);
                 } else {
                     bitmapUri = Uri.fromFile(file);
                 }
