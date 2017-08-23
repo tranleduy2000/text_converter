@@ -37,14 +37,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="@string/ads_msg"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
             <com.google.android.gms.ads.NativeExpressAdView
                 android:id="@+id/ad_view"
@@ -53,7 +45,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 ads:adSize="320x320"
-                ads:adUnitId="ca-app-pub-7060049030570268/3354507032">
+                ads:adUnitId="@string/ad_unit_id_main">
             </com.google.android.gms.ads.NativeExpressAdView>
 
         </LinearLayout>
@@ -67,6 +59,6 @@
         android:layout_alignLeft="@+id/cardView"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/cardView"
-        android:text="@string/donate_for_develop_remove_ads_get_pro_version"
+        android:text="@string/remove_ads"
         android:textAllCaps="false"/>
 </RelativeLayout>

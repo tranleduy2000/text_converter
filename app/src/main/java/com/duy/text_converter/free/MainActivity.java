@@ -36,6 +36,7 @@ import com.duy.sharedcode.StoreUtil;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
@@ -52,11 +53,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (BuildConfig.DEBUG) {
-            FirebaseCrash.setCrashCollectionEnabled(false);
-        }
-
+        MobileAds.initialize(this);
+        if (BuildConfig.DEBUG) FirebaseCrash.setCrashCollectionEnabled(false);
         setContentView(R.layout.activity_main);
         bindView();
         loadAdView();
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadAdView() {
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.intertitial_id));
+        mInterstitialAd.setAdUnitId(getString(R.string.ad_unit_id_exit));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
