@@ -15,11 +15,11 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:weightSum="100">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="8dp"
+              android:weightSum="100">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +39,16 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/copy"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp" />
+                android:src="@drawable/ic_content_copy_white_24dp"/>
+
+            <ImageButton
+                android:id="@+id/image_paste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/paste"
+                android:padding="8dp"
+                android:src="@drawable/ic_content_paste_white_24dp"/>
 
             <ImageButton
                 android:id="@+id/img_share"
@@ -48,7 +57,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/share"
                 android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp" />
+                android:src="@drawable/ic_share_white_24dp"/>
         </LinearLayout>
 
 
@@ -60,7 +69,7 @@
             android:gravity="top"
             android:hint="@string/input_here"
             android:inputType="textMultiLine"
-            android:padding="8dp" />
+            android:padding="8dp"/>
 
     </LinearLayout>
 
@@ -76,7 +85,7 @@
             android:layout_marginRight="16dp"
             android:gravity="center"
             android:text="@string/choose_method"
-            android:textColor="?colorAccent" />
+            android:textColor="?colorAccent"/>
 
 
         <android.support.v7.widget.AppCompatSpinner
@@ -84,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:background="@drawable/bg_edit_text" />
+            android:background="@drawable/bg_edit_text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -105,7 +114,16 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/copy"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp" />
+                android:src="@drawable/ic_content_copy_white_24dp"/>
+
+            <ImageButton
+                android:id="@+id/image_paste_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/paste"
+                android:padding="8dp"
+                android:src="@drawable/ic_content_paste_white_24dp"/>
 
             <ImageButton
                 android:id="@+id/img_share_out"
@@ -114,7 +132,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/share"
                 android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp" />
+                android:src="@drawable/ic_share_white_24dp"/>
         </LinearLayout>
 
         <com.duy.sharedcode.view.BaseEditText
@@ -125,7 +143,7 @@
             android:gravity="top"
             android:hint="@string/ouput_here"
             android:inputType="textMultiLine"
-            android:padding="8dp" />
+            android:padding="8dp"/>
 
 
     </LinearLayout>

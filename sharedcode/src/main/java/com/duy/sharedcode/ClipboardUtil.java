@@ -20,7 +20,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 /**
@@ -39,12 +38,13 @@ public class ClipboardUtil {
     /**
      * get text from clipboard
      */
-    @Nullable
+    @NonNull
     public static String getClipboard(Context context) {
-        String text;
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        if (clipboard.getText() != null) text = clipboard.getText().toString();
-        else text = "";
-        return text;
+        ClipData primaryClip = clipboard.getPrimaryClip();
+        if (primaryClip.getItemCount() > 0) {
+            return primaryClip.getItemAt(0).coerceToText(context).toString();
+        }
+        return "";
     }
 }

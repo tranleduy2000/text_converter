@@ -45,4 +45,7 @@
     <string name="sample">Sample</string>
     <string name="save">Save</string>
     <string name="saved_in_gallery">Saved in gallery</string>
+    <string name="paste">Paste</string>
+    <string name="encode_this_data">Encode this data</string>
+    <string name="decode">Decode</string>
 </resources>

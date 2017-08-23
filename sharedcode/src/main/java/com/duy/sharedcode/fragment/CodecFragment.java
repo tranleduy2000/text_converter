@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.duy.sharedcode.ClipboardUtil;
+import com.duy.sharedcode.ShareManager;
 import com.duy.sharedcode.codec.ASCIITool;
 import com.duy.sharedcode.codec.AtbashTool;
 import com.duy.sharedcode.codec.Base32Tool;
@@ -103,7 +104,9 @@ public class CodecFragment extends Fragment {
 
         }
     };
-    private View imgShareIn, imgShareOut, imgCopyIn, imgCopyOut;
+    private View imgShareOut;
+    private View imgCopyIn;
+    private View imgCopyOut;
 
     public static CodecFragment newInstance(String init) {
         CodecFragment fragment = new CodecFragment();
@@ -148,34 +151,25 @@ public class CodecFragment extends Fragment {
         mOutput.addTextChangedListener(mOutputWatcher);
 
         mChoose = mRootView.findViewById(R.id.spinner_choose);
-
-        imgCopyIn = mRootView.findViewById(R.id.img_copy);
-        imgShareIn = mRootView.findViewById(R.id.img_share);
-
-        imgShareIn.setOnClickListener(new View.OnClickListener() {
+        mRootView.findViewById(R.id.img_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doShareText(mInput);
             }
         });
-
-        imgCopyIn.setOnClickListener(new View.OnClickListener() {
+        mRootView.findViewById(R.id.img_copy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardUtil.setClipboard(mContext, mInput.getText().toString());
             }
         });
-
-        imgCopyOut = mRootView.findViewById(R.id.img_copy_out);
-        imgShareOut = mRootView.findViewById(R.id.img_share_out);
-
-        imgShareOut.setOnClickListener(new View.OnClickListener() {
+        mRootView.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doShareText(mOutput);
             }
         });
-        imgCopyOut.setOnClickListener(new View.OnClickListener() {
+        mRootView.findViewById(R.id.img_copy_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardUtil.setClipboard(mContext, mOutput.getText().toString());
@@ -199,17 +193,12 @@ public class CodecFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
     }
 
     private void doShareText(EditText editText) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
-        intent.setType("text/plain");
-        getActivity().startActivity(intent);
+        ShareManager.share(editText.getText().toString(), getContext());
     }
 
     private void convert(boolean to) {
