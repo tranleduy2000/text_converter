@@ -18,7 +18,7 @@ package com.duy.sharedcode.barcode;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.google.zxing.BarcodeFormat;
 
@@ -26,7 +26,7 @@ import com.google.zxing.BarcodeFormat;
  * Created by Duy on 23-Aug-17.
  */
 
-public class BarcodeEncodedPagerAdapter extends FragmentPagerAdapter {
+public class BarcodeEncodedPagerAdapter extends FragmentStatePagerAdapter {
     public static final BarcodeFormat[] BARCODE_FORMATS = new BarcodeFormat[]{
             BarcodeFormat.AZTEC, BarcodeFormat.CODABAR, BarcodeFormat.CODE_39, BarcodeFormat.CODE_128,
             BarcodeFormat.EAN_8, BarcodeFormat.EAN_13, BarcodeFormat.ITF, BarcodeFormat.PDF_417,

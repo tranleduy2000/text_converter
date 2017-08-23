@@ -43,6 +43,8 @@ public class BarcodeEncodeActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new BarcodeEncodedPagerAdapter(getSupportFragmentManager(), text));
+        viewPager.setOffscreenPageLimit(1);
+        viewPager.setCurrentItem(8); //barcode
         ((TabLayout) findViewById(R.id.tab_layout)).setupWithViewPager(viewPager);
     }
 

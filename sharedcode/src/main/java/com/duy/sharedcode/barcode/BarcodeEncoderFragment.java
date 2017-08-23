@@ -17,7 +17,6 @@
 package com.duy.sharedcode.barcode;
 
 import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -36,6 +35,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BarcodeFormat;
@@ -81,11 +81,39 @@ public class BarcodeEncoderFragment extends Fragment {
         BarcodeFormat barcodeFormat = (BarcodeFormat) getArguments().getSerializable("format");
         generateTask = new BarcodeGenerateTask(data, barcodeFormat);
         generateTask.execute();
+        view.findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareCurrentImage();
+            }
+        });
+        view.findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveCurrentImage();
+            }
+        });
+    }
+
+    private String saveCurrentImage() {
+        if (!permissionGranted()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+                return null;
+            }
+        }
+        if (currentBarcode != null) {
+            String barcode = MediaStore.Images.Media.insertImage(getContext().getContentResolver(),
+                    currentBarcode, System.currentTimeMillis() + ".png", "barcode");
+            Toast.makeText(getContext(), R.string.saved_in_gallery, Toast.LENGTH_SHORT).show();
+            return barcode;
+        }
+        return null;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         if (generateTask != null) {
             if (!generateTask.isCancelled()) {
                 generateTask.cancel(true);
@@ -100,29 +128,18 @@ public class BarcodeEncoderFragment extends Fragment {
     }
 
     private void shareCurrentImage() {
-        if (!permissionGranted()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-                return;
-            }
-        }
-
-        if (currentBarcode != null) {
-            try {
-                String bitmapPath = MediaStore.Images.Media.insertImage(getContext().getContentResolver(),
-                        currentBarcode, System.currentTimeMillis() + ".png", "barcode");
+        try {
+            String bitmapPath = saveCurrentImage();
+            if (bitmapPath != null) {
                 Uri bitmapUri = Uri.parse(bitmapPath);
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_STREAM, bitmapUri);
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 intent.setType("image/*");
-                try {
-                    startActivity(Intent.createChooser(intent, "Share via ..."));
-                } catch (ActivityNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+                startActivity(Intent.createChooser(intent, "Share via ..."));
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -161,7 +178,52 @@ public class BarcodeEncoderFragment extends Fragment {
         protected Bitmap doInBackground(Void... params) {
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try {
-                BitMatrix bitMatrix = multiFormatWriter.encode(data, format, 512, 512);
+                int width = 1024;
+                int height = 1024;
+                switch (format) {
+                    case AZTEC:
+                        break;
+                    case CODABAR:
+                        height = (int) (width * 0.4f);
+                        break;
+                    case CODE_39:
+                        height = (int) (width * 0.4f);
+                        break;
+                    case CODE_93:
+                        break;
+                    case CODE_128:
+                        height = (int) (width * 0.4f);
+                        break;
+                    case DATA_MATRIX:
+                        break;
+                    case EAN_8:
+                        height = (int) (width * 0.4f);
+                        break;
+                    case EAN_13:
+                        height = (int) (width * 0.4f);
+                        break;
+                    case ITF:
+                        height = (int) (width * 0.4f);
+                        break;
+                    case MAXICODE:
+                        break;
+                    case PDF_417:
+                        height = (int) (width * 0.4f);
+                        break;
+                    case QR_CODE:
+                        break;
+                    case RSS_14:
+                        break;
+                    case RSS_EXPANDED:
+                        break;
+                    case UPC_A:
+                        break;
+                    case UPC_E:
+                        break;
+                    case UPC_EAN_EXTENSION:
+                        break;
+                }
+                BitMatrix bitMatrix = multiFormatWriter.encode(data, format, width, height);
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 return barcodeEncoder.createBitmap(bitMatrix);
             } catch (Exception e) {
