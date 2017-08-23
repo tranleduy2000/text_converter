@@ -50,4 +50,5 @@
     <string name="decode">Decode</string>
     <string name="using_camera">Using camera</string>
     <string name="decoded">Decoded</string>
+    <string name="cannot_decode">Can not decode this image</string>
 </resources>

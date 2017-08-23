@@ -109,6 +109,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
 
         view.findViewById(R.id.btn_encode).setOnClickListener(this);
         view.findViewById(R.id.btn_decode_cam).setOnClickListener(this);
+        view.findViewById(R.id.btn_decode_image).setOnClickListener(this);
     }
 
     private void doShareText(EditText editText) {
@@ -265,6 +266,8 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
             if (s != null) {
                 mInput.setText(s);
                 Toast.makeText(getContext(), R.string.decoded, Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(getContext(), R.string.cannot_decode, Toast.LENGTH_SHORT).show();
             }
         }
     }
