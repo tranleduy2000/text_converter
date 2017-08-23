@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:supportsRtl="true">
         <activity
-            android:name="com.duy.sharedcode.BarcodeEncodeActivity"/>
+            android:name="com.duy.sharedcode.barcode.BarcodeEncodeActivity"/>
     </application>
 
 </manifest>

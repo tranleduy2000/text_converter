@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.converter;
+package com.duy.text_converter.free;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

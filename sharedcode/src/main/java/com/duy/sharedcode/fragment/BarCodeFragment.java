@@ -30,7 +30,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.duy.sharedcode.BarcodeEncodeActivity;
+import com.duy.sharedcode.barcode.BarcodeEncodeActivity;
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
@@ -104,7 +104,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         intent.setAction(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
         intent.setType("text/plain");
-        getActivity().startActivity(intent);
+        startActivity(intent);
     }
 
     @Override

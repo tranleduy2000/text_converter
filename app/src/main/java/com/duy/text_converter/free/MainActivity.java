@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.converter;
+package com.duy.text_converter.free;
 
 import android.content.Context;
 import android.content.Intent;
@@ -43,7 +43,7 @@ import com.kobakei.ratethisapp.RateThisApp;
 
 public class MainActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
-    private CoordinatorLayout coordinatorLayout;
+    private CoordinatorLayout mCoordinatorLayout;
     private Toolbar toolbar;
     private KeyBoardEventListener keyBoardListener;
     private ViewPager viewPager;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onAdClosed() {
                     super.onAdClosed();
-                    finish();
+                    MainActivity.super.onBackPressed();
                 }
             });
         } else {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindView() {
 
-        this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
+        this.mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         //attach listener hide/show keyboard
         keyBoardListener = new KeyBoardEventListener(this);
-        coordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
+        mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
     }
 
 
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
             }
             Rect rect = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-            if (activity.coordinatorLayout.getRootView().getHeight() - ((navHeight + i) + rect.height()) <= 0) {
+            if (activity.mCoordinatorLayout.getRootView().getHeight() - ((navHeight + i) + rect.height()) <= 0) {
                 activity.onHideKeyboard();
             } else {
                 activity.onShowKeyboard();

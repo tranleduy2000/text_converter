@@ -41,4 +41,6 @@
     <string name="decorate">Decorate</string>
     <string name="encode">Encode</string>
     <string name="barcode">Barcode</string>
+    <string name="input_data">Input data</string>
+    <string name="sample">Sample</string>
 </resources>

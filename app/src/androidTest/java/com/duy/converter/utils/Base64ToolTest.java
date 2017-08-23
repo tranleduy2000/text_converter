@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.converter.utils;
+package com.duy.text_converter.free.utils;
 
 import junit.framework.TestCase;
 
