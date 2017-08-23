@@ -74,6 +74,9 @@ public class BarcodeEncoderFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         imageBarcode = view.findViewById(R.id.img_barcode);
         txtError = view.findViewById(R.id.txt_message);
+        progressBar = view.findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.INVISIBLE);
+
         String data = getArguments().getString("data");
         BarcodeFormat barcodeFormat = (BarcodeFormat) getArguments().getSerializable("format");
         generateTask = new BarcodeGenerateTask(data, barcodeFormat);
@@ -149,6 +152,12 @@ public class BarcodeEncoderFragment extends Fragment {
         }
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected Bitmap doInBackground(Void... params) {
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             try {
@@ -166,6 +175,7 @@ public class BarcodeEncoderFragment extends Fragment {
         protected void onPostExecute(Bitmap bitmap) {
             super.onPostExecute(bitmap);
             if (isCancelled()) return;
+            progressBar.setVisibility(View.INVISIBLE);
             if (bitmap != null) {
                 txtError.setVisibility(View.INVISIBLE);
                 imageBarcode.setVisibility(View.VISIBLE);
