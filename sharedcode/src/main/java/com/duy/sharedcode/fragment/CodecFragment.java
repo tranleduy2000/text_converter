@@ -163,6 +163,12 @@ public class CodecFragment extends Fragment {
                 ClipboardUtil.setClipboard(mContext, mInput.getText().toString());
             }
         });
+        mRootView.findViewById(R.id.image_paste).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
+            }
+        });
         mRootView.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,6 +179,12 @@ public class CodecFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ClipboardUtil.setClipboard(mContext, mOutput.getText().toString());
+            }
+        });
+        mRootView.findViewById(R.id.image_paste_out).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
             }
         });
 
