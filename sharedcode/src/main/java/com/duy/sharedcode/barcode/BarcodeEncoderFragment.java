@@ -24,10 +24,11 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,11 +38,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.duy.textconverter.sharedcode.BuildConfig;
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 /**
  * Created by Duy on 23-Aug-17.
@@ -90,12 +96,17 @@ public class BarcodeEncoderFragment extends Fragment {
         view.findViewById(R.id.btn_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveCurrentImage();
+                try {
+                    saveCurrentImage();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Cannot save", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    private String saveCurrentImage() {
+    private File saveCurrentImage() throws FileNotFoundException {
         if (!permissionGranted()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
@@ -103,10 +114,18 @@ public class BarcodeEncoderFragment extends Fragment {
             }
         }
         if (currentBarcode != null) {
-            String barcode = MediaStore.Images.Media.insertImage(getContext().getContentResolver(),
-                    currentBarcode, System.currentTimeMillis() + ".png", "barcode");
+            File file;
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                file = new File(Environment.getExternalStorageDirectory(),
+                        "TextConverter" + File.separator + System.currentTimeMillis() + ".png");
+            } else {
+                file = new File(getContext().getFilesDir(),
+                        "image" + File.separator + System.currentTimeMillis() + ".png");
+            }
+            file.setReadable(true);
+            currentBarcode.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
             Toast.makeText(getContext(), R.string.saved_in_gallery, Toast.LENGTH_SHORT).show();
-            return barcode;
+            return file;
         }
         return null;
     }
@@ -129,9 +148,15 @@ public class BarcodeEncoderFragment extends Fragment {
 
     private void shareCurrentImage() {
         try {
-            String bitmapPath = saveCurrentImage();
-            if (bitmapPath != null) {
-                Uri bitmapUri = Uri.parse(bitmapPath);
+            File file = saveCurrentImage();
+            if (file != null) {
+                Uri bitmapUri;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    bitmapUri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID
+                            + ".fileprovider", file);
+                } else {
+                    bitmapUri = Uri.fromFile(file);
+                }
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.putExtra(Intent.EXTRA_STREAM, bitmapUri);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
