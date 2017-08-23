@@ -34,6 +34,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.duy.textconverter.sharedcode.R;
@@ -51,6 +52,7 @@ public class BarcodeEncoderFragment extends Fragment {
     private ImageView imageBarcode;
     private BarcodeGenerateTask generateTask;
     private Bitmap currentBarcode = null;
+    private ProgressBar progressBar;
 
     public static BarcodeEncoderFragment newInstance(String data, BarcodeFormat barcodeFormat) {
         Bundle args = new Bundle();
