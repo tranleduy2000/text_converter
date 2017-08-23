@@ -16,9 +16,5 @@
 
 <resources>
     <string name="app_name">Text Converter</string>
-    <string name="remove_ads">Remove ads, get pro version!</string>
-    <string name="ad_unit_id_barcode">ca-app-pub-3940256099942544/2177258514</string>
-    <string name="ad_unit_id_exit">ca-app-pub-7060049030570268/4640781697</string>
-    <string name="ad_unit_id_main">ca-app-pub-7060049030570268/3354507032</string>
 
 </resources>

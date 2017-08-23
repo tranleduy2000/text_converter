@@ -23,8 +23,8 @@ android {
         applicationId "duy.com.text_converter"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 25
-        versionName "3.3"
+        versionCode 26
+        versionName "3.4"
     }
     buildTypes {
         release {

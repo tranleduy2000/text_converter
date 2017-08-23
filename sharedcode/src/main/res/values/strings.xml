@@ -51,4 +51,11 @@
     <string name="using_camera">Using camera</string>
     <string name="decoded">Decoded</string>
     <string name="cannot_decode">Can not decode this image</string>
+
+    <!--Ad-->
+    <string name="remove_ads">Remove ads, get pro version!</string>
+    <string name="ad_unit_id_barcode">ca-app-pub-7060049030570268/4176792975</string>
+    <string name="ad_unit_id_exit">ca-app-pub-7060049030570268/4640781697</string>
+    <string name="ad_unit_id_main">ca-app-pub-7060049030570268/3354507032</string>
+
 </resources>

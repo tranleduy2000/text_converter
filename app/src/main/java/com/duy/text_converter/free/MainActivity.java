@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onAdClosed() {
                     super.onAdClosed();
-                    MainActivity.super.onBackPressed();
+                    finish();
                 }
             });
         } else {

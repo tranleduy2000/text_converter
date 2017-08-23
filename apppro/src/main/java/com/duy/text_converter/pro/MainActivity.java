@@ -241,8 +241,7 @@ public class MainActivity extends AppCompatActivity {
     private void showDialogCrack() {
         FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());
         Premium.PREMIUM = false;
-        PreferenceManager.getDefaultSharedPreferences(this).
-                edit().putBoolean("pirate", true).apply();
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("pirate", true).apply();
         mHandler.post(new Runnable() {
             @Override
             public void run() {
@@ -255,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
+                        finish();
                     }
                 });
                 builder.create().show();
