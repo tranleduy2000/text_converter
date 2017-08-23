@@ -129,12 +129,12 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
                         android:src="@drawable/ic_camera_alt_white_48dp"
-                        android:text="Decode"/>
+                        android:text="@string/decode"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Using cameraya"
+                        android:text="@string/using_camera"
                         android:textColor="?colorAccent"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>

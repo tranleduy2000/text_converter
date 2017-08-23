@@ -18,10 +18,15 @@ package com.duy.sharedcode.fragment;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,8 +38,17 @@ import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.barcode.BarcodeEncodeActivity;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.Result;
 import com.google.zxing.client.android.Intents;
+import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.integration.android.IntentIntegrator;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -46,7 +60,9 @@ import static android.app.Activity.RESULT_OK;
 public class BarCodeFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "BarCodeFragment";
     private static final String KEY_TEXT = "KEY_TEXT";
+    private static final int REQUEST_PICK_IMAGE = 1010;
     private BaseEditText mInput;
+    private DecodeImageTask decodeImageTask;
 
     public static BarCodeFragment newInstance() {
 
@@ -130,37 +146,58 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_encode) {
             encode(mInput.getText().toString());
         } else if (v.getId() == R.id.btn_decode_cam) {
-            decodeBarcode();
+            decodeUseCamera();
+        } else if (v.getId() == R.id.btn_decode_image) {
+            decodeImage();
         }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IntentIntegrator.REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                final String contents = data.getStringExtra(Intents.Scan.RESULT);
-                mInput.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mInput.setText(contents);
-                        if (getContext() != null) {
-                            Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
+        switch (requestCode) {
+            case IntentIntegrator.REQUEST_CODE:
+                if (resultCode == RESULT_OK) {
+                    final String contents = data.getStringExtra(Intents.Scan.RESULT);
+                    mInput.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mInput.setText(contents);
+                            if (getContext() != null) {
+                                Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
+                            }
                         }
+                    }, 200);
+                }
+                break;
+            case REQUEST_PICK_IMAGE:
+                if (resultCode == RESULT_OK) {
+                    if (decodeImageTask != null && !decodeImageTask.isCancelled()) {
+                        decodeImageTask.cancel(true);
                     }
-                }, 200);
-            }
+                    decodeImageTask = new DecodeImageTask();
+                    decodeImageTask.execute(data.getData());
+                }
+                break;
         }
     }
 
-    private void decodeBarcode() {
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (decodeImageTask != null && !decodeImageTask.isCancelled()) decodeImageTask.cancel(true);
+    }
+
+    private void decodeUseCamera() {
         IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
+        integrator.setBeepEnabled(true);
+        integrator.setBarcodeImageEnabled(true);
+        integrator.setOrientationLocked(true);
         integrator.initiateScan();
     }
 
@@ -169,4 +206,67 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         intent.putExtra("data", s);
         startActivity(intent);
     }
+
+
+    private void decodeImage() {
+        try {
+
+            Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+            getIntent.setType("image/*");
+
+            Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            pickIntent.setType("image/*");
+
+            Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
+
+            startActivityForResult(chooserIntent, REQUEST_PICK_IMAGE);
+        } catch (Exception e) {
+        }
+    }
+
+    private class DecodeImageTask extends AsyncTask<Uri, Void, String> {
+        @Override
+        protected String doInBackground(Uri... params) {
+            Uri uri = params[0];
+            try {
+                InputStream inputStream = getContext().getContentResolver().openInputStream(uri);
+                BitmapFactory.Options opts = new BitmapFactory.Options();
+                opts.outWidth = 1024;
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, opts);
+                if (bitmap == null) {
+                    Log.e(TAG, "uri is not a bitmap," + uri.toString());
+                    return null;
+                }
+                int width = bitmap.getWidth(), height = bitmap.getHeight();
+                int[] pixels = new int[width * height];
+                bitmap.getPixels(pixels, 0, width, 0, 0, width, height);
+                bitmap.recycle();
+                RGBLuminanceSource source = new RGBLuminanceSource(width, height, pixels);
+                BinaryBitmap bBitmap = new BinaryBitmap(new HybridBinarizer(source));
+                MultiFormatReader reader = new MultiFormatReader();
+                try {
+                    Result result = reader.decode(bBitmap);
+                    return result.getText();
+                } catch (NotFoundException e) {
+                    Log.e(TAG, "decode exception", e);
+                    return null;
+                }
+            } catch (FileNotFoundException e) {
+                Log.e(TAG, "can not open file" + uri.toString(), e);
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (isCancelled()) return;
+            if (s != null) {
+                mInput.setText(s);
+                Toast.makeText(getContext(), R.string.decoded, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }

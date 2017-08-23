@@ -48,4 +48,6 @@
     <string name="paste">Paste</string>
     <string name="encode_this_data">Encode this data</string>
     <string name="decode">Decode</string>
+    <string name="using_camera">Using camera</string>
+    <string name="decoded">Decoded</string>
 </resources>

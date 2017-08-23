@@ -166,7 +166,7 @@ public class CodecFragment extends Fragment {
         mRootView.findViewById(R.id.image_paste).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
+                mInput.setText(ClipboardUtil.getClipboard(getContext()));
             }
         });
         mRootView.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
