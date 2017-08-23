@@ -48,6 +48,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by Duy on 23-Aug-17.
@@ -98,7 +99,7 @@ public class BarcodeEncoderFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     saveCurrentImage();
-                } catch (FileNotFoundException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getContext(), "Cannot save", Toast.LENGTH_SHORT).show();
                 }
@@ -106,7 +107,7 @@ public class BarcodeEncoderFragment extends Fragment {
         });
     }
 
-    private File saveCurrentImage() throws FileNotFoundException {
+    private File saveCurrentImage() throws IOException {
         if (!permissionGranted()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
@@ -121,6 +122,10 @@ public class BarcodeEncoderFragment extends Fragment {
             } else {
                 file = new File(getContext().getFilesDir(),
                         "image" + File.separator + System.currentTimeMillis() + ".png");
+            }
+            if (!file.exists()) {
+                file.getParentFile().mkdirs();
+                file.createNewFile();
             }
             file.setReadable(true);
             currentBarcode.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
