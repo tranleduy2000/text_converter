@@ -35,7 +35,7 @@ import android.widget.Spinner;
 
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.ShareManager;
-import com.duy.sharedcode.codec.ASCIITool;
+import com.duy.sharedcode.codec.AsciiTool;
 import com.duy.sharedcode.codec.AtbashTool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
@@ -220,8 +220,8 @@ public class CodecFragment extends Fragment {
         String out = mOutput.getText().toString();
         switch (encodeMethod) {
             case ASCII:
-                if (to) mOutput.setText(new ASCIITool().encode(inp));
-                else mInput.setText(new ASCIITool().decode(out));
+                if (to) mOutput.setText(new AsciiTool().encode(inp));
+                else mInput.setText(new AsciiTool().decode(out));
                 break;
             case OCTAL:
                 if (to) mOutput.setText(new OctalTool().encode(inp));

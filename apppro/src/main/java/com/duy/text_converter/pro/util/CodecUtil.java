@@ -18,7 +18,7 @@ package com.duy.text_converter.pro.util;
 
 import android.content.Context;
 
-import com.duy.sharedcode.codec.ASCIITool;
+import com.duy.sharedcode.codec.AsciiTool;
 import com.duy.sharedcode.codec.AtbashTool;
 import com.duy.sharedcode.codec.Base32Tool;
 import com.duy.sharedcode.codec.Base64Tool;
@@ -57,7 +57,7 @@ public class CodecUtil {
         CodecMethod decodeMethod = CodecMethod.values()[pos];
         switch (decodeMethod) {
             case ASCII:
-                return new ASCIITool().decode(inp);
+                return new AsciiTool().decode(inp);
             case OCTAL:
                 return new OctalTool().decode(inp);
             case BINARY:
@@ -112,7 +112,7 @@ public class CodecUtil {
         CodecMethod encodeMethod = CodecMethod.values()[pos];
         switch (encodeMethod) {
             case ASCII:
-                return new ASCIITool().encode(inp);
+                return new AsciiTool().encode(inp);
             case OCTAL:
                 return new OctalTool().encode(inp);
             case BINARY:
