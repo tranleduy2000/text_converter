@@ -40,10 +40,14 @@ public class ClipboardUtil {
      */
     @NonNull
     public static String getClipboard(Context context) {
-        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData primaryClip = clipboard.getPrimaryClip();
-        if (primaryClip.getItemCount() > 0) {
-            return primaryClip.getItemAt(0).coerceToText(context).toString();
+        try {
+            ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData primaryClip = clipboard.getPrimaryClip();
+            if (primaryClip.getItemCount() > 0) {
+                return primaryClip.getItemAt(0).coerceToText(context).toString();
+            }
+        }catch (Exception e){
+            e.printStackTrace(); //null clipboard
         }
         return "";
     }
