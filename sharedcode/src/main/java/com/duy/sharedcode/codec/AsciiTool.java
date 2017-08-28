@@ -22,7 +22,7 @@ import android.support.annotation.NonNull;
  * Created by DUy on 06-Feb-17.
  */
 
-public class ASCIITool implements Encoder, Decoder {
+public class AsciiTool implements Encoder, Decoder {
     public static String asciiToText(String text) {
         String[] arr = text.split(" ");
         StringBuilder result = new StringBuilder();
