@@ -14,39 +14,26 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        applicationId "com.duy.text_converter.pro"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 13
-        versionName "2.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        vectorDrawables.useSupportLibrary = true
+        versionCode 1
+        versionName "1.2.1"
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile project(':sharedcode')
-    compile project(':lvl')
-    compile project(':floating-view')
-    compile 'com.android.support:support-v4:26.+'
-    compile 'com.android.support:support-vector-drawable:26.+'
+    compile "com.android.support:appcompat-v7:26.+"
 }
-apply plugin: 'com.google.gms.google-services'

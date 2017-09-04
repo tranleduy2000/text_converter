@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include ':app', ':sharedcode', ':apppro' , ':lvl'
+include ':app', ':sharedcode', ':apppro' , ':lvl', ':floating-view'
