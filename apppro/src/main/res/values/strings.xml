@@ -23,5 +23,6 @@
     <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
     <string name="tool">Tool</string>
     <string name="floating_notification_description">Tap to open</string>
-
+    <string name="open_floating_converter">Open floating converter</string>
+    <string name="floating_converter">Floating converter</string>
 </resources>

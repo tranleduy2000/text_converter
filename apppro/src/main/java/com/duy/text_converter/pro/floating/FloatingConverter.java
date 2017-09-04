@@ -42,8 +42,7 @@ public class FloatingConverter extends FloatingView {
     @NonNull
     @Override
     protected View inflateView(@NonNull ViewGroup parent) {
-        View child = LayoutInflater.from(getContext()).inflate(R.layout.fragment_codec, parent, false);
-        return child;
+        return LayoutInflater.from(getContext()).inflate(R.layout.floating_codec, parent, false);
     }
 
     @NonNull
