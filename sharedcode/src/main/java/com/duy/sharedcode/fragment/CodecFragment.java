@@ -47,9 +47,7 @@ import com.duy.textconverter.sharedcode.R;
  */
 
 public class CodecFragment extends Fragment {
-    private static final String TAG = CodecFragment.class.getSimpleName();
-    private static final String KEY = "CodecFragment";
-    private static final String KEY_TEXT = "KEY_TEXT";
+    private static final String TAG = "CodecFragment";
     private BaseEditText mInput, mOutput;
     private Spinner mChoose;
     private TextWatcher mOutputWatcher = new TextWatcher() {
@@ -212,7 +210,7 @@ public class CodecFragment extends Fragment {
 
     public void save() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        pref.edit().putString(KEY + getArguments().getInt(KEY_TEXT), mInput.getText().toString()).apply();
+        pref.edit().putString(TAG, mInput.getText().toString()).apply();
     }
 
     public void restore() {
@@ -221,7 +219,7 @@ public class CodecFragment extends Fragment {
             mInput.setText(text);
         } else {
             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-            mInput.setText(pref.getString(KEY + getArguments().getInt(KEY_TEXT), ""));
+            mInput.setText(pref.getString(TAG, ""));
         }
         convert(true);
     }
