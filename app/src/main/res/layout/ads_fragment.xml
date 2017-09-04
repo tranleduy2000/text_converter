@@ -44,8 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
-                ads:adSize="320x320"
-                ads:adUnitId="@string/ad_unit_id_main">
+                >
             </com.google.android.gms.ads.NativeExpressAdView>
 
         </LinearLayout>

@@ -33,9 +33,6 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
@@ -43,12 +40,8 @@ import com.kobakei.ratethisapp.RateThisApp;
 
 
 public class MainActivity extends AppCompatActivity {
-    private InterstitialAd mInterstitialAd;
     private CoordinatorLayout mCoordinatorLayout;
-    private Toolbar toolbar;
-    private KeyBoardEventListener keyBoardListener;
-    private ViewPager viewPager;
-    private PagerSectionAdapter adapter;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,37 +50,19 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) FirebaseCrash.setCrashCollectionEnabled(false);
         setContentView(R.layout.activity_main);
         bindView();
-        loadAdView();
-
     }
 
-    private void loadAdView() {
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.ad_unit_id_exit));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-    }
 
     @Override
     public void onBackPressed() {
-        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    finish();
-                }
-            });
-        } else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     private void bindView() {
 
         this.mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -100,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        adapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        PagerSectionAdapter adapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -126,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         //attach listener hide/show keyboard
-        keyBoardListener = new KeyBoardEventListener(this);
-        mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
+        KeyBoardEventListener keyBoardEventListener = new KeyBoardEventListener(this);
+        mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardEventListener);
     }
 
 
@@ -177,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
      * hide appbar layout when keyboard visible
      */
     private void hideAppBar() {
-        toolbar.setVisibility(View.GONE);
+        mToolbar.setVisibility(View.GONE);
     }
 
     /**
      * show appbar layout when keyboard gone
      */
     private void showAppBar() {
-        toolbar.setVisibility(View.VISIBLE);
+        mToolbar.setVisibility(View.VISIBLE);
     }
 
     protected void onShowKeyboard() {
