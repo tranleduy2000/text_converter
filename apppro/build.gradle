@@ -40,15 +40,13 @@ android {
 }
 
 dependencies {
+    testCompile 'junit:junit:4.12'
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
     compile project(':sharedcode')
     compile project(':lvl')
     compile 'com.android.support:support-v4:26.+'
     compile 'com.android.support:support-vector-drawable:26.+'
-    testCompile 'junit:junit:4.12'
+    compile 'com.xlythe:floating-view:1.1.1'
 }
 apply plugin: 'com.google.gms.google-services'

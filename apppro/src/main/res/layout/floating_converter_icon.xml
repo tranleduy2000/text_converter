@@ -1,4 +1,4 @@
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +13,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<resources>
-    <string name="app_name">(Pro) Text Converter</string>
-    <string name="setting">Setting</string>
-    <string name="pref_key_enable_encode">pref_encode_notification</string>
-    <string name="pref_key_enable_decode">pref_decode_notification</string>
-    <string name="encode">En\ncode</string>
-    <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
-    <string name="tool">Tool</string>
-    <string name="floating_notification_description">Tap to open</string>
-
-</resources>
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="65dp"
+    android:layout_height="65dp"
+    android:src="@mipmap/ic_launcher_round" />
