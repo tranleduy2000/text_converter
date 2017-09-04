@@ -15,6 +15,6 @@
   -->
 
 <resources>
-    <dimen name="floating_height">280dp</dimen>
+    <dimen name="floating_height">200dp</dimen>
     <dimen name="floating_width">280dp</dimen>
 </resources>

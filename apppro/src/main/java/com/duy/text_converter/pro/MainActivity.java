@@ -41,6 +41,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
+import com.duy.text_converter.pro.floating.FloatingConverterOpenShortCutActivity;
 import com.duy.text_converter.pro.license.Installation;
 import com.duy.text_converter.pro.license.Key;
 import com.duy.text_converter.pro.license.PolicyFactory;
@@ -63,11 +64,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private CoordinatorLayout coordinatorLayout;
+    private CoordinatorLayout mCoordinatorLayout;
     private Toolbar toolbar;
-    private KeyBoardEventListener keyBoardListener;
-    private ViewPager viewPager;
-    private PagerSectionAdapter adapter;
+    private KeyBoardEventListener mKeyBoardListener;
+    private ViewPager mViewPager;
+    private PagerSectionAdapter mAdapter;
     private LicenseChecker mChecker;
     private CheckLicenseCallBack mCallBack;
     private Handler mHandler;
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         checkLicense();
         bindView();
         showNotification();
+
+        startActivity(new Intent(this, FloatingConverterOpenShortCutActivity.class));
     }
 
     private void checkLicense() {
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindView() {
-        this.coordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
+        this.mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -109,17 +112,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
-        adapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
-        viewPager.setOffscreenPageLimit(adapter.getCount());
-        viewPager.setAdapter(adapter);
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mAdapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
+        mViewPager.setOffscreenPageLimit(mAdapter.getCount());
+        mViewPager.setAdapter(mAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setupWithViewPager(mViewPager);
 
         //attach listener hide/show keyboard
-        keyBoardListener = new KeyBoardEventListener(this);
-        coordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardListener);
+        mKeyBoardListener = new KeyBoardEventListener(this);
+        mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(mKeyBoardListener);
 
     }
 
@@ -331,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
             }
             Rect rect = new Rect();
             activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-            if (activity.coordinatorLayout.getRootView().getHeight() - ((navHeight + i) + rect.height()) <= 0) {
+            if (activity.mCoordinatorLayout.getRootView().getHeight() - ((navHeight + i) + rect.height()) <= 0) {
                 activity.onHideKeyboard();
             } else {
                 activity.onShowKeyboard();

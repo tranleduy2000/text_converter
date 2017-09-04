@@ -133,7 +133,7 @@ public abstract class FloatingView extends Service implements OnTouchListener {
         float density = getResources().getDisplayMetrics().density;
         CLOSE_ANIMATION_DISTANCE = (int) (250 * density);
         DRAG_DELTA = vc.getScaledTouchSlop();
-        STARTING_POINT_Y = (int) (50 * density);
+        STARTING_POINT_Y = (int) (10 * density);
         DELETE_BOX_WIDTH = (int) getResources().getDimension(R.dimen.floating_window_delete_box_width);
         DELETE_BOX_HEIGHT = (int) getResources().getDimension(R.dimen.floating_window_delete_box_height);
         MAGIC_OFFSET = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());

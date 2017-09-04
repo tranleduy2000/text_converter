@@ -35,4 +35,16 @@
         <item name="android:windowFullscreen">false</item>
     </style>
 
+    <style name="FloatingTheme" />
+
+    <style name="FloatingTheme.EditText">
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textColorHint">#c1c1c1</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Small</item>
+
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:gravity">top</item>
+        <item name="android:inputType">textMultiLine</item>
+    </style>
 </resources>
