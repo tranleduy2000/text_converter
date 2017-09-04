@@ -46,7 +46,7 @@ import com.duy.textconverter.sharedcode.R;
  * Created by DUy on 06-Feb-17.
  */
 
-public class CodecFragment extends Fragment {
+public class CodecFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "CodecFragment";
     private BaseEditText mInput, mOutput;
     private Spinner mChoose;
@@ -114,48 +114,19 @@ public class CodecFragment extends Fragment {
         mInput.addTextChangedListener(mInputWatcher);
         mOutput.addTextChangedListener(mOutputWatcher);
 
-        mChoose = view.findViewById(R.id.spinner_choose);
-        view.findViewById(R.id.img_share).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doShareText(mInput);
-            }
-        });
-        view.findViewById(R.id.img_copy).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
-            }
-        });
-        view.findViewById(R.id.image_paste).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mInput.setText(ClipboardUtil.getClipboard(getContext()));
-            }
-        });
-        view.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doShareText(mOutput);
-            }
-        });
-        view.findViewById(R.id.img_copy_out).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
-            }
-        });
-        view.findViewById(R.id.image_paste_out).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
-            }
-        });
+
+        view.findViewById(R.id.image_paste).setOnClickListener(this);
+        view.findViewById(R.id.image_paste_out).setOnClickListener(this);
+        view.findViewById(R.id.img_copy).setOnClickListener(this);
+        view.findViewById(R.id.img_copy_out).setOnClickListener(this);
+        view.findViewById(R.id.img_share).setOnClickListener(this);
+        view.findViewById(R.id.img_share_out).setOnClickListener(this);
 
         String[] data = getResources().getStringArray(R.array.codec_methods);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, data);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        mChoose = view.findViewById(R.id.spinner_choose);
         mChoose.setAdapter(adapter);
         mChoose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -171,6 +142,30 @@ public class CodecFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.img_copy) {
+            ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
+
+        } else if (i == R.id.image_paste) {
+            mInput.setText(ClipboardUtil.getClipboard(getContext()));
+
+        } else if (i == R.id.img_copy_out) {
+            ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
+
+        } else if (i == R.id.image_paste_out) {
+            mOutput.setText(ClipboardUtil.getClipboard(getContext()));
+
+        } else if (i == R.id.img_share) {
+            doShareText(mInput);
+
+        } else if (i == R.id.img_share_out) {
+            doShareText(mOutput);
+
+        }
     }
 
     @Override
