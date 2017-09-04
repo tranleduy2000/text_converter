@@ -46,7 +46,7 @@ import com.duy.textconverter.sharedcode.R;
  * Created by DUy on 06-Feb-17.
  */
 
-public class CodecFragment extends Fragment implements View.OnClickListener {
+public class CodecFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "CodecFragment";
     private BaseEditText mInput, mOutput;
     private Spinner mChoose;
@@ -128,20 +128,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener {
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         mChoose = view.findViewById(R.id.spinner_choose);
         mChoose.setAdapter(adapter);
-        mChoose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (mInput.hasFocus()) {
-                    convert(true);
-                } else {
-                    convert(false);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        mChoose.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -220,4 +207,17 @@ public class CodecFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if (mInput.hasFocus()) {
+            convert(true);
+        } else {
+            convert(false);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

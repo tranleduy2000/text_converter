@@ -22,6 +22,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.duy.textconverter.sharedcode.R;
+
 /**
  * Created by DUy on 04-Nov-16.
  */
@@ -32,7 +34,7 @@ public class ClipboardUtil {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Copied Text", text);
         clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.copied, Toast.LENGTH_SHORT).show();
     }
 
     /**
