@@ -26,7 +26,7 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.duy.sharedcode.ClipboardUtil;
-import com.duy.text_converter.pro.util.CodecUtil;
+import com.duy.sharedcode.codec.CodecUtil;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 /**

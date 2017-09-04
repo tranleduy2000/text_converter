@@ -35,26 +35,8 @@ import android.widget.Spinner;
 
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.ShareManager;
-import com.duy.sharedcode.codec.AsciiTool;
-import com.duy.sharedcode.codec.AtbashTool;
-import com.duy.sharedcode.codec.Base32Tool;
-import com.duy.sharedcode.codec.Base64Tool;
-import com.duy.sharedcode.codec.BinaryTool;
-import com.duy.sharedcode.codec.CaesarTool;
 import com.duy.sharedcode.codec.CodecMethod;
-import com.duy.sharedcode.codec.HexTool;
-import com.duy.sharedcode.codec.MorseTool;
-import com.duy.sharedcode.codec.OctalTool;
-import com.duy.sharedcode.codec.RandomCaseTool;
-import com.duy.sharedcode.codec.ReverserTool;
-import com.duy.sharedcode.codec.SubScriptText;
-import com.duy.sharedcode.codec.SupScriptText;
-import com.duy.sharedcode.codec.URLTool;
-import com.duy.sharedcode.codec.UpperLowerTool;
-import com.duy.sharedcode.codec.UpsideDownTool;
-import com.duy.sharedcode.codec.ZalgoBigTool;
-import com.duy.sharedcode.codec.ZalgoMiniTool;
-import com.duy.sharedcode.codec.ZalgoNormalTool;
+import com.duy.sharedcode.codec.CodecUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 
@@ -66,10 +48,8 @@ import com.duy.textconverter.sharedcode.R;
 
 public class CodecFragment extends Fragment {
     private static final String TAG = CodecFragment.class.getSimpleName();
-    private static final String KEY = CodecFragment.class.getSimpleName();
+    private static final String KEY = "CodecFragment";
     private static final String KEY_TEXT = "KEY_TEXT";
-    private View mRootView;
-    private Context mContext;
     private BaseEditText mInput, mOutput;
     private Spinner mChoose;
     private TextWatcher mOutputWatcher = new TextWatcher() {
@@ -104,9 +84,6 @@ public class CodecFragment extends Fragment {
 
         }
     };
-    private View imgShareOut;
-    private View imgCopyIn;
-    private View imgCopyOut;
 
     public static CodecFragment newInstance(String init) {
         CodecFragment fragment = new CodecFragment();
@@ -121,67 +98,56 @@ public class CodecFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mContext = context;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_codec, container, false);
-        return mRootView;
+        return inflater.inflate(R.layout.fragment_codec, container, false);
     }
 
 
     @Override
-    public void onDestroyView() {
-
-        mInput.removeTextChangedListener(mInputWatcher);
-        mOutput.removeTextChangedListener(mOutputWatcher);
-
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mInput = mRootView.findViewById(R.id.edit_input);
-        mOutput = mRootView.findViewById(R.id.edit_output);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mInput = view.findViewById(R.id.edit_input);
+        mOutput = view.findViewById(R.id.edit_output);
         mInput.addTextChangedListener(mInputWatcher);
         mOutput.addTextChangedListener(mOutputWatcher);
 
-        mChoose = mRootView.findViewById(R.id.spinner_choose);
-        mRootView.findViewById(R.id.img_share).setOnClickListener(new View.OnClickListener() {
+        mChoose = view.findViewById(R.id.spinner_choose);
+        view.findViewById(R.id.img_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doShareText(mInput);
             }
         });
-        mRootView.findViewById(R.id.img_copy).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.img_copy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClipboardUtil.setClipboard(mContext, mInput.getText().toString());
+                ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
             }
         });
-        mRootView.findViewById(R.id.image_paste).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.image_paste).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mInput.setText(ClipboardUtil.getClipboard(getContext()));
             }
         });
-        mRootView.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doShareText(mOutput);
             }
         });
-        mRootView.findViewById(R.id.img_copy_out).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.img_copy_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClipboardUtil.setClipboard(mContext, mOutput.getText().toString());
+                ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
             }
         });
-        mRootView.findViewById(R.id.image_paste_out).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.image_paste_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mOutput.setText(ClipboardUtil.getClipboard(getContext()));
@@ -209,97 +175,27 @@ public class CodecFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onDestroyView() {
+        mInput.removeTextChangedListener(mInputWatcher);
+        mOutput.removeTextChangedListener(mOutputWatcher);
+        super.onDestroyView();
+    }
+
     private void doShareText(EditText editText) {
         ShareManager.share(editText.getText().toString(), getContext());
     }
 
     private void convert(boolean to) {
         int index = mChoose.getSelectedItemPosition();
-        CodecMethod encodeMethod = CodecMethod.values()[index];
-        String inp = mInput.getText().toString();
-        String out = mOutput.getText().toString();
-        switch (encodeMethod) {
-            case ASCII:
-                if (to) mOutput.setText(new AsciiTool().encode(inp));
-                else mInput.setText(new AsciiTool().decode(out));
-                break;
-            case OCTAL:
-                if (to) mOutput.setText(new OctalTool().encode(inp));
-                else mInput.setText(new OctalTool().decode(out));
-                break;
-            case BINARY:
-                if (to) mOutput.setText(new BinaryTool().encode(inp));
-                else mInput.setText(new BinaryTool().decode(out));
-                break;
-            case HEX:
-                if (to) mOutput.setText(new HexTool().encode(inp));
-                else mInput.setText(new HexTool().decode(out));
-                break;
-            case UPPER:
-                if (to) mOutput.setText(UpperLowerTool.upperText(inp));
-                else mInput.setText(UpperLowerTool.lowerText(out));
-                break;
-            case LOWER:
-                if (to) mOutput.setText(UpperLowerTool.lowerText(inp));
-                else mInput.setText(UpperLowerTool.upperText(out));
-                break;
-            case REVERSER:
-                if (to) mOutput.setText(ReverserTool.reverseText(inp));
-                else mInput.setText(ReverserTool.reverseText(out));
-                break;
-            case UPSIDE_DOWNSIDE:
-                if (to) mOutput.setText(UpsideDownTool.textToUpsideDown(inp));
-                else mInput.setText(UpsideDownTool.upsideDownToText(out));
-                break;
-            case SUPPER_SCRIPT:
-                if (to) mOutput.setText(new SupScriptText().encode(inp));
-                else mInput.setText(new SupScriptText().decode(out));
-                break;
-            case SUB_SCRIPT:
-                if (to) mOutput.setText(new SubScriptText().encode(inp));
-                else mInput.setText(new SubScriptText().decode(out));
-                break;
-            case MORSE_CODE:
-                if (to) mOutput.setText(new MorseTool().encode(inp));
-                else mInput.setText(new MorseTool().decode(out));
-                break;
-            case ZALGO_MINI:
-                if (to) mOutput.setText(new ZalgoMiniTool().encode(inp));
-                break;
-            case ZALGO_NORMAL:
-                if (to) mOutput.setText(new ZalgoNormalTool().encode(inp));
-                break;
-            case ZALGO_BIG:
-                if (to) mOutput.setText(new ZalgoBigTool().encode(inp));
-                break;
-            case BASE_32:
-                if (to) mOutput.setText(new Base32Tool().encode(inp));
-                else mInput.setText(new Base32Tool().decode(out));
-                break;
-            case BASE_64:
-                if (to) mOutput.setText(new Base64Tool().encode(inp));
-                else mInput.setText(new Base64Tool().decode(out));
-                break;
-            case URL:
-                if (to) mOutput.setText(new URLTool().encode(inp));
-                else mInput.setText(new URLTool().decode(out));
-                break;
-            case RANDOM_CASE:
-                if (to) mOutput.setText(new RandomCaseTool().encode(inp));
-                else mInput.setText(new RandomCaseTool().decode(out));
-                break;
-            case CAESAR:
-                if (to) mOutput.setText(new CaesarTool().encode(inp));
-                else mInput.setText(new CaesarTool().decode(out));
-                break;
-            case ATBASH:
-                if (to) mOutput.setText(new AtbashTool().encode(inp));
-                else mInput.setText(new AtbashTool().decode(out));
-                break;
+        CodecMethod method = CodecMethod.values()[index];
+        if (to) {
+            String inp = mInput.getText().toString();
+            mOutput.setText(CodecUtil.encode(method, inp));
+        } else {
+            String out = mOutput.getText().toString();
+            mInput.setText(CodecUtil.decode(method, out));
         }
-        //reset cursor
-        mInput.setSelection(mInput.getText().toString().length());
-        mOutput.setSelection(mOutput.getText().toString().length());
     }
 
     @Override
@@ -315,8 +211,8 @@ public class CodecFragment extends Fragment {
     }
 
     public void save() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-        sharedPreferences.edit().putString(KEY + getArguments().getInt(KEY_TEXT), mInput.getText().toString()).apply();
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        pref.edit().putString(KEY + getArguments().getInt(KEY_TEXT), mInput.getText().toString()).apply();
     }
 
     public void restore() {
@@ -324,8 +220,8 @@ public class CodecFragment extends Fragment {
         if (!text.isEmpty()) {
             mInput.setText(text);
         } else {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
-            mInput.setText(sharedPreferences.getString(KEY + getArguments().getInt(KEY_TEXT), ""));
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+            mInput.setText(pref.getString(KEY + getArguments().getInt(KEY_TEXT), ""));
         }
         convert(true);
     }

@@ -39,7 +39,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.duy.text_converter.pro.R;
-import com.duy.text_converter.pro.util.CodecUtil;
+import com.duy.sharedcode.codec.CodecUtil;
 import com.duy.text_converter.pro.util.FileUtil;
 
 import java.io.BufferedWriter;

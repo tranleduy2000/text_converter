@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import com.duy.text_converter.pro.util.CodecUtil;
+import com.duy.sharedcode.codec.CodecUtil;
 
 public class EncodeProcessTextActivity extends Activity {
     @Override

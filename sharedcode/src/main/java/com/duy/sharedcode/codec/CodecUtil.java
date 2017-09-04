@@ -14,31 +14,11 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.pro.util;
+package com.duy.sharedcode.codec;
 
 import android.content.Context;
 
-import com.duy.sharedcode.codec.AsciiTool;
-import com.duy.sharedcode.codec.AtbashTool;
-import com.duy.sharedcode.codec.Base32Tool;
-import com.duy.sharedcode.codec.Base64Tool;
-import com.duy.sharedcode.codec.BinaryTool;
-import com.duy.sharedcode.codec.CaesarTool;
-import com.duy.sharedcode.codec.CodecMethod;
-import com.duy.sharedcode.codec.HexTool;
-import com.duy.sharedcode.codec.MorseTool;
-import com.duy.sharedcode.codec.OctalTool;
-import com.duy.sharedcode.codec.RandomCaseTool;
-import com.duy.sharedcode.codec.ReverserTool;
-import com.duy.sharedcode.codec.SubScriptText;
-import com.duy.sharedcode.codec.SupScriptText;
-import com.duy.sharedcode.codec.URLTool;
-import com.duy.sharedcode.codec.UpperLowerTool;
-import com.duy.sharedcode.codec.UpsideDownTool;
-import com.duy.sharedcode.codec.ZalgoBigTool;
-import com.duy.sharedcode.codec.ZalgoMiniTool;
-import com.duy.sharedcode.codec.ZalgoNormalTool;
-import com.duy.text_converter.pro.R;
+import com.duy.textconverter.sharedcode.R;
 
 /**
  * Created by Duy on 29-Jul-17.
@@ -55,6 +35,10 @@ public class CodecUtil {
             }
         }
         CodecMethod decodeMethod = CodecMethod.values()[pos];
+        return decode(decodeMethod, inp);
+    }
+
+    public static String decode(CodecMethod decodeMethod, String inp) {
         switch (decodeMethod) {
             case ASCII:
                 return new AsciiTool().decode(inp);
@@ -110,6 +94,10 @@ public class CodecUtil {
             }
         }
         CodecMethod encodeMethod = CodecMethod.values()[pos];
+        return encode(encodeMethod, inp);
+    }
+
+    public static String encode(CodecMethod encodeMethod, String inp) {
         switch (encodeMethod) {
             case ASCII:
                 return new AsciiTool().encode(inp);

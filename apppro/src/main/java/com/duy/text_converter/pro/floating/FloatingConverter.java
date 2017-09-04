@@ -24,7 +24,6 @@ import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.duy.text_converter.pro.R;
 import com.xlythe.view.floating.FloatingView;
@@ -44,13 +43,6 @@ public class FloatingConverter extends FloatingView {
     @Override
     protected View inflateView(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(this).inflate(R.layout.floating_codec, parent, false);
-        view.findViewById(R.id.edit_input).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText editText = (EditText) view;
-                editText.requestFocus();
-            }
-        });
         return view;
     }
 
