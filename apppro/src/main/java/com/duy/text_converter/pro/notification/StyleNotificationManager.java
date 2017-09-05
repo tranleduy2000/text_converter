@@ -37,8 +37,8 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class StyleNotificationManager {
 
-    private static final int NOTIFICATION_ENCODE_ID = 0;
-    private static final int NOTIFICATION_DECODE_ID = 1;
+    private static final int NOTIFICATION_ENCODE_ID = 111;
+    private static final int NOTIFICATION_DECODE_ID = 222;
 
     public static void showNotificationEncodeIfNeed(@NonNull Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
