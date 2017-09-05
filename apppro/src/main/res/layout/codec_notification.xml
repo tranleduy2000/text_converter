@@ -17,7 +17,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/white"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingLeft="8dp"
@@ -31,7 +31,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/encode"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/black" />
 
     <ImageView
         android:id="@+id/img_one"
@@ -41,7 +41,7 @@
         android:gravity="center"
         android:scaleType="centerInside"
         android:src="@drawable/ic_one"
-        android:tint="@color/colorAccent" />
+        android:tint="@color/black" />
 
     <ImageView
         android:id="@+id/img_two"
@@ -51,7 +51,7 @@
         android:gravity="center"
         android:scaleType="centerInside"
         android:src="@drawable/ic_two"
-        android:tint="@color/colorAccent" />
+        android:tint="@color/black" />
 
     <ImageView
         android:id="@+id/img_three"
@@ -61,7 +61,7 @@
         android:gravity="center"
         android:scaleType="centerInside"
         android:src="@drawable/ic_three"
-        android:tint="@color/colorAccent" />
+        android:tint="@color/black" />
 
     <ImageView
         android:id="@+id/img_four"
@@ -71,7 +71,7 @@
         android:gravity="center"
         android:scaleType="centerInside"
         android:src="@drawable/ic_four"
-        android:tint="@color/colorAccent" />
+        android:tint="@color/black" />
 
     <ImageView
         android:id="@+id/img_five"
@@ -81,7 +81,7 @@
         android:gravity="center"
         android:scaleType="centerInside"
         android:src="@drawable/ic_five"
-        android:tint="@color/colorAccent" />
+        android:tint="@color/black" />
 
     <!--<ImageView-->
     <!--android:id="@+id/img_close"-->
@@ -90,5 +90,5 @@
     <!--android:layout_weight="1"-->
     <!--android:scaleType="centerInside"-->
     <!--android:src="@drawable/ic_close"-->
-    <!--android:tint="@color/colorAccent" />-->
+    <!--android:tint="@color/black" />-->
 </LinearLayout>

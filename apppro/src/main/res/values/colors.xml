@@ -15,4 +15,7 @@
   ~ limitations under the License.
   -->
 
-<resources></resources>
+<resources>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+</resources>
