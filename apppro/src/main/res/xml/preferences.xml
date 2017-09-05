@@ -16,12 +16,19 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
+        android:key="@string/pref_key_floating_window"
+        android:summary="Show floating window when exit app"
+        android:title="Floating converter" />
+
+    <SwitchPreference
+        android:defaultValue="false"
         android:key="@string/pref_key_enable_encode"
         android:summary="You can encode by click notification"
         android:title="Encode notification" />
+
     <SwitchPreference
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:key="@string/pref_key_enable_decode"
         android:summary="You can decode by click notification"
         android:title="Decode notification" />

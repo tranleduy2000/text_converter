@@ -36,7 +36,7 @@ public enum CodecMethod {
     URL,
     RANDOM_CASE,
     CAESAR,
-    ATBASH
-
+    ATBASH,
+    ROT_13
 
 }

@@ -25,4 +25,5 @@
     <string name="floating_notification_description">Tap to open</string>
     <string name="open_floating_converter">Open floating converter</string>
     <string name="floating_converter">Floating converter</string>
+    <string name="pref_key_floating_window">pref_key_floating_window</string>
 </resources>

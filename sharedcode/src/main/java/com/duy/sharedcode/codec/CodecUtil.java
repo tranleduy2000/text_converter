@@ -80,6 +80,8 @@ public class CodecUtil {
                 return new CaesarTool().decode(inp);
             case ATBASH:
                 return new AtbashTool().decode(inp);
+            case ROT_13:
+                return new RotCodec().decode(inp);
         }
         return inp;
     }
@@ -139,6 +141,8 @@ public class CodecUtil {
                 return new CaesarTool().encode(inp);
             case ATBASH:
                 return new AtbashTool().encode(inp);
+            case ROT_13:
+                return new RotCodec().encode(inp);
         }
         return inp;
     }

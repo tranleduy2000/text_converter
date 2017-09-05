@@ -44,21 +44,22 @@
         <item>Random Case</item>
         <item>Caesar offset 1</item>
         <item>Atbash</item>
+        <item>ROT 13</item>
     </string-array>
 
     <string-array name="barcode_format">
-        <item>Aztec 2D barcode</item>
+        <item>Aztec 2D</item>
         <item>CODABAR 1D</item>
         <item>Code 39 1D</item>
         <item>Code 93 1D</item>
         <item>Code 128 1D</item>
-        <item>Data Matrix 2D barcode</item>
+        <item>Data Matrix 2D</item>
         <item>EAN-8 1D</item>
         <item>EAN-13 1D</item>
-        <item>ITF (Interleaved Two of Five) 1D</item>
-        <item>MaxiCode 2D barcode</item>
+        <item>ITF 1D</item>
+        <item>MaxiCode 2D</item>
         <item>PDF417</item>
-        <item>QR Code 2D barcode</item>
+        <item>QR Code 2D</item>
         <item>RSS 14</item>
         <item>RSS EXPANDED</item>
         <item>UPC-A 1D</item>

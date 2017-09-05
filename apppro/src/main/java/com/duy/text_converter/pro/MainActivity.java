@@ -21,6 +21,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -84,9 +85,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         checkLicense();
         bindView();
-        showNotification();
 
-        startActivity(new Intent(this, FloatingConverterOpenShortCutActivity.class));
     }
 
     private void checkLicense() {
@@ -362,6 +361,20 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void applicationError(int errorCode) {
+        }
+    }
+
+    @Override
+    public void finish() {
+        showNotification();
+        showFloatingWindow();
+        super.finish();
+    }
+
+    private void showFloatingWindow() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        if (pref.getBoolean(getString(R.string.pref_key_floating_window), false)){
+            startActivity(new Intent(this, FloatingConverterOpenShortCutActivity.class));
         }
     }
 }
