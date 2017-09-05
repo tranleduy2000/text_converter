@@ -41,7 +41,7 @@ import com.kobakei.ratethisapp.RateThisApp;
 
 public class MainActivity extends AppCompatActivity {
     private CoordinatorLayout mCoordinatorLayout;
-    private Toolbar mToolbar;
+    private Toolbar moTolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private void bindView() {
 
         this.mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
+        moTolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(moTolbar);
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -152,14 +152,14 @@ public class MainActivity extends AppCompatActivity {
      * hide appbar layout when keyboard visible
      */
     private void hideAppBar() {
-        mToolbar.setVisibility(View.GONE);
+        moTolbar.setVisibility(View.GONE);
     }
 
     /**
      * show appbar layout when keyboard gone
      */
     private void showAppBar() {
-        mToolbar.setVisibility(View.VISIBLE);
+        moTolbar.setVisibility(View.VISIBLE);
     }
 
     protected void onShowKeyboard() {

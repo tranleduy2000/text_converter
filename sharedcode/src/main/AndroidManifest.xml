@@ -10,7 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true">
+        android:supportsRtl="false">
         <activity android:name="com.duy.sharedcode.barcode.BarcodeEncodeActivity" />
 
         <provider

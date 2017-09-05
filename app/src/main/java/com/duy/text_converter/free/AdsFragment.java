@@ -34,6 +34,7 @@ import com.google.android.gms.ads.NativeExpressAdView;
 
 public class AdsFragment extends Fragment {
     public static final int INDEX = 1;
+    private static final String TAG = "AdsFragment";
     private NativeExpressAdView mAdView;
 
     public static AdsFragment newInstance() {
@@ -60,13 +61,13 @@ public class AdsFragment extends Fragment {
                 StoreUtil.gotoPlayStore(getActivity(), "com.duy.text_converter.pro");
             }
         });
-        mAdView = view.findViewById(R.id.ad_view);
-        loadAd();
+        loadAd(view);
     }
 
-    private void loadAd() {
-        AdRequest adRequest = new AdRequest.Builder().build();
-        // Start loading the ad in the background.
+    private void loadAd(View view) {
+        mAdView = view.findViewById(R.id.ad_view);
+        AdRequest.Builder builder = new AdRequest.Builder();
+        AdRequest adRequest = builder.build();
         mAdView.loadAd(adRequest);
     }
 
