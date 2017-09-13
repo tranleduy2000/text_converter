@@ -18,14 +18,12 @@ package com.duy.text_converter.pro.floating;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.widget.Toast;
 
 import com.duy.text_converter.pro.R;
+import com.duy.text_converter.pro.license.Premium;
 
 /**
  * Created by Duy on 9/4/2017.
@@ -37,9 +35,8 @@ public class FloatingConverterOpenShortCutActivity extends Activity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.getBoolean("pirate", false)) {
-            Toast.makeText(this, "Pirate version", Toast.LENGTH_SHORT).show();
+        if (Premium.isCrack(this)) {
+            finish();
             return;
         }
         if (android.os.Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(this)) {

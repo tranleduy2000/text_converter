@@ -30,7 +30,7 @@ public class HexTool implements Encoder, Decoder {
     public static String textToHex(String text) {
         StringBuilder result = new StringBuilder();
         char[] chars = text.toCharArray();
-        for (char c :chars) {
+        for (char c : chars) {
             result.append(Integer.toHexString(c)).append(" ");
         }
         return result.toString();
@@ -56,7 +56,11 @@ public class HexTool implements Encoder, Decoder {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return textToHex(text);
+        try {
+            return textToHex(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 
     @NonNull

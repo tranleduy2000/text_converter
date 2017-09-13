@@ -19,15 +19,18 @@ package com.duy.text_converter.pro.menu;
 //class is in a sub-package.
 
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.duy.sharedcode.codec.CodecUtil;
 
+@TargetApi(Build.VERSION_CODES.M)
 public class EncodeProcessTextActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

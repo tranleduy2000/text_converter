@@ -40,6 +40,7 @@ public class BarcodeEncodeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(R.string.barcode);
@@ -50,7 +51,7 @@ public class BarcodeEncodeActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new BarcodeEncodedPagerAdapter(getSupportFragmentManager(), text));
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(8); //barcode
         ((TabLayout) findViewById(R.id.tab_layout)).setupWithViewPager(viewPager);
 

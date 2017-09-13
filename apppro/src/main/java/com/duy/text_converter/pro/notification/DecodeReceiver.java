@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.codec.CodecUtil;
+import com.duy.text_converter.pro.license.Premium;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 /**
@@ -39,7 +40,7 @@ public class DecodeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         FirebaseAnalytics.getInstance(context).logEvent("decode_notification", new Bundle());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (preferences.getBoolean("pirate", false)) {
+        if (Premium.isCrack(context)) {
             Toast.makeText(context, "Pirate version", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -62,12 +63,8 @@ public class DecodeReceiver extends BroadcastReceiver {
                 return;
             }
             String inp = ClipboardUtil.getClipboard(context);
-            if (inp == null) {
-                Toast.makeText(context, "Clipboard is empty", Toast.LENGTH_SHORT).show();
-            } else {
-                String result = CodecUtil.decode(methodName, context, inp);
-                setText(context, result);
-            }
+            String result = CodecUtil.decode(methodName, context, inp);
+            setText(context, result);
         }
         closeStatusBar(context);
     }

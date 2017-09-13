@@ -27,13 +27,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,10 +46,6 @@ import com.duy.text_converter.pro.license.Key;
 import com.duy.text_converter.pro.license.PolicyFactory;
 import com.duy.text_converter.pro.license.Premium;
 import com.duy.text_converter.pro.notification.StyleNotificationManager;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.MobileAds;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
 import com.google.android.vending.licensing.Policy;
@@ -59,47 +53,45 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
     private CoordinatorLayout mCoordinatorLayout;
-    private Toolbar toolbar;
+    private Toolbar mToolbar;
     private KeyBoardEventListener mKeyBoardListener;
     private ViewPager mViewPager;
     private PagerSectionAdapter mAdapter;
     private LicenseChecker mChecker;
     private CheckLicenseCallBack mCallBack;
     private Handler mHandler;
-    @Nullable
-    private InterstitialAd interstitialAd = null;
-    private AtomicBoolean canShowAds = new AtomicBoolean(true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         if (BuildConfig.DEBUG) FirebaseCrash.setCrashCollectionEnabled(false);
+        if (Premium.isCrack(this)) {
+            finish();
+            return;
+        }
         setContentView(R.layout.activity_main);
         checkLicense();
         bindView();
-
     }
 
     private void checkLicense() {
         mHandler = new Handler();
-        mChecker = new LicenseChecker(this, PolicyFactory.createPolicy(this, getPackageName()),
-                Key.BASE_64_PUBLIC_KEY);
+        Policy policy = PolicyFactory.createPolicy(this, getPackageName());
+        mChecker = new LicenseChecker(this, policy, Key.BASE_64_PUBLIC_KEY);
         mCallBack = new CheckLicenseCallBack();
         mChecker.checkAccess(mCallBack);
     }
 
     private void bindView() {
-        this.mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -122,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
         //attach listener hide/show keyboard
         mKeyBoardListener = new KeyBoardEventListener(this);
         mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(mKeyBoardListener);
-
     }
 
     private void showNotification() {
@@ -175,21 +166,20 @@ public class MainActivity extends AppCompatActivity {
                 + BuildConfig.APPLICATION_ID);
         intent.setType("text/plain");
         startActivity(intent);
-
     }
 
     /**
      * hide appbar layout when keyboard visible
      */
     private void hideAppBar() {
-        toolbar.setVisibility(View.GONE);
+        mToolbar.setVisibility(View.GONE);
     }
 
     /**
      * show appbar layout when keyboard gone
      */
     private void showAppBar() {
-        toolbar.setVisibility(View.VISIBLE);
+        mToolbar.setVisibility(View.VISIBLE);
     }
 
     protected void onShowKeyboard() {
@@ -243,11 +233,10 @@ public class MainActivity extends AppCompatActivity {
     private void showDialogCrack() {
         FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());
         Premium.PREMIUM = false;
-        PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean("pirate", true).apply();
+        Premium.setCrack(this, true);
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                initializerAds();
                 Bundle bundle = new Bundle();
                 bundle.putString("device_id", Installation.id(MainActivity.this));
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -264,56 +253,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void initializerAds() {
-        canShowAds.set(true);
-        MobileAds.initialize(MainActivity.this);
-        interstitialAd = new InterstitialAd(MainActivity.this);
-        if (BuildConfig.DEBUG) {
-            interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-        } else {
-            interstitialAd.setAdUnitId("ca-app-pub-9351804859208340/5317328332");
-        }
-        interstitialAd.loadAd(new AdRequest.Builder().build());
-        interstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-        });
-        Runnable showAds = new Runnable() {
-            @Override
-            public void run() {
-                while (canShowAds.get()) {
-                    Log.d(TAG, "run() called");
-
-                    try {
-                        Thread.sleep(20 * 1000); //20s
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    if (interstitialAd != null && !isFinishing() && !Premium.PREMIUM) {
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (interstitialAd.isLoaded()) {
-                                    interstitialAd.show();
-                                }
-                            }
-                        });
-                    }
-                }
-            }
-        };
-        new Thread(showAds).start();
+    @Override
+    public void finish() {
+        showNotification();
+        showFloatingWindow();
+        super.finish();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy() called");
-
-        canShowAds.set(false);
-        interstitialAd = null;
+    private void showFloatingWindow() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        if (pref.getBoolean(getString(R.string.pref_key_floating_window), false)) {
+            startActivity(new Intent(this, FloatingConverterOpenShortCutActivity.class));
+        }
     }
 
     private class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
@@ -361,20 +312,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void applicationError(int errorCode) {
-        }
-    }
-
-    @Override
-    public void finish() {
-        showNotification();
-        showFloatingWindow();
-        super.finish();
-    }
-
-    private void showFloatingWindow() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        if (pref.getBoolean(getString(R.string.pref_key_floating_window), false)){
-            startActivity(new Intent(this, FloatingConverterOpenShortCutActivity.class));
         }
     }
 }

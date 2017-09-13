@@ -16,10 +16,25 @@
 
 package com.duy.text_converter.pro.license;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 /**
  * Created by Duy on 26-Jul-17.
  */
 
 public class Premium {
+    public static final String KEY_CRACK = "pirate";
     public static boolean PREMIUM = true;
+
+    public static boolean isCrack(Context context) {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+        return pref.getBoolean(KEY_CRACK, false);
+    }
+
+    public static void setCrack(Context context, boolean isCrack) {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
+        pref.edit().putBoolean(KEY_CRACK, isCrack).apply();
+    }
 }

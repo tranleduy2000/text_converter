@@ -22,12 +22,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-//import android.util.Log;
 import android.widget.Toast;
 
 import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.codec.CodecUtil;
+import com.duy.text_converter.pro.license.Premium;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+//import android.util.Log;
 
 /**
  * Created by Duy on 26-Jul-17.
@@ -40,7 +42,7 @@ public class EncodeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         FirebaseAnalytics.getInstance(context).logEvent("encode_notification", new Bundle());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (preferences.getBoolean("pirate", false)) {
+        if (Premium.isCrack(context)) {
             Toast.makeText(context, "Pirate version", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -63,13 +65,8 @@ public class EncodeReceiver extends BroadcastReceiver {
                 return;
             }
             String inp = ClipboardUtil.getClipboard(context);
-            if (inp == null) {
-                Toast.makeText(context, "Clipboard is empty", Toast.LENGTH_SHORT).show();
-                return;
-            } else {
-                String encode = CodecUtil.encode(name, context, inp);
-                setText(context, encode);
-            }
+            String encode = CodecUtil.encode(name, context, inp);
+            setText(context, encode);
         }
         closeStatusBar(context);
     }

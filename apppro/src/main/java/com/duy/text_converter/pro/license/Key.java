@@ -26,7 +26,6 @@ public class Key {
             "OLCvmEZjRfO0F4Op5LvM0IpH53qBzav9XK1Bvynnw/0zrvi5QxWDCWNYQnfAKpw79tHp854lPHYQponFmJjil" +
             "Wwm7/wqss+pZggpOfLFkhmnFGrycZl8lfrR74AO6BnSrLDOfjWaBPNC23sVscC2/++a/V8Qb43zZYpVwz+r4aO" +
             "Mhc8gFHt/E+s83KNhBO1JOKJCBdkyN+UkyPp2mCffTDy3JPMWPgs+QR7I4GFWTu6IKy76blcurVODQQIDAQAB";
-
     public static final byte[] SALT = new byte[]{
             68, 65, 18, 22, 16, 71, 56, 64, 15, 43,
             51, 44, 3, 14, 2, 87, 59, 6, 94, 28};
