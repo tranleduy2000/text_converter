@@ -45,10 +45,10 @@ public class ClipboardUtil {
         try {
             ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData primaryClip = clipboard.getPrimaryClip();
-            if (primaryClip.getItemCount() > 0) {
+            if (primaryClip != null && primaryClip.getItemCount() > 0) {
                 return primaryClip.getItemAt(0).coerceToText(context).toString();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace(); //null clipboard
         }
         return "";
