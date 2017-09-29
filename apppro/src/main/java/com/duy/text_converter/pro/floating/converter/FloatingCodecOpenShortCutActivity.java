@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.pro.floating;
+package com.duy.text_converter.pro.floating.converter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -29,7 +29,7 @@ import com.duy.text_converter.pro.license.Premium;
  * Created by Duy on 9/4/2017.
  */
 
-public class FloatingConverterOpenShortCutActivity extends Activity {
+public class FloatingCodecOpenShortCutActivity extends Activity {
     private static final int REQUEST_CODE_WINDOW_OVERLAY_PERMISSION = 10001;
 
     @Override
@@ -49,7 +49,7 @@ public class FloatingConverterOpenShortCutActivity extends Activity {
     }
 
     private void onSuccess() {
-        Intent intent = new Intent(this, FloatingConverter.class);
+        Intent intent = new Intent(this, FloatingCodecService.class);
         startService(intent);
         finish();
     }

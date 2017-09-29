@@ -40,7 +40,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
-import com.duy.text_converter.pro.floating.FloatingConverterOpenShortCutActivity;
+import com.duy.text_converter.pro.floating.converter.FloatingCodecOpenShortCutActivity;
 import com.duy.text_converter.pro.license.Installation;
 import com.duy.text_converter.pro.license.Key;
 import com.duy.text_converter.pro.license.PolicyFactory;
@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
     private void showFloatingWindow() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         if (pref.getBoolean(getString(R.string.pref_key_floating_window), false)) {
-            startActivity(new Intent(this, FloatingConverterOpenShortCutActivity.class));
+            startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
         }
     }
 

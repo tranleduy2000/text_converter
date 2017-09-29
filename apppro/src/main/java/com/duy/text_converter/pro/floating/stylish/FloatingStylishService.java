@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.pro.floating;
+package com.duy.text_converter.pro.floating.stylish;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -35,13 +35,14 @@ import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.CodecUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.text_converter.pro.R;
+import com.duy.text_converter.pro.floating.converter.CodecMethodAdapter;
 import com.xlythe.view.floating.FloatingView;
 
 /**
  * Created by Duy on 9/4/2017.
  */
 
-public class FloatingConverter extends FloatingView implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class FloatingStylishService extends FloatingView implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private BaseEditText mInput, mOutput;
     private ViewPager mConvertMethod;
     private TextWatcher mOutputWatcher = new TextWatcher() {
@@ -99,7 +100,7 @@ public class FloatingConverter extends FloatingView implements ViewPager.OnPageC
         view.findViewById(R.id.image_paste_out).setOnClickListener(this);
 
         mConvertMethod = view.findViewById(R.id.spinner_choose);
-        mConvertMethod.setAdapter(new ConvertMethodAdapter(getContext()));
+        mConvertMethod.setAdapter(new CodecMethodAdapter(getContext()));
         mConvertMethod.addOnPageChangeListener(this);
         ((TabLayout) view.findViewById(R.id.tab_layout)).setupWithViewPager(mConvertMethod);
         return view;
@@ -138,7 +139,7 @@ public class FloatingConverter extends FloatingView implements ViewPager.OnPageC
     @NonNull
     @Override
     protected Notification createNotification() {
-        Intent intent = new Intent(this, FloatingConverter.class).setAction(ACTION_OPEN);
+        Intent intent = new Intent(this, FloatingStylishService.class).setAction(ACTION_OPEN);
         return new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(getString(R.string.app_name))

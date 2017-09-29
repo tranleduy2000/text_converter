@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.pro.floating;
+package com.duy.text_converter.pro.floating.stylish;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +28,7 @@ import com.duy.text_converter.pro.R;
  * Created by Duy on 9/4/2017.
  */
 
-public class FloatingConverterCreateShortCutActivity extends Activity {
+public class FloatingStylishCreateShortCutActivity extends Activity {
     private static final int REQUEST_CODE_WINDOW_OVERLAY_PERMISSION = 10001;
 
     @Override
@@ -49,7 +49,7 @@ public class FloatingConverterCreateShortCutActivity extends Activity {
         Intent.ShortcutIconResource icon = Intent.ShortcutIconResource.fromContext(this, R.mipmap.ic_launcher_round);
 
         Intent intent = new Intent();
-        Intent launchIntent = new Intent(this, FloatingConverterOpenShortCutActivity.class);
+        Intent launchIntent = new Intent(this, FloatingStylishOpenShortCutActivity.class);
 
         intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, launchIntent);
         intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.app_name));

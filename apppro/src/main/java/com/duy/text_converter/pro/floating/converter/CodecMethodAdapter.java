@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.pro.floating;
+package com.duy.text_converter.pro.floating.converter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -27,10 +27,10 @@ import com.duy.text_converter.pro.R;
  * Created by Duy on 9/4/2017.
  */
 
-public class ConvertMethodAdapter extends PagerAdapter {
+public class CodecMethodAdapter extends PagerAdapter {
     private String[] names;
 
-    public ConvertMethodAdapter(Context context) {
+    public CodecMethodAdapter(Context context) {
         names = context.getResources().getStringArray(R.array.codec_methods);
     }
 
