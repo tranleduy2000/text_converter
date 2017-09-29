@@ -40,7 +40,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
-import com.duy.text_converter.pro.floating.converter.FloatingCodecOpenShortCutActivity;
+import com.duy.text_converter.pro.floating.codec.FloatingCodecOpenShortCutActivity;
 import com.duy.text_converter.pro.license.Installation;
 import com.duy.text_converter.pro.license.Key;
 import com.duy.text_converter.pro.license.PolicyFactory;

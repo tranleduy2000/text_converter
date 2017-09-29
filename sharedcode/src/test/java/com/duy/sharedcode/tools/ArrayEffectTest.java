@@ -16,7 +16,7 @@
 
 package com.duy.sharedcode.tools;
 
-import com.duy.sharedcode.stylist.StylistGenerator;
+import com.duy.sharedcode.stylish.StylistGenerator;
 
 import junit.framework.TestCase;
 

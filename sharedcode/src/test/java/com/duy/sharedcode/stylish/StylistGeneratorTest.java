@@ -14,11 +14,21 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.stylist;
+package com.duy.sharedcode.stylish;
+
+import junit.framework.TestCase;
+
+import java.util.ArrayList;
 
 /**
- * Created by DUy on 07-Feb-17.
+ * Created by Duy on 08-Aug-17.
  */
-public interface Style {
-    String generate(String input);
+public class StylistGeneratorTest extends TestCase {
+    public void testGenerate() throws Exception {
+        ArrayList<String> generate = new StylistGenerator().generate("package com.duy.sharedcode.stylist;");
+        for (String s : generate) {
+            System.out.println(generate);
+        }
+    }
+
 }

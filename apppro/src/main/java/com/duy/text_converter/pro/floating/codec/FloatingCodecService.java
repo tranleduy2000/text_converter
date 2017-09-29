@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.pro.floating.converter;
+package com.duy.text_converter.pro.floating.codec;
 
 import android.app.Notification;
 import android.app.PendingIntent;

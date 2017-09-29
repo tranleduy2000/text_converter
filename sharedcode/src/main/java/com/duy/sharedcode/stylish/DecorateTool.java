@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.stylist;
+package com.duy.sharedcode.stylish;
 
 import java.util.ArrayList;
 

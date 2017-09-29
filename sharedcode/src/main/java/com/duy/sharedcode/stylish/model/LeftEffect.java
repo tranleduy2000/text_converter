@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.stylist.model;
+package com.duy.sharedcode.stylish.model;
 
 
 import android.support.annotation.NonNull;
 
-import com.duy.sharedcode.stylist.Style;
+import com.duy.sharedcode.stylish.Style;
 
 /**
  * Created by Duy on 13-Jul-17.
  */
-public class LeftRightStyle implements Style {
-    @NonNull
-    private String left, right;
 
-    public LeftRightStyle(@NonNull String left, @NonNull String right) {
+public class LeftEffect implements Style {
+
+    private String left;
+
+    public LeftEffect(String left) {
         this.left = left;
-        this.right = right;
     }
 
     @NonNull
@@ -39,11 +39,12 @@ public class LeftRightStyle implements Style {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             if (text.charAt(i) == ' ') {
-                result.append(" ");
+                result.append(left).append(" ");
             } else {
-                result.append(left).append(text.charAt(i)).append(right);
+                result.append(left).append(text.charAt(i));
             }
         }
+        result.append(left);
         return result.toString();
     }
 }

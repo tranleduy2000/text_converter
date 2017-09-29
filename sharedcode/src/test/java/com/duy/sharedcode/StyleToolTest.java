@@ -16,8 +16,8 @@
 
 package com.duy.sharedcode;
 
-import com.duy.sharedcode.stylist.Style;
-import com.duy.sharedcode.stylist.model.ReplaceEffect;
+import com.duy.sharedcode.stylish.Style;
+import com.duy.sharedcode.stylish.model.ReplaceEffect;
 
 import junit.framework.TestCase;
 

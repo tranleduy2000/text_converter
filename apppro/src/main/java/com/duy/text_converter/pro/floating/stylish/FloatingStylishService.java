@@ -35,7 +35,7 @@ import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.CodecUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.text_converter.pro.R;
-import com.duy.text_converter.pro.floating.converter.CodecMethodAdapter;
+import com.duy.text_converter.pro.floating.codec.CodecMethodAdapter;
 import com.xlythe.view.floating.FloatingView;
 
 /**

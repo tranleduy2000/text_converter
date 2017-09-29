@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.stylist;
+package com.duy.sharedcode.stylish;
 
-import com.duy.sharedcode.stylist.model.BlueEffect;
+import com.duy.sharedcode.stylish.model.BlueEffect;
 
 import junit.framework.TestCase;
 

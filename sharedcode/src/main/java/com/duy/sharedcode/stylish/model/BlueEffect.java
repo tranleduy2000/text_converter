@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.stylist.model;
+package com.duy.sharedcode.stylish.model;
 
 import android.support.annotation.NonNull;
 
-import com.duy.sharedcode.stylist.Style;
+import com.duy.sharedcode.stylish.Style;
 
 /**
  * Created by Duy on 13-Jul-17.

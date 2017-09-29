@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.stylist;
+package com.duy.sharedcode.stylish;
 
 
 import com.duy.sharedcode.codec.ZalgoMiniTool;
-import com.duy.sharedcode.stylist.model.BlueEffect;
-import com.duy.sharedcode.stylist.model.LeftEffect;
-import com.duy.sharedcode.stylist.model.LeftRightStyle;
-import com.duy.sharedcode.stylist.model.ReplaceEffect;
-import com.duy.sharedcode.stylist.model.RightEffect;
+import com.duy.sharedcode.stylish.model.BlueEffect;
+import com.duy.sharedcode.stylish.model.LeftEffect;
+import com.duy.sharedcode.stylish.model.LeftRightStyle;
+import com.duy.sharedcode.stylish.model.ReplaceEffect;
+import com.duy.sharedcode.stylish.model.RightEffect;
 
 import java.util.ArrayList;
 
