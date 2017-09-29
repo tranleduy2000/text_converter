@@ -35,7 +35,7 @@ import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.CodecUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.text_converter.pro.R;
-import com.xlythe.view.floating.FloatingView;
+import com.duy.text_converter.pro.view.floating.FloatingView;
 
 /**
  * Created by Duy on 9/4/2017.
@@ -80,12 +80,12 @@ public class FloatingCodecService extends FloatingView implements ViewPager.OnPa
     @NonNull
     @Override
     protected View inflateButton(@NonNull ViewGroup parent) {
-        return LayoutInflater.from(this).inflate(R.layout.floating_converter_icon, parent, false);
+        return LayoutInflater.from(this).inflate(R.layout.floating_codec_icon, parent, false);
     }
 
     @NonNull
     @Override
-    protected View inflateView(@NonNull ViewGroup parent) {
+    protected View onCreateView(@NonNull ViewGroup parent) {
         ContextThemeWrapper context = new ContextThemeWrapper(this, R.style.AppTheme);
         View view = LayoutInflater.from(context).inflate(R.layout.floating_codec, parent, false);
         mInput = view.findViewById(R.id.edit_input);

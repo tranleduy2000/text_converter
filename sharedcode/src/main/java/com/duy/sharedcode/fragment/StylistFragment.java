@@ -38,25 +38,19 @@ import com.duy.textconverter.sharedcode.R;
 import java.util.ArrayList;
 
 
-
 /**
  * Created by DUy on 07-Feb-17.
  */
 
 public class StylistFragment extends Fragment implements TextWatcher {
-    private static final String TAG = CodecFragment.class.getSimpleName();
-    public static String KEY = "StylistFragment";
-    private Context mContext;
+    public static final String KEY = "StylistFragment";
+
     private EditText mInput;
     private RecyclerView mListResult;
     private StyleAdapter mAdapter;
 
     public static StylistFragment newInstance() {
-
-        Bundle args = new Bundle();
-
         StylistFragment fragment = new StylistFragment();
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -64,7 +58,6 @@ public class StylistFragment extends Fragment implements TextWatcher {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mContext = context;
     }
 
     @Nullable
@@ -72,7 +65,6 @@ public class StylistFragment extends Fragment implements TextWatcher {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_style_list, container, false);
-
     }
 
     @Override
@@ -80,7 +72,7 @@ public class StylistFragment extends Fragment implements TextWatcher {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
         mListResult = view.findViewById(R.id.list_out);
-        mListResult.setLayoutManager(new LinearLayoutManager(mContext));
+        mListResult.setLayoutManager(new LinearLayoutManager(getContext()));
         mListResult.setHasFixedSize(true);
 
         mAdapter = new StyleAdapter(getActivity());
@@ -112,14 +104,13 @@ public class StylistFragment extends Fragment implements TextWatcher {
     }
 
     public void save() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         sharedPreferences.edit().putString(KEY + 1, mInput.getText().toString()).apply();
     }
 
     public void restore() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mInput.setText(sharedPreferences.getString(KEY + 1, ""));
-
     }
 
     @Override

@@ -14,26 +14,28 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
+package com.duy.text_converter.pro.view.floating;
 
-android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+import android.animation.Animator;
 
-    defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.2.1"
+public abstract class AnimationFinishedListener implements Animator.AnimatorListener {
+    @Override
+    public void onAnimationCancel(Animator animation) {
+        onAnimationFinished();
     }
-    buildTypes {
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
-    }
-}
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:26.+"
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+    }
+
+    @Override
+    public void onAnimationStart(Animator animation) {
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animation) {
+        onAnimationFinished();
+    }
+
+    public abstract void onAnimationFinished();
 }

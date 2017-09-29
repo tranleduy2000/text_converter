@@ -1,4 +1,20 @@
-package com.xlythe.view.floating;
+/*
+ * Copyright (c) 2017 by Tran Le Duy
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.duy.text_converter.pro.view.floating;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
@@ -18,6 +34,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -33,26 +50,31 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 
+import com.duy.text_converter.pro.R;
+
+
 public abstract class FloatingView extends Service implements OnTouchListener {
+    public static final String ACTION_OPEN = "OPEN";
     private static final String TAG = "FloatingView";
     private static final boolean DEBUG = false;
-
     private static final int MARGIN_VIEW = 20;
     private static final int MARGIN_VERTICAL = 5;
     private static final int MARGIN_HORIZONTAL = -10;
     private static final int VIBRATION = 25;
     private static final int DELETE_ANIM_DURATION = 300;
-
     private static final int NOTIFICATION_ID = 1;
-    public static final String ACTION_OPEN = "com.xlythe.view.floating.OPEN";
-
+    private final Point mStartingPositionPoint = new Point();
+    private final Point mOpenPositionPoint = new Point();
+    private final Point mIconPositionInDeleteModePoint = new Point();
+    private final Point mWiggle = new Point(0, 0);
+    protected View mDraggableIcon;
+    protected ViewGroup mInactiveButton;
     private int CLOSE_ANIMATION_DISTANCE;
     private int DRAG_DELTA;
     private int STARTING_POINT_Y;
     private int DELETE_BOX_WIDTH;
     private int DELETE_BOX_HEIGHT;
     private int MAGIC_OFFSET;
-
     // Drag variables
     private float mPrevDragX;
     private float mPrevDragY;
@@ -60,15 +82,10 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     private float mOrigY;
     private boolean mDragged;
     private int mIconSize;
-    private final Point mStartingPositionPoint = new Point();
-    private final Point mOpenPositionPoint = new Point();
-
     // View variables
     private ViewGroup mRootView;
     private BroadcastReceiver mBroadcastReceiver;
     private WindowManager mWindowManager;
-    private View mDraggableIcon;
-    private ViewGroup mInactiveButton;
     private WindowManager.LayoutParams mInactiveParams;
     private View mView;
     private ViewGroup mDeleteView;
@@ -78,16 +95,12 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     private boolean mIsBeingDestroyed = false;
     private int mCurrentPosX = -1;
     private int mCurrentPosY = -1;
-
     // Animation variables
     private LimitedQueue<Float> mDeltaXArray;
     private LimitedQueue<Float> mDeltaYArray;
     private AnimationTask mAnimationTask;
-    private final Point mIconPositionInDeleteModePoint = new Point();
-
     // Open/Close variables
     private boolean mIsViewOpen = false;
-    private final Point mWiggle = new Point(0, 0);
     private boolean mEnableWiggle = false;
 
     // Close logic
@@ -98,12 +111,13 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     private boolean mIsAnimationLocked = false;
     private boolean mDontVibrate = false;
     private BroadcastReceiver mHomeKeyReceiver;
+    private Context mCompatThemeContent;
 
     @NonNull
     protected abstract View inflateButton(@NonNull ViewGroup parent);
 
     @NonNull
-    protected abstract View inflateView(@NonNull ViewGroup parent);
+    protected abstract View onCreateView(@NonNull ViewGroup parent);
 
     @NonNull
     protected abstract Notification createNotification();
@@ -217,7 +231,13 @@ public abstract class FloatingView extends Service implements OnTouchListener {
             mDraggableIcon.setBackgroundColor(0x30ff0000);
             mInactiveButton.getChildAt(0).setBackgroundColor(0x30ff0000);
         }
+        setAccentColor();
     }
+
+    protected void setAccentColor() {
+
+    }
+
 
     @Override
     public void onDestroy() {
@@ -731,7 +751,7 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     private void show() {
         Log.v(TAG, "show()");
         if (mView == null) {
-            mView = inflateView(mRootView);
+            mView = onCreateView(mRootView);
             mView.setOnTouchListener(new OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -750,7 +770,12 @@ public abstract class FloatingView extends Service implements OnTouchListener {
         }
         // Adjust view location
         if (!mIsDestroyed) {
-            mView.setTranslationY(getOpenPosition().y + mDraggableIcon.getHeight());
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                mView.setTranslationX(-mDraggableIcon.getWidth());
+                mView.setTranslationY(getOpenPosition().y);
+            } else {
+                mView.setTranslationY(getOpenPosition().y + mDraggableIcon.getHeight());
+            }
         }
 
         // Animate calc in
@@ -809,7 +834,10 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     }
 
     protected Context getContext() {
-        return this;
+        if (mCompatThemeContent == null) {
+            mCompatThemeContent = new ContextThemeWrapper(this, R.style.AppTheme);
+        }
+        return mCompatThemeContent;
     }
 
     private int getScreenWidth() {
@@ -837,6 +865,12 @@ public abstract class FloatingView extends Service implements OnTouchListener {
 
     private float sqr(float f) {
         return f * f;
+    }
+
+    public interface DynamicUpdate {
+        float getTranslationX(float percent);
+
+        float getTranslationY(float percent);
     }
 
     // Timer for animation/automatic movement of the tray.
@@ -954,10 +988,5 @@ public abstract class FloatingView extends Service implements OnTouchListener {
         void cancel() {
             mDraggableIcon.animate().cancel();
         }
-    }
-
-    public interface DynamicUpdate {
-        float getTranslationX(float percent);
-        float getTranslationY(float percent);
     }
 }

@@ -16,7 +16,7 @@
 
 package com.duy.sharedcode.adapters;
 
-import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +31,11 @@ import java.util.ArrayList;
 
 
 public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> {
-    private final Activity context;
+    private  Context context;
     private LayoutInflater inflater;
     private ArrayList<String> mList = new ArrayList<>();
 
-    public StyleAdapter(Activity context) {
+    public StyleAdapter(Context context) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
     }

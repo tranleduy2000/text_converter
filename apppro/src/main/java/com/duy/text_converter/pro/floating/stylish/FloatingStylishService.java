@@ -20,120 +20,56 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.view.ContextThemeWrapper;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
-import com.duy.sharedcode.ClipboardUtil;
-import com.duy.sharedcode.codec.CodecMethod;
-import com.duy.sharedcode.codec.CodecUtil;
-import com.duy.sharedcode.view.BaseEditText;
+import com.duy.sharedcode.adapters.StyleAdapter;
+import com.duy.sharedcode.stylish.StylistGenerator;
 import com.duy.text_converter.pro.R;
-import com.duy.text_converter.pro.floating.codec.CodecMethodAdapter;
-import com.xlythe.view.floating.FloatingView;
+import com.duy.text_converter.pro.view.floating.FloatingView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Duy on 9/4/2017.
  */
 
-public class FloatingStylishService extends FloatingView implements ViewPager.OnPageChangeListener, View.OnClickListener {
-    private BaseEditText mInput, mOutput;
-    private ViewPager mConvertMethod;
-    private TextWatcher mOutputWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+public class FloatingStylishService extends FloatingView implements TextWatcher {
 
-        }
 
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (mOutput.isFocused()) convert(false);
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
-    private TextWatcher mInputWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (mInput.isFocused()) convert(true);
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
+    private EditText mInput;
+    private RecyclerView mListResult;
+    private StyleAdapter mAdapter;
 
     @NonNull
     @Override
     protected View inflateButton(@NonNull ViewGroup parent) {
-        return LayoutInflater.from(this).inflate(R.layout.floating_converter_icon, parent, false);
+        return LayoutInflater.from(getContext()).inflate(R.layout.floating_stylish_icon, parent, false);
     }
 
     @NonNull
     @Override
-    protected View inflateView(@NonNull ViewGroup parent) {
+    protected View onCreateView(@NonNull ViewGroup parent) {
         ContextThemeWrapper context = new ContextThemeWrapper(this, R.style.AppTheme);
-        View view = LayoutInflater.from(context).inflate(R.layout.floating_codec, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.floating_stylish, parent, false);
         mInput = view.findViewById(R.id.edit_input);
-        mOutput = view.findViewById(R.id.edit_output);
-        mInput.addTextChangedListener(mInputWatcher);
-        mOutput.addTextChangedListener(mOutputWatcher);
+        mListResult = view.findViewById(R.id.list_out);
+        mListResult.setLayoutManager(new LinearLayoutManager(getContext()));
+        mListResult.setHasFixedSize(true);
 
-        view.findViewById(R.id.img_copy).setOnClickListener(this);
-        view.findViewById(R.id.image_paste).setOnClickListener(this);
-        view.findViewById(R.id.img_copy_out).setOnClickListener(this);
-        view.findViewById(R.id.image_paste_out).setOnClickListener(this);
+        mAdapter = new StyleAdapter(getContext());
+        mListResult.setAdapter(mAdapter);
 
-        mConvertMethod = view.findViewById(R.id.spinner_choose);
-        mConvertMethod.setAdapter(new CodecMethodAdapter(getContext()));
-        mConvertMethod.addOnPageChangeListener(this);
-        ((TabLayout) view.findViewById(R.id.tab_layout)).setupWithViewPager(mConvertMethod);
+        mInput.addTextChangedListener(this);
         return view;
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_copy:
-                ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
-                break;
-            case R.id.image_paste:
-                mInput.setText(ClipboardUtil.getClipboard(getContext()));
-                break;
-            case R.id.img_copy_out:
-                ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
-                break;
-            case R.id.image_paste_out:
-                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
-                break;
-        }
-    }
-
-    private void convert(boolean to) {
-        int index = mConvertMethod.getCurrentItem();
-        CodecMethod method = CodecMethod.values()[index];
-        if (to) {
-            String inp = mInput.getText().toString();
-            mOutput.setText(CodecUtil.encode(method, inp));
-        } else {
-            String out = mOutput.getText().toString();
-            mInput.setText(CodecUtil.decode(method, out));
-        }
     }
 
     @NonNull
@@ -142,29 +78,32 @@ public class FloatingStylishService extends FloatingView implements ViewPager.On
         Intent intent = new Intent(this, FloatingStylishService.class).setAction(ACTION_OPEN);
         return new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(getString(R.string.app_name))
+                .setContentTitle(getString(R.string.floating_stylish))
                 .setContentText(getString(R.string.floating_notification_description))
                 .setContentIntent(PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
                 .setPriority(NotificationCompat.PRIORITY_MIN)
                 .build();
     }
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+    public void convert() {
+        String inp = mInput.getText().toString();
+        if (inp.isEmpty()) inp = mInput.getHint().toString();
+        ArrayList<String> translate = new StylistGenerator().generate(inp);
+        mAdapter.setData(translate);
     }
 
     @Override
-    public void onPageSelected(int position) {
-        if (mInput.hasFocus()) {
-            convert(true);
-        } else {
-            convert(false);
-        }
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        convert();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
 
     }
 

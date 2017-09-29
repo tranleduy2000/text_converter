@@ -41,6 +41,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.StoreUtil;
 import com.duy.text_converter.pro.floating.codec.FloatingCodecOpenShortCutActivity;
+import com.duy.text_converter.pro.floating.stylish.FloatingStylishOpenShortCutActivity;
 import com.duy.text_converter.pro.license.Installation;
 import com.duy.text_converter.pro.license.Key;
 import com.duy.text_converter.pro.license.PolicyFactory;
@@ -78,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         checkLicense();
         bindView();
+
+        if (BuildConfig.DEBUG) {
+            startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
+        }
     }
 
     private void checkLicense() {

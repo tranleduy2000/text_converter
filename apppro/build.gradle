@@ -44,7 +44,7 @@ dependencies {
 
     compile project(':sharedcode')
     compile project(':lvl')
-    compile project(':floating-view')
+
     compile 'com.android.support:support-v4:26.+'
 }
 apply plugin: 'com.google.gms.google-services'

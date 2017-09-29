@@ -28,5 +28,18 @@
 
         <categories android:name="android.shortcut.conversation" />
     </shortcut>
-    <!-- Specify more shortcuts here. -->
+
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="open_floating_converter"
+        android:shortcutLongLabel="@string/open_floating_converter"
+        android:shortcutShortLabel="@string/floating_converter">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.duy.text_converter.pro.floating.stylish.FloatingStylishOpenShortCutActivity"
+            android:targetPackage="com.duy.text_converter.pro" />
+
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
 </shortcuts>
