@@ -22,7 +22,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 
-import com.duy.text_converter.pro.R;
+import com.duy.text.converter.R;
 import com.duy.text.converter.license.Premium;
 
 /**

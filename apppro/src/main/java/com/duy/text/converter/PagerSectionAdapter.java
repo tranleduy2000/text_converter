@@ -26,7 +26,6 @@ import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.HashFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
-import com.duy.text_converter.pro.R;
 
 
 /**

@@ -27,7 +27,6 @@ import android.view.MenuItem;
 
 import com.duy.text.converter.notification.SettingFragment;
 import com.duy.text.converter.notification.StyleNotificationManager;
-import com.duy.text_converter.pro.R;
 
 /**
  * Created by Duy on 26-Jul-17.

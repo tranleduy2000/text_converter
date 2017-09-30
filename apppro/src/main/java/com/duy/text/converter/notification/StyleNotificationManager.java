@@ -27,7 +27,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
-import com.duy.text_converter.pro.R;
+import com.duy.text.converter.R;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 

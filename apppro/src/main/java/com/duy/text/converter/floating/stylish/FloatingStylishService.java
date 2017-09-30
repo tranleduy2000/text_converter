@@ -33,7 +33,7 @@ import android.widget.EditText;
 
 import com.duy.sharedcode.adapters.StyleAdapter;
 import com.duy.sharedcode.stylish.StylistGenerator;
-import com.duy.text_converter.pro.R;
+import com.duy.text.converter.R;
 import com.duy.text.converter.view.floating.FloatingView;
 
 import java.util.ArrayList;

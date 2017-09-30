@@ -23,7 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 
-import com.duy.text_converter.pro.R;
+import com.duy.text.converter.R;
 
 
 /**

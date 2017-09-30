@@ -17,6 +17,7 @@
 package com.duy.text.converter.util;
 
 import android.os.Environment;
+import android.support.annotation.NonNull;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,9 +30,9 @@ import java.io.InputStreamReader;
  */
 
 public class FileUtil {
-    public static final String APP_PATH = Environment.getExternalStorageDirectory() +
-            File.separator + "TextConverter";
+    public static final File APP_PATH = new File(Environment.getExternalStorageDirectory(), "TextConverter");
 
+    @NonNull
     public static String streamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
         String line;

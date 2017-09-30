@@ -15,7 +15,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.duy.text_converter.pro">
+    package="com.duy.text.converter">
 
     <!-- For floating converter -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -39,7 +39,7 @@
         tools:targetApi="n">
 
         <activity
-            android:name="com.duy.text_converter.pro.com.duy.text.converter.MainActivity"
+            android:name="com.duy.text.converter.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -109,7 +109,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.duy.text_converter.pro.com.duy.text.converter.SettingActivity" />
+        <activity android:name="com.duy.text.converter.SettingActivity" />
 
         <!--activity and service for floating converter-->
         <activity

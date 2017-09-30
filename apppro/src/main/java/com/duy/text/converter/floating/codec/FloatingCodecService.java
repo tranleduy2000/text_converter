@@ -34,7 +34,7 @@ import com.duy.sharedcode.ClipboardUtil;
 import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.CodecUtil;
 import com.duy.sharedcode.view.BaseEditText;
-import com.duy.text_converter.pro.R;
+import com.duy.text.converter.R;
 import com.duy.text.converter.view.floating.FloatingView;
 
 /**

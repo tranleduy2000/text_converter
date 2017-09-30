@@ -22,7 +22,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 
-import com.duy.text_converter.pro.R;
+import com.duy.text.converter.R;
+
 
 /**
  * Created by Duy on 9/4/2017.

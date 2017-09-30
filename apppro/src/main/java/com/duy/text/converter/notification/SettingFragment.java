@@ -19,7 +19,7 @@ package com.duy.text.converter.notification;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 
-import com.duy.text_converter.pro.R;
+
 
 import static com.duy.text.converter.notification.PrefUtil.bindPreferenceSummaryToValue;
 

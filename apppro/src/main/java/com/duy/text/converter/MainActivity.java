@@ -47,8 +47,6 @@ import com.duy.text.converter.license.Key;
 import com.duy.text.converter.license.PolicyFactory;
 import com.duy.text.converter.license.Premium;
 import com.duy.text.converter.notification.StyleNotificationManager;
-import com.duy.text_converter.pro.BuildConfig;
-import com.duy.text_converter.pro.R;
 import com.google.android.vending.licensing.LicenseChecker;
 import com.google.android.vending.licensing.LicenseCheckerCallback;
 import com.google.android.vending.licensing.Policy;

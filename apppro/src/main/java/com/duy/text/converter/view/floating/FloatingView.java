@@ -50,11 +50,11 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 
-import com.duy.text_converter.pro.R;
+import com.duy.text.converter.R;
 
 
 public abstract class FloatingView extends Service implements OnTouchListener {
-    public static final String ACTION_OPEN = "OPEN";
+    public static final String ACTION_OPEN = "ACTION_OPEN";
     private static final String TAG = "FloatingView";
     private static final boolean DEBUG = false;
     private static final int MARGIN_VIEW = 20;
