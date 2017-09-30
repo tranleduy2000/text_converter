@@ -17,7 +17,7 @@
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
     <shortcut
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_floating_codec"
         android:shortcutId="open_floating_codec"
         android:shortcutLongLabel="@string/open_floating_codec"
         android:shortcutShortLabel="@string/floating_codec">
@@ -31,10 +31,10 @@
 
     <shortcut
         android:enabled="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_floating_stylish"
         android:shortcutId="open_floating_stylish"
-        android:shortcutLongLabel="@string/open_floating_codec"
-        android:shortcutShortLabel="@string/floating_codec">
+        android:shortcutLongLabel="@string/open_floating_stylish"
+        android:shortcutShortLabel="@string/floating_stylish">
         <intent
             android:action="android.intent.action.VIEW"
             android:targetClass="com.duy.text.converter.floating.stylish.FloatingStylishOpenShortCutActivity"
