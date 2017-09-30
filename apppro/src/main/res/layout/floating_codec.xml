@@ -18,7 +18,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/colorBackground">
+    app:cardBackgroundColor="?cardBackgroundColor">
 
     <LinearLayout
         android:layout_width="@dimen/floating_width"
@@ -37,23 +37,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/img_copy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:contentDescription="@string/copy"
                     android:padding="8dp"
-                    android:src="@drawable/ic_content_copy_white_24dp" />
+                    android:src="@drawable/ic_content_copy_white_24dp"
+                    android:tint="?android:textColorPrimary" />
 
-                <ImageButton
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/image_paste"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:contentDescription="@string/paste"
                     android:padding="8dp"
-                    android:src="@drawable/ic_content_paste_white_24dp" />
+                    android:src="@drawable/ic_content_paste_white_24dp"
+                    android:tint="?android:textColorPrimary" />
 
 
             </LinearLayout>
@@ -64,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
-                android:background="@drawable/bg_edit_text_dark"
+                android:background="?roundBackground"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:gravity="top"
@@ -105,23 +107,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageButton
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/img_copy_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:contentDescription="@string/copy"
                     android:padding="8dp"
-                    android:src="@drawable/ic_content_copy_white_24dp" />
+                    android:src="@drawable/ic_content_copy_white_24dp"
+                    android:tint="?android:textColorPrimary" />
 
-                <ImageButton
+                <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/image_paste_out"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
                     android:contentDescription="@string/paste"
                     android:padding="8dp"
-                    android:src="@drawable/ic_content_paste_white_24dp" />
+                    android:src="@drawable/ic_content_paste_white_24dp"
+                    android:tint="?android:textColorPrimary" />
 
 
             </LinearLayout>
@@ -131,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
-                android:background="@drawable/bg_edit_text_dark"
+                android:background="?roundBackground"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:gravity="top"

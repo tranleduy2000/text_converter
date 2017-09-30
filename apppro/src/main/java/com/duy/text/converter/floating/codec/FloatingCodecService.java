@@ -23,16 +23,15 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.CodecUtil;
+import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.text.converter.R;
 import com.duy.text.converter.view.floating.FloatingView;
@@ -80,14 +79,13 @@ public class FloatingCodecService extends FloatingView implements ViewPager.OnPa
     @NonNull
     @Override
     protected View inflateButton(@NonNull ViewGroup parent) {
-        return LayoutInflater.from(this).inflate(R.layout.floating_codec_icon, parent, false);
+        return LayoutInflater.from(getContext()).inflate(R.layout.floating_codec_icon, parent, false);
     }
 
     @NonNull
     @Override
     protected View onCreateView(@NonNull ViewGroup parent) {
-        ContextThemeWrapper context = new ContextThemeWrapper(this, R.style.AppTheme);
-        View view = LayoutInflater.from(context).inflate(R.layout.floating_codec, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.floating_codec, parent, false);
         mInput = view.findViewById(R.id.edit_input);
         mOutput = view.findViewById(R.id.edit_output);
         mInput.addTextChangedListener(mInputWatcher);

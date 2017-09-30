@@ -63,18 +63,22 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         final String str = mList.get(position);
         holder.textView.setText(mList.get(position));
-        holder.imgShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShareManager.share(str, context);
-            }
-        });
-        holder.imgCopy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardUtil.setClipboard(context, str);
-            }
-        });
+        if (holder.imgShare != null) {
+            holder.imgShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShareManager.share(str, context);
+                }
+            });
+        }
+        if (holder.imgCopy != null) {
+            holder.imgCopy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardUtil.setClipboard(context, str);
+                }
+            });
+        }
         if (holder.shareMsg != null) {
             holder.shareMsg.setOnClickListener(new View.OnClickListener() {
                 @Override

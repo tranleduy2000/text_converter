@@ -23,6 +23,7 @@ import android.preference.PreferenceFragment;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.floating.codec.FloatingCodecOpenShortCutActivity;
+import com.duy.text.converter.floating.stylish.FloatingStylishOpenShortCutActivity;
 
 import static com.duy.text.converter.notification.PrefUtil.bindPreferenceSummaryToValue;
 
@@ -69,7 +70,7 @@ public class SettingFragment extends PreferenceFragment {
         findPreference("open_floating_stylish").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                startActivity(new Intent(getActivity(), FloatingCodecOpenShortCutActivity.class));
+                startActivity(new Intent(getActivity(), FloatingStylishOpenShortCutActivity.class));
                 return false;
             }
         });
