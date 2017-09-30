@@ -26,7 +26,16 @@
         <item name="cardBackgroundColor">@color/colorPrimary</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="roundBackground">@drawable/bg_edit_text_dark</item>
     </style>
 
-
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/light.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
+        <item name="colorAccent">@color/light.colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="cardBackgroundColor">#FFF</item>
+        <item name="roundBackground">@drawable/bg_edit_text_light</item>
+    </style>
 </resources>

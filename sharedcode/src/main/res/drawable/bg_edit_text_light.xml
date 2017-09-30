@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,10 +14,10 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <color name="white">#FFF</color>
-    <color name="black">#000</color>
-    <color name="light.colorPrimary">#08bcd4</color>
-    <color name="light.colorPrimaryDark">#0097a7</color>
-    <color name="light.colorAccent">#ff1744</color>
-</resources>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <stroke
+        android:width="2dp"
+        android:color="@color/light.colorAccent" />
+    <corners android:radius="4dp" />
+</shape>

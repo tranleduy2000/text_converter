@@ -17,6 +17,8 @@
 package com.duy.sharedcode.view;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 
 /**
@@ -43,8 +45,8 @@ public class BaseTextView extends android.support.v7.widget.AppCompatTextView {
     }
 
     private void setup(Context context) {
-//        AssetManager assetManager = context.getAssets();
-//        Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/RobotoMono-Regular.ttf");
-//        setTypeface(typeface);
+        AssetManager assetManager = context.getAssets();
+        Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/DejaVuSerif.ttf");
+        setTypeface(typeface);
     }
 }

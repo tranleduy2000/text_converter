@@ -18,6 +18,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="8dp"
     android:weightSum="100">
 
     <LinearLayout
@@ -62,20 +63,16 @@
                 android:tint="?android:textColorPrimary" />
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+
+        <com.duy.sharedcode.view.BaseEditText
+            android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp">
-
-            <com.duy.sharedcode.view.BaseEditText
-                android:id="@+id/edit_input"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top"
-                android:hint="@string/input_here"
-                android:inputType="textMultiLine"
-                android:padding="8dp" />
-        </android.support.design.widget.TextInputLayout>
+            android:background="?roundBackground"
+            android:gravity="top"
+            android:hint="@string/input_here"
+            android:inputType="textMultiLine"
+            android:padding="8dp" />
 
     </LinearLayout>
 
@@ -90,7 +87,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="@string/choose_method" />
+            android:text="@string/choose_method"
+            android:textColor="?colorAccent" />
 
 
         <android.support.v7.widget.AppCompatSpinner
@@ -98,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:background="@drawable/bg_edit_text" />
+            android:background="?roundBackground" />
     </LinearLayout>
 
     <LinearLayout
@@ -143,20 +141,15 @@
                 android:tint="?android:textColorPrimary" />
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.duy.sharedcode.view.BaseEditText
+            android:id="@+id/edit_output"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp">
-
-            <com.duy.sharedcode.view.BaseEditText
-                android:id="@+id/edit_output"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top"
-                android:hint="@string/ouput_here"
-                android:inputType="textMultiLine"
-                android:padding="8dp" />
-        </android.support.design.widget.TextInputLayout>
+            android:background="?roundBackground"
+            android:gravity="top"
+            android:hint="@string/ouput_here"
+            android:inputType="textMultiLine"
+            android:padding="8dp" />
 
 
     </LinearLayout>

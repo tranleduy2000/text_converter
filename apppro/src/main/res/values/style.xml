@@ -16,14 +16,7 @@
 
 <resources>
 
-    <style name="AppThemeLight" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/light.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
-        <item name="colorAccent">@color/light.colorAccent</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="cardBackgroundColor">#FFF</item>
-    </style>
+
 
     <style name="Theme.Transparent" parent="android:Theme">
         <item name="android:windowIsTranslucent">true</item>

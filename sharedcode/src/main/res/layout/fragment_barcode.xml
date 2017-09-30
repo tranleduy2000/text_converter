@@ -66,20 +66,16 @@
 
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
+
+        <com.duy.sharedcode.view.BaseEditText
+            android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp">
-
-            <com.duy.sharedcode.view.BaseEditText
-                android:id="@+id/edit_input"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="top"
-                android:hint="@string/input_here"
-                android:inputType="textMultiLine"
-                android:padding="8dp" />
-        </android.support.design.widget.TextInputLayout>
+            android:background="?roundBackground"
+            android:gravity="top"
+            android:hint="@string/input_here"
+            android:inputType="textMultiLine"
+            android:padding="8dp" />
 
     </LinearLayout>
 

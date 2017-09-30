@@ -32,7 +32,7 @@
             android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_edit_text"
+            android:background="?roundBackground"
             android:gravity="top"
             android:hint="@string/input_here"
             android:inputType="textMultiLine"
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:background="@drawable/bg_edit_text" />
+            android:background="?roundBackground" />
     </LinearLayout>
 
     <LinearLayout
@@ -99,7 +99,7 @@
             android:id="@+id/edit_output"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_edit_text"
+            android:background="?roundBackground"
             android:gravity="top"
             android:inputType="textMultiLine"
             android:padding="8dp" />

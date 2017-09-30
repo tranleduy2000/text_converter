@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (c) 2017 by Tran Le Duy
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,15 +15,5 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#263238</color>
-    <color name="colorPrimaryDark">#37474f</color>
-    <color name="colorAccent">#55d7c6</color>
-    <color name="colorBackground">#2a3434</color>
-
-    <color name="white">#FFF</color>
-    <color name="black">#000</color>
-
-    <color name="light.colorPrimary">#08bcd4</color>
-    <color name="light.colorPrimaryDark">#0097a7</color>
-    <color name="light.colorAccent">#ff1744</color>
+    <attr name="roundBackground" format="reference" />
 </resources>
