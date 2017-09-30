@@ -30,7 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.duy.sharedcode.ClipboardUtil;
+import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.CodecUtil;
 import com.duy.sharedcode.view.BaseEditText;

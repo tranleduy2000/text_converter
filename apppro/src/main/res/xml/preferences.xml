@@ -17,23 +17,39 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
         android:defaultValue="false"
-        android:key="@string/pref_key_floating_window"
-        android:summary="Show floating window when exit app"
-        android:title="Floating converter" />
+        android:key="@string/pref_key_light_theme"
+        android:title="Uses light theme">
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="@string/pref_key_enable_encode"
-        android:summary="You can encode by click notification"
-        android:title="Encode notification" />
+    </SwitchPreference>
 
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="@string/pref_key_enable_decode"
-        android:summary="You can decode by click notification"
-        android:title="Decode notification" />
+    <PreferenceCategory android:title="@string/floating_window">
+        <Preference
+            android:key="open_floating_codec"
+            android:summary="@string/open_codec_desc"
+            android:title="@string/floating_codec" />
 
-    <PreferenceCategory android:title="Encode style">
+        <Preference
+            android:key="open_floating_stylish"
+            android:summary="@string/open_floating_stylish_desc"
+            android:title="@string/floating_stylish" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/notification">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key_enable_encode"
+            android:summary="You can encode by click notification"
+            android:title="@string/encode_notifi" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_key_enable_decode"
+            android:summary="You can decode by click notification"
+            android:title="@string/decode_notifi" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/encode_style">
         <ListPreference
             android:defaultValue="@string/ascii"
             android:entries="@array/codec_methods"
@@ -67,7 +83,7 @@
             android:title="Style 5" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Decode style">
+    <PreferenceCategory android:title="@string/decode_style">
         <ListPreference
             android:defaultValue="@string/ascii"
             android:entries="@array/codec_methods"
@@ -101,20 +117,20 @@
             android:title="Style 5" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Menu text (Android M and above)">
+    <PreferenceCategory android:title="@string/menu_text">
         <ListPreference
             android:defaultValue="@string/binary"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_key_encode_menu"
-            android:title="Encode" />
+            android:title="@string/encode" />
 
         <ListPreference
             android:defaultValue="@string/binary"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_key_decode_menu"
-            android:title="Decode" />
+            android:title="@string/decode" />
     </PreferenceCategory>
 
 </PreferenceScreen>

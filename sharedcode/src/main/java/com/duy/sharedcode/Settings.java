@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.duy.textconverter.sharedcode.R;
+
 /**
  * Created by Duy on 05-May-17.
  */
@@ -35,5 +37,10 @@ public class Settings {
     public static String getTextData(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getString(KEY, "");
+    }
+
+    public static boolean useLightTheme(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getBoolean(context.getString(R.string.pref_key_light_theme), false);
     }
 }

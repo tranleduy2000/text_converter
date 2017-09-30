@@ -94,6 +94,7 @@ public class StyleNotificationManager {
 
     public static void showNotificationDecodeIfNeed(@NonNull Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         if (sharedPreferences.getBoolean(context.getString(R.string.pref_key_enable_encode), false)) {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
             builder.setSmallIcon(R.mipmap.ic_launcher)
@@ -139,8 +140,7 @@ public class StyleNotificationManager {
                     context.getSystemService(NOTIFICATION_SERVICE);
             notificationManager.notify(NOTIFICATION_DECODE_ID, notification);
         } else {
-            NotificationManager notificationManager = (NotificationManager)
-                    context.getSystemService(NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
             notificationManager.cancel(NOTIFICATION_DECODE_ID);
         }
     }

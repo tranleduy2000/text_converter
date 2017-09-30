@@ -33,8 +33,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.duy.sharedcode.ClipboardUtil;
-import com.duy.sharedcode.StoreUtil;
+import com.duy.sharedcode.utils.ClipboardUtil;
+import com.duy.sharedcode.utils.StoreUtil;
 import com.duy.sharedcode.hashfunction.HashFunction;
 import com.duy.sharedcode.hashfunction.Md5Tool;
 import com.duy.sharedcode.hashfunction.Sha1Tool;

@@ -15,19 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">(Pro) Text Converter</string>
+    <string name="app_name"> Text Converter</string>
     <string name="setting">Setting</string>
 
-    <string name="pref_key_enable_encode" translatable="false">pref_encode_notification</string>
-    <string name="pref_key_enable_decode" translatable="false">pref_decode_notification</string>
-    <string name="pref_key_floating_window" translatable="false">pref_key_floating_window</string>
-
-    <string name="encode">En\ncode</string>
-    <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
-    <string name="tool">Tool</string>
-    <string name="floating_notification_description">Tap to open</string>
-    <string name="open_floating_codec">Open floating codec</string>
-    <string name="open_floating_stylish">Open floating stylish</string>
-    <string name="floating_codec">Floating codec</string>
-    <string name="floating_stylish">Floating stylish</string>
 </resources>

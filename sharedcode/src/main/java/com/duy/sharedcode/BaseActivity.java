@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.activities;
+package com.duy.sharedcode;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
-import com.duy.sharedcode.BaseActivity;
+import com.duy.textconverter.sharedcode.R;
 
 /**
- * Created by Duy on 10-Aug-17.
+ * Created by Duy on 9/30/2017.
  */
-
-public class CodecFileActivity extends BaseActivity {
+public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Settings.useLightTheme(this) ? R.style.AppThemeLight : R.style.AppTheme);
     }
-
 }

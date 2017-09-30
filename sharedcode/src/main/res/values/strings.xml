@@ -59,4 +59,26 @@
     <string name="ad_unit_id_main">ca-app-pub-7060049030570268/3354507032</string>
     <string name="copied">Copied</string>
 
+
+    <string name="pref_key_enable_encode" translatable="false">pref_encode_notification</string>
+    <string name="pref_key_enable_decode" translatable="false">pref_decode_notification</string>
+    <string name="pref_key_floating_window" translatable="false">pref_key_floating_window</string>
+    <string name="pref_key_light_theme" translatable="false">pref_key_light_theme</string>
+
+    <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
+    <string name="tool">Tool</string>
+    <string name="floating_notification_description">Tap to open</string>
+    <string name="open_floating_codec">Open floating codec</string>
+    <string name="open_floating_stylish">Open floating stylish</string>
+    <string name="floating_codec">Floating codec</string>
+    <string name="floating_stylish">Floating stylish</string>
+    <string name="floating_window">Floating window</string>
+    <string name="open_codec_desc">Click to open floating codec</string>
+    <string name="open_floating_stylish_desc">Click to open floating stylish</string>
+    <string name="notification">Notification</string>
+    <string name="encode_notifi">Encode notification</string>
+    <string name="encode_style">Encode style</string>
+    <string name="decode_notifi">Decode notification</string>
+    <string name="decode_style">Decode style</string>
+    <string name="menu_text">Menu text (Android M and above)</string>
 </resources>

@@ -20,11 +20,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.duy.sharedcode.BaseActivity;
 import com.duy.textconverter.sharedcode.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
@@ -32,7 +32,7 @@ import com.google.android.gms.ads.NativeExpressAdView;
 /**
  * Created by Duy on 14-Aug-17.
  */
-public class BarcodeEncodeActivity extends AppCompatActivity {
+public class BarcodeEncodeActivity extends BaseActivity {
 
     private NativeExpressAdView adView;
 

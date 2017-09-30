@@ -50,6 +50,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 
+import com.duy.sharedcode.Settings;
 import com.duy.text.converter.R;
 
 
@@ -111,7 +112,7 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     private boolean mIsAnimationLocked = false;
     private boolean mDontVibrate = false;
     private BroadcastReceiver mHomeKeyReceiver;
-    private Context mCompatThemeContent;
+    private Context mContextTheme;
 
     @NonNull
     protected abstract View inflateButton(@NonNull ViewGroup parent);
@@ -834,10 +835,11 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     }
 
     protected Context getContext() {
-        if (mCompatThemeContent == null) {
-            mCompatThemeContent = new ContextThemeWrapper(this, R.style.AppTheme);
+        if (mContextTheme == null) {
+            mContextTheme = new ContextThemeWrapper(this,
+                    Settings.useLightTheme(this) ? R.style.AppThemeLight : R.style.AppTheme);
         }
-        return mCompatThemeContent;
+        return mContextTheme;
     }
 
     private int getScreenWidth() {

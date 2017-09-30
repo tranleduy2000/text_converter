@@ -21,7 +21,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -58,8 +57,7 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
     @NonNull
     @Override
     protected View onCreateView(@NonNull ViewGroup parent) {
-        ContextThemeWrapper context = new ContextThemeWrapper(this, R.style.AppTheme);
-        View view = LayoutInflater.from(context).inflate(R.layout.floating_stylish, parent, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.floating_stylish, parent, false);
         mInput = view.findViewById(R.id.edit_input);
         mListResult = view.findViewById(R.id.list_out);
         mListResult.setLayoutManager(new LinearLayoutManager(getContext()));

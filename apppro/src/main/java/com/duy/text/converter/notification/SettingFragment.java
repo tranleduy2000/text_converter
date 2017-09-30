@@ -16,10 +16,13 @@
 
 package com.duy.text.converter.notification;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.floating.codec.FloatingCodecOpenShortCutActivity;
 
 import static com.duy.text.converter.notification.PrefUtil.bindPreferenceSummaryToValue;
 
@@ -51,6 +54,25 @@ public class SettingFragment extends PreferenceFragment {
 
         bindPreferenceSummaryToValue(findPreference("pref_key_encode_menu"));
         bindPreferenceSummaryToValue(findPreference("pref_key_decode_menu"));
+        addEvent();
+    }
+
+    private void addEvent() {
+        findPreference("open_floating_codec").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), FloatingCodecOpenShortCutActivity.class));
+                return false;
+            }
+        });
+
+        findPreference("open_floating_stylish").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(getActivity(), FloatingCodecOpenShortCutActivity.class));
+                return false;
+            }
+        });
     }
 
 }

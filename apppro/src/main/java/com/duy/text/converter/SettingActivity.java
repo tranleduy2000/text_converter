@@ -21,10 +21,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.duy.sharedcode.BaseActivity;
 import com.duy.text.converter.notification.SettingFragment;
 import com.duy.text.converter.notification.StyleNotificationManager;
 
@@ -32,7 +32,7 @@ import com.duy.text.converter.notification.StyleNotificationManager;
  * Created by Duy on 26-Jul-17.
  */
 
-public class SettingActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingActivity extends BaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +63,8 @@ public class SettingActivity extends AppCompatActivity implements SharedPreferen
             StyleNotificationManager.showNotificationEncodeIfNeed(this);
         } else if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_decode))) {
             StyleNotificationManager.showNotificationDecodeIfNeed(this);
+        } else if (s.equalsIgnoreCase(getString(R.string.pref_key_light_theme))) {
+            recreate();
         }
     }
 

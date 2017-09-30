@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode;
+package com.duy.sharedcode.utils;
 
 import android.content.Context;
 import android.content.Intent;
