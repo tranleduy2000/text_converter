@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -162,6 +163,20 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    decodeImage();
+                } else {
+                    Toast.makeText(getContext(), "Please grated read storage permission", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -187,9 +202,6 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                     mDecodeImageTask = new DecodeImageTask();
                     mDecodeImageTask.execute(data.getData());
                 }
-                break;
-            case REQUEST_READ_EXTERNAL_STORAGE:
-                decodeImage();
                 break;
         }
     }
