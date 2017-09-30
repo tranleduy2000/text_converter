@@ -100,7 +100,6 @@
             android:layout_height="match_parent"
             android:background="@drawable/bg_edit_text"
             android:gravity="top"
-            android:hint="@string/ouput_here"
             android:inputType="textMultiLine"
             android:padding="8dp"/>
 

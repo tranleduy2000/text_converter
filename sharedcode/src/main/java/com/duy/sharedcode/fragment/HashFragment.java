@@ -120,6 +120,7 @@ public class HashFragment extends Fragment {
         mInput = view.findViewById(R.id.edit_input);
         mOutput = view.findViewById(R.id.edit_output);
         mInput.addTextChangedListener(mInputWatcher);
+
         mSpinnerHash = view.findViewById(R.id.spinner_choose);
         view.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override

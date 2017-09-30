@@ -17,6 +17,7 @@
 package com.duy.sharedcode.adapters;
 
 import android.content.Context;
+import android.support.annotation.LayoutRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,13 +32,15 @@ import java.util.ArrayList;
 
 
 public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> {
-    private  Context context;
+    private Context context;
+    private int layout;
     private LayoutInflater inflater;
     private ArrayList<String> mList = new ArrayList<>();
 
-    public StyleAdapter(Context context) {
+    public StyleAdapter(Context context, @LayoutRes int layout) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
+        this.layout = layout;
     }
 
     public void add(String arg) {
@@ -53,7 +56,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.list_item_style, parent, false));
+        return new ViewHolder(inflater.inflate(layout, parent, false));
     }
 
     @Override
@@ -72,12 +75,14 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
                 ClipboardUtil.setClipboard(context, str);
             }
         });
-        holder.shareMsg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShareManager.shareMessenger(str, context);
-            }
-        });
+        if (holder.shareMsg != null) {
+            holder.shareMsg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShareManager.shareMessenger(str, context);
+                }
+            });
+        }
     }
 
     @Override

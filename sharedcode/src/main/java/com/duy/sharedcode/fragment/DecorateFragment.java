@@ -39,7 +39,6 @@ import com.duy.textconverter.sharedcode.R;
 import java.util.ArrayList;
 
 
-
 /**
  * Created by Duy on 07-Jun-17.
  */
@@ -81,13 +80,13 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mInput = (EditText) mRootView.findViewById(R.id.edit_input);
-        mListResult = (RecyclerView) mRootView.findViewById(R.id.list_out);
+        mInput = mRootView.findViewById(R.id.edit_input);
+        mListResult = mRootView.findViewById(R.id.list_out);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         mListResult.setLayoutManager(linearLayoutManager);
         mListResult.setHasFixedSize(true);
 
-        mAdapter = new StyleAdapter(getActivity());
+        mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
         mListResult.setAdapter(mAdapter);
 
         mInput.addTextChangedListener(this);

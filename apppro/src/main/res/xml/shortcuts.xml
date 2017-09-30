@@ -18,12 +18,12 @@
     <shortcut
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
-        android:shortcutId="open_floating_converter"
-        android:shortcutLongLabel="@string/open_floating_converter"
-        android:shortcutShortLabel="@string/floating_converter">
+        android:shortcutId="open_floating_codec"
+        android:shortcutLongLabel="@string/open_floating_codec"
+        android:shortcutShortLabel="@string/floating_codec">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.duy.text_converter.pro.floating.codec.FloatingCodecOpenShortCutActivity"
+            android:targetClass="com.duy.text.converter.floating.codec.FloatingCodecOpenShortCutActivity"
             android:targetPackage="com.duy.text_converter.pro" />
 
         <categories android:name="android.shortcut.conversation" />
@@ -32,12 +32,12 @@
     <shortcut
         android:enabled="true"
         android:icon="@mipmap/ic_launcher"
-        android:shortcutId="open_floating_converter"
-        android:shortcutLongLabel="@string/open_floating_converter"
-        android:shortcutShortLabel="@string/floating_converter">
+        android:shortcutId="open_floating_stylish"
+        android:shortcutLongLabel="@string/open_floating_codec"
+        android:shortcutShortLabel="@string/floating_codec">
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.duy.text_converter.pro.floating.stylish.FloatingStylishOpenShortCutActivity"
+            android:targetClass="com.duy.text.converter.floating.stylish.FloatingStylishOpenShortCutActivity"
             android:targetPackage="com.duy.text_converter.pro" />
 
         <categories android:name="android.shortcut.conversation" />
