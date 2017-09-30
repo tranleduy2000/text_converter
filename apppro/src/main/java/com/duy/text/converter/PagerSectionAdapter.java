@@ -26,6 +26,7 @@ import com.duy.sharedcode.fragment.CodecFragment;
 import com.duy.sharedcode.fragment.DecorateFragment;
 import com.duy.sharedcode.fragment.HashFragment;
 import com.duy.sharedcode.fragment.StylistFragment;
+import com.duy.text.converter.fragment.CodecFileFragment;
 
 
 /**
@@ -33,7 +34,7 @@ import com.duy.sharedcode.fragment.StylistFragment;
  */
 
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 5;
+    private static final int COUNT = 6;
     private String init;
     private Context context;
 
@@ -61,6 +62,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return DecorateFragment.newInstance();
             case 4:
                 return HashFragment.newInstance();
+            case 5:
+                return CodecFileFragment.newInstance();
             default:
                 return null;
         }
@@ -79,6 +82,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.decorate);
             case 4:
                 return context.getString(R.string.hash_function);
+            case 5:
+                return "File";
         }
         return super.getPageTitle(position);
     }

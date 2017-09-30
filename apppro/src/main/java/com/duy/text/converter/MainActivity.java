@@ -21,7 +21,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -159,11 +158,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.action_open_stylish:
                 startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
-                finish();
                 break;
             case R.id.action_open_codec:
                 startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
-                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

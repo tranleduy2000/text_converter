@@ -48,16 +48,18 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static android.os.Build.VERSION_CODES.N;
+
 /**
  * Created by Duy on 23-Aug-17.
  */
 
 public class BarcodeEncoderFragment extends Fragment {
-    private TextView txtError;
-    private ImageView imageBarcode;
-    private BarcodeGenerateTask generateTask;
-    private Bitmap currentBarcode = null;
-    private ProgressBar progressBar;
+    private TextView mTxtError;
+    private ImageView mImageBarcode;
+    private BarcodeGenerateTask mGenerateTask;
+    private Bitmap mCurrentBarcode = null;
+    private ProgressBar mProgressBar;
 
     public static BarcodeEncoderFragment newInstance(String data, BarcodeFormat barcodeFormat) {
         Bundle args = new Bundle();
@@ -77,15 +79,15 @@ public class BarcodeEncoderFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        imageBarcode = view.findViewById(R.id.img_barcode);
-        txtError = view.findViewById(R.id.txt_message);
-        progressBar = view.findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.INVISIBLE);
+        mImageBarcode = view.findViewById(R.id.img_barcode);
+        mTxtError = view.findViewById(R.id.txt_message);
+        mProgressBar = view.findViewById(R.id.progress_bar);
+        mProgressBar.setVisibility(View.INVISIBLE);
 
         String data = getArguments().getString("data");
         BarcodeFormat barcodeFormat = (BarcodeFormat) getArguments().getSerializable("format");
-        generateTask = new BarcodeGenerateTask(data, barcodeFormat);
-        generateTask.execute();
+        mGenerateTask = new BarcodeGenerateTask(data, barcodeFormat);
+        mGenerateTask.execute();
         view.findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +107,7 @@ public class BarcodeEncoderFragment extends Fragment {
         });
     }
 
+    @Nullable
     private File saveCurrentImage() throws IOException {
         if (!permissionGranted()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -112,7 +115,7 @@ public class BarcodeEncoderFragment extends Fragment {
                 return null;
             }
         }
-        if (currentBarcode != null) {
+        if (mCurrentBarcode != null) {
             File file;
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 file = new File(Environment.getExternalStorageDirectory(),
@@ -126,7 +129,7 @@ public class BarcodeEncoderFragment extends Fragment {
                 file.createNewFile();
             }
             file.setReadable(true);
-            currentBarcode.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
+            mCurrentBarcode.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
             Toast.makeText(getContext(), R.string.saved_in_gallery, Toast.LENGTH_SHORT).show();
             return file;
         }
@@ -136,17 +139,17 @@ public class BarcodeEncoderFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (generateTask != null) {
-            if (!generateTask.isCancelled()) {
-                generateTask.cancel(true);
+        if (mGenerateTask != null) {
+            if (!mGenerateTask.isCancelled()) {
+                mGenerateTask.cancel(true);
             }
         }
-        if (currentBarcode != null && !currentBarcode.isRecycled()) currentBarcode.recycle();
+        if (mCurrentBarcode != null && !mCurrentBarcode.isRecycled()) mCurrentBarcode.recycle();
     }
 
     private boolean permissionGranted() {
-        return ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED;
+        int result = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     private void shareCurrentImage() {
@@ -154,7 +157,7 @@ public class BarcodeEncoderFragment extends Fragment {
             File file = saveCurrentImage();
             if (file != null) {
                 Uri bitmapUri;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if (Build.VERSION.SDK_INT >= N) {
                     bitmapUri = FileProvider.getUriForFile(getContext(),
                             getContext().getPackageName() + ".fileprovider", file);
                 } else {
@@ -181,9 +184,9 @@ public class BarcodeEncoderFragment extends Fragment {
     }
 
     public void setCurrentBarcode(Bitmap bitmap) {
-        if (currentBarcode != null && !currentBarcode.isRecycled()) currentBarcode.recycle();
-        this.currentBarcode = bitmap;
-        imageBarcode.setImageBitmap(bitmap);
+        if (mCurrentBarcode != null && !mCurrentBarcode.isRecycled()) mCurrentBarcode.recycle();
+        this.mCurrentBarcode = bitmap;
+        mImageBarcode.setImageBitmap(bitmap);
     }
 
     private class BarcodeGenerateTask extends AsyncTask<Void, Void, Bitmap> {
@@ -199,7 +202,7 @@ public class BarcodeEncoderFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -265,15 +268,15 @@ public class BarcodeEncoderFragment extends Fragment {
         protected void onPostExecute(Bitmap bitmap) {
             super.onPostExecute(bitmap);
             if (isCancelled()) return;
-            progressBar.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
             if (bitmap != null) {
-                txtError.setVisibility(View.INVISIBLE);
-                imageBarcode.setVisibility(View.VISIBLE);
+                mTxtError.setVisibility(View.INVISIBLE);
+                mImageBarcode.setVisibility(View.VISIBLE);
                 setCurrentBarcode(bitmap);
             } else {
-                imageBarcode.setVisibility(View.INVISIBLE);
-                txtError.setVisibility(View.VISIBLE);
-                txtError.setText(error.getMessage());
+                mImageBarcode.setVisibility(View.INVISIBLE);
+                mTxtError.setVisibility(View.VISIBLE);
+                mTxtError.setText(error.getMessage());
             }
         }
     }

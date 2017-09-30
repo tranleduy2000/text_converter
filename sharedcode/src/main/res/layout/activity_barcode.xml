@@ -61,7 +61,7 @@
             android:id="@+id/ad_view"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            app:adSize="320x100"
+            app:adSize="FULL_WIDTHx100"
             app:adUnitId="@string/ad_unit_id_barcode">
         </com.google.android.gms.ads.NativeExpressAdView>
     </LinearLayout>
