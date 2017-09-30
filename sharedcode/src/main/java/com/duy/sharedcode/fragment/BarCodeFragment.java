@@ -16,8 +16,10 @@
 
 package com.duy.sharedcode.fragment;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -25,6 +27,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,8 +37,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.barcode.BarcodeEncodeActivity;
+import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BinaryBitmap;
@@ -47,7 +50,6 @@ import com.google.zxing.client.android.Intents;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.integration.android.IntentIntegrator;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import static android.app.Activity.RESULT_OK;
@@ -61,8 +63,9 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "BarCodeFragment";
     private static final String KEY_TEXT = "KEY_TEXT";
     private static final int REQUEST_PICK_IMAGE = 1010;
+    private static final int REQUEST_READ_EXTERNAL_STORAGE = 1011;
     private BaseEditText mInput;
-    private DecodeImageTask decodeImageTask;
+    private DecodeImageTask mDecodeImageTask;
 
     public static BarCodeFragment newInstance() {
 
@@ -178,12 +181,15 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                 break;
             case REQUEST_PICK_IMAGE:
                 if (resultCode == RESULT_OK) {
-                    if (decodeImageTask != null && !decodeImageTask.isCancelled()) {
-                        decodeImageTask.cancel(true);
+                    if (mDecodeImageTask != null && !mDecodeImageTask.isCancelled()) {
+                        mDecodeImageTask.cancel(true);
                     }
-                    decodeImageTask = new DecodeImageTask();
-                    decodeImageTask.execute(data.getData());
+                    mDecodeImageTask = new DecodeImageTask();
+                    mDecodeImageTask.execute(data.getData());
                 }
+                break;
+            case REQUEST_READ_EXTERNAL_STORAGE:
+                decodeImage();
                 break;
         }
     }
@@ -191,7 +197,9 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (decodeImageTask != null && !decodeImageTask.isCancelled()) decodeImageTask.cancel(true);
+        if (mDecodeImageTask != null && !mDecodeImageTask.isCancelled()) {
+            mDecodeImageTask.cancel(true);
+        }
     }
 
     private void decodeUseCamera() {
@@ -210,8 +218,18 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
 
 
     private void decodeImage() {
-        try {
 
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+            int result = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "Please grated read storage permission", Toast.LENGTH_SHORT).show();
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_READ_EXTERNAL_STORAGE);
+                return;
+            }
+        }
+
+        try {
             Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
             getIntent.setType("image/*");
 
@@ -253,8 +271,8 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                     Log.e(TAG, "decode exception", e);
                     return null;
                 }
-            } catch (FileNotFoundException e) {
-                Log.e(TAG, "can not open file" + uri.toString(), e);
+            } catch (Exception e) {
+                e.printStackTrace();
                 return null;
             }
         }
@@ -266,7 +284,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
             if (s != null) {
                 mInput.setText(s);
                 Toast.makeText(getContext(), R.string.decoded, Toast.LENGTH_SHORT).show();
-            }else {
+            } else {
                 Toast.makeText(getContext(), R.string.cannot_decode, Toast.LENGTH_SHORT).show();
             }
         }
