@@ -18,7 +18,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
     android:weightSum="100">
 
     <LinearLayout
@@ -32,44 +31,51 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/img_copy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/copy"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp" />
+                android:src="@drawable/ic_content_copy_white_24dp"
+                android:tint="?android:textColorPrimary" />
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/image_paste"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/paste"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_paste_white_24dp" />
+                android:src="@drawable/ic_content_paste_white_24dp"
+                android:tint="?android:textColorPrimary" />
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/img_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/share"
                 android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp" />
+                android:src="@drawable/ic_share_white_24dp"
+                android:tint="?android:textColorPrimary" />
         </LinearLayout>
 
-
-        <com.duy.sharedcode.view.BaseEditText
-            android:id="@+id/edit_input"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_edit_text"
-            android:gravity="top"
-            android:hint="@string/input_here"
-            android:inputType="textMultiLine"
-            android:padding="8dp" />
+            android:padding="8dp">
+
+            <com.duy.sharedcode.view.BaseEditText
+                android:id="@+id/edit_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:hint="@string/input_here"
+                android:inputType="textMultiLine"
+                android:padding="8dp" />
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
@@ -84,8 +90,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="@string/choose_method"
-            android:textColor="@color/colorAccent" />
+            android:text="@string/choose_method" />
 
 
         <android.support.v7.widget.AppCompatSpinner
@@ -107,43 +112,51 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/img_copy_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/copy"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp" />
+                android:src="@drawable/ic_content_copy_white_24dp"
+                android:tint="?android:textColorPrimary" />
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/image_paste_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/paste"
                 android:padding="8dp"
-                android:src="@drawable/ic_content_paste_white_24dp" />
+                android:src="@drawable/ic_content_paste_white_24dp"
+                android:tint="?android:textColorPrimary" />
 
-            <ImageButton
+            <android.support.v7.widget.AppCompatImageButton
                 android:id="@+id/img_share_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:contentDescription="@string/share"
                 android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp" />
+                android:src="@drawable/ic_share_white_24dp"
+                android:tint="?android:textColorPrimary" />
         </LinearLayout>
 
-        <com.duy.sharedcode.view.BaseEditText
-            android:id="@+id/edit_output"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_edit_text"
-            android:gravity="top"
-            android:hint="@string/ouput_here"
-            android:inputType="textMultiLine"
-            android:padding="8dp" />
+            android:padding="8dp">
+
+            <com.duy.sharedcode.view.BaseEditText
+                android:id="@+id/edit_output"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:hint="@string/ouput_here"
+                android:inputType="textMultiLine"
+                android:padding="8dp" />
+        </android.support.design.widget.TextInputLayout>
 
 
     </LinearLayout>

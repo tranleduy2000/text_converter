@@ -34,9 +34,9 @@
 
     <string name="encode_">Encode</string>
     <string name="decode_">Decode</string>
-    <string name="hash_function">Hash function</string>
+    <string name="hash_function">Hash</string>
     <string name="codec">Codec</string>
-    <string name="stylist">Stylist</string>
+    <string name="stylish">Stylish</string>
     <string name="ads">Ads</string>
     <string name="decorate">Decorate</string>
     <string name="encode">Encode</string>

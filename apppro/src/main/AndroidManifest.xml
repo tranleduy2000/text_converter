@@ -35,7 +35,7 @@
         android:label="@string/app_name"
         android:resizeableActivity="false"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme"
+        android:theme="@style/AppThemeLight"
         tools:targetApi="n">
 
         <activity

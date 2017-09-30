@@ -106,35 +106,36 @@
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="support-core-ui-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="play-services-ads-lite-11.0.2" level="project" />
-    <orderEntry type="library" exported="" name="play-services-basement-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="play-services-ads-lite-11.0.4" level="project" />
     <orderEntry type="library" exported="" name="support-fragment-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="firebase-crash-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="firebase-core-11.0.4" level="project" />
     <orderEntry type="library" exported="" name="support-v4-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-media-compat-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="firebase-iid-11.0.2" level="project" />
-    <orderEntry type="library" exported="" name="play-services-ads-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="firebase-iid-11.0.4" level="project" />
+    <orderEntry type="library" exported="" name="firebase-crash-11.0.4" level="project" />
+    <orderEntry type="library" exported="" name="play-services-ads-11.0.4" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="play-services-gass-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="play-services-safetynet-11.0.4" level="project" />
     <orderEntry type="library" exported="" name="design-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="firebase-core-11.0.2" level="project" />
-    <orderEntry type="library" exported="" name="play-services-base-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="play-services-basement-11.0.4" level="project" />
+    <orderEntry type="library" exported="" name="play-services-base-11.0.4" level="project" />
+    <orderEntry type="library" exported="" name="play-services-gass-11.0.4" level="project" />
     <orderEntry type="library" exported="" name="ratethisapp-1.1.1" level="project" />
     <orderEntry type="library" exported="" name="support-core-utils-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="transition-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-vector-drawable-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="play-services-clearcut-11.0.2" level="project" />
     <orderEntry type="library" exported="" name="zxing-android-embedded-3.2.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-safetynet-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="play-services-clearcut-11.0.4" level="project" />
+    <orderEntry type="library" exported="" name="recyclerview-fastscroll-1.0.16" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="firebase-analytics-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="firebase-analytics-11.0.4" level="project" />
+    <orderEntry type="library" exported="" name="firebase-analytics-impl-11.0.4" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="firebase-common-11.0.2" level="project" />
     <orderEntry type="library" exported="" name="support-compat-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-26.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="animated-vector-drawable-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="play-services-tasks-11.0.2" level="project" />
-    <orderEntry type="library" exported="" name="firebase-analytics-impl-11.0.2" level="project" />
+    <orderEntry type="library" exported="" name="play-services-tasks-11.0.4" level="project" />
+    <orderEntry type="library" exported="" name="firebase-common-11.0.4" level="project" />
     <orderEntry type="module" module-name="sharedcode" exported="" />
     <orderEntry type="library" exported="" name="android-android-26" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="runner-0.5" level="project" />

@@ -74,7 +74,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
             case 1:
                 return context.getString(R.string.barcode);
             case 2:
-                return context.getString(R.string.stylist);
+                return context.getString(R.string.stylish);
             case 3:
                 return context.getString(R.string.decorate);
             case 4:

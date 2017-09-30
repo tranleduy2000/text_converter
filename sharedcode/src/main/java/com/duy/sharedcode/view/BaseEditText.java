@@ -17,8 +17,6 @@
 package com.duy.sharedcode.view;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 
 /**
@@ -44,8 +42,8 @@ public class BaseEditText extends android.support.v7.widget.AppCompatEditText {
     }
 
     private void setup(Context context) {
-        AssetManager assetManager = context.getAssets();
-        Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/DejaVuSerif.ttf");
-        setTypeface(typeface);
+//        AssetManager assetManager = context.getAssets();
+//        Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/Roboto-Regular.ttf");
+//        setTypeface(typeface);
     }
 }
