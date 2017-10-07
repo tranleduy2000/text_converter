@@ -82,12 +82,12 @@ public class AdsFragment extends Fragment {
                 } else {
                     containerAd.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 }
+
                 mAdView = new NativeExpressAdView(getContext());
                 int w = (int) convertPixelsToDp(containerAd.getWidth());
                 AdSize adSize = new AdSize(w, 250);
-                System.out.println("adSize = " + adSize);
                 mAdView.setAdSize(adSize);
-                mAdView.setAdUnitId(getString(R.string.ad_unit_id_main));
+                mAdView.setAdUnitId("ca-app-pub-9351804859208340/4981122038");
 
                 containerAd.removeAllViews();
                 ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -97,9 +97,7 @@ public class AdsFragment extends Fragment {
                 mAdView.loadAd(builder.build());
             }
         });
-
     }
-
 
     /**
      * This method converts device specific pixels to density independent pixels.

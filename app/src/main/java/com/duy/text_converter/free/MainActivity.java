@@ -41,13 +41,15 @@ import com.kobakei.ratethisapp.RateThisApp;
 
 public class MainActivity extends BaseActivity {
     private CoordinatorLayout mCoordinatorLayout;
-    private Toolbar moTolbar;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         MobileAds.initialize(this);
         if (BuildConfig.DEBUG) FirebaseCrash.setCrashCollectionEnabled(false);
+
         setContentView(R.layout.activity_main);
         bindView();
     }
@@ -59,10 +61,9 @@ public class MainActivity extends BaseActivity {
     }
 
     private void bindView() {
-
         this.mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
-        moTolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(moTolbar);
+        this.mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -75,7 +76,7 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         PagerSectionAdapter adapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
@@ -152,14 +153,14 @@ public class MainActivity extends BaseActivity {
      * hide appbar layout when keyboard visible
      */
     private void hideAppBar() {
-        moTolbar.setVisibility(View.GONE);
+        mToolbar.setVisibility(View.GONE);
     }
 
     /**
      * show appbar layout when keyboard gone
      */
     private void showAppBar() {
-        moTolbar.setVisibility(View.VISIBLE);
+        mToolbar.setVisibility(View.VISIBLE);
     }
 
     protected void onShowKeyboard() {

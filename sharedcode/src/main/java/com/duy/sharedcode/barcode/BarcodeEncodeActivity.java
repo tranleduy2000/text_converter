@@ -34,7 +34,7 @@ import com.google.android.gms.ads.NativeExpressAdView;
  */
 public class BarcodeEncodeActivity extends BaseActivity {
 
-    private NativeExpressAdView adView;
+    private NativeExpressAdView mAdView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class BarcodeEncodeActivity extends BaseActivity {
         if (text == null) text = "";
         toolbar.setSubtitle(text);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         viewPager.setAdapter(new BarcodeEncodedPagerAdapter(getSupportFragmentManager(), text));
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(8); //barcode
@@ -62,27 +62,27 @@ public class BarcodeEncodeActivity extends BaseActivity {
         if (isProVersion()) {
             findViewById(R.id.ad_view).setVisibility(View.GONE);
         } else {
-            adView = (NativeExpressAdView) findViewById(R.id.ad_view);
-            adView.loadAd(new AdRequest.Builder().build());
+            mAdView = (NativeExpressAdView) findViewById(R.id.ad_view);
+            mAdView.loadAd(new AdRequest.Builder().build());
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (adView != null) adView.destroy();
+        if (mAdView != null) mAdView.destroy();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (adView != null) adView.resume();
+        if (mAdView != null) mAdView.resume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (adView != null) adView.pause();
+        if (mAdView != null) mAdView.pause();
     }
 
     @Override

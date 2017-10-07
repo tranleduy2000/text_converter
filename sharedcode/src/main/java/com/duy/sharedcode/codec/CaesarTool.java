@@ -25,14 +25,12 @@ import android.support.annotation.NonNull;
 public class CaesarTool implements Encoder, Decoder {
     private static final String NORMAL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toUpperCase();
     private String key = "";
-    private int offset = 1;
 
     public CaesarTool() {
         this(1);
     }
 
-    public CaesarTool(int offset) {
-        this.offset = offset;
+    private CaesarTool(int offset) {
         key = "";
         for (int i = 0; i < NORMAL.length(); i++) {
             key += NORMAL.charAt((i + offset) % NORMAL.length());
@@ -44,17 +42,18 @@ public class CaesarTool implements Encoder, Decoder {
     public String decode(@NonNull String text) {
         StringBuilder encoded = new StringBuilder();
         for (char c : text.toCharArray()) {
-            int index = key.indexOf(Character.toUpperCase(c));
-            if (index > -1) {
-                char cc = NORMAL.charAt(index % NORMAL.length());
-                if (Character.isUpperCase(c)) {
-                    encoded.append(Character.toUpperCase(cc));
-                } else {
-                    encoded.append(Character.toLowerCase(cc));
-                }
-            } else {
-                encoded.append(c);
-            }
+//            int index = key.indexOf(Character.toUpperCase(c));
+//            if (index > -1) {
+//                char cc = NORMAL.charAt(index % NORMAL.length());
+//                if (Character.isUpperCase(c)) {
+//                    encoded.append(Character.toUpperCase(cc));
+//                } else {
+//                    encoded.append(Character.toLowerCase(cc));
+//                }
+//            } else {
+//                encoded.append(c);
+//            }
+            encoded.append((char) (c - 1));
         }
         return encoded.toString();
     }
@@ -64,17 +63,18 @@ public class CaesarTool implements Encoder, Decoder {
     public String encode(@NonNull String text) {
         StringBuilder encoded = new StringBuilder();
         for (char c : text.toCharArray()) {
-            int index = NORMAL.indexOf(Character.toUpperCase(c));
-            if (index > -1) {
-                char cc = key.charAt(index % key.length());
-                if (Character.isUpperCase(c)) {
-                    encoded.append(Character.toUpperCase(cc));
-                } else {
-                    encoded.append(Character.toLowerCase(cc));
-                }
-            } else {
-                encoded.append(c);
-            }
+//            int index = NORMAL.indexOf(Character.toUpperCase(c));
+//            if (index > -1) {
+//                char cc = key.charAt(index % key.length());
+//                if (Character.isUpperCase(c)) {
+//                    encoded.append(Character.toUpperCase(cc));
+//                } else {
+//                    encoded.append(Character.toLowerCase(cc));
+//                }
+//            } else {
+//                encoded.append(c);
+//            }
+            encoded.append(Character.valueOf((char) (c + 1)));
         }
         return encoded.toString();
     }

@@ -52,9 +52,9 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return CodecFragment.newInstance(init);
-            case 1:
-                return BarCodeFragment.newInstance();
             case 2:
+                return BarCodeFragment.newInstance();
+            case AdsFragment.INDEX:
                 return AdsFragment.newInstance();
             case 3:
                 return StylistFragment.newInstance();
@@ -72,9 +72,9 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return context.getString(R.string.codec);
-            case 1:
-                return context.getString(R.string.barcode);
             case 2:
+                return context.getString(R.string.barcode);
+            case AdsFragment.INDEX:
                 return context.getString(R.string.ads);
             case 3:
                 return context.getString(R.string.stylish);
