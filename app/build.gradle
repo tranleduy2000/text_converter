@@ -23,12 +23,12 @@ android {
         applicationId "duy.com.text_converter"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 28
-        versionName "3.6"
+        versionCode 29
+        versionName "3.7"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {

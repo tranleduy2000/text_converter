@@ -23,7 +23,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?colorPrimary"
+        app:cardBackgroundColor="?cardBackgroundColor"
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
@@ -61,7 +61,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?colorPrimary"
+        app:cardBackgroundColor="?cardBackgroundColor"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -124,7 +124,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?colorPrimary"
+        app:cardBackgroundColor="?cardBackgroundColor"
         app:cardUseCompatPadding="true">
 
         <RelativeLayout

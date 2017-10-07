@@ -19,6 +19,7 @@ package com.duy.sharedcode;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.duy.textconverter.sharedcode.R;
 
@@ -28,6 +29,7 @@ import com.duy.textconverter.sharedcode.R;
 
 public class Settings {
     private static final String KEY = "text_data";
+    private static final String TAG = "Settings";
 
     public static void setTextData(Context context, String text) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -41,6 +43,8 @@ public class Settings {
 
     public static boolean useLightTheme(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPreferences.getBoolean(context.getString(R.string.pref_key_light_theme), false);
+        boolean result = sharedPreferences.getBoolean(context.getString(R.string.pref_key_light_theme), false);
+        Log.d(TAG, "useLightTheme() returned: " + result);
+        return result;
     }
 }

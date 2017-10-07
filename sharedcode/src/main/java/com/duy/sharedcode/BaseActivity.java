@@ -16,19 +16,46 @@
 
 package com.duy.sharedcode;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.duy.textconverter.sharedcode.R;
 
 /**
  * Created by Duy on 9/30/2017.
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final String TAG = "BaseActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(Settings.useLightTheme(this) ? R.style.AppThemeLight : R.style.AppTheme);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        Log.d(TAG, "onSharedPreferenceChanged() called with: s = [" + s + "]");
+        if (s.equalsIgnoreCase(getString(R.string.pref_key_light_theme))) {
+            recreate();
+        }
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy() called");
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroy();
     }
 }

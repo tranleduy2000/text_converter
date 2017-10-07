@@ -59,12 +59,11 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        super.onSharedPreferenceChanged(sharedPreferences, s);
         if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_encode))) {
             StyleNotificationManager.showNotificationEncodeIfNeed(this);
         } else if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_decode))) {
             StyleNotificationManager.showNotificationDecodeIfNeed(this);
-        } else if (s.equalsIgnoreCase(getString(R.string.pref_key_light_theme))) {
-            recreate();
         }
     }
 

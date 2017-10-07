@@ -24,15 +24,15 @@ android {
         applicationId "com.duy.text_converter.pro"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 17
-        versionName "2.0.4"
+        versionCode 18
+        versionName "2.0.5"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -45,7 +45,7 @@
                     android:contentDescription="@string/copy"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_copy_white_24dp"
-                    android:tint="?android:textColorPrimary" />
+                    android:tint="?imageTintColor" />
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/image_paste"
@@ -55,7 +55,7 @@
                     android:contentDescription="@string/paste"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_paste_white_24dp"
-                    android:tint="?android:textColorPrimary" />
+                    android:tint="?imageTintColor" />
 
 
             </LinearLayout>
@@ -115,7 +115,7 @@
                     android:contentDescription="@string/copy"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_copy_white_24dp"
-                    android:tint="?android:textColorPrimary" />
+                    android:tint="?imageTintColor" />
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/image_paste_out"
@@ -125,7 +125,7 @@
                     android:contentDescription="@string/paste"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_paste_white_24dp"
-                    android:tint="?android:textColorPrimary" />
+                    android:tint="?imageTintColor" />
 
 
             </LinearLayout>

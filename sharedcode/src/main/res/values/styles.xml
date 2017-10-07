@@ -27,6 +27,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="roundBackground">@drawable/bg_edit_text_dark</item>
+        <item name="imageTintColor">#FFF</item>
     </style>
 
     <style name="AppThemeLight" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -37,5 +38,6 @@
         <item name="windowNoTitle">true</item>
         <item name="cardBackgroundColor">#FFF</item>
         <item name="roundBackground">@drawable/bg_edit_text_light</item>
+        <item name="imageTintColor">#000</item>
     </style>
 </resources>
