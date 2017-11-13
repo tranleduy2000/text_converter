@@ -21,19 +21,16 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import com.duy.common.services.ads.AdsManager;
 import com.duy.sharedcode.BaseActivity;
 import com.duy.text.converter.R;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 /**
  * Created by Duy on 14-Aug-17.
  */
-public class BarcodeEncodeActivity extends BaseActivity {
+public class BarcodeEncodedActivity extends BaseActivity {
 
-    private NativeExpressAdView mAdView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,32 +54,6 @@ public class BarcodeEncodeActivity extends BaseActivity {
         AdsManager.loadBannerAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mAdView != null) mAdView.destroy();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mAdView != null) mAdView.resume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mAdView != null) mAdView.pause();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
 }

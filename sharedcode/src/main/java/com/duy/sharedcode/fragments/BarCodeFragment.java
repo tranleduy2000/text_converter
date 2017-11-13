@@ -37,7 +37,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.duy.sharedcode.barcode.BarcodeEncodeActivity;
+import com.duy.sharedcode.barcode.BarcodeEncodedActivity;
 import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.utils.ShareManager;
 import com.duy.sharedcode.view.BaseEditText;
@@ -162,7 +162,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     decodeImage();
                 } else {
-                    Toast.makeText(getContext(), "Please grated read storage permission", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -179,7 +179,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                     public void run() {
                         mInput.setText(contents);
                         if (getContext() != null) {
-                            Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.decoded, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, 200);
@@ -214,7 +214,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void encode(String s) {
-        Intent intent = new Intent(getContext(), BarcodeEncodeActivity.class);
+        Intent intent = new Intent(getContext(), BarcodeEncodedActivity.class);
         intent.putExtra("data", s);
         startActivity(intent);
     }
@@ -225,7 +225,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
             int result = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
             if (result != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getContext(), "Please grated read storage permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_SHORT).show();
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_READ_EXTERNAL_STORAGE);
                 return;
@@ -239,7 +239,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/*");
 
-            Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+            Intent chooserIntent = Intent.createChooser(getIntent, getString(R.string.select_image));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
             startActivityForResult(chooserIntent, REQUEST_PICK_IMAGE);

@@ -25,6 +25,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,9 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import static android.os.Build.VERSION_CODES.N;
 
@@ -54,30 +58,31 @@ import static android.os.Build.VERSION_CODES.N;
  * Created by Duy on 23-Aug-17.
  */
 
-public class BarcodeEncoderFragment extends Fragment {
+public class BarcodeEncodedFragment extends Fragment {
     private TextView mTxtError;
     private ImageView mImageBarcode;
     private BarcodeGenerateTask mGenerateTask;
     private Bitmap mCurrentBarcode = null;
     private ProgressBar mProgressBar;
+    private BarcodeFormat mBarcodeFormat;
 
-    public static BarcodeEncoderFragment newInstance(String data, BarcodeFormat barcodeFormat) {
+    public static BarcodeEncodedFragment newInstance(String data, BarcodeFormat barcodeFormat) {
         Bundle args = new Bundle();
         args.putString("data", data);
         args.putSerializable("format", barcodeFormat);
-        BarcodeEncoderFragment fragment = new BarcodeEncoderFragment();
+        BarcodeEncodedFragment fragment = new BarcodeEncodedFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_barcode_encoded, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mImageBarcode = view.findViewById(R.id.img_barcode);
         mTxtError = view.findViewById(R.id.txt_message);
@@ -85,8 +90,8 @@ public class BarcodeEncoderFragment extends Fragment {
         mProgressBar.setVisibility(View.INVISIBLE);
 
         String data = getArguments().getString("data");
-        BarcodeFormat barcodeFormat = (BarcodeFormat) getArguments().getSerializable("format");
-        mGenerateTask = new BarcodeGenerateTask(data, barcodeFormat);
+        mBarcodeFormat = (BarcodeFormat) getArguments().getSerializable("format");
+        mGenerateTask = new BarcodeGenerateTask(data, mBarcodeFormat);
         mGenerateTask.execute();
         view.findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +112,7 @@ public class BarcodeEncoderFragment extends Fragment {
         });
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Nullable
     private File saveCurrentImage() throws IOException {
         if (!permissionGranted()) {
@@ -117,12 +123,14 @@ public class BarcodeEncoderFragment extends Fragment {
         }
         if (mCurrentBarcode != null) {
             File file;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss", Locale.US);
+            String fileName = mBarcodeFormat.toString() + "" + dateFormat.format(new Date()) + ".png";
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                file = new File(Environment.getExternalStorageDirectory(),
-                        "TextConverter" + File.separator + System.currentTimeMillis() + ".png");
+                String filePath = "TextConverter" + File.separator + fileName;
+                file = new File(Environment.getExternalStorageDirectory(), filePath);
             } else {
-                file = new File(getContext().getFilesDir(),
-                        "image" + File.separator + System.currentTimeMillis() + ".png");
+                String filePath = "image" + File.separator + fileName;
+                file = new File(getContext().getFilesDir(), filePath);
             }
             if (!file.exists()) {
                 file.getParentFile().mkdirs();
@@ -130,7 +138,7 @@ public class BarcodeEncoderFragment extends Fragment {
             }
             file.setReadable(true);
             mCurrentBarcode.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
-            Toast.makeText(getContext(), R.string.saved_in_gallery, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.saved_in) + " " + file.getPath(), Toast.LENGTH_SHORT).show();
             return file;
         }
         return null;

@@ -38,7 +38,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.duy.common.ShareManager;
 import com.duy.common.StoreUtil;
-import com.duy.sharedcode.activities.DecodeAllActivity;
 import com.duy.sharedcode.fragments.AdsFragment;
 import com.duy.sharedcode.utils.Premium;
 import com.duy.text.converter.BuildConfig;
@@ -68,7 +67,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         setupToolbar();
         showDialogRate();
 
-        startActivity(new Intent(this, DecodeAllActivity.class));
+        //startActivity(new Intent(this, DecodeAllActivity.class));
     }
 
     private void showDialogRate() {

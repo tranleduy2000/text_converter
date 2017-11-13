@@ -41,7 +41,7 @@ public class BarcodeEncodedPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return BarcodeEncoderFragment.newInstance(data, BARCODE_FORMATS[position]);
+        return BarcodeEncodedFragment.newInstance(data, BARCODE_FORMATS[position]);
     }
 
     @Override

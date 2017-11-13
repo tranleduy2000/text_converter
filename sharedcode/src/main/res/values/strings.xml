@@ -89,4 +89,7 @@
     <string name="open_drawer">Open drawer</string>
     <string name="file">File</string>
     <string name="get_unit_converter_app">Get Unit Converter app</string>
+    <string name="read_permission_msg">Please granted read storage permission</string>
+    <string name="select_image">Select Image</string>
+    <string name="saved_in">Saved in</string>
 </resources>
