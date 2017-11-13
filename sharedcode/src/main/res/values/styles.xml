@@ -16,31 +16,36 @@
 
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat">
+    <style name="BaseDarkTheme" parent="Theme.AppCompat">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BaseLightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseDarkTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="cardBackgroundColor">@color/colorPrimary</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+
         <item name="roundBackground">@drawable/bg_edit_text_dark</item>
         <item name="imageTintColor">#FFF</item>
     </style>
 
-    <style name="AppThemeLight" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppThemeLight" parent="BaseLightTheme">
         <item name="colorPrimary">@color/light.colorPrimary</item>
         <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
         <item name="colorAccent">@color/light.colorAccent</item>
-
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
         <item name="cardBackgroundColor">#FFF</item>
         <item name="roundBackground">@drawable/bg_edit_text_light</item>
         <item name="imageTintColor">#000</item>
     </style>
-
 
 
     <style name="Theme.Transparent" parent="android:Theme">

@@ -35,14 +35,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.duy.sharedcode.barcode.BarcodeEncodeActivity;
 import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.utils.ShareManager;
 import com.duy.sharedcode.view.BaseEditText;
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;

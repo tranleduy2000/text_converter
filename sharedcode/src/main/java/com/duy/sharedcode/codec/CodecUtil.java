@@ -18,7 +18,7 @@ package com.duy.sharedcode.codec;
 
 import android.content.Context;
 
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 
 /**
  * Created by Duy on 29-Jul-17.

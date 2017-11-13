@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.pro.util;
+package com.duy.sharedcode.utils;
 
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -30,7 +30,11 @@ import java.io.InputStreamReader;
  */
 
 public class FileUtil {
-    public static final File APP_PATH = new File(Environment.getExternalStorageDirectory(), "TextConverter");
+    public static final File APP_PATH;
+
+    static {
+        APP_PATH = new File(Environment.getExternalStorageDirectory(), "TextConverter");
+    }
 
     @NonNull
     public static String streamToString(InputStream inputStream) throws IOException {

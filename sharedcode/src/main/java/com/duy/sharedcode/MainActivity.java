@@ -24,7 +24,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -32,7 +31,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -42,18 +40,18 @@ import com.duy.common.ShareManager;
 import com.duy.common.StoreUtil;
 import com.duy.sharedcode.fragments.AdsFragment;
 import com.duy.sharedcode.utils.Premium;
-import com.duy.textconverter.sharedcode.BuildConfig;
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.BuildConfig;
+import com.duy.text.converter.R;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, ViewPager.OnPageChangeListener, DrawerLayout.DrawerListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, DrawerLayout.DrawerListener {
+    protected Toolbar mToolbar;
     private CoordinatorLayout mCoordinatorLayout;
     private DrawerLayout mDrawerLayout;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +63,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_main);
         bindView();
         setupToolbar();
-        setupNavigationView();
+        showDialogRate();
     }
 
-    private void setupToolbar() {
+    private void showDialogRate() {
+        // Monitor launch times and interval from installation
+        RateThisApp.onCreate(this);
+        // If the criteria is satisfied, "Rate this app" dialog will be shown
+        RateThisApp.showRateDialogIfNeeded(this);
+    }
+
+    protected void setupToolbar() {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
@@ -78,10 +83,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toggle.syncState();
     }
 
-    private void setupNavigationView() {
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
 
     private void bindView() {
         mCoordinatorLayout = findViewById(R.id.container);
@@ -89,7 +90,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         String text = getTextFromAnotherApp();
 
         ViewPager viewPager = findViewById(R.id.view_pager);
-        FragmentPagerAdapter adapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
+        FragmentPagerAdapter adapter = getPageAdapter(text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(this);
@@ -98,6 +99,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         //attach listener hide/show keyboard
         KeyBoardEventListener keyBoardEventListener = new KeyBoardEventListener(this);
         mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardEventListener);
+    }
+
+    protected FragmentPagerAdapter getPageAdapter(String initValue) {
+        return new PagerSectionAdapter(this, getSupportFragmentManager(), initValue);
     }
 
     @Nullable
@@ -129,10 +134,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        menu.findItem(R.id.action_upgrade).setVisible(true);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.action_upgrade).setVisible(true);
+        menu.findItem(R.id.action_open_codec).setVisible(false);
+        menu.findItem(R.id.action_open_stylish).setVisible(false);
+        menu.findItem(R.id.action_setting).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -140,14 +152,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
         if (id == R.id.action_share) {
             FirebaseAnalytics.getInstance(this).logEvent("click_share", new Bundle());
-            ShareManager.shareApp(this, BuildConfig.APPLICATION_ID);
+            ShareManager.shareApp(this, getPackageName());
 
         } else if (id == R.id.action_get_ascii) {
             FirebaseAnalytics.getInstance(this).logEvent("click_ascii", new Bundle());
             StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
 
         } else if (id == R.id.action_review) {
-            StoreUtil.gotoPlayStore(this, BuildConfig.APPLICATION_ID);
+            StoreUtil.gotoPlayStore(this, getPackageName());
 
         } else if (id == R.id.action_more) {
             StoreUtil.moreApp(this);
@@ -182,35 +194,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         showAppBar();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // Monitor launch times and interval from installation
-        RateThisApp.onStart(this);
-        // If the criteria is satisfied, "Rate this app" dialog will be shown
-        RateThisApp.showRateDialogIfNeeded(this);
-        RateThisApp.setCallback(new RateThisApp.Callback() {
-            @Override
-            public void onYesClicked() {
-                FirebaseAnalytics.getInstance(MainActivity.this).logEvent("click_rate", new Bundle());
-                StoreUtil.gotoPlayStore(MainActivity.this, BuildConfig.APPLICATION_ID);
-            }
-
-            @Override
-            public void onNoClicked() {
-            }
-
-            @Override
-            public void onCancelClicked() {
-            }
-        });
-
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

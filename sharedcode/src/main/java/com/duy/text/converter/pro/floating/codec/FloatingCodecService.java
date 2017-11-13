@@ -105,19 +105,19 @@ public class FloatingCodecService extends FloatingView implements ViewPager.OnPa
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_copy:
-                ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
-                break;
-            case R.id.image_paste:
-                mInput.setText(ClipboardUtil.getClipboard(getContext()));
-                break;
-            case R.id.img_copy_out:
-                ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
-                break;
-            case R.id.image_paste_out:
-                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
-                break;
+        int i = view.getId();
+        if (i == R.id.img_copy) {
+            ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
+
+        } else if (i == R.id.image_paste) {
+            mInput.setText(ClipboardUtil.getClipboard(getContext()));
+
+        } else if (i == R.id.img_copy_out) {
+            ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
+
+        } else if (i == R.id.image_paste_out) {
+            mOutput.setText(ClipboardUtil.getClipboard(getContext()));
+
         }
     }
 

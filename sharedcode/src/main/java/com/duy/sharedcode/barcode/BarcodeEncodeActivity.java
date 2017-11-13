@@ -25,7 +25,7 @@ import android.view.MenuItem;
 
 import com.duy.common.services.ads.AdsManager;
 import com.duy.sharedcode.BaseActivity;
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 /**

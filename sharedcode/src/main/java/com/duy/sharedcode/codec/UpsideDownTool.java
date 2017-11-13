@@ -33,8 +33,6 @@ public class UpsideDownTool {
     public static final String FLIP = "ɐqɔpǝɟbɥıɾʞlɯuodbɹsʇnʌʍxʎz‾'؛˙¿¡/\\,∀qϽᗡƎℲƃHIſʞ˥WNOԀὉᴚS⊥∩ΛMXʎZ0ƖᄅƐㄣϛ9ㄥ86";
 
 
-
-
     /**
      * up side down text
      * <p>

@@ -33,12 +33,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.duy.sharedcode.utils.ClipboardUtil;
-import com.duy.sharedcode.utils.ShareManager;
 import com.duy.sharedcode.codec.CodecMethod;
 import com.duy.sharedcode.codec.CodecUtil;
+import com.duy.sharedcode.utils.ClipboardUtil;
+import com.duy.sharedcode.utils.ShareManager;
 import com.duy.sharedcode.view.BaseEditText;
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 
 
 /**

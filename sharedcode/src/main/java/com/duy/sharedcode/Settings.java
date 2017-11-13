@@ -21,7 +21,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 
 /**
  * Created by Duy on 05-May-17.

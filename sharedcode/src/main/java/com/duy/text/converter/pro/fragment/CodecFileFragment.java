@@ -39,8 +39,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.duy.sharedcode.codec.CodecUtil;
+import com.duy.sharedcode.utils.FileUtil;
 import com.duy.text.converter.R;
-import com.duy.text.converter.pro.util.FileUtil;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -128,13 +128,13 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_select_file:
-                selectFile();
-                break;
-            case R.id.btn_submit:
-                progressFile();
-                break;
+        int i = v.getId();
+        if (i == R.id.btn_select_file) {
+            selectFile();
+
+        } else if (i == R.id.btn_submit) {
+            progressFile();
+
         }
     }
 

@@ -23,10 +23,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 
 import java.util.ArrayList;
-
 
 
 /**

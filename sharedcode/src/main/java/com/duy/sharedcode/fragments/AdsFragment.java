@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import com.duy.common.StoreUtil;
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.NativeExpressAdView;

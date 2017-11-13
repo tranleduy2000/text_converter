@@ -84,7 +84,7 @@ public class PagerSectionAdapterPro extends FragmentPagerAdapter {
             case 4:
                 return context.getString(R.string.hash_function);
             case 5:
-                return "File";
+                return context.getString(R.string.file);
         }
         return super.getPageTitle(position);
     }

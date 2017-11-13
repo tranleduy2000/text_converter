@@ -18,7 +18,7 @@ package com.duy.common;
 
 import android.util.Log;
 
-import com.duy.textconverter.sharedcode.BuildConfig;
+import com.duy.text.converter.BuildConfig;
 
 
 /**

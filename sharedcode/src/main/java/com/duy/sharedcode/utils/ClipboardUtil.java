@@ -22,7 +22,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 
 /**
  * Created by DUy on 04-Nov-16.

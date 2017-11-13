@@ -27,6 +27,7 @@ public class UpperLowerTool {
         System.out.println(upperText(inp));
         System.out.println(lowerText(inp));
     }
+
     public static String upperText(String text) {
         return text.toUpperCase();
     }

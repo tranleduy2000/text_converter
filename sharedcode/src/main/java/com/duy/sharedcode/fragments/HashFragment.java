@@ -43,7 +43,7 @@ import com.duy.sharedcode.hashfunction.Sha512Tool;
 import com.duy.sharedcode.hashfunction.UnixCryptTool;
 import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.view.BaseEditText;
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 
 import java.util.ArrayList;
 

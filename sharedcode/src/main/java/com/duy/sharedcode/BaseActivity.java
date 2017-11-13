@@ -23,7 +23,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.duy.textconverter.sharedcode.R;
+import com.duy.text.converter.R;
 
 /**
  * Created by Duy on 9/30/2017.
