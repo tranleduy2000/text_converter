@@ -37,23 +37,20 @@ public class CaesarCodec implements Codec {
         }
     }
 
+
     @NonNull
     @Override
     public String decode(@NonNull String text) {
         StringBuilder encoded = new StringBuilder();
-        for (char c : text.toCharArray()) {
-//            int index = key.indexOf(Character.toUpperCase(c));
-//            if (index > -1) {
-//                char cc = NORMAL.charAt(index % NORMAL.length());
-//                if (Character.isUpperCase(c)) {
-//                    encoded.append(Character.toUpperCase(cc));
-//                } else {
-//                    encoded.append(Character.toLowerCase(cc));
-//                }
-//            } else {
-//                encoded.append(c);
-//            }
-            encoded.append((char) (c - 1));
+        String[] args = text.split(" ");
+        for (int i = 0; i < args.length; i++) {
+            String arg = args[i];
+            for (char c : arg.toCharArray()) {
+                encoded.append((char) (c - 1));
+            }
+            if (i != arg.length() - 1) {
+                encoded.append(" ");
+            }
         }
         return encoded.toString();
     }
@@ -62,19 +59,15 @@ public class CaesarCodec implements Codec {
     @Override
     public String encode(@NonNull String text) {
         StringBuilder encoded = new StringBuilder();
-        for (char c : text.toCharArray()) {
-//            int index = NORMAL.indexOf(Character.toUpperCase(c));
-//            if (index > -1) {
-//                char cc = key.charAt(index % key.length());
-//                if (Character.isUpperCase(c)) {
-//                    encoded.append(Character.toUpperCase(cc));
-//                } else {
-//                    encoded.append(Character.toLowerCase(cc));
-//                }
-//            } else {
-//                encoded.append(c);
-//            }
-            encoded.append(Character.valueOf((char) (c + 1)));
+        String[] args = text.split(" ");
+        for (int i = 0; i < args.length; i++) {
+            String arg = args[i];
+            for (char c : arg.toCharArray()) {
+                encoded.append(Character.valueOf((char) (c + 1)));
+            }
+            if (i != arg.length() - 1) {
+                encoded.append(" ");
+            }
         }
         return encoded.toString();
     }

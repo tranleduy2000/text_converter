@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode;
+package com.duy.sharedcode.stylish;
 
-import com.duy.sharedcode.stylish.Style;
 import com.duy.sharedcode.stylish.model.ReplaceEffect;
 
 import junit.framework.TestCase;

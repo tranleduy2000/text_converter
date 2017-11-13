@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.tools;
+package com.duy.sharedcode.codec;
 
 import junit.framework.TestCase;
 
