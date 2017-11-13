@@ -124,7 +124,7 @@ public class BarcodeEncodedFragment extends Fragment {
         if (mCurrentBarcode != null) {
             File file;
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss", Locale.US);
-            String fileName = mBarcodeFormat.toString() + "" + dateFormat.format(new Date()) + ".png";
+            String fileName = mBarcodeFormat.toString() + "_" + dateFormat.format(new Date()) + ".png";
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 String filePath = "TextConverter" + File.separator + fileName;
                 file = new File(Environment.getExternalStorageDirectory(), filePath);
