@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.fragment;
+package com.duy.sharedcode.fragments;
 
 import android.content.Context;
 import android.content.Intent;
