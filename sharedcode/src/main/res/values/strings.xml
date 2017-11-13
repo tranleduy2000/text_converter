@@ -85,4 +85,6 @@
     </string>
 
     <string name="pro_version">Pro version</string>
+    <string name="close_drawer">Close drawer</string>
+    <string name="open_drawer">Open drawer</string>
 </resources>

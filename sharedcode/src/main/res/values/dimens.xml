@@ -15,5 +15,8 @@
   -->
 
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="floating_height">200dp</dimen>
+    <dimen name="floating_width">280dp</dimen>
+    <dimen name="floating_window_delete_box_height">125dp</dimen>
+    <dimen name="floating_window_delete_box_width">125dp</dimen>
 </resources>
