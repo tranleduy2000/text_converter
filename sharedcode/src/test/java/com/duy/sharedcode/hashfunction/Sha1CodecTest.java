@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.sharedcode.hashfunction;
+
+import junit.framework.TestCase;
 
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 08-Aug-17.
  */
-public interface Codec extends Decoder, Encoder {
+public class Sha1CodecTest extends TestCase {
+    public void testEncode() throws Exception {
+        String input = "asdhasdasdasdasd";
+        String encode = new Sha1Tool().encode(input);
+        System.out.println(encode);
+    }
+
 }

@@ -16,8 +16,23 @@
 
 package com.duy.sharedcode.codec;
 
+import android.support.annotation.NonNull;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 13-Jul-17.
  */
-public interface Codec extends Decoder, Encoder {
+
+public class ZalgoBigCodec implements Codec {
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return ZalgoMiniCodec.convert(text, false, false, true, true, true);
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        return text;
+    }
 }

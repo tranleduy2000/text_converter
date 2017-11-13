@@ -16,8 +16,24 @@
 
 package com.duy.sharedcode.codec;
 
+import junit.framework.TestCase;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 08-Aug-17.
  */
-public interface Codec extends Decoder, Encoder {
+public class RandomCaseCodecTest extends TestCase {
+    public void testEncode() throws Exception {
+        String inp = "RandomCaseCodecTest";
+        String out = new RandomCaseCodec().encode(inp);
+        System.out.println(out);
+        assertEquals(inp.toLowerCase(), out.toLowerCase());
+    }
+
+    public void testDecode() throws Exception {
+        String inp = "RandomCaseCodecTest";
+        String out = new RandomCaseCodec().decode(inp);
+        System.out.println(out);
+        assertEquals(inp.toLowerCase(), out.toLowerCase());
+    }
+
 }

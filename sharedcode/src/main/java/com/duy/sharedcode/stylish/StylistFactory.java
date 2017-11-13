@@ -17,7 +17,7 @@
 package com.duy.sharedcode.stylish;
 
 
-import com.duy.sharedcode.codec.ZalgoMiniTool;
+import com.duy.sharedcode.codec.ZalgoMiniCodec;
 import com.duy.sharedcode.stylish.model.BlueEffect;
 import com.duy.sharedcode.stylish.model.LeftEffect;
 import com.duy.sharedcode.stylish.model.LeftRightStyle;
@@ -158,9 +158,9 @@ public class StylistFactory {
         list.add("\u0334");
         list.add("\u0336");
 
-        for (char c : ZalgoMiniTool.zalgo_up) list.add(c + "");
-        for (char c : ZalgoMiniTool.zalgo_down) list.add(c + "");
-        for (char c : ZalgoMiniTool.zalgo_mid) list.add(c + "");
+        for (char c : ZalgoMiniCodec.zalgo_up) list.add(c + "");
+        for (char c : ZalgoMiniCodec.zalgo_down) list.add(c + "");
+        for (char c : ZalgoMiniCodec.zalgo_mid) list.add(c + "");
         return list;
     }
 

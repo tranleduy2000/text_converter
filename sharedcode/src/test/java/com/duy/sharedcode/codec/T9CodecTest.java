@@ -16,8 +16,20 @@
 
 package com.duy.sharedcode.codec;
 
+import junit.framework.TestCase;
+
 /**
  * Created by Duy on 28-Aug-17.
  */
-public interface Codec extends Decoder, Encoder {
+public class T9CodecTest extends TestCase {
+    public void testDecode() throws Exception {
+        String result = new T9Codec().decode("hello");
+        System.out.println(result);
+        assertEquals("4433555555666", result);
+    }
+
+    public void testEncode() throws Exception {
+
+    }
+
 }

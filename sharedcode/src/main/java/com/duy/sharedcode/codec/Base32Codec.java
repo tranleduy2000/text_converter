@@ -16,8 +16,26 @@
 
 package com.duy.sharedcode.codec;
 
+import android.support.annotation.NonNull;
+
+import org.apache.commons.codec.binary.Base32;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 11-Jul-17.
  */
-public interface Codec extends Decoder, Encoder {
+
+public class Base32Codec implements Codec {
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        Base32 base32 = new Base32();
+        return new String(base32.encode(text.getBytes()));
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        Base32 base32 = new Base32();
+        return new String(base32.decode(text.getBytes()));
+    }
 }

@@ -16,8 +16,26 @@
 
 package com.duy.sharedcode.codec;
 
+import android.support.annotation.NonNull;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 02-Aug-17.
  */
-public interface Codec extends Decoder, Encoder {
+
+public class RandomCaseCodec implements Codec {
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        StringBuilder result = new StringBuilder();
+        for (char c : text.toCharArray()) {
+            result.append(Math.random() < 0.5d ? c : Character.toUpperCase(c));
+        }
+        return result.toString();
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        return encode(text);
+    }
 }

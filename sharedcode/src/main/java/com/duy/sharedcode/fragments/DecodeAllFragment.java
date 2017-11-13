@@ -16,15 +16,23 @@
 
 package com.duy.sharedcode.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.duy.sharedcode.codec.Decoder;
 import com.duy.text.converter.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by Duy on 11/13/2017.
@@ -53,5 +61,56 @@ public class DecodeAllFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         String input = getArguments().getString(KEY_INPUT);
 
+
+        RecyclerView recyclerView = view.findViewById(R.id.list_decoded);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new ResultAdapter(getContext(), input));
+    }
+
+    private static class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder> {
+        private final Context context;
+        private final String input;
+        private ArrayList<Decoder> mDecoders;
+        private String[] mNames;
+
+        public ResultAdapter(Context context, String input) {
+            this.context = context;
+            this.input = input;
+            initDecoder(context);
+        }
+
+        private void initDecoder(Context context) {
+            mDecoders = new ArrayList<>();
+            mNames = context.getResources().getStringArray(R.array.codec_methods);
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_decode_all,
+                    parent, false);
+            return new ViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+        }
+
+        @Override
+        public int getItemCount() {
+            return mNames.length;
+        }
+
+        static class ViewHolder extends RecyclerView.ViewHolder {
+            TextView txtResult;
+            ProgressBar progressBar;
+
+            ViewHolder(View itemView) {
+                super(itemView);
+                setIsRecyclable(false);
+                progressBar = itemView.findViewById(R.id.progress_bar);
+                txtResult = itemView.findViewById(R.id.txt_result);
+            }
+
+        }
     }
 }

@@ -20,57 +20,52 @@ package com.duy.sharedcode.codec;
 import android.support.annotation.NonNull;
 
 /**
- * Created by DUy on 06-Feb-17.
+ * Created by Duy on 05-May-17.
  */
 
-public class UpsideDownTool implements Codec {
-    /**
-     * original text
-     */
+public class SubscriptCodec implements Codec {
     public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String SUB_SCRIPT = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
 
-    /**
-     * upside down text
-     */
-    public static final String FLIP = "ɐqɔpǝɟbɥıɾʞlɯuodbɹsʇnʌʍxʎz‾'؛˙¿¡/\\,∀qϽᗡƎℲƃHIſʞ˥WNOԀὉᴚS⊥∩ΛMXʎZ0ƖᄅƐㄣϛ9ㄥ86";
-
-
-    /**
-     * up side down text
-     * <p>
-     * hello world, i'm dennis -> sıuuǝp ɯ,ı 'p1ɹoʍ o11ǝɥ
-     */
-    public static String textToUpsideDown(String text) {
-        StringBuilder result = new StringBuilder();
+    private static String textToSub(String text) {
+        String result = "";
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
             int a = NORMAL.indexOf(letter);
-            result.append((a != -1) ? FLIP.charAt(a) : letter);
+            result += (a != -1) ? SUB_SCRIPT.charAt(a) : letter;
         }
-        return new StringBuilder(result.toString()).reverse().toString();
+        return result;
     }
 
-    public static String upsideDownToText(String text) {
-        StringBuilder result = new StringBuilder();
+    private static String subToText(String text) {
+        String result = "";
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
-            int a = FLIP.indexOf(letter);
-            result.append((a != -1) ? NORMAL.charAt(a) : letter);
+            int a = SUB_SCRIPT.indexOf(letter);
+            result += (a != -1) ? NORMAL.charAt(a) : letter;
         }
-        return new StringBuilder(result.toString()).reverse().toString();
-    }
-
-    @NonNull
-    @Override
-    public String decode(@NonNull String text) {
-        return upsideDownToText(text);
+        return result;
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return textToUpsideDown(text);
+        try {
+            return textToSub(text);
+        } catch (Exception e) {
+            return text;
+        }
+    }
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        try {
+            return subToText(text);
+        } catch (Exception e) {
+            return text;
+        }
     }
 }

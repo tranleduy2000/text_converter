@@ -16,8 +16,24 @@
 
 package com.duy.sharedcode.codec;
 
+import android.support.annotation.NonNull;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by DUy on 06-Feb-17.
  */
-public interface Codec extends Decoder, Encoder {
+
+public class UpperCaseCodec implements Codec {
+
+
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
+        return text.toLowerCase();
+    }
+
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return text.toUpperCase();
+    }
 }

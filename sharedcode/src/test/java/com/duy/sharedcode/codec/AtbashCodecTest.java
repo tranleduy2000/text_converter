@@ -16,8 +16,22 @@
 
 package com.duy.sharedcode.codec;
 
+import junit.framework.TestCase;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 10-Aug-17.
  */
-public interface Codec extends Decoder, Encoder {
+public class AtbashCodecTest extends TestCase {
+    public void testDecode() throws Exception {
+        String abcdef = new AtbashCodec().encode("ABCDEF");
+        System.out.println(abcdef);
+        String decode = new AtbashCodec().decode(abcdef);
+        System.out.println("decode = " + decode);
+        assertEquals("ABCDEF", decode);
+    }
+
+    public void testEncode() throws Exception {
+
+    }
+
 }

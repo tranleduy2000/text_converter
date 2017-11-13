@@ -14,10 +14,26 @@
  * limitations under the License.
  */
 
-package com.duy.sharedcode.codec;
+package com.duy.sharedcode.tools;
+
+import com.duy.sharedcode.codec.Codec;
+import com.duy.sharedcode.codec.CodecMethod;
+
+import junit.framework.TestCase;
 
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 11-Jul-17.
  */
-public interface Codec extends Decoder, Encoder {
+public class URLCodecTest extends TestCase {
+
+    public void testEncode() {
+        Codec urlTool = CodecMethod.URL.getCodec();
+        String encode = urlTool.encode("https://commons.apache.org/proper/commons" +
+                "-codec/apidocs/org/apache/commons/codec/net/URLCodec.html");
+        System.out.println(encode);
+
+        String decode = urlTool.decode(encode);
+        System.out.println(decode);
+    }
+
 }

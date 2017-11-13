@@ -16,8 +16,23 @@
 
 package com.duy.sharedcode.codec;
 
+import junit.framework.TestCase;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 08-Aug-17.
  */
-public interface Codec extends Decoder, Encoder {
+public class CaesarCodecTest extends TestCase {
+    public void testDecode() throws Exception {
+        String inp = "Ifmq xf bsf cfjoh buubdlfe";
+        String decode = new CaesarCodec().decode(inp);
+        System.out.println("decode = " + decode);
+        assertEquals(decode, "Help we are being attacked");
+    }
+
+    public void testEncode() throws Exception {
+        String inp = "Help we are being attacked";
+        String encode = new CaesarCodec().encode(inp);
+        assertEquals(encode, "Ifmq xf bsf cfjoh buubdlfe");
+    }
+
 }

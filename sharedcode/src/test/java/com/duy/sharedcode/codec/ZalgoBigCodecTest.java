@@ -16,8 +16,14 @@
 
 package com.duy.sharedcode.codec;
 
+import junit.framework.TestCase;
+
 /**
- * Created by Duy on 28-Aug-17.
+ * Created by Duy on 13-Jul-17.
  */
-public interface Codec extends Decoder, Encoder {
+public class ZalgoBigCodecTest extends TestCase {
+    public void testEncode() throws Exception {
+        System.out.println(new ZalgoBigCodec().encode("xin chào"));
+    }
+
 }

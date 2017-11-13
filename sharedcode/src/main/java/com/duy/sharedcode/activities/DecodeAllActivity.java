@@ -39,6 +39,7 @@ public class DecodeAllActivity extends BaseActivity {
         setContentView(R.layout.activity_decode_all);
 
         String input = getIntent().getStringExtra(EXTRA_INPUT);
+        input = "sample";
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.content, DecodeAllFragment.newInstance(input)).commit();
 

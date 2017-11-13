@@ -41,29 +41,29 @@ public class CodecUtil {
     public static String decode(CodecMethod decodeMethod, String inp) {
         switch (decodeMethod) {
             case ASCII:
-                return new AsciiTool().decode(inp);
+                return new AsciiCodec().decode(inp);
             case OCTAL:
-                return new OctalTool().decode(inp);
+                return new OctalCodec().decode(inp);
             case BINARY:
-                return new BinaryTool().decode(inp);
+                return new BinaryCodec().decode(inp);
             case HEX:
-                return new HexTool().decode(inp);
+                return new HexCodec().decode(inp);
             case UPPER:
-                return UpperLowerTool.upperText(inp);
+                return new UpperCaseCodec().decode(inp);
             case LOWER:
-                return UpperLowerTool.lowerText(inp);
+                return new LowerCaseCodec().decode(inp);
             case REVERSER:
-                return ReverserTool.reverseText(inp);
+                return new ReverserCodec().decode(inp);
             case UPSIDE_DOWNSIDE:
                 return UpsideDownTool.textToUpsideDown(inp);
             case SUPPER_SCRIPT:
-                return new SupScriptText().decode(inp);
+                return new SupscriptCodec().decode(inp);
             case SUB_SCRIPT:
-                return new SubScriptText().decode(inp);
+                return new SubscriptCodec().decode(inp);
             case MORSE_CODE:
-                return new MorseTool().decode(inp);
+                return new MorseCodec().decode(inp);
             case BASE_64:
-                return new Base64Tool().decode(inp);
+                return new Base64Codec().decode(inp);
             case ZALGO_MINI:
                 break;
             case ZALGO_NORMAL:
@@ -71,15 +71,15 @@ public class CodecUtil {
             case ZALGO_BIG:
                 break;
             case BASE_32:
-                return new Base32Tool().decode(inp);
+                return new Base32Codec().decode(inp);
             case URL:
-                return new URLTool().decode(inp);
+                return new URLCodec().decode(inp);
             case RANDOM_CASE:
-                return new RandomCaseTool().decode(inp);
+                return new RandomCaseCodec().decode(inp);
             case CAESAR:
-                return new CaesarTool().decode(inp);
+                return new CaesarCodec().decode(inp);
             case ATBASH:
-                return new AtbashTool().decode(inp);
+                return new AtbashCodec().decode(inp);
             case ROT_13:
                 return new RotCodec().decode(inp);
         }
@@ -102,45 +102,45 @@ public class CodecUtil {
     public static String encode(CodecMethod encodeMethod, String inp) {
         switch (encodeMethod) {
             case ASCII:
-                return new AsciiTool().encode(inp);
+                return new AsciiCodec().encode(inp);
             case OCTAL:
-                return new OctalTool().encode(inp);
+                return new OctalCodec().encode(inp);
             case BINARY:
-                return new BinaryTool().encode(inp);
+                return new BinaryCodec().encode(inp);
             case HEX:
-                return new HexTool().encode(inp);
+                return new HexCodec().encode(inp);
             case UPPER:
-                return UpperLowerTool.upperText(inp);
+                return new UpperCaseCodec().encode(inp);
             case LOWER:
-                return UpperLowerTool.lowerText(inp);
+                return new LowerCaseCodec().encode(inp);
             case REVERSER:
-                return ReverserTool.reverseText(inp);
+                return new ReverserCodec().encode(inp);
             case UPSIDE_DOWNSIDE:
                 return UpsideDownTool.textToUpsideDown(inp);
             case SUPPER_SCRIPT:
-                return new SupScriptText().encode(inp);
+                return new SupscriptCodec().encode(inp);
             case SUB_SCRIPT:
-                return new SubScriptText().encode(inp);
+                return new SubscriptCodec().encode(inp);
             case MORSE_CODE:
-                return new MorseTool().encode(inp);
+                return new MorseCodec().encode(inp);
             case BASE_64:
-                return new Base64Tool().encode(inp);
+                return new Base64Codec().encode(inp);
             case ZALGO_MINI:
-                return new ZalgoMiniTool().encode(inp);
+                return new ZalgoMiniCodec().encode(inp);
             case ZALGO_NORMAL:
-                return new ZalgoNormalTool().encode(inp);
+                return new ZalgoNormalCodec().encode(inp);
             case ZALGO_BIG:
-                return new ZalgoBigTool().encode(inp);
+                return new ZalgoBigCodec().encode(inp);
             case BASE_32:
-                return new Base32Tool().encode(inp);
+                return new Base32Codec().encode(inp);
             case URL:
-                return new URLTool().encode(inp);
+                return new URLCodec().encode(inp);
             case RANDOM_CASE:
-                return new RandomCaseTool().encode(inp);
+                return new RandomCaseCodec().encode(inp);
             case CAESAR:
-                return new CaesarTool().encode(inp);
+                return new CaesarCodec().encode(inp);
             case ATBASH:
-                return new AtbashTool().encode(inp);
+                return new AtbashCodec().encode(inp);
             case ROT_13:
                 return new RotCodec().encode(inp);
         }
