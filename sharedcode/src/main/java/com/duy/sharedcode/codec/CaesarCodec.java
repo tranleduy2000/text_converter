@@ -18,6 +18,8 @@ package com.duy.sharedcode.codec;
 
 import android.support.annotation.NonNull;
 
+import java.util.Arrays;
+
 /**
  * Created by Duy on 08-Aug-17.
  */
@@ -48,7 +50,7 @@ public class CaesarCodec implements Codec {
             for (char c : arg.toCharArray()) {
                 encoded.append((char) (c - 1));
             }
-            if (i != arg.length() - 1) {
+            if (i != args.length - 1) {
                 encoded.append(" ");
             }
         }
@@ -60,12 +62,13 @@ public class CaesarCodec implements Codec {
     public String encode(@NonNull String text) {
         StringBuilder encoded = new StringBuilder();
         String[] args = text.split(" ");
+        System.out.println("args = " + Arrays.toString(args));
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
             for (char c : arg.toCharArray()) {
-                encoded.append(Character.valueOf((char) (c + 1)));
+                encoded.append((char) (c + 1));
             }
-            if (i != arg.length() - 1) {
+            if (i != args.length - 1) {
                 encoded.append(" ");
             }
         }
