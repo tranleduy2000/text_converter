@@ -16,6 +16,18 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_download_unit_converter"
+        android:icon="@drawable/ic_unit_converter"
+        android:title="@string/get_unit_converter_app"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_download_ascii"
+        android:icon="@drawable/ic_ascii"
+        android:title="@string/get_ascii_app"
+        android:visible="false"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_share"
@@ -33,12 +45,12 @@
         android:id="@+id/action_open_codec"
         android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/floating_codec"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_open_stylish"
         android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/floating_stylish"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_setting"
         android:icon="@drawable/ic_settings_white_24dp"

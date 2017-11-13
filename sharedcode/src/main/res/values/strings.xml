@@ -88,4 +88,5 @@
     <string name="close_drawer">Close drawer</string>
     <string name="open_drawer">Open drawer</string>
     <string name="file">File</string>
+    <string name="get_unit_converter_app">Get Unit Converter app</string>
 </resources>

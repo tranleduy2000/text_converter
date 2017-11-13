@@ -52,6 +52,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected Toolbar mToolbar;
     private CoordinatorLayout mCoordinatorLayout;
     private DrawerLayout mDrawerLayout;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         MobileAds.initialize(this);
         FirebaseCrash.setCrashCollectionEnabled(!BuildConfig.DEBUG);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         setContentView(R.layout.activity_main);
         bindView();
@@ -82,7 +84,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mDrawerLayout.addDrawerListener(this);
         toggle.syncState();
     }
-
 
     private void bindView() {
         mCoordinatorLayout = findViewById(R.id.container);
@@ -121,7 +122,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         return null;
     }
 
-
     private void hideKeyboard() {
         View view = getCurrentFocus();
         if (view != null) {
@@ -144,6 +144,14 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         menu.findItem(R.id.action_open_codec).setVisible(false);
         menu.findItem(R.id.action_open_stylish).setVisible(false);
         menu.findItem(R.id.action_setting).setVisible(false);
+
+        if (StoreUtil.isAppInstalled(this, "com.duy.converter")) {
+            menu.findItem(R.id.action_download_unit_converter).setVisible(false);
+            if (!StoreUtil.isAppInstalled(this, "com.duy.asciiart")) {
+                menu.findItem(R.id.action_download_ascii).setVisible(true);
+            }
+        }
+
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -151,12 +159,16 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_share) {
-            FirebaseAnalytics.getInstance(this).logEvent("click_share", new Bundle());
+            mFirebaseAnalytics.logEvent("click_share", new Bundle());
             ShareManager.shareApp(this, getPackageName());
 
-        } else if (id == R.id.action_get_ascii) {
-            FirebaseAnalytics.getInstance(this).logEvent("click_ascii", new Bundle());
+        } else if (id == R.id.action_download_ascii) {
+            mFirebaseAnalytics.logEvent("click_ascii", new Bundle());
             StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
+
+        } else if (id == R.id.action_download_unit_converter) {
+            mFirebaseAnalytics.logEvent("click_ascii", new Bundle());
+            StoreUtil.gotoPlayStore(this, "com.duy.converter");
 
         } else if (id == R.id.action_review) {
             StoreUtil.gotoPlayStore(this, getPackageName());
@@ -165,9 +177,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             StoreUtil.moreApp(this);
 
         } else if (id == R.id.action_upgrade) {
-            FirebaseAnalytics.getInstance(this).logEvent("click_upgrade", new Bundle());
+            mFirebaseAnalytics.logEvent("click_upgrade", new Bundle());
             StoreUtil.gotoPlayStore(this, "com.duy.text_converter.pro");
-
         }
         return super.onOptionsItemSelected(item);
     }

@@ -77,6 +77,7 @@ public class MainActivityPro extends MainActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
         menu.findItem(R.id.action_upgrade).setVisible(false);
         menu.findItem(R.id.action_open_codec).setVisible(true);
         menu.findItem(R.id.action_open_stylish).setVisible(true);
