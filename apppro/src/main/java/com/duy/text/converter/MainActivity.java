@@ -90,8 +90,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void bindView() {
-        mCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.container);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mCoordinatorLayout = findViewById(R.id.container);
+        mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
         Intent intent = getIntent();
@@ -104,12 +104,12 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager = findViewById(R.id.view_pager);
         mAdapter = new PagerSectionAdapter(this, getSupportFragmentManager(), text);
         mViewPager.setOffscreenPageLimit(mAdapter.getCount());
         mViewPager.setAdapter(mAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
+        TabLayout tabLayout = findViewById(R.id.tab);
         tabLayout.setupWithViewPager(mViewPager);
 
         //attach listener hide/show keyboard

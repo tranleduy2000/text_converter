@@ -179,30 +179,29 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case IntentIntegrator.REQUEST_CODE:
-                if (resultCode == RESULT_OK) {
-                    final String contents = data.getStringExtra(Intents.Scan.RESULT);
-                    mInput.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            mInput.setText(contents);
-                            if (getContext() != null) {
-                                Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
-                            }
+        if (requestCode == IntentIntegrator.REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                final String contents = data.getStringExtra(Intents.Scan.RESULT);
+                mInput.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mInput.setText(contents);
+                        if (getContext() != null) {
+                            Toast.makeText(getContext(), "Decoded", Toast.LENGTH_SHORT).show();
                         }
-                    }, 200);
-                }
-                break;
-            case REQUEST_PICK_IMAGE:
-                if (resultCode == RESULT_OK) {
-                    if (mDecodeImageTask != null && !mDecodeImageTask.isCancelled()) {
-                        mDecodeImageTask.cancel(true);
                     }
-                    mDecodeImageTask = new DecodeImageTask();
-                    mDecodeImageTask.execute(data.getData());
+                }, 200);
+            }
+
+        } else if (requestCode == REQUEST_PICK_IMAGE) {
+            if (resultCode == RESULT_OK) {
+                if (mDecodeImageTask != null && !mDecodeImageTask.isCancelled()) {
+                    mDecodeImageTask.cancel(true);
                 }
-                break;
+                mDecodeImageTask = new DecodeImageTask();
+                mDecodeImageTask.execute(data.getData());
+            }
+
         }
     }
 
