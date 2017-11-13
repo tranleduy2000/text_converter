@@ -166,10 +166,10 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         ShareManager.share(editText.getText().toString(), getContext());
     }
 
-    private void convert(boolean to) {
+    private void convert(boolean isEncode) {
         int index = mChoose.getSelectedItemPosition();
         CodecMethod method = CodecMethod.values()[index];
-        if (to) {
+        if (isEncode) {
             String inp = mInput.getText().toString();
             mOutput.setText(CodecUtil.encode(method, inp));
         } else {

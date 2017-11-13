@@ -38,7 +38,6 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
 import com.duy.sharedcode.BaseActivity;
-import com.duy.sharedcode.utils.StoreUtil;
 import com.duy.text.converter.floating.codec.FloatingCodecOpenShortCutActivity;
 import com.duy.text.converter.floating.stylish.FloatingStylishOpenShortCutActivity;
 import com.duy.text.converter.license.Installation;

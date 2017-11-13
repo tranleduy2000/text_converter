@@ -30,7 +30,7 @@ import com.duy.textconverter.sharedcode.R;
 
 public class ClipboardUtil {
     // copy text to clipboard
-    public static void setClipboard(@NonNull Context context, String text) {
+    public static void setClipboard(Context context, String text) {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Copied Text", text);
         clipboard.setPrimaryClip(clip);

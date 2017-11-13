@@ -31,8 +31,10 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
+import com.duy.common.ShareManager;
+import com.duy.common.StoreUtil;
 import com.duy.sharedcode.BaseActivity;
-import com.duy.sharedcode.utils.StoreUtil;
+import com.duy.sharedcode.fragments.AdsFragment;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
@@ -129,7 +131,7 @@ public class MainActivity extends BaseActivity {
         switch (id) {
             case R.id.action_share:
                 FirebaseAnalytics.getInstance(this).logEvent("click_share", new Bundle());
-                StoreUtil.shareApp(this, BuildConfig.APPLICATION_ID);
+                ShareManager.shareApp(this, BuildConfig.APPLICATION_ID);
                 break;
             case R.id.action_get_ascii:
                 FirebaseAnalytics.getInstance(this).logEvent("click_ascii", new Bundle());

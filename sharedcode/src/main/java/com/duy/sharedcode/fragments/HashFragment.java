@@ -22,6 +22,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -33,14 +34,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.duy.sharedcode.utils.ClipboardUtil;
-import com.duy.sharedcode.utils.StoreUtil;
+import com.duy.common.ShareManager;
 import com.duy.sharedcode.hashfunction.HashFunction;
 import com.duy.sharedcode.hashfunction.Md5Tool;
 import com.duy.sharedcode.hashfunction.Sha1Tool;
 import com.duy.sharedcode.hashfunction.Sha256Tool;
 import com.duy.sharedcode.hashfunction.Sha512Tool;
 import com.duy.sharedcode.hashfunction.UnixCryptTool;
+import com.duy.sharedcode.utils.ClipboardUtil;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 
@@ -108,13 +109,13 @@ public class HashFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_hash, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         mInput = view.findViewById(R.id.edit_input);
@@ -125,7 +126,7 @@ public class HashFragment extends Fragment {
         view.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StoreUtil.shareText(getContext(), mOutput.getText().toString());
+                ShareManager.shareText(getContext(), mOutput.getText().toString());
             }
         });
         view.findViewById(R.id.img_copy_out).setOnClickListener(new View.OnClickListener() {

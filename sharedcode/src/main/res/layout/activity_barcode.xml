@@ -55,12 +55,19 @@
 
         </android.support.v4.view.ViewPager>
 
-        <com.google.android.gms.ads.NativeExpressAdView
-            android:id="@+id/ad_view"
+        <LinearLayout
+            android:id="@+id/ads_wrapper"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:adSize="FULL_WIDTHx100"
-            app:adUnitId="ca-app-pub-9351804859208340/9547230610" />
+            android:layout_height="wrap_content">
+
+            <com.google.android.gms.ads.NativeExpressAdView
+                android:id="@+id/ad_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:adSize="SMART_BANNER"
+                app:adUnitId="ca-app-pub-9351804859208340/8981525113" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -23,7 +23,6 @@
     <string name="choose_method">Choose method</string>
     <string name="ouput_here">Enter here for decode…</string>
     <string name="input_here">Enter here for encode…</string>
-    <!--<string name="ad_unit_id">ca-app-pub-7060049030570268/3354507032</string>-->
 
     <string name="type_something">Type something</string>
     <string name="get_ascii_app">Get Ascii Art app</string>
@@ -54,16 +53,9 @@
 
     <!--Ad-->
     <string name="remove_ads">Get pro version</string>
-    <string name="ad_unit_id_barcode">ca-app-pub-7060049030570268/4176792975</string>
-    <string name="ad_unit_id_exit">ca-app-pub-7060049030570268/4640781697</string>
-    <string name="ad_unit_id_main">ca-app-pub-7060049030570268/3354507032</string>
+
     <string name="copied">Copied</string>
 
-
-    <string name="pref_key_enable_encode" translatable="false">pref_encode_notification</string>
-    <string name="pref_key_enable_decode" translatable="false">pref_decode_notification</string>
-    <string name="pref_key_floating_window" translatable="false">pref_key_floating_window</string>
-    <string name="pref_key_light_theme" translatable="false">pref_key_light_theme</string>
 
     <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
     <string name="tool">Tool</string>
@@ -81,4 +73,16 @@
     <string name="decode_notifi">Decode notification</string>
     <string name="decode_style">Decode style</string>
     <string name="menu_text">Menu text (Android M and above)</string>
+
+    <string name="pro_feature"><![CDATA[
+    1. Remove ads\n
+    2. Floating codec (small window)\n
+    3. Floating stylish (small window)\n
+    4. Light theme\n
+    5. Encode/Decode menu (Android M)\n
+    6. Encode/Decode Notification
+    ]]>
+    </string>
+
+    <string name="pro_version">Pro version</string>
 </resources>

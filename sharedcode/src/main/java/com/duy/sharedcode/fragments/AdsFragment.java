@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package com.duy.text_converter.free;
+package com.duy.sharedcode.fragments;
 
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
@@ -27,7 +28,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-import com.duy.sharedcode.utils.StoreUtil;
+import com.duy.common.StoreUtil;
+import com.duy.textconverter.sharedcode.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.NativeExpressAdView;
@@ -53,15 +55,13 @@ public class AdsFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.ads_fragment, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_ads, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         view.findViewById(R.id.btn_pro_version).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +72,6 @@ public class AdsFragment extends Fragment {
     }
 
     private void loadAd(View view) {
-
         final ViewGroup containerAd = view.findViewById(R.id.container_ad);
         containerAd.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -84,9 +83,7 @@ public class AdsFragment extends Fragment {
                 }
 
                 mAdView = new NativeExpressAdView(getContext());
-                int w = (int) convertPixelsToDp(containerAd.getWidth());
-                AdSize adSize = new AdSize(w, 250);
-                mAdView.setAdSize(adSize);
+                mAdView.setAdSize(AdSize.MEDIUM_RECTANGLE);
                 mAdView.setAdUnitId("ca-app-pub-9351804859208340/4981122038");
 
                 containerAd.removeAllViews();

@@ -40,6 +40,7 @@ import android.widget.Toast;
 
 import com.duy.sharedcode.barcode.BarcodeEncodeActivity;
 import com.duy.sharedcode.utils.ClipboardUtil;
+import com.duy.sharedcode.utils.ShareManager;
 import com.duy.sharedcode.view.BaseEditText;
 import com.duy.textconverter.sharedcode.R;
 import com.google.zxing.BinaryBitmap;
@@ -79,18 +80,18 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_barcode, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
         view.findViewById(R.id.img_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doShareText(mInput);
+                ShareManager.share(mInput.getText(), getContext());
             }
         });
         view.findViewById(R.id.img_copy).setOnClickListener(new View.OnClickListener() {
@@ -114,14 +115,6 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.btn_encode).setOnClickListener(this);
         view.findViewById(R.id.btn_decode_cam).setOnClickListener(this);
         view.findViewById(R.id.btn_decode_image).setOnClickListener(this);
-    }
-
-    private void doShareText(EditText editText) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, editText.getText().toString());
-        intent.setType("text/plain");
-        startActivity(intent);
     }
 
     @Override

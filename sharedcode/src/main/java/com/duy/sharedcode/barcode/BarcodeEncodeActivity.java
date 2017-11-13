@@ -22,11 +22,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.duy.common.services.ads.AdsManager;
 import com.duy.sharedcode.BaseActivity;
 import com.duy.textconverter.sharedcode.R;
-import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
 
 /**
@@ -41,7 +40,7 @@ public class BarcodeEncodeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(R.string.barcode);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -49,22 +48,13 @@ public class BarcodeEncodeActivity extends BaseActivity {
         if (text == null) text = "";
         toolbar.setSubtitle(text);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new BarcodeEncodedPagerAdapter(getSupportFragmentManager(), text));
         viewPager.setOffscreenPageLimit(3);
         viewPager.setCurrentItem(8); //barcode
         ((TabLayout) findViewById(R.id.tab_layout)).setupWithViewPager(viewPager);
 
-        loadAdIfNeed();
-    }
-
-    private void loadAdIfNeed() {
-        if (isProVersion()) {
-            findViewById(R.id.ad_view).setVisibility(View.GONE);
-        } else {
-            mAdView = (NativeExpressAdView) findViewById(R.id.ad_view);
-            mAdView.loadAd(new AdRequest.Builder().build());
-        }
+        AdsManager.loadBannerAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
     }
 
     @Override
@@ -94,7 +84,5 @@ public class BarcodeEncodeActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean isProVersion() {
-        return getPackageName().equals("com.duy.text_converter.pro");
-    }
+
 }

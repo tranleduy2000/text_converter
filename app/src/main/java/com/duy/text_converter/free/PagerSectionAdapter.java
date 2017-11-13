@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.duy.sharedcode.fragments.AdsFragment;
 import com.duy.sharedcode.fragments.BarCodeFragment;
 import com.duy.sharedcode.fragments.CodecFragment;
 import com.duy.sharedcode.fragments.DecorateFragment;

@@ -17,13 +17,5 @@
 <resources>
     <string name="app_name">Text Converter</string>
 
-    <string name="pro_feature">1. Remove ads\n
-        2. Floating codec (small window)\n
-        3. Floating stylish (small window)\n
-        4. Light theme\n
-        5. Encode/Decode menu (Android M)\n
-        6. Encode/Decode Notification
-    </string>
-    <string name="pro_version">Pro version</string>
 
 </resources>
