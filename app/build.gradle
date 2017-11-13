@@ -17,23 +17,31 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "duy.com.text_converter"
-        minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 30
-        versionName "3.8"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 31
+        versionName "3.8.1"
     }
+
+    signingConfigs {
+        release {
+            storeFile file(FREE_RELEASE_STORE_FILE)
+            storePassword FREE_RELEASE_STORE_PASSWORD
+            keyAlias FREE_RELEASE_KEY_ALIAS
+            keyPassword FREE_RELEASE_KEY_PASSWORD
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }

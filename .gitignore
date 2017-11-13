@@ -58,3 +58,4 @@ freeline/
 freeline_project_description.json
 
 /apppro/src/main/java/com/duy/text/converter/pro/license/Key.java
+*.jks

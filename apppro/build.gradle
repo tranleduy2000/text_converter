@@ -17,23 +17,33 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.duy.text_converter.pro"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 18
         versionName "2.0.5"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+    signingConfigs {
+        release {
+            storeFile file(PRO_RELEASE_STORE_FILE)
+            storePassword PRO_RELEASE_STORE_PASSWORD
+            keyAlias PRO_RELEASE_KEY_ALIAS
+            keyPassword PRO_RELEASE_KEY_PASSWORD
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -45,6 +55,6 @@ dependencies {
     compile project(':sharedcode')
     compile project(':lvl')
 
-    compile 'com.android.support:support-v4:26.+'
+    compile "com.android.support:support-v4:$androidSupportVersion"
 }
 apply plugin: 'com.google.gms.google-services'
