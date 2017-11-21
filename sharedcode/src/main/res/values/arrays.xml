@@ -45,6 +45,7 @@
         <item>Caesar offset 1</item>
         <item>Atbash</item>
         <item>ROT 13</item>
+        <item>NATO</item>
     </string-array>
 
     <string-array name="barcode_format">

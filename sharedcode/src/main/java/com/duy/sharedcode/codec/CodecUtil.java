@@ -82,6 +82,8 @@ public class CodecUtil {
                 return new AtbashCodec().decode(inp);
             case ROT_13:
                 return new RotCodec().decode(inp);
+            default:
+                return decodeMethod.getCodec().decode(inp);
         }
         return inp;
     }
@@ -143,8 +145,9 @@ public class CodecUtil {
                 return new AtbashCodec().encode(inp);
             case ROT_13:
                 return new RotCodec().encode(inp);
+            default:
+                return encodeMethod.getCodec().encode(inp);
         }
-        return inp;
     }
 
 

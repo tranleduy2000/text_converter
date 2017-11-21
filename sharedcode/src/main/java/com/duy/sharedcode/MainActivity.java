@@ -28,7 +28,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -80,11 +79,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void setupToolbar() {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
-                mDrawerLayout, mToolbar, R.string.open_drawer, R.string.close_drawer);
-        mDrawerLayout.addDrawerListener(toggle);
-        mDrawerLayout.addDrawerListener(this);
-        toggle.syncState();
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
+//                mDrawerLayout, mToolbar, R.string.open_drawer, R.string.close_drawer);
+//        mDrawerLayout.addDrawerListener(toggle);
+//        mDrawerLayout.addDrawerListener(this);
+//        toggle.syncState();
     }
 
     private void bindView() {

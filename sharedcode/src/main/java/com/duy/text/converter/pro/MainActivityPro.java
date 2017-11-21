@@ -52,7 +52,6 @@ public class MainActivityPro extends MainActivity {
             return;
         }
         checkLicense();
-
     }
 
     @Override
