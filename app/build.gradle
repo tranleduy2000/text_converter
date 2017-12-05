@@ -28,13 +28,9 @@ android {
         versionName "3.8.2"
     }
 
+
     signingConfigs {
-        release {
-            storeFile file(FREE_RELEASE_STORE_FILE)
-            storePassword FREE_RELEASE_STORE_PASSWORD
-            keyAlias FREE_RELEASE_KEY_ALIAS
-            keyPassword FREE_RELEASE_KEY_PASSWORD
-        }
+        release
     }
 
     buildTypes {
@@ -44,6 +40,19 @@ android {
             signingConfig signingConfigs.release
         }
     }
+}
+
+def Properties props = new Properties()
+def propFile = new File('signing.properties')
+if (propFile.canRead()) {
+    props.load(new FileInputStream(propFile))
+    android.signingConfigs.release.storeFile = file(props['FREE_RELEASE_STORE_FILE'])
+    android.signingConfigs.release.storePassword = props['FREE_RELEASE_STORE_PASSWORD']
+    android.signingConfigs.release.keyAlias = props['FREE_RELEASE_KEY_ALIAS']
+    android.signingConfigs.release.keyPassword = props['FREE_RELEASE_KEY_PASSWORD']
+} else {
+    println 'signing.properties not found'
+    android.buildTypes.release.signingConfig = null
 }
 
 dependencies {
