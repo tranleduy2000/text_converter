@@ -58,7 +58,6 @@ public class MainActivityPro extends MainActivity {
     protected void setupToolbar() {
         super.setupToolbar();
         mToolbar.setTitle(R.string.app_name);
-        mToolbar.setSubtitle(R.string.pro_version);
     }
 
     private void checkLicense() {

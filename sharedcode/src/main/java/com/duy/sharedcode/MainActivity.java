@@ -24,7 +24,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -45,12 +44,12 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, DrawerLayout.DrawerListener {
     protected Toolbar mToolbar;
     private CoordinatorLayout mCoordinatorLayout;
-    private DrawerLayout mDrawerLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
@@ -65,8 +64,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         bindView();
         setupToolbar();
         showDialogRate();
-
-        //startActivity(new Intent(this, DecodeAllActivity.class));
     }
 
     private void showDialogRate() {
@@ -79,16 +76,10 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void setupToolbar() {
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
-//                mDrawerLayout, mToolbar, R.string.open_drawer, R.string.close_drawer);
-//        mDrawerLayout.addDrawerListener(toggle);
-//        mDrawerLayout.addDrawerListener(this);
-//        toggle.syncState();
     }
 
     private void bindView() {
         mCoordinatorLayout = findViewById(R.id.container);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
         String text = getTextFromAnotherApp();
 
         ViewPager viewPager = findViewById(R.id.view_pager);
@@ -96,7 +87,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(this);
-        ((TabLayout) findViewById(R.id.tab)).setupWithViewPager(viewPager);
+        ((SmartTabLayout) findViewById(R.id.tab_layout)).setViewPager(viewPager);
 
         //attach listener hide/show keyboard
         KeyBoardEventListener keyBoardEventListener = new KeyBoardEventListener(this);

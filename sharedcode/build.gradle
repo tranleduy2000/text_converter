@@ -51,12 +51,12 @@ dependencies {
     compile "com.android.support:support-v4:$androidSupportVersion"
 
     compile 'io.github.kobakei:ratethisapp:1.2.0'
-    compile 'com.google.android.gms:play-services-ads:11.6.0'
-    compile 'com.google.firebase:firebase-core:11.6.0'
+    compile 'com.google.android.gms:play-services-ads:11.6.2'
+    compile 'com.google.firebase:firebase-core:11.6.2'
     compile 'com.google.firebase:firebase-crash:11.6.0'
 
     compile 'com.google.zxing:core:3.3.0'
     compile 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
-
+    compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.simplecityapps:recyclerview-fastscroll:1.0.16'
 }

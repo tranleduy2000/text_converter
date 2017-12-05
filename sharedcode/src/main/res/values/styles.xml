@@ -42,6 +42,7 @@
         <item name="colorPrimary">@color/light.colorPrimary</item>
         <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
         <item name="colorAccent">@color/light.colorAccent</item>
+        <item name="android:windowBackground">@color/light.windowBackgroundColor</item>
         <item name="cardBackgroundColor">#FFF</item>
         <item name="roundBackground">@drawable/bg_edit_text_light</item>
         <item name="imageTintColor">#000</item>

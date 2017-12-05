@@ -23,7 +23,9 @@
     <color name="white">#FFF</color>
     <color name="black">#000</color>
 
-    <color name="light.colorPrimary">#08bcd4</color>
-    <color name="light.colorPrimaryDark">#0097a7</color>
-    <color name="light.colorAccent">#ff1744</color>
+    <color name="light.colorPrimary">#3a3f47</color>
+    <color name="light.colorPrimaryDark">#242a32</color>
+    <color name="light.colorAccent">#ff5824</color>
+    <color name="light.windowBackgroundColor">#eeeeee</color>
+    <color name="black_20">#33000000</color>
 </resources>
