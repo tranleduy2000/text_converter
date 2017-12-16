@@ -21,11 +21,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.duy.sharedcode.fragments.BarCodeFragment;
-import com.duy.sharedcode.fragments.CodecFragment;
-import com.duy.sharedcode.fragments.DecorateFragment;
-import com.duy.sharedcode.fragments.HashFragment;
-import com.duy.sharedcode.fragments.StylistFragment;
+import com.duy.text.converter.core.fragments.BarCodeFragment;
+import com.duy.text.converter.core.fragments.CodecFragment;
+import com.duy.text.converter.core.fragments.DecorateFragment;
+import com.duy.text.converter.core.fragments.HashFragment;
+import com.duy.text.converter.core.fragments.StylistFragment;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.fragment.CodecFileFragment;
 

@@ -14,8 +14,8 @@
         android:resizeableActivity="false"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false">
-        <activity android:name="com.duy.sharedcode.barcode.BarcodeEncodedActivity" />
-        <activity android:name="com.duy.sharedcode.activities.DecodeAllActivity" />
+        <activity android:name=".core.barcode.BarcodeEncodedActivity" />
+        <activity android:name=".core.activities.DecodeAllActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

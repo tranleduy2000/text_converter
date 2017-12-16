@@ -30,8 +30,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.duy.sharedcode.adapters.StyleAdapter;
-import com.duy.sharedcode.stylish.StylistGenerator;
+import com.duy.text.converter.core.adapters.StyleAdapter;
+import com.duy.text.converter.core.stylish.StylistGenerator;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.floating.FloatingView;
 

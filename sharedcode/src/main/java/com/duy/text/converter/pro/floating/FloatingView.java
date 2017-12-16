@@ -50,7 +50,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 
-import com.duy.sharedcode.Settings;
+import com.duy.text.converter.core.Settings;
 import com.duy.text.converter.R;
 
 

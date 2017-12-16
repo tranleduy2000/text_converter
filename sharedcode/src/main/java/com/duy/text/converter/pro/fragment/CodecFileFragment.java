@@ -40,8 +40,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.duy.sharedcode.codec.CodecUtil;
-import com.duy.sharedcode.utils.FileUtil;
+import com.duy.text.converter.core.codec.CodecUtil;
+import com.duy.text.converter.core.utils.FileUtil;
 import com.duy.text.converter.R;
 
 import java.io.BufferedWriter;

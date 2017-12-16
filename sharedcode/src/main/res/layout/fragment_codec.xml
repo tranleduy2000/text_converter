@@ -64,7 +64,7 @@
         </LinearLayout>
 
 
-        <com.duy.sharedcode.view.BaseEditText
+        <com.duy.text.converter.core.view.BaseEditText
             android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -141,7 +141,7 @@
                 android:tint="?imageTintColor" />
         </LinearLayout>
 
-        <com.duy.sharedcode.view.BaseEditText
+        <com.duy.text.converter.core.view.BaseEditText
             android:id="@+id/edit_output"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -29,10 +29,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.duy.sharedcode.codec.CodecMethod;
-import com.duy.sharedcode.codec.CodecUtil;
-import com.duy.sharedcode.utils.ClipboardUtil;
-import com.duy.sharedcode.view.BaseEditText;
+import com.duy.text.converter.core.codec.CodecMethod;
+import com.duy.text.converter.core.codec.CodecUtil;
+import com.duy.text.converter.core.utils.ClipboardUtil;
+import com.duy.text.converter.core.view.BaseEditText;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.floating.FloatingView;
 

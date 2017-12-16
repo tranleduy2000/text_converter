@@ -23,7 +23,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
-import com.duy.sharedcode.codec.CodecUtil;
+import com.duy.text.converter.core.codec.CodecUtil;
 
 /**
  * Created by Duy on 29-Jul-17.
