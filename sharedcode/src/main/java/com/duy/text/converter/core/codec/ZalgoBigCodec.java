@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 /**
  * Created by Duy on 13-Jul-17.

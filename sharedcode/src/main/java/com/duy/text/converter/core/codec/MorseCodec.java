@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 import java.util.HashMap;
 
@@ -26,14 +27,14 @@ import java.util.HashMap;
  */
 
 public class MorseCodec extends CodecImpl {
-    public static final char ALPHABET[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+    private static final char ALPHABET[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
             'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '};
 
-    public static final String MORSE_CODE[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+    private static final String MORSE_CODE[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
             "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...",
             "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "/"};
-    public static final HashMap<Character, String> TEXT_TO_MORSE_CODES;
-    public static final HashMap<String, Character> MORSE_CODE_TO_TEXT;
+    private static final HashMap<Character, String> TEXT_TO_MORSE_CODES;
+    private static final HashMap<String, Character> MORSE_CODE_TO_TEXT;
 
     static {
         TEXT_TO_MORSE_CODES = new HashMap<>();
@@ -44,33 +45,34 @@ public class MorseCodec extends CodecImpl {
         }
     }
 
-    public static String textToMorse(String text) {
+    private String textToMorse(String text) {
         text = text.toLowerCase();
-        StringBuilder converted = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         char[] chars = text.toCharArray();
+        setMax(chars.length);
         for (int i = 0; i < chars.length; i++) {
             if (TEXT_TO_MORSE_CODES.get(chars[i]) != null) {
-                converted.append(TEXT_TO_MORSE_CODES.get(chars[i]));
-                if (i != chars.length - 1) {
-                    converted.append(" ");
-                }
+                result.append(TEXT_TO_MORSE_CODES.get(chars[i]));
+                if (i != chars.length - 1) result.append(" ");
+                incConfident();
             } else {
-                converted.append(chars[i]);
+                result.append(chars[i]);
             }
         }
-        return converted.toString();
+        return result.toString();
     }
 
-    public static String morseToText(String text) {
+    private String morseToText(String text) {
         text = text.toLowerCase();
         String[] chars = text.split("\\s+");
         StringBuilder converted = new StringBuilder();
-
-        for (int i = 0; i < chars.length; i++) {
-            if (MORSE_CODE_TO_TEXT.get(chars[i]) != null) {
-                converted.append(MORSE_CODE_TO_TEXT.get(chars[i]));
+        setMax(chars);
+        for (String aChar : chars) {
+            if (MORSE_CODE_TO_TEXT.get(aChar) != null) {
+                converted.append(MORSE_CODE_TO_TEXT.get(aChar));
+                incConfident();
             } else {
-                converted.append(chars[i]);
+                converted.append(aChar);
             }
         }
         return converted.toString();
@@ -79,24 +81,14 @@ public class MorseCodec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        try {
-            return textToMorse(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return textToMorse(text);
     }
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        try {
-            return morseToText(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return morseToText(text);
     }
-
-
 
 
 }

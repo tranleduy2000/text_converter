@@ -34,8 +34,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.codec.CodecMethod;
-import com.duy.text.converter.core.codec.CodecUtil;
+import com.duy.text.converter.core.codec.interfaces.CodecMethod;
+import com.duy.text.converter.core.codec.interfaces.CodecUtil;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.core.view.BaseEditText;

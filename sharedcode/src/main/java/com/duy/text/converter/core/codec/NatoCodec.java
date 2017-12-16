@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 import java.util.ArrayList;
 
@@ -77,9 +78,11 @@ public class NatoCodec extends CodecImpl {
     public String decode(@NonNull String text) {
         StringBuilder result = new StringBuilder();
         String[] args = text.split("\\s+");
+        setMax(args);
         for (String arg : args) {
             String value = get(String.valueOf(arg));
             if (value != null) {
+                incConfident();
                 result.append(value);
             } else {
                 result.append(arg);
@@ -101,10 +104,12 @@ public class NatoCodec extends CodecImpl {
     @Override
     public String encode(@NonNull String text) {
         StringBuilder result = new StringBuilder();
+        setMax(text.length());
         for (int i = 0; i < text.length(); i++) {
             String value = get(String.valueOf(text.charAt(i)));
             if (value != null) {
                 result.append(value);
+                incConfident();
             } else {
                 result.append(text.charAt(i));
             }
@@ -112,9 +117,6 @@ public class NatoCodec extends CodecImpl {
         }
         return result.toString();
     }
-
-
-
 
 
     static class NatoItem {

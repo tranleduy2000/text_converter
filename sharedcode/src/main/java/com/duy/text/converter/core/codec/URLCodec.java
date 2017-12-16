@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.EncoderException;

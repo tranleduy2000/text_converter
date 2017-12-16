@@ -16,10 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
-import java.util.Arrays;
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 /**
  * Created by Duy on 08-Aug-17.
@@ -46,14 +45,25 @@ public class CaesarCodec extends CodecImpl {
     public String decode(@NonNull String text) {
         StringBuilder encoded = new StringBuilder();
         String[] args = text.split(" ");
+        setMax(args);
+
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
+
+            StringBuilder part = new StringBuilder();
             for (char c : arg.toCharArray()) {
-                encoded.append((char) (c - 1));
+                char preChar = (char) (c - 1);
+                if (Character.isLetterOrDigit(preChar) || Character.isSpaceChar(preChar)) {
+                    part.append(preChar);
+                    incConfident();
+                } else {
+                    part = new StringBuilder(arg);
+                    break;
+                }
             }
-            if (i != args.length - 1) {
-                encoded.append(" ");
-            }
+
+            if (i != args.length - 1) part.append(" ");
+            encoded.append(part);
         }
         return encoded.toString();
     }
@@ -63,20 +73,29 @@ public class CaesarCodec extends CodecImpl {
     public String encode(@NonNull String text) {
         StringBuilder encoded = new StringBuilder();
         String[] args = text.split(" ");
-        System.out.println("args = " + Arrays.toString(args));
+        setMax(args);
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
+
+            StringBuilder part = new StringBuilder();
             for (char c : arg.toCharArray()) {
-                encoded.append((char) (c + 1));
+                char nextChar = (char) (c + 1);
+                if (Character.isLetterOrDigit(nextChar) || Character.isSpaceChar(nextChar)) {
+                    part.append(nextChar);
+                    incConfident();
+                } else {
+                    part = new StringBuilder(arg);
+                    break;
+                }
             }
             if (i != args.length - 1) {
-                encoded.append(" ");
+                part.append(" ");
             }
+
+            encoded.append(part);
         }
         return encoded.toString();
     }
-
-
 
 
 }

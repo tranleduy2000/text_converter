@@ -18,6 +18,8 @@ package com.duy.text.converter.core.codec;
 
 import android.support.annotation.NonNull;
 
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
+
 /**
  * Created by Duy on 08-Aug-17.
  */
@@ -29,18 +31,29 @@ public class AtbashCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
+        return decodeImpl(text);
+    }
+
+    private String decodeImpl(String text) {
         StringBuilder encoded = new StringBuilder();
-        for (char c : text.toCharArray()) {
-            int index = NORMAL.indexOf(Character.toUpperCase(c));
-            if (index > -1) {
-                char cc = NORMAL.charAt(NORMAL.length() - index - 1);
-                if (Character.isUpperCase(c)) {
-                    encoded.append(Character.toUpperCase(cc));
+        char[] chars = text.toCharArray();
+        setMax(chars.length);
+        for (char c : chars) {
+            try {
+                int index = NORMAL.indexOf(Character.toUpperCase(c));
+                if (index > -1) {
+                    char cc = NORMAL.charAt(NORMAL.length() - index - 1);
+                    if (Character.isUpperCase(c)) {
+                        encoded.append(Character.toUpperCase(cc));
+                    } else {
+                        encoded.append(Character.toLowerCase(cc));
+                    }
                 } else {
-                    encoded.append(Character.toLowerCase(cc));
+                    encoded.append(c);
                 }
-            } else {
-                encoded.append(c);
+                incConfident();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         return encoded.toString();
@@ -49,10 +62,8 @@ public class AtbashCodec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return decode(text);
+        return decodeImpl(text);
     }
-
-
 
 
 }

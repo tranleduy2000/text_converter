@@ -29,10 +29,30 @@ public class CaesarCodecTest extends TestCase {
         assertEquals(decode, "Help we are being attacked");
     }
 
+    public void testDecode2() throws Exception {
+        String inp = "! !";
+        String decode = new CaesarCodec().decode(inp);
+        System.out.println("decode = '" + decode + "'");
+        assertEquals(decode, "   ");
+    }
+
+    public void testDecode3() throws Exception {
+        String inp = (char) 19 + "";
+        String decode = new CaesarCodec().decode(inp);
+        System.out.println("decode = '" + decode + "'");
+        assertEquals(decode, "\u0013");
+    }
+
     public void testEncode() throws Exception {
         String inp = "Help we are being attacked";
         String encode = new CaesarCodec().encode(inp);
         assertEquals(encode, "Ifmq xf bsf cfjoh buubdlfe");
+    }
+
+    public void testEncodeOverflow() throws Exception {
+        String inp = "~";
+        String encode = new CaesarCodec().encode(inp);
+        assertEquals(encode, "~");
     }
 
 }

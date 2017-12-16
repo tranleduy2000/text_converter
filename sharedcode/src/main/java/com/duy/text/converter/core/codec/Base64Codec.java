@@ -16,9 +16,10 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Base64;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 import java.nio.charset.Charset;
 
@@ -30,10 +31,14 @@ public class Base64Codec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String token) {
+        setMax(1);
         try {
             byte[] encodedBytes = Base64.encode(token.getBytes(), Base64.DEFAULT);
-            return new String(encodedBytes, Charset.forName("UTF-8"));
+            String result = new String(encodedBytes, Charset.forName("UTF-8"));
+            setConfident(1);
+            return result;
         } catch (Exception e) {
+            setConfident(0);
             return token;
         }
     }
@@ -41,15 +46,17 @@ public class Base64Codec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String token) {
+        setMax(1);
         try {
             byte[] decodedBytes = Base64.decode(token.getBytes(), Base64.DEFAULT);
-            return new String(decodedBytes, Charset.forName("UTF-8"));
+            String result = new String(decodedBytes, Charset.forName("UTF-8"));
+            setConfident(1);
+            return result;
         } catch (Exception e) {
+            setConfident(0);
             return token;
         }
     }
-
-
 
 
 }

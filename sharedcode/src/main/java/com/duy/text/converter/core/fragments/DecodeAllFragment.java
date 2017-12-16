@@ -31,8 +31,8 @@ import android.view.ViewGroup;
 import com.duy.common.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.adapters.DecodeResultAdapter;
-import com.duy.text.converter.core.codec.Codec;
-import com.duy.text.converter.core.codec.CodecMethod;
+import com.duy.text.converter.core.codec.interfaces.Codec;
+import com.duy.text.converter.core.codec.interfaces.CodecMethod;
 
 import java.util.ArrayList;
 import java.util.Arrays;

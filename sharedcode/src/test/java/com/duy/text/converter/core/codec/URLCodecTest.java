@@ -16,6 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
+import com.duy.text.converter.core.codec.interfaces.Codec;
+import com.duy.text.converter.core.codec.interfaces.CodecMethod;
+
 import junit.framework.TestCase;
 
 /**

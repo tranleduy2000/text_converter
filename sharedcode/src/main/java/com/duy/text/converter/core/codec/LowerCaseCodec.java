@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -29,16 +30,18 @@ public class LowerCaseCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         return text.toUpperCase();
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         return text.toLowerCase();
     }
-
-
 
 
 }

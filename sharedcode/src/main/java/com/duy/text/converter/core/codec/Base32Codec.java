@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 import org.apache.commons.codec.binary.Base32;
 
@@ -26,21 +27,32 @@ import org.apache.commons.codec.binary.Base32;
  */
 
 public class Base32Codec extends CodecImpl {
+    private Base32 base32 = new Base32();
+
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        Base32 base32 = new Base32();
-        return new String(base32.encode(text.getBytes()));
+        setMax(1);
+        try {
+            String result = new String(base32.encode(text.getBytes()));
+            setConfident(1);
+            return result;
+        } catch (Exception e) {
+            setConfident(0);
+            return text;
+        }
     }
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        Base32 base32 = new Base32();
-        return new String(base32.decode(text.getBytes()));
+        setMax(1);
+        try {
+            setConfident(1);
+            return new String(base32.decode(text.getBytes()));
+        } catch (Exception e) {
+            setConfident(0);
+            return text;
+        }
     }
-
-
-
-
 }

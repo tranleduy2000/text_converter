@@ -16,9 +16,10 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 /**
  * Created by DUy on 06-Feb-17.

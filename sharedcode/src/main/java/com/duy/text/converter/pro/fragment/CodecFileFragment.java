@@ -41,7 +41,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.codec.CodecUtil;
+import com.duy.text.converter.core.codec.interfaces.CodecUtil;
 import com.duy.text.converter.core.utils.FileUtil;
 import com.duy.text.converter.core.view.RoundedBackgroundEditText;
 

@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -28,10 +29,12 @@ public class DecimalCodec extends CodecImpl {
     /**
      * convert text to hex
      */
-    public String textToDecimal(String text) {
+    private String textToDecimal(String text) {
         StringBuilder result = new StringBuilder();
         char[] chars = text.toCharArray();
+        setMax(chars.length);
         for (char c : chars) {
+            incConfident();
             result.append(Integer.toHexString(c)).append(" ");
         }
         return result.toString();
@@ -40,12 +43,14 @@ public class DecimalCodec extends CodecImpl {
     /**
      * convert text to hex
      */
-    public String decimalToText(String text) {
+    private String decimalToText(String text) {
         StringBuilder result = new StringBuilder();
         String[] arr = text.split(" ");
+        setMax(arr);
         for (String arg : arr) {
             try {
                 result.append(Character.toChars(Integer.parseInt(arg, 10)));
+                incConfident();
             } catch (Exception e) {
                 result.append(" ").append(arg).append(" ");
             }
@@ -63,14 +68,8 @@ public class DecimalCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        try {
-            return decimalToText(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return decimalToText(text);
     }
-
-
 
 
 }

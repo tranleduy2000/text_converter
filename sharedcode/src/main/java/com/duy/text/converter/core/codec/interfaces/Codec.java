@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.codec;
+package com.duy.text.converter.core.codec.interfaces;
 
-import android.support.annotation.NonNull;
+import android.content.Context;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 28-Aug-17.
  */
-
-public interface Decoder {
-    @NonNull
-    String decode(@NonNull String text);
+public interface Codec extends Decoder, Encoder {
+    String getName(Context context);
 
     int getMax();
 

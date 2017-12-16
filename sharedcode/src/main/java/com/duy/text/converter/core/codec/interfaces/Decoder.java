@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.codec;
+package com.duy.text.converter.core.codec.interfaces;
 
 import android.support.annotation.NonNull;
 
@@ -22,9 +22,9 @@ import android.support.annotation.NonNull;
  * Created by Duy on 11-Jul-17.
  */
 
-public interface Encoder {
+public interface Decoder {
     @NonNull
-    String encode(@NonNull String text);
+    String decode(@NonNull String text);
 
     int getMax();
 

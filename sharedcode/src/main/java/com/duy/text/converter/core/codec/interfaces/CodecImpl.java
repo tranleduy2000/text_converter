@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.codec;
+package com.duy.text.converter.core.codec.interfaces;
 
 import android.content.Context;
 
@@ -34,6 +34,14 @@ public abstract class CodecImpl implements Codec {
 
     public void setMax(int max) {
         this.max = max;
+    }
+
+    protected void setMax(char[] arr) {
+        setMax(arr.length);
+    }
+
+    protected void setMax(Object[] arr) {
+        setMax(arr.length);
     }
 
     @Override

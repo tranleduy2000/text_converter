@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -28,24 +29,14 @@ public class HexCodec extends CodecImpl {
     /**
      * convert text to hex
      */
-    public static String textToHex(String text) {
-        StringBuilder result = new StringBuilder();
-        char[] chars = text.toCharArray();
-        for (char c : chars) {
-            result.append(Integer.toHexString(c)).append(" ");
-        }
-        return result.toString();
-    }
-
-    /**
-     * convert text to hex
-     */
-    public static String hexToTex(String text) {
+    private String hexToTex(String text) {
         StringBuilder result = new StringBuilder();
         String[] arr = text.split(" ");
+        setMax(arr);
         for (String arg : arr) {
             try {
                 result.append(Character.toChars(Integer.parseInt(arg, 16)));
+                incConfident();
             } catch (Exception e) {
                 result.append(" ").append(arg).append(" ");
             }
@@ -53,6 +44,19 @@ public class HexCodec extends CodecImpl {
         return result.toString();
     }
 
+    /**
+     * convert text to hex
+     */
+    private String textToHex(String text) {
+        StringBuilder result = new StringBuilder();
+        char[] chars = text.toCharArray();
+        setMax(chars);
+        for (char c : chars) {
+            incConfident();
+            result.append(Integer.toHexString(c)).append(" ");
+        }
+        return result.toString();
+    }
 
     @NonNull
     @Override
@@ -73,8 +77,6 @@ public class HexCodec extends CodecImpl {
             return text;
         }
     }
-
-
 
 
 }

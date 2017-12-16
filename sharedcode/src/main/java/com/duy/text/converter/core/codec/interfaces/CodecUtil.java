@@ -14,11 +14,32 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.codec;
+package com.duy.text.converter.core.codec.interfaces;
 
 import android.content.Context;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.codec.AsciiCodec;
+import com.duy.text.converter.core.codec.AtbashCodec;
+import com.duy.text.converter.core.codec.Base32Codec;
+import com.duy.text.converter.core.codec.Base64Codec;
+import com.duy.text.converter.core.codec.BinaryCodec;
+import com.duy.text.converter.core.codec.CaesarCodec;
+import com.duy.text.converter.core.codec.HexCodec;
+import com.duy.text.converter.core.codec.LowerCaseCodec;
+import com.duy.text.converter.core.codec.MorseCodec;
+import com.duy.text.converter.core.codec.OctalCodec;
+import com.duy.text.converter.core.codec.RandomCaseCodec;
+import com.duy.text.converter.core.codec.ReverserCodec;
+import com.duy.text.converter.core.codec.RotCodec;
+import com.duy.text.converter.core.codec.SubscriptCodec;
+import com.duy.text.converter.core.codec.SupscriptCodec;
+import com.duy.text.converter.core.codec.URLCodec;
+import com.duy.text.converter.core.codec.UpperCaseCodec;
+import com.duy.text.converter.core.codec.UpsideDownTool;
+import com.duy.text.converter.core.codec.ZalgoBigCodec;
+import com.duy.text.converter.core.codec.ZalgoMiniCodec;
+import com.duy.text.converter.core.codec.ZalgoNormalCodec;
 
 /**
  * Created by Duy on 29-Jul-17.

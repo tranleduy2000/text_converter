@@ -16,9 +16,10 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
+
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 import java.util.ArrayList;
 
