@@ -29,7 +29,7 @@
         android:supportsRtl="false"
         android:theme="@style/AppThemeDark">
 
-        <activity android:name="com.duy.text.converter.core.MainActivity">
+        <activity android:name="com.duy.text.converter.core.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
@@ -73,4 +74,8 @@ public class HexCodec implements Codec {
         }
     }
 
+    @Override
+    public String getName(Context context) {
+        return null;
+    }
 }

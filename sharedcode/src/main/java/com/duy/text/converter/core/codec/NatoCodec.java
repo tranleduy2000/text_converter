@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -110,6 +111,11 @@ public class NatoCodec implements Codec {
             if (i != text.length() - 1) result.append(" ");
         }
         return result.toString();
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 
     static class NatoItem {

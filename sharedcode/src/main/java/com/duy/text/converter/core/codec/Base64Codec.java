@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Base64;
 
@@ -46,5 +47,10 @@ public class Base64Codec implements Codec {
         } catch (Exception e) {
             return token;
         }
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

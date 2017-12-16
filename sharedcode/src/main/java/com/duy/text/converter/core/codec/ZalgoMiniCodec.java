@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 public class ZalgoMiniCodec implements Codec {
@@ -149,5 +150,10 @@ public class ZalgoMiniCodec implements Codec {
     @Override
     public String decode(@NonNull String text) {
         return text;
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

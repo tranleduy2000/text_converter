@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.pro;
+package com.duy.text.converter.pro.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,7 +26,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.MainActivity;
+import com.duy.text.converter.core.activities.MainActivity;
+import com.duy.text.converter.pro.PagerSectionAdapterPro;
+import com.duy.text.converter.pro.SettingActivity;
 import com.duy.text.converter.pro.floating.codec.FloatingCodecOpenShortCutActivity;
 import com.duy.text.converter.pro.floating.stylish.FloatingStylishOpenShortCutActivity;
 import com.duy.text.converter.pro.license.Installation;

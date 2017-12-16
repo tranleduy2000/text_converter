@@ -16,8 +16,11 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
+
 /**
  * Created by Duy on 28-Aug-17.
  */
 public interface Codec extends Decoder, Encoder {
+    String getName(Context context);
 }

@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
@@ -35,5 +36,10 @@ public class UpperCaseCodec implements Codec {
     @Override
     public String encode(@NonNull String text) {
         return text.toUpperCase();
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

@@ -29,10 +29,10 @@
     <color name="light.colorAccent">#ff5824</color>
     <color name="light.windowBackgroundColor">#eeeeee</color>
 
-    <color name="themeDark1.colorPrimary">#2B2E4A</color>
-    <color name="themeDark1.colorPrimaryDark">#E84545</color>
-    <color name="themeDark1.colorAccent">#903749</color>
-    <color name="themeDark1.windowBackgroundColor">#53354A</color>
+    <color name="themeDark1.colorPrimary">#FBFBFB</color>
+    <color name="themeDark1.colorPrimaryDark">#FFF1C1</color>
+    <color name="themeDark1.colorAccent">#78B7BB</color>
+    <color name="themeDark1.windowBackgroundColor">#808B97</color>
 
     <color name="themeDark2.colorPrimary">#E23E57</color>
     <color name="themeDark2.colorPrimaryDark">#88304E</color>
@@ -64,10 +64,10 @@
     <color name="themeLight1.colorAccent">#00ADB5</color>
     <color name="themeLight1.windowBackgroundColor">#EEEEEE</color>
 
-    <color name="themeLight2.colorPrimary">#08D9D6</color>
-    <color name="themeLight2.colorPrimaryDark">#252A34</color>
-    <color name="themeLight2.colorAccent">#FF2E63</color>
-    <color name="themeLight2.windowBackgroundColor">#EAEAEA</color>
+    <color name="themeLight2.colorPrimary">#4D12EE</color>
+    <color name="themeLight2.colorPrimaryDark">#2F24C1</color>
+    <color name="themeLight2.colorAccent">#3FD1CB</color>
+    <color name="themeLight2.windowBackgroundColor">#F8F6F6</color>
 
     <color name="themeLight3.colorPrimary">#118DF0</color>
     <color name="themeLight3.colorPrimaryDark">#0E2F56</color>

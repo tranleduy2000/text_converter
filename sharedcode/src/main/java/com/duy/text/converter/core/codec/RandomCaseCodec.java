@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
@@ -37,5 +38,10 @@ public class RandomCaseCodec implements Codec {
     @Override
     public String decode(@NonNull String text) {
         return encode(text);
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

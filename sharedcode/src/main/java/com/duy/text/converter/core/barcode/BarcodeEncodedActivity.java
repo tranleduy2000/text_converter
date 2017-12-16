@@ -23,7 +23,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.duy.common.services.ads.AdsManager;
-import com.duy.text.converter.core.BaseActivity;
+import com.duy.text.converter.core.activities.BaseActivity;
 import com.duy.text.converter.R;
 
 /**

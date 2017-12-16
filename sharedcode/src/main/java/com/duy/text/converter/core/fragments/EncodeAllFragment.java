@@ -14,31 +14,11 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.codec;
-
-import android.content.Context;
-import android.support.annotation.NonNull;
+package com.duy.text.converter.core.fragments;
 
 /**
- * Created by Duy on 13-Jul-17.
+ * Created by Duy on 16-Dec-17.
  */
 
-public class ZalgoNormalCodec implements Codec {
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return ZalgoMiniCodec.convert(text, false, true, true, true, true);
-    }
-
-    @NonNull
-    @Override
-    public String decode(@NonNull String text) {
-        return text;
-    }
-
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+public class EncodeAllFragment extends DecodeAllFragment {
 }

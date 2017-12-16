@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.apache.commons.codec.DecoderException;
@@ -48,5 +49,10 @@ public class URLCodec implements Codec {
             e.printStackTrace();
             return text;
         }
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

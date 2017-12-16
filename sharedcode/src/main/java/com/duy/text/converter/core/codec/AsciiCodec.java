@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
@@ -59,5 +60,10 @@ public class AsciiCodec implements Codec {
         } catch (Exception e) {
             return text;
         }
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

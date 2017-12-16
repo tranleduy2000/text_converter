@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core;
+package com.duy.text.converter.core.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -36,6 +36,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.duy.common.ShareManager;
 import com.duy.common.StoreUtil;
+import com.duy.text.converter.core.PagerSectionAdapter;
 import com.duy.text.converter.core.fragments.AdsFragment;
 import com.duy.text.converter.core.utils.Premium;
 import com.duy.text.converter.BuildConfig;

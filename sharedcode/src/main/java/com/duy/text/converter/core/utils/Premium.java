@@ -16,7 +16,7 @@
 
 package com.duy.text.converter.core.utils;
 
-import com.duy.text.converter.core.MainActivity;
+import com.duy.text.converter.core.activities.MainActivity;
 
 /**
  * Created by Duy on 11/13/2017.

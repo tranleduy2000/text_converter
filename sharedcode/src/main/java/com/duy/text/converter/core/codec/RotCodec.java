@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
@@ -47,5 +48,10 @@ public class RotCodec implements Codec {
     @Override
     public String encode(@NonNull String text) {
         return progress(text);
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

@@ -39,7 +39,7 @@
         tools:targetApi="n">
 
         <activity
-            android:name="com.duy.text.converter.pro.MainActivityPro"
+            android:name="com.duy.text.converter.pro.activities.MainActivityPro"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

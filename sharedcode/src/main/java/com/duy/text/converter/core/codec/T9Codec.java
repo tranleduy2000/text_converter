@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
 
@@ -77,6 +78,11 @@ public class T9Codec implements Codec {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
+        return null;
+    }
+
+    @Override
+    public String getName(Context context) {
         return null;
     }
 }

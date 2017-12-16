@@ -25,7 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.BaseActivity;
+import com.duy.text.converter.core.activities.BaseActivity;
 import com.duy.text.converter.pro.notification.SettingFragment;
 import com.duy.text.converter.pro.notification.StyleNotificationManager;
 

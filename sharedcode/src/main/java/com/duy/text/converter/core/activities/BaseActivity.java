@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core;
+package com.duy.text.converter.core.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
