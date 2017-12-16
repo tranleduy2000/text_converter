@@ -17,6 +17,7 @@
 package com.duy.text.converter.pro;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,8 +25,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.duy.text.converter.core.BaseActivity;
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.BaseActivity;
 import com.duy.text.converter.pro.notification.SettingFragment;
 import com.duy.text.converter.pro.notification.StyleNotificationManager;
 
@@ -52,6 +53,7 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
+            setResult(RESULT_OK);
             finish();
             return true;
         }
@@ -65,7 +67,17 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
             StyleNotificationManager.showNotificationEncodeIfNeed(this);
         } else if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_decode))) {
             StyleNotificationManager.showNotificationDecodeIfNeed(this);
+        } else if (s.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
+            overridePendingTransition(0, 0);
+            finish();
+            startActivity(new Intent(this, SettingActivity.class));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_OK);
+        super.onBackPressed();
     }
 
     @Override
@@ -73,4 +85,5 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
         super.onStop();
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
+
 }

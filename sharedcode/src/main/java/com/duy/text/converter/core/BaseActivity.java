@@ -21,10 +21,9 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
-import com.duy.text.converter.R;
+import com.duy.common.DLog;
 import com.duy.text.converter.pro.themes.ThemeHelper;
 
 /**
@@ -47,16 +46,14 @@ public class BaseActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        Log.d(TAG, "onSharedPreferenceChanged() called with: s = [" + s + "]");
-        if (s.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
-            recreate();
-        }
+        DLog.d(TAG, "onSharedPreferenceChanged() called with: s = [" + s + "]");
+
     }
 
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "onDestroy() called");
+        DLog.d(TAG, "onDestroy() called");
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
         super.onDestroy();
     }

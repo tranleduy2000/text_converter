@@ -71,6 +71,12 @@
     <string name="theme_dark">Theme Dark</string>
     <string-array name="theme_names">
         <item>@string/theme_dark</item>
+        <item>Theme Dark 1</item>
+        <item>Theme Dark 2</item>
+        <item>Theme Dark 3</item>
+        <item>Theme Dark 4</item>
+        <item>Theme Dark 5</item>
+        <item>Theme Dark 6</item>
         <item>Theme Light 1</item>
         <item>Theme Light 2</item>
         <item>Theme Light 3</item>

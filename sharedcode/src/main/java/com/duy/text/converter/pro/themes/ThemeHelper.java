@@ -29,6 +29,13 @@ import com.duy.text.converter.pro.license.Premium;
 public class ThemeHelper {
     public static final int[] THEME_IDS = new int[]{
             R.style.AppThemeDark,
+            R.style.AppThemeDark_Theme1,
+            R.style.AppThemeDark_Theme2,
+            R.style.AppThemeDark_Theme3,
+            R.style.AppThemeDark_Theme4,
+            R.style.AppThemeDark_Theme5,
+            R.style.AppThemeDark_Theme6,
+
             R.style.AppThemeLight_Theme1,
             R.style.AppThemeLight_Theme2,
             R.style.AppThemeLight_Theme3,

@@ -40,6 +40,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 
 public class MainActivityPro extends MainActivity {
+    private static final int REQ_SETTING = 1201;
     private LicenseChecker mChecker;
     private CheckLicenseCallBack mCallBack;
     private Handler mHandler;
@@ -82,7 +83,8 @@ public class MainActivityPro extends MainActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_setting) {
-            startActivity(new Intent(this, SettingActivity.class));
+            Intent intent = new Intent(this, SettingActivity.class);
+            startActivityForResult(intent, REQ_SETTING);
         } else if (id == R.id.action_open_stylish) {
             startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
         } else if (id == R.id.action_open_codec) {
@@ -91,6 +93,15 @@ public class MainActivityPro extends MainActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_SETTING) {
+            if (resultCode == RESULT_OK) {
+                recreate();
+            }
+        }
+    }
 
     private void showDialogCrack() {
         FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());

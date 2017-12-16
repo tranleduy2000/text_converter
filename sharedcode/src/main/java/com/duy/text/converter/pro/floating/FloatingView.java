@@ -34,7 +34,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -50,8 +49,8 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 
-import com.duy.text.converter.core.Settings;
 import com.duy.text.converter.R;
+import com.duy.text.converter.pro.themes.ThemeHelper;
 
 
 public abstract class FloatingView extends Service implements OnTouchListener {
@@ -836,8 +835,8 @@ public abstract class FloatingView extends Service implements OnTouchListener {
 
     protected Context getContext() {
         if (mContextTheme == null) {
-            mContextTheme = new ContextThemeWrapper(this,
-                    Settings.useLightTheme(this) ? R.style.AppThemeLight : R.style.AppThemeDark);
+            mContextTheme = this;
+            ThemeHelper.setTheme(this);
         }
         return mContextTheme;
     }
