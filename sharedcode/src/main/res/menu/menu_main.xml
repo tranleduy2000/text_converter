@@ -37,7 +37,7 @@
 
     <item
         android:id="@+id/action_upgrade"
-        android:icon="@drawable/ic_star_rate_white_18dp"
+        android:icon="@drawable/ic_lock_open_white_24dp"
         android:title="@string/upgrade"
         android:visible="false"
         app:showAsAction="ifRoom" />

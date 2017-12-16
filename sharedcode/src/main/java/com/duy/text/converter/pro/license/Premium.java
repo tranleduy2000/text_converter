@@ -16,10 +16,15 @@
 
 package com.duy.text.converter.pro.license;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 
+import com.duy.common.StoreUtil;
+import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.MainActivity;
 
 /**
@@ -41,12 +46,31 @@ public class Premium {
     }
 
     public static boolean isFree(Context context) {
-        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter")
+        return context.getPackageName().equals("duy.com.text_converter")
                 || isCrack(context);
     }
 
     public static boolean isPremium(MainActivity context) {
-        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter.pro")
+        return context.getPackageName().equals("com.duy.text_converter.pro")
                 && !isCrack(context);
+    }
+
+    public static void showDialogUpgrade(final Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(R.string.upgrade);
+        builder.setMessage(R.string.pro_feature);
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                StoreUtil.gotoPlayStore(activity, "com.duy.text_converter.pro");
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.create().show();
     }
 }

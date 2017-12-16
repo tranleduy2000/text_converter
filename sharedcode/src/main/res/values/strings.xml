@@ -74,13 +74,14 @@
     <string name="decode_style">Decode style</string>
     <string name="menu_text">Menu text (Android M and above)</string>
 
-    <string name="pro_feature"><![CDATA[
-    1. Remove ads\n
+    <string name="pro_feature"><![CDATA[1. Remove ads\n
     2. Floating codec (small window)\n
     3. Floating stylish (small window)\n
-    4. Light theme\n
+    4. More theme (7 themes)\n
     5. Encode/Decode menu (Android M)\n
-    6. Encode/Decode Notification
+    6. Encode/Decode notification\n
+    7. You can encode/decode a file\n
+    8. (New) Encode all and decode all with one click\n
     ]]>
     </string>
 

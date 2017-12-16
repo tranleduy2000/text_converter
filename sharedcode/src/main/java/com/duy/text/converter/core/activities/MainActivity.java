@@ -71,7 +71,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         // Monitor launch times and interval from installation
         RateThisApp.onCreate(this);
         // If the criteria is satisfied, "Rate this app" dialog will be shown
-        RateThisApp.showRateDialogIfNeeded(this);
+        boolean showed = RateThisApp.showRateDialogIfNeeded(this);
+        int launchCount = RateThisApp.getLaunchCount(this);
+        if (Premium.isFree(this) && !showed && launchCount % 10 == 0) {
+            Premium.showDialogUpgrade(this);
+        }
     }
 
     protected void setupToolbar() {

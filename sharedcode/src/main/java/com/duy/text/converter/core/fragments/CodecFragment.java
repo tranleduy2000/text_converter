@@ -127,14 +127,8 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         view.findViewById(R.id.img_copy_out).setOnClickListener(this);
         view.findViewById(R.id.img_share).setOnClickListener(this);
         view.findViewById(R.id.img_share_out).setOnClickListener(this);
-
-        if (Premium.isFree(getContext())) {
-            view.findViewById(R.id.img_encode_all).setVisibility(View.GONE);
-            view.findViewById(R.id.img_decode_all).setVisibility(View.GONE);
-        } else {
-            view.findViewById(R.id.img_encode_all).setOnClickListener(this);
-            view.findViewById(R.id.img_decode_all).setOnClickListener(this);
-        }
+        view.findViewById(R.id.img_encode_all).setOnClickListener(this);
+        view.findViewById(R.id.img_decode_all).setOnClickListener(this);
 
         String[] data = getResources().getStringArray(R.array.codec_methods);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
@@ -168,16 +162,28 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
             shareText(mOutput);
 
         } else if (id == R.id.img_encode_all) {
-            Intent intent = new Intent(getContext(), CodecAllActivity.class);
-            intent.setAction(CodecAllActivity.EXTRA_ACTION_ENCODE);
-            intent.putExtra(CodecAllActivity.EXTRA_INPUT, mInput.getText().toString());
-            startActivity(intent);
+            if (Premium.isFree(getContext())) {
+                showDialogUpgrade();
+            } else {
+                Intent intent = new Intent(getContext(), CodecAllActivity.class);
+                intent.setAction(CodecAllActivity.EXTRA_ACTION_ENCODE);
+                intent.putExtra(CodecAllActivity.EXTRA_INPUT, mInput.getText().toString());
+                startActivity(intent);
+            }
         } else if (id == R.id.img_decode_all) {
-            Intent intent = new Intent(getContext(), CodecAllActivity.class);
-            intent.setAction(CodecAllActivity.EXTRA_ACTION_DECODE);
-            intent.putExtra(CodecAllActivity.EXTRA_INPUT, mOutput.getText().toString());
-            startActivity(intent);
+            if (Premium.isFree(getContext())) {
+                showDialogUpgrade();
+            } else {
+                Intent intent = new Intent(getContext(), CodecAllActivity.class);
+                intent.setAction(CodecAllActivity.EXTRA_ACTION_DECODE);
+                intent.putExtra(CodecAllActivity.EXTRA_INPUT, mOutput.getText().toString());
+                startActivity(intent);
+            }
         }
+    }
+
+    private void showDialogUpgrade() {
+        Premium.showDialogUpgrade(getActivity());
     }
 
     @Override
