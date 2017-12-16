@@ -28,12 +28,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.duy.common.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.adapters.DecodeResultAdapter;
 import com.duy.text.converter.core.codec.Codec;
 import com.duy.text.converter.core.codec.CodecMethod;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Duy on 11/13/2017.
@@ -97,6 +99,8 @@ public class DecodeAllFragment extends Fragment {
 
 
     private class DecodeTask extends AsyncTask<String, Object, Void> {
+        private static final String TAG = "DecodeTask";
+
         DecodeTask() {
         }
 
@@ -104,10 +108,10 @@ public class DecodeAllFragment extends Fragment {
         protected Void doInBackground(String... strings) {
             String input = strings[0];
             for (int i = 0, mDecodersSize = mDecoders.size(); i < mDecodersSize; i++) {
-                Codec mDecoder = mDecoders.get(i);
+                Codec codec = mDecoders.get(i);
                 if (isCancelled()) return null;
-                String decode = mDecoder.decode(input);
-                publishProgress(decode, i, mDecoder.getName(getContext()));
+                String decode = codec.decode(input);
+                publishProgress(decode, i, codec.getName(getContext()), codec.getMax(), codec.getConfident());
             }
             return null;
         }
@@ -115,20 +119,26 @@ public class DecodeAllFragment extends Fragment {
         @Override
         protected void onProgressUpdate(Object... values) {
             super.onProgressUpdate(values);
+            DLog.d(TAG, "onProgressUpdate() called with: values = [" + Arrays.toString(values) + "]");
             String result = (String) values[0];
             int position = (int) values[1];
             String name = (String) values[2];
+            int max = (int) values[3];
+            int confident = (int) values[4];
             if (name == null) {
                 Context context = getContext();
                 if (context == null) return;
                 name = context.getResources().getStringArray(R.array.codec_methods)[position];
             }
-            addToRecycleView(result, name);
+            addToRecycleView(result, name, max, confident);
         }
 
-        private void addToRecycleView(String result, String name) {
+        private void addToRecycleView(String result, String name, int max, int confident) {
             if (isCancelled()) return;
-            mDecodeResultAdapter.add(new DecodeResultAdapter.DecodeItem(name, result));
+            DecodeResultAdapter.DecodeItem item = new DecodeResultAdapter.DecodeItem(name, result);
+            item.setConfident(confident);
+            item.setMax(max);
+            mDecodeResultAdapter.add(item);
         }
     }
 }

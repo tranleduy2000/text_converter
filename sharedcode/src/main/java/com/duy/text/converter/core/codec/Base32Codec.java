@@ -45,13 +45,5 @@ public class Base32Codec extends CodecImpl {
         return null;
     }
 
-    @Override
-    public int getMax() {
-        return 0;
-    }
 
-    @Override
-    public int getConfident() {
-        return 0;
-    }
 }

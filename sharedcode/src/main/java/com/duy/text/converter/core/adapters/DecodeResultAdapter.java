@@ -24,11 +24,13 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.duy.common.DLog;
 import com.duy.text.converter.R;
 
 import java.util.ArrayList;
 
 public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapter.ViewHolder> {
+    private static final String TAG = "DecodeResultAdapter";
     private final Context context;
     private ArrayList<DecodeItem> mDecodeItems = new ArrayList<>();
 
@@ -40,7 +42,6 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
         mDecodeItems.add(decodeItem);
         notifyItemInserted(getItemCount() - 1);
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,7 +55,11 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
         DecodeItem item = mDecodeItems.get(position);
         holder.txtResult.setText(item.getResult());
         holder.txtTitle.setText(item.getName());
-
+        if (item.getMax() > 0) {
+            DLog.d(TAG, "onBindViewHolder() called with: holder = [" + holder + "], position = [" + position + "]");
+            holder.progressBar.setMax(item.getMax());
+            holder.progressBar.setProgress(item.getConfident());
+        }
     }
 
     @Override
