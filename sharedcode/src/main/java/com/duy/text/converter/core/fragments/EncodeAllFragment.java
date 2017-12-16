@@ -16,9 +16,125 @@
 
 package com.duy.text.converter.core.fragments;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.duy.common.DLog;
+import com.duy.text.converter.R;
+import com.duy.text.converter.core.adapters.EncodeResultAdapter;
+import com.duy.text.converter.core.codec.interfaces.Codec;
+import com.duy.text.converter.core.codec.interfaces.CodecMethod;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by Duy on 16-Dec-17.
  */
 
-public class EncodeAllFragment extends DecodeAllFragment {
+public class EncodeAllFragment extends Fragment {
+    private static final String KEY_INPUT = "input";
+    @Nullable
+    private EncodeTask mEncodeTask;
+    private ArrayList<Codec> mEncoders;
+    private EncodeResultAdapter mEncodeResultAdapter;
+
+    public static EncodeAllFragment newInstance(String input) {
+
+        Bundle args = new Bundle();
+        args.putString(KEY_INPUT, input);
+        EncodeAllFragment fragment = new EncodeAllFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_decode_all, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        initCodec();
+
+        RecyclerView recyclerView = view.findViewById(R.id.list_decoded);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mEncodeResultAdapter = new EncodeResultAdapter(getContext());
+        recyclerView.setAdapter(mEncodeResultAdapter);
+
+        String input = getArguments().getString(KEY_INPUT);
+        generateResult(input);
+    }
+
+    private void generateResult(String input) {
+        if (mEncodeTask != null) mEncodeTask.cancel(true);
+        mEncodeTask = new EncodeTask();
+        mEncodeTask.execute(input);
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mEncodeTask != null) mEncodeTask.cancel(true);
+        super.onDestroyView();
+    }
+
+    private void initCodec() {
+        mEncoders = new ArrayList<>();
+        CodecMethod[] values = CodecMethod.values();
+        for (CodecMethod value : values) mEncoders.add(value.getCodec());
+    }
+
+
+    private class EncodeTask extends AsyncTask<String, Object, Void> {
+        private static final String TAG = "EncodeTask";
+
+        EncodeTask() {
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            String input = strings[0];
+            for (int i = 0, mDecodersSize = mEncoders.size(); i < mDecodersSize; i++) {
+                Codec codec = mEncoders.get(i);
+                if (isCancelled()) return null;
+                String decode = codec.encode(input);
+                publishProgress(decode, i, codec.getName(getContext()));
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Object... values) {
+            super.onProgressUpdate(values);
+            DLog.d(TAG, "onProgressUpdate() called with: values = [" + Arrays.toString(values) + "]");
+            String result = (String) values[0];
+            int position = (int) values[1];
+            String name = (String) values[2];
+            if (name == null) {
+                Context context = getContext();
+                if (context == null) return;
+                name = context.getResources().getStringArray(R.array.codec_methods)[position];
+            }
+            addToRecycleView(result, name);
+        }
+
+        private void addToRecycleView(String result, String name) {
+            if (isCancelled()) return;
+            EncodeResultAdapter.EncodeItem item = new EncodeResultAdapter.EncodeItem(name, result);
+            mEncodeResultAdapter.add(item);
+        }
+    }
 }

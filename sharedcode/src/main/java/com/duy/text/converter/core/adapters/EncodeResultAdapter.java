@@ -21,47 +21,40 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.duy.common.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 
 import java.util.ArrayList;
 
-public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapter.ViewHolder> {
+public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapter.ViewHolder> {
     private static final String TAG = "DecodeResultAdapter";
     private final Context context;
-    private ArrayList<DecodeItem> mDecodeItems = new ArrayList<>();
+    private ArrayList<EncodeItem> mEncodeItems = new ArrayList<>();
 
-    public DecodeResultAdapter(Context context) {
+    public EncodeResultAdapter(Context context) {
         this.context = context;
     }
 
-    public void add(DecodeItem decodeItem) {
-        mDecodeItems.add(decodeItem);
+    public void add(EncodeItem encodeItem) {
+        mEncodeItems.add(encodeItem);
         notifyItemInserted(getItemCount() - 1);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_decode_all,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_encode_all,
                 parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        DecodeItem item = mDecodeItems.get(position);
+        EncodeItem item = mEncodeItems.get(position);
         holder.txtResult.setText(item.getResult());
         holder.txtTitle.setText(item.getName());
-        if (item.getMax() > 0) {
-            DLog.d(TAG, "onBindViewHolder() called with: holder = [" + holder + "], position = [" + position + "]");
-            holder.progressBar.setMax(item.getMax());
-            holder.progressBar.setProgress(item.getConfident());
-        }
         final String str = item.getResult();
         if (holder.imgShare != null) {
             holder.imgShare.setOnClickListener(new View.OnClickListener() {
@@ -91,18 +84,16 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
 
     @Override
     public int getItemCount() {
-        return mDecodeItems.size();
+        return mEncodeItems.size();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtResult, txtTitle;
-        ProgressBar progressBar;
         View imgCopy, imgShare, shareMsg;
 
         ViewHolder(View itemView) {
             super(itemView);
             setIsRecyclable(false);
-            progressBar = itemView.findViewById(R.id.progress_bar);
             txtResult = itemView.findViewById(R.id.txt_result);
             txtTitle = itemView.findViewById(R.id.txt_name);
             imgCopy = itemView.findViewById(R.id.img_copy);
@@ -112,30 +103,13 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
 
     }
 
-    public static class DecodeItem {
+    public static class EncodeItem {
         String name;
         String result;
-        int max, confident;
 
-        public DecodeItem(String name, String result) {
+        public EncodeItem(String name, String result) {
             this.name = name;
             this.result = result;
-        }
-
-        public int getMax() {
-            return max;
-        }
-
-        public void setMax(int max) {
-            this.max = max;
-        }
-
-        public int getConfident() {
-            return confident;
-        }
-
-        public void setConfident(int confident) {
-            this.confident = confident;
         }
 
         public String getResult() {

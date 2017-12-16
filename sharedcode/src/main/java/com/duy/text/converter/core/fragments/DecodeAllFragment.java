@@ -99,7 +99,7 @@ public class DecodeAllFragment extends Fragment {
 
 
     private class DecodeTask extends AsyncTask<String, Object, Void> {
-        private static final String TAG = "DecodeTask";
+        private static final String TAG = "EncodeTask";
 
         DecodeTask() {
         }
