@@ -837,7 +837,7 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     protected Context getContext() {
         if (mContextTheme == null) {
             mContextTheme = new ContextThemeWrapper(this,
-                    Settings.useLightTheme(this) ? R.style.AppThemeLight : R.style.AppTheme);
+                    Settings.useLightTheme(this) ? R.style.AppThemeLight : R.style.AppThemeDark);
         }
         return mContextTheme;
     }

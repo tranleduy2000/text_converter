@@ -27,7 +27,7 @@
         android:label="@string/app_name"
         android:resizeableActivity="false"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppThemeDark">
 
         <activity android:name="com.duy.text.converter.core.MainActivity">
             <intent-filter>

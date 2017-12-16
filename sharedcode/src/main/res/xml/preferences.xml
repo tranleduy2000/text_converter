@@ -15,12 +15,14 @@
   -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="@string/pref_key_light_theme"
-        android:title="Uses light theme">
+    <ListPreference
+        android:defaultValue="@string/theme_dark"
+        android:entries="@array/theme_names"
+        android:entryValues="@array/theme_names"
+        android:title="@string/theme"
+        android:key="@string/pref_key_theme">
 
-    </SwitchPreference>
+    </ListPreference>
 
     <PreferenceCategory android:title="@string/floating_window">
         <Preference

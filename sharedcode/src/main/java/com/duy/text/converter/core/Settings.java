@@ -43,7 +43,7 @@ public class Settings {
 
     public static boolean useLightTheme(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean result = sharedPreferences.getBoolean(context.getString(R.string.pref_key_light_theme), false);
+        boolean result = sharedPreferences.getBoolean(context.getString(R.string.pref_key_theme), false);
         Log.d(TAG, "useLightTheme() returned: " + result);
         return result;
     }

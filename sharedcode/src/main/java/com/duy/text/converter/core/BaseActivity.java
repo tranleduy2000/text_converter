@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.pro.themes.ThemeHelper;
 
 /**
  * Created by Duy on 9/30/2017.
@@ -35,7 +36,7 @@ public class BaseActivity extends AppCompatActivity implements SharedPreferences
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Settings.useLightTheme(this) ? R.style.AppThemeLight : R.style.AppTheme);
+        ThemeHelper.setTheme(this);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class BaseActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         Log.d(TAG, "onSharedPreferenceChanged() called with: s = [" + s + "]");
-        if (s.equalsIgnoreCase(getString(R.string.pref_key_light_theme))) {
+        if (s.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
             recreate();
         }
     }

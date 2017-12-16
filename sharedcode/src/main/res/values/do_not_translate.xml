@@ -19,7 +19,7 @@
     <string name="pref_key_enable_encode" translatable="false">pref_encode_notification</string>
     <string name="pref_key_enable_decode" translatable="false">pref_decode_notification</string>
     <string name="pref_key_floating_window" translatable="false">pref_key_floating_window</string>
-    <string name="pref_key_light_theme" translatable="false">pref_key_light_theme</string>
+    <string name="pref_key_theme" translatable="false">pref_key_theme</string>
 
     <string name="ad_unit_id_barcode">ca-app-pub-7060049030570268/4176792975</string>
     <string name="ad_unit_id_exit">ca-app-pub-7060049030570268/4640781697</string>

@@ -55,6 +55,8 @@ public class SettingFragment extends PreferenceFragment {
 
         bindPreferenceSummaryToValue(findPreference("pref_key_encode_menu"));
         bindPreferenceSummaryToValue(findPreference("pref_key_decode_menu"));
+
+        bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_theme)));
         addEvent();
     }
 

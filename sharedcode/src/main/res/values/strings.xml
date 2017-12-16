@@ -92,4 +92,5 @@
     <string name="read_permission_msg">Please granted read storage permission</string>
     <string name="select_image">Select Image</string>
     <string name="saved_in">Saved in</string>
+    <string name="theme">Theme</string>
 </resources>

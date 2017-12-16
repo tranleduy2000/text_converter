@@ -25,8 +25,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.duy.text.converter.core.MainActivity;
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.MainActivity;
 import com.duy.text.converter.pro.floating.codec.FloatingCodecOpenShortCutActivity;
 import com.duy.text.converter.pro.floating.stylish.FloatingStylishOpenShortCutActivity;
 import com.duy.text.converter.pro.license.Installation;
@@ -52,12 +52,7 @@ public class MainActivityPro extends MainActivity {
             return;
         }
         checkLicense();
-    }
-
-    @Override
-    protected void setupToolbar() {
-        super.setupToolbar();
-        mToolbar.setTitle(R.string.app_name);
+        setTitle(R.string.app_name);
     }
 
     private void checkLicense() {

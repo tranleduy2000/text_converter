@@ -26,7 +26,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme" parent="BaseDarkTheme">
+    <style name="AppThemeDark" parent="BaseDarkTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -79,4 +79,6 @@
         <item name="android:gravity">top</item>
         <item name="android:inputType">textMultiLine</item>
     </style>
+
+
 </resources>
