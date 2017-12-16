@@ -17,7 +17,6 @@
 package com.duy.text.converter.pro;
 
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -68,9 +67,9 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
         } else if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_decode))) {
             StyleNotificationManager.showNotificationDecodeIfNeed(this);
         } else if (s.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
-            overridePendingTransition(0, 0);
-            finish();
-            startActivity(new Intent(this, SettingActivity.class));
+//            overridePendingTransition(0, 0);
+//            finish();
+//            startActivity(new Intent(this, SettingActivity.class));
         }
     }
 

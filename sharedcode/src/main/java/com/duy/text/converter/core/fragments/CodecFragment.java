@@ -33,12 +33,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.duy.text.converter.R;
 import com.duy.text.converter.core.codec.CodecMethod;
 import com.duy.text.converter.core.codec.CodecUtil;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.core.view.BaseEditText;
-import com.duy.text.converter.R;
+import com.duy.text.converter.core.view.RoundedBackgroundEditText;
 
 
 /**
@@ -49,7 +50,7 @@ import com.duy.text.converter.R;
 public class CodecFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "CodecFragment";
     private BaseEditText mInput, mOutput;
-    private Spinner mChoose;
+    private Spinner mMethodSpinner;
     private TextWatcher mOutputWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -126,9 +127,10 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, data);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        mChoose = view.findViewById(R.id.spinner_choose);
-        mChoose.setAdapter(adapter);
-        mChoose.setOnItemSelectedListener(this);
+        mMethodSpinner = view.findViewById(R.id.spinner_choose);
+        mMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
+        mMethodSpinner.setAdapter(adapter);
+        mMethodSpinner.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -167,7 +169,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
     }
 
     private void convert(boolean isEncode) {
-        int index = mChoose.getSelectedItemPosition();
+        int index = mMethodSpinner.getSelectedItemPosition();
         CodecMethod method = CodecMethod.values()[index];
         if (isEncode) {
             String inp = mInput.getText().toString();

@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.duy.common.DLog;
+import com.duy.text.converter.R;
 import com.duy.text.converter.pro.themes.ThemeHelper;
 
 /**
@@ -47,7 +48,9 @@ public class BaseActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         DLog.d(TAG, "onSharedPreferenceChanged() called with: s = [" + s + "]");
-
+        if (s.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
+            recreate();
+        }
     }
 
 

@@ -19,9 +19,6 @@ package com.duy.text.converter.core;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
-
-import com.duy.text.converter.R;
 
 /**
  * Created by Duy on 05-May-17.
@@ -41,10 +38,10 @@ public class Settings {
         return sharedPreferences.getString(KEY, "");
     }
 
-    public static boolean useLightTheme(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean result = sharedPreferences.getBoolean(context.getString(R.string.pref_key_theme), false);
-        Log.d(TAG, "useLightTheme() returned: " + result);
-        return result;
-    }
+//    public static boolean useLightTheme(Context context) {
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+//        boolean result = sharedPreferences.getBoolean(context.getString(R.string.pref_key_theme), false);
+//        Log.d(TAG, "useLightTheme() returned: " + result);
+//        return result;
+//    }
 }

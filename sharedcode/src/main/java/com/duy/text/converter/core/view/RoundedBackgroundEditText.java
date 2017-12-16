@@ -17,23 +17,59 @@
 package com.duy.text.converter.core.view;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatEditText;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+
+import com.duy.text.converter.R;
 
 /**
  * Created by Duy on 16-Dec-17.
  */
 
-public class RoundedBackgroundEditText extends AppCompatEditText {
+public class RoundedBackgroundEditText extends BaseEditText {
     public RoundedBackgroundEditText(Context context) {
         super(context);
+        init(context);
     }
 
     public RoundedBackgroundEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(context);
     }
 
     public RoundedBackgroundEditText(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context);
+    }
+
+    public static Drawable createRoundedBackground(Context context) {
+        int width = dpToPx(context, 2);
+        int color = fetchAccentColor(context);
+        GradientDrawable background = new GradientDrawable();
+        background.setStroke(width, color);
+        background.setCornerRadius(dpToPx(context, 4));
+        return background;
+    }
+
+    private static int dpToPx(Context context, int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
+    }
+
+    private static int fetchAccentColor(Context context) {
+        TypedValue typedValue = new TypedValue();
+
+        TypedArray a = context.obtainStyledAttributes(typedValue.data, new int[]{R.attr.colorAccent});
+        int color = a.getColor(0, 0);
+
+        a.recycle();
+
+        return color;
+    }
+
+    private void init(Context context) {
+        setBackgroundDrawable(createRoundedBackground(context));
     }
 }

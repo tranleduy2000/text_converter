@@ -40,9 +40,10 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.duy.text.converter.R;
 import com.duy.text.converter.core.codec.CodecUtil;
 import com.duy.text.converter.core.utils.FileUtil;
-import com.duy.text.converter.R;
+import com.duy.text.converter.core.view.RoundedBackgroundEditText;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -62,7 +63,7 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
     private String inputPath;
     private EditText mEditInputPath, mEditOutPath;
     private RadioButton mIsEncode;
-    private Spinner mChoose;
+    private Spinner mCodecMethodSpinner;
 
     public static CodecFileFragment newInstance() {
         Bundle args = new Bundle();
@@ -94,8 +95,9 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, data);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        mChoose = view.findViewById(R.id.spinner_choose);
-        mChoose.setAdapter(adapter);
+        mCodecMethodSpinner = view.findViewById(R.id.spinner_choose);
+        mCodecMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
+        mCodecMethodSpinner.setAdapter(adapter);
         view.findViewById(R.id.btn_open_result).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,7 +155,7 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
 
     private void progressFile() {
         new EncodeTask(getContext(), mIsEncode.isChecked(),
-                mChoose.getSelectedItem().toString()).execute(inputPath);
+                mCodecMethodSpinner.getSelectedItem().toString()).execute(inputPath);
     }
 
     private void selectFile() {

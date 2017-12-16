@@ -31,11 +31,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+
         <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="cardBackgroundColor">@color/colorPrimary</item>
+        <item name="cardBackgroundColor">?colorPrimary</item>
 
         <item name="roundBackground">@drawable/bg_edit_text_dark</item>
         <item name="imageTintColor">#FFF</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
     <style name="AppThemeLight" parent="BaseLightTheme">
@@ -43,9 +46,12 @@
         <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
         <item name="colorAccent">@color/light.colorAccent</item>
         <item name="android:windowBackground">@color/light.windowBackgroundColor</item>
+
         <item name="cardBackgroundColor">#FFF</item>
         <item name="roundBackground">@drawable/bg_edit_text_light</item>
         <item name="imageTintColor">#000</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
     </style>
 
 

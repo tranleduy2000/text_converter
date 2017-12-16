@@ -64,7 +64,7 @@
         </LinearLayout>
 
 
-        <com.duy.text.converter.core.view.BaseEditText
+        <com.duy.text.converter.core.view.RoundedBackgroundEditText
             android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -87,8 +87,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="@string/choose_method"
-            android:textColor="?colorAccent" />
+            android:text="@string/choose_method" />
 
 
         <android.support.v7.widget.AppCompatSpinner
@@ -141,7 +140,7 @@
                 android:tint="?imageTintColor" />
         </LinearLayout>
 
-        <com.duy.text.converter.core.view.BaseEditText
+        <com.duy.text.converter.core.view.RoundedBackgroundEditText
             android:id="@+id/edit_output"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
