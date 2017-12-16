@@ -27,42 +27,57 @@
         android:layout_weight="50"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <android.support.v7.widget.AppCompatImageButton
-                android:id="@+id/img_copy"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/copy"
-                android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp"
-                android:tint="?imageTintColor" />
+                android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatImageButton
-                android:id="@+id/image_paste"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/paste"
-                android:padding="8dp"
-                android:src="@drawable/ic_content_paste_white_24dp"
-                android:tint="?imageTintColor" />
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/img_copy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/copy"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_content_copy_white_24dp"
+                    android:tint="?imageTintColor" />
 
-            <android.support.v7.widget.AppCompatImageButton
-                android:id="@+id/img_share"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/share"
-                android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp"
-                android:tint="?imageTintColor" />
-        </LinearLayout>
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/image_paste"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/paste"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_content_paste_white_24dp"
+                    android:tint="?imageTintColor" />
 
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/img_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/share"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_share_white_24dp"
+                    android:tint="?imageTintColor" />
+
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/img_encode_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/share"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_done_all_black_24dp"
+                    android:tint="?imageTintColor" />
+            </LinearLayout>
+        </ScrollView>
 
         <com.duy.text.converter.core.view.RoundedBackgroundEditText
             android:id="@+id/edit_input"
@@ -105,41 +120,57 @@
         android:layout_weight="50"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <android.support.v7.widget.AppCompatImageButton
-                android:id="@+id/img_copy_out"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/copy"
-                android:padding="8dp"
-                android:src="@drawable/ic_content_copy_white_24dp"
-                android:tint="?imageTintColor" />
+                android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatImageButton
-                android:id="@+id/image_paste_out"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/paste"
-                android:padding="8dp"
-                android:src="@drawable/ic_content_paste_white_24dp"
-                android:tint="?imageTintColor" />
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/img_copy_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/copy"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_content_copy_white_24dp"
+                    android:tint="?imageTintColor" />
 
-            <android.support.v7.widget.AppCompatImageButton
-                android:id="@+id/img_share_out"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/share"
-                android:padding="8dp"
-                android:src="@drawable/ic_share_white_24dp"
-                android:tint="?imageTintColor" />
-        </LinearLayout>
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/image_paste_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/paste"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_content_paste_white_24dp"
+                    android:tint="?imageTintColor" />
+
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/img_share_out"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/share"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_share_white_24dp"
+                    android:tint="?imageTintColor" />
+
+                <android.support.v7.widget.AppCompatImageButton
+                    android:id="@+id/img_decode_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/share"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_done_all_black_24dp"
+                    android:tint="?imageTintColor" />
+            </LinearLayout>
+        </ScrollView>
 
         <com.duy.text.converter.core.view.RoundedBackgroundEditText
             android:id="@+id/edit_output"

@@ -36,11 +36,11 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.duy.common.ShareManager;
 import com.duy.common.StoreUtil;
-import com.duy.text.converter.core.PagerSectionAdapter;
-import com.duy.text.converter.core.fragments.AdsFragment;
-import com.duy.text.converter.core.utils.Premium;
 import com.duy.text.converter.BuildConfig;
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.PagerSectionAdapter;
+import com.duy.text.converter.core.fragments.AdsFragment;
+import com.duy.text.converter.pro.license.Premium;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;

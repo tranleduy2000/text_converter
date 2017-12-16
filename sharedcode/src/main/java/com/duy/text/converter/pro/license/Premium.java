@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.duy.text.converter.core.activities.MainActivity;
+
 /**
  * Created by Duy on 26-Jul-17.
  */
@@ -36,5 +38,14 @@ public class Premium {
     public static void setCrack(Context context, boolean isCrack) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
         pref.edit().putBoolean(KEY_CRACK, isCrack).apply();
+    }
+
+    public static boolean isFree(MainActivity context) {
+        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter");
+    }
+
+    public static boolean isPremium(MainActivity context) {
+        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter")
+                && !isCrack(context);
     }
 }
