@@ -40,12 +40,13 @@ public class Premium {
         pref.edit().putBoolean(KEY_CRACK, isCrack).apply();
     }
 
-    public static boolean isFree(MainActivity context) {
-        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter");
+    public static boolean isFree(Context context) {
+        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter")
+                || isCrack(context);
     }
 
     public static boolean isPremium(MainActivity context) {
-        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter")
+        return context.getPackageName().equalsIgnoreCase("com.duy.text_converter.pro")
                 && !isCrack(context);
     }
 }

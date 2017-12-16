@@ -51,6 +51,10 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        DecodeItem item = mDecodeItems.get(position);
+        holder.txtResult.setText(item.getResult());
+        holder.txtTitle.setText(item.getName());
+
     }
 
     @Override
@@ -59,7 +63,7 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtResult;
+        TextView txtResult, txtTitle;
         ProgressBar progressBar;
 
         ViewHolder(View itemView) {
@@ -67,6 +71,7 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
             setIsRecyclable(false);
             progressBar = itemView.findViewById(R.id.progress_bar);
             txtResult = itemView.findViewById(R.id.txt_result);
+            txtTitle = itemView.findViewById(R.id.txt_name);
         }
 
     }
@@ -78,6 +83,10 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
         public DecodeItem(String name, String result) {
             this.name = name;
             this.result = result;
+        }
+
+        public String getResult() {
+            return result;
         }
 
         public String getName() {

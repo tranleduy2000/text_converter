@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.fragments;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -118,7 +119,9 @@ public class DecodeAllFragment extends Fragment {
             int position = (int) values[1];
             String name = (String) values[2];
             if (name == null) {
-                name = getContext().getResources().getStringArray(R.array.codec_methods)[position];
+                Context context = getContext();
+                if (context == null) return;
+                name = context.getResources().getStringArray(R.array.codec_methods)[position];
             }
             addToRecycleView(result, name);
         }

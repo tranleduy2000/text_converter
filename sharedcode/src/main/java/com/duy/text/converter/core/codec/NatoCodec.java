@@ -118,6 +118,16 @@ public class NatoCodec implements Codec {
         return null;
     }
 
+    @Override
+    public int getMax() {
+        return 0;
+    }
+
+    @Override
+    public int getConfident() {
+        return 0;
+    }
+
     static class NatoItem {
         private String source;
         private String value;

@@ -23,4 +23,8 @@ import android.content.Context;
  */
 public interface Codec extends Decoder, Encoder {
     String getName(Context context);
+
+    int getMax();
+
+    int getConfident();
 }

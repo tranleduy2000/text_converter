@@ -25,4 +25,8 @@ import android.support.annotation.NonNull;
 public interface Encoder {
     @NonNull
     String encode(@NonNull String text);
+
+    int getMax();
+
+    int getConfident();
 }

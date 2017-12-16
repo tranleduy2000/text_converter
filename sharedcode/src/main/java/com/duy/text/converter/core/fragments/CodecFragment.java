@@ -40,6 +40,8 @@ import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.core.view.BaseEditText;
 import com.duy.text.converter.core.view.RoundedBackgroundEditText;
+import com.duy.text.converter.pro.activities.CodecAllActivity;
+import com.duy.text.converter.pro.license.Premium;
 
 
 /**
@@ -126,6 +128,14 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         view.findViewById(R.id.img_share).setOnClickListener(this);
         view.findViewById(R.id.img_share_out).setOnClickListener(this);
 
+        if (Premium.isFree(getContext())) {
+            view.findViewById(R.id.img_encode_all).setVisibility(View.GONE);
+            view.findViewById(R.id.img_decode_all).setVisibility(View.GONE);
+        } else {
+            view.findViewById(R.id.img_encode_all).setOnClickListener(this);
+            view.findViewById(R.id.img_decode_all).setOnClickListener(this);
+        }
+
         String[] data = getResources().getStringArray(R.array.codec_methods);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, data);
@@ -138,25 +148,35 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
 
     @Override
     public void onClick(View view) {
-        int i = view.getId();
-        if (i == R.id.img_copy) {
+        int id = view.getId();
+        if (id == R.id.img_copy) {
             ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
 
-        } else if (i == R.id.image_paste) {
+        } else if (id == R.id.image_paste) {
             mInput.setText(ClipboardUtil.getClipboard(getContext()));
 
-        } else if (i == R.id.img_copy_out) {
+        } else if (id == R.id.img_copy_out) {
             ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
 
-        } else if (i == R.id.image_paste_out) {
+        } else if (id == R.id.image_paste_out) {
             mOutput.setText(ClipboardUtil.getClipboard(getContext()));
 
-        } else if (i == R.id.img_share) {
-            doShareText(mInput);
+        } else if (id == R.id.img_share) {
+            shareText(mInput);
 
-        } else if (i == R.id.img_share_out) {
-            doShareText(mOutput);
+        } else if (id == R.id.img_share_out) {
+            shareText(mOutput);
 
+        } else if (id == R.id.img_encode_all) {
+            Intent intent = new Intent(getContext(), CodecAllActivity.class);
+            intent.setAction(CodecAllActivity.EXTRA_ACTION_ENCODE);
+            intent.putExtra(CodecAllActivity.EXTRA_INPUT, mInput.getText().toString());
+            startActivity(intent);
+        } else if (id == R.id.img_decode_all) {
+            Intent intent = new Intent(getContext(), CodecAllActivity.class);
+            intent.setAction(CodecAllActivity.EXTRA_ACTION_DECODE);
+            intent.putExtra(CodecAllActivity.EXTRA_INPUT, mOutput.getText().toString());
+            startActivity(intent);
         }
     }
 
@@ -167,7 +187,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         super.onDestroyView();
     }
 
-    private void doShareText(EditText editText) {
+    private void shareText(EditText editText) {
         ShareManager.share(editText.getText().toString(), getContext());
     }
 

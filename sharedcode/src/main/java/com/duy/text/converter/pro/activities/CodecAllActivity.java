@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 
-import com.duy.common.services.ads.AdsManager;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.BaseActivity;
 import com.duy.text.converter.core.fragments.DecodeAllFragment;
@@ -32,28 +31,35 @@ import com.duy.text.converter.core.fragments.EncodeAllFragment;
 
 public class CodecAllActivity extends BaseActivity {
 
-    private static final String EXTRA_INPUT = "EXTRA_INPUT";
-    private static final String EXTRA_ACTION_ENCODE = "EXTRA_ACTION_ENCODE";
-    private static final String EXTRA_ACTION_DECODE = "EXTRA_ACTION_DECODE";
+    public static final String EXTRA_INPUT = "EXTRA_INPUT";
+    public static final String EXTRA_ACTION_ENCODE = "EXTRA_ACTION_ENCODE";
+    public static final String EXTRA_ACTION_DECODE = "EXTRA_ACTION_DECODE";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decode_all);
-
+        setupToolbar();
         String action = getIntent().getAction();
+
         if (EXTRA_ACTION_ENCODE.equals(action)) {
             String input = getIntent().getStringExtra(EXTRA_INPUT);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content, EncodeAllFragment.newInstance(input)).commit();
+
+            setTitle(R.string.encode);
+            toolbar.setSubtitle(input);
         } else if (EXTRA_ACTION_DECODE.equals(action)) {
             String input = getIntent().getStringExtra(EXTRA_INPUT);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content, DecodeAllFragment.newInstance(input)).commit();
+
+            setTitle(R.string.decode);
+            toolbar.setSubtitle(input);
         } else {
             finish();
-            return;
         }
-        AdsManager.loadBannerAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
     }
+
+
 }

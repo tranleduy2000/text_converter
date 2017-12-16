@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.duy.common.DLog;
@@ -32,6 +33,7 @@ import com.duy.text.converter.pro.themes.ThemeHelper;
  */
 public class BaseActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "BaseActivity";
+    protected Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,7 +55,6 @@ public class BaseActivity extends AppCompatActivity implements SharedPreferences
         }
     }
 
-
     @Override
     protected void onDestroy() {
         DLog.d(TAG, "onDestroy() called");
@@ -68,5 +69,13 @@ public class BaseActivity extends AppCompatActivity implements SharedPreferences
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void setupToolbar() {
+        toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

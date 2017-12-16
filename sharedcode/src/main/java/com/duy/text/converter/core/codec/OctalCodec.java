@@ -79,4 +79,14 @@ public class OctalCodec implements Codec {
     public String getName(Context context) {
         return null;
     }
+
+    @Override
+    public int getMax() {
+        return 0;
+    }
+
+    @Override
+    public int getConfident() {
+        return 0;
+    }
 }

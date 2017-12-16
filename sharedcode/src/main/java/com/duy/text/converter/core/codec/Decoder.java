@@ -16,7 +16,6 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
@@ -27,4 +26,7 @@ public interface Decoder {
     @NonNull
     String decode(@NonNull String text);
 
+    int getMax();
+
+    int getConfident();
 }
