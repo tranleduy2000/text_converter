@@ -65,10 +65,7 @@ public class ReverserCodec extends CodecImpl {
         return reverseText(text);
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

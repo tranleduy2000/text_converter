@@ -38,10 +38,7 @@ public class UpperCaseCodec extends CodecImpl {
         return text.toUpperCase();
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

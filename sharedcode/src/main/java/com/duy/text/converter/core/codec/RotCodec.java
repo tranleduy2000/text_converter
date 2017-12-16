@@ -50,10 +50,7 @@ public class RotCodec extends CodecImpl {
         return progress(text);
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

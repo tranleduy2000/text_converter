@@ -38,10 +38,7 @@ public class LowerCaseCodec extends CodecImpl {
         return text.toLowerCase();
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

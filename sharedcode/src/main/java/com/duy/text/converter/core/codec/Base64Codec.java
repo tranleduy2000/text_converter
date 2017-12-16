@@ -49,10 +49,7 @@ public class Base64Codec extends CodecImpl {
         }
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

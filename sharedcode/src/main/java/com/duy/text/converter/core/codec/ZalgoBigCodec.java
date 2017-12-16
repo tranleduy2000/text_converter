@@ -37,10 +37,7 @@ public class ZalgoBigCodec extends CodecImpl {
         return text;
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

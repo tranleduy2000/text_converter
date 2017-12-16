@@ -81,10 +81,7 @@ public class T9Codec extends CodecImpl {
         return null;
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

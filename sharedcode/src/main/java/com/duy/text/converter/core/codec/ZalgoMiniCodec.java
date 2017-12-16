@@ -152,10 +152,7 @@ public class ZalgoMiniCodec extends CodecImpl {
         return text;
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

@@ -16,6 +16,8 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
+
 /**
  * Created by Duy on 16-Dec-17.
  */
@@ -45,5 +47,10 @@ public abstract class CodecImpl implements Codec {
 
     public void incConfident() {
         confident++;
+    }
+
+    @Override
+    public String getName(Context context) {
+        return null;
     }
 }

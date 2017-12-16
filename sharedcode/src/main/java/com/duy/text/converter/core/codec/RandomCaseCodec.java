@@ -40,10 +40,7 @@ public class RandomCaseCodec extends CodecImpl {
         return encode(text);
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

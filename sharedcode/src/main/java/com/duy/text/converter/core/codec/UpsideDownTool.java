@@ -75,10 +75,7 @@ public class UpsideDownTool extends CodecImpl {
         return textToUpsideDown(text);
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

@@ -76,10 +76,7 @@ public class SupscriptCodec extends CodecImpl {
         }
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

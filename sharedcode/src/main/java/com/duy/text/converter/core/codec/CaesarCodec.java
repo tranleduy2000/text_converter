@@ -76,10 +76,7 @@ public class CaesarCodec extends CodecImpl {
         return encoded.toString();
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }

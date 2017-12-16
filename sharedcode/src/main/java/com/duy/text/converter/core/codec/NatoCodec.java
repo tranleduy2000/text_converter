@@ -113,10 +113,7 @@ public class NatoCodec extends CodecImpl {
         return result.toString();
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 

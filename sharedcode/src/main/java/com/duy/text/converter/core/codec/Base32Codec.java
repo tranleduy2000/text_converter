@@ -40,10 +40,7 @@ public class Base32Codec extends CodecImpl {
         return new String(base32.decode(text.getBytes()));
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 
 
 }
