@@ -44,7 +44,6 @@ public class ZalgoCodecTest extends TestCase {
             for (int i = 0; i < lines.length; i++) {
                 String line = lines[i];
                 out.append(line).append("\r\n");
-                ;
             }
 
             out.flush();

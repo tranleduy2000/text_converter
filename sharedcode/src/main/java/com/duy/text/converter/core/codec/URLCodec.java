@@ -31,10 +31,13 @@ public class URLCodec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         org.apache.commons.codec.net.URLCodec urlCodec = new org.apache.commons.codec.net.URLCodec();
         try {
             return urlCodec.encode(text);
         } catch (EncoderException e) {
+            setConfident(0);
             e.printStackTrace();
             return text;
         }
@@ -43,16 +46,17 @@ public class URLCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         org.apache.commons.codec.net.URLCodec urlCodec = new org.apache.commons.codec.net.URLCodec();
         try {
             return urlCodec.decode(text);
         } catch (DecoderException e) {
+            setConfident(0);
             e.printStackTrace();
             return text;
         }
     }
-
-
 
 
 }

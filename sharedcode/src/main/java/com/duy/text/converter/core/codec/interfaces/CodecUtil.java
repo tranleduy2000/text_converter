@@ -76,7 +76,7 @@ public class CodecUtil {
             case REVERSER:
                 return new ReverserCodec().decode(inp);
             case UPSIDE_DOWNSIDE:
-                return UpsideDownTool.textToUpsideDown(inp);
+                return new UpsideDownTool().decode(inp);
             case SUPPER_SCRIPT:
                 return new SupscriptCodec().decode(inp);
             case SUB_SCRIPT:
@@ -139,7 +139,7 @@ public class CodecUtil {
             case REVERSER:
                 return new ReverserCodec().encode(inp);
             case UPSIDE_DOWNSIDE:
-                return UpsideDownTool.textToUpsideDown(inp);
+                return new UpsideDownTool().encode(inp);
             case SUPPER_SCRIPT:
                 return new SupscriptCodec().encode(inp);
             case SUB_SCRIPT:

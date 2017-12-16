@@ -30,43 +30,25 @@ public class ReverserCodec extends CodecImpl {
      * reverse Text
      * abc def -> fed cba
      */
-    public static String reverseText(String text) {
+    private String reverseText(String text) {
         return new StringBuilder(text).reverse().toString();
     }
-
-    private static String reverseWord(String text) {
-        StringBuilder result = new StringBuilder("");
-        int end = text.length();
-        int counter = text.length() - 1;
-        for (int i = text.length() - 1; i >= 0; i--) {
-            if (text.charAt(i) == ' ' || i == 0) {
-                if (i != 0) {
-                    result.append(text.substring(i + 1, end));
-                    result.append(" ");
-                } else {
-                    result.append(text.substring(i, end));
-                }
-                end = counter;
-            }
-            counter--;
-        }
-        return result.toString();
-    }
-
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         return reverseText(text);
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         return reverseText(text);
     }
-
-
 
 
 }

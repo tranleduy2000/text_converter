@@ -28,14 +28,11 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 public class OctalCodec extends CodecImpl {
     private static final String TAG = "OctalCodec";
 
-    public static void main(String[] args) {
-        String ori = "Octal to text in Java";
-        System.out.println(ori);
-        System.out.println(textToOctal(ori));
-        System.out.println(octalToText(textToOctal(ori)));
-    }
 
-    public static String textToOctal(String text) {
+    private String textToOctal(String text) {
+        setMax(text.length());
+        setConfident(text.length());
+
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
@@ -46,13 +43,15 @@ public class OctalCodec extends CodecImpl {
         return result.toString();
     }
 
-    public static String octalToText(String text) {
+    private String octalToText(String text) {
         String[] arr = text.split(" ");
+        setMax(arr);
         StringBuilder result = new StringBuilder();
         for (String arg : arr) {
             try {
                 char c = (char) Integer.parseInt(arg, 8);
                 result.append(c);
+                incConfident();
             } catch (Exception e) {
                 result.append(" ").append(arg).append(" ");
             }
@@ -69,14 +68,8 @@ public class OctalCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        try {
-            return octalToText(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return octalToText(text);
     }
-
-
 
 
 }

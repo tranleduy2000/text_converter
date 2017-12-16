@@ -26,52 +26,60 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
  */
 
 public class SubscriptCodec extends CodecImpl {
-    public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final String SUB_SCRIPT = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
+    static {
+        if (SUB_SCRIPT.length() != NORMAL.length()) {
+            throw new RuntimeException();
+        }
+    }
 
-    private static String textToSub(String text) {
-        String result = "";
+    private String textToSub(String text) {
+        setMax(text.length());
+        StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
-            int a = NORMAL.indexOf(letter);
-            result += (a != -1) ? SUB_SCRIPT.charAt(a) : letter;
+            int indexOf = NORMAL.indexOf(letter);
+            if (indexOf != -1) {
+                result.append(SUB_SCRIPT.charAt(indexOf));
+                incConfident();
+            } else {
+                result.append(letter);
+            }
         }
-        return result;
+        return result.toString();
     }
 
-    private static String subToText(String text) {
-        String result = "";
+    private String subToText(String text) {
+        setMax(text.length());
+        StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
             int a = SUB_SCRIPT.indexOf(letter);
-            result += (a != -1) ? NORMAL.charAt(a) : letter;
+            if (a != -1) {
+                result.append(NORMAL.charAt(a));
+                incConfident();
+            } else {
+                result.append(letter);
+            }
+
         }
-        return result;
+        return result.toString();
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        try {
-            return textToSub(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return textToSub(text);
     }
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        try {
-            return subToText(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return subToText(text);
     }
-
-
 
 
 }

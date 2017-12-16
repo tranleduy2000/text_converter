@@ -164,7 +164,7 @@ public class StylistFactory {
         return list;
     }
 
-    public static ArrayList<Style> makeStyle() {
+    static ArrayList<Style> makeStyle() {
         ArrayList<Style> encoders = new ArrayList<>();
         //blue text style
         encoders.add(new BlueEffect());

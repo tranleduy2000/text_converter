@@ -26,58 +26,60 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
  */
 
 public class SupscriptCodec extends CodecImpl {
-    public static final String SUPPER_SCRIPT = "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹";
-    public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String SUPPER_SCRIPT = "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹";
+    private static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    public static String textToSup(String text) {
-        String result = "";
+    static {
+        if (SUPPER_SCRIPT.length() != NORMAL.length()) {
+            throw new RuntimeException();
+        }
+    }
+
+    private String textToSup(String text) {
+        setMax(text.length());
+        StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
-            int a = NORMAL.indexOf(letter);
-            result += (a != -1) ? SUPPER_SCRIPT.charAt(a) : letter;
+            int index = NORMAL.indexOf(letter);
+            if (index != -1) {
+                result.append(SUPPER_SCRIPT.charAt(index));
+                incConfident();
+            } else {
+                result.append(letter);
+            }
         }
-        return result;
+        return result.toString();
     }
 
-    public static String supToText(String text) {
-        String result = "";
+    private String supToText(String text) {
+        StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
             int a = SUPPER_SCRIPT.indexOf(letter);
-            result += (a != -1) ? NORMAL.charAt(a) : letter;
+            if (a != -1) {
+                result.append(NORMAL.charAt(a));
+                incConfident();
+            } else {
+                result.append(letter);
+            }
         }
-        return result;
-    }
-
-    public static void main(String[] args) {
-        String x = textToSup("abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-        System.out.println(x);
-        System.out.println(supToText(x));
+        return result.toString();
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        try {
-            return textToSup(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return textToSup(text);
     }
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        try {
-            return supToText(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return supToText(text);
+
     }
-
-
 
 
 }

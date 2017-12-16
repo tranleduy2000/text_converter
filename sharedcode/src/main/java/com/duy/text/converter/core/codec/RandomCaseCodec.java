@@ -28,6 +28,9 @@ public class RandomCaseCodec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
+
         StringBuilder result = new StringBuilder();
         for (char c : text.toCharArray()) {
             result.append(Math.random() < 0.5d ? c : Character.toUpperCase(c));
@@ -40,8 +43,6 @@ public class RandomCaseCodec extends CodecImpl {
     public String decode(@NonNull String text) {
         return encode(text);
     }
-
-
 
 
 }

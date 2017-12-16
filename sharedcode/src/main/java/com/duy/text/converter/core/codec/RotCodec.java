@@ -25,14 +25,17 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
  */
 
 public class RotCodec extends CodecImpl {
-    private static String progress(String text) {
+    private String progress(String text) {
+        setMax(text.length());
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
+            incConfident();
             char c = text.charAt(i);
             if (c >= 'a' && c <= 'm') c += 13;
             else if (c >= 'A' && c <= 'M') c += 13;
             else if (c >= 'n' && c <= 'z') c -= 13;
             else if (c >= 'N' && c <= 'Z') c -= 13;
+            else confident--;
             result.append(c);
         }
         return result.toString();
@@ -50,8 +53,6 @@ public class RotCodec extends CodecImpl {
     public String encode(@NonNull String text) {
         return progress(text);
     }
-
-
 
 
 }

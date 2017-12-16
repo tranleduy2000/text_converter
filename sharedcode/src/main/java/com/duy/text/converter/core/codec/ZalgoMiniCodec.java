@@ -81,16 +81,22 @@ public class ZalgoMiniCodec extends CodecImpl {
     //hide show element
     //lookup char to know if its a zalgo char or not
 
-    private static boolean is_zalgo_char(char c) {
-        for (char aZalgo_up : zalgo_up)
-            if (c == aZalgo_up)
+    private static boolean isZalgoChar(char c) {
+        for (char aZalgo_up : zalgo_up) {
+            if (c == aZalgo_up) {
                 return true;
-        for (char aZalgo_down : zalgo_down)
-            if (c == aZalgo_down)
+            }
+        }
+        for (char aZalgo_down : zalgo_down) {
+            if (c == aZalgo_down) {
                 return true;
-        for (char aZalgo_mid : zalgo_mid)
-            if (c == aZalgo_mid)
+            }
+        }
+        for (char aZalgo_mid : zalgo_mid) {
+            if (c == aZalgo_mid) {
                 return true;
+            }
+        }
         return false;
     }
 
@@ -99,7 +105,7 @@ public class ZalgoMiniCodec extends CodecImpl {
         StringBuilder zalgoTxt = new StringBuilder();
 
         for (int i = 0; i < iText.length(); i++) {
-            if (is_zalgo_char(iText.charAt(i)))
+            if (isZalgoChar(iText.charAt(i)))
                 continue;
 
             int num_up;
@@ -125,15 +131,21 @@ public class ZalgoMiniCodec extends CodecImpl {
                 num_down = rand(64) / 4 + 3;
             }
 
-            if (up)
-                for (int j = 0; j < num_up; j++)
+            if (up) {
+                for (int j = 0; j < num_up; j++) {
                     zalgoTxt.append(rand_zalgo(zalgo_up));
-            if (mid)
-                for (int j = 0; j < num_mid; j++)
+                }
+            }
+            if (mid) {
+                for (int j = 0; j < num_mid; j++) {
                     zalgoTxt.append(rand_zalgo(zalgo_mid));
-            if (down)
-                for (int j = 0; j < num_down; j++)
+                }
+            }
+            if (down) {
+                for (int j = 0; j < num_down; j++) {
                     zalgoTxt.append(rand_zalgo(zalgo_down));
+                }
+            }
         }
 
 
@@ -152,8 +164,6 @@ public class ZalgoMiniCodec extends CodecImpl {
     public String decode(@NonNull String text) {
         return text;
     }
-
-
 
 
 }

@@ -27,39 +27,55 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 public class UpsideDownTool extends CodecImpl {
     /**
-     * original text
-     */
-    public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-    /**
      * upside down text
      */
-    public static final String FLIP = "ɐqɔpǝɟbɥıɾʞlɯuodbɹsʇnʌʍxʎz‾'؛˙¿¡/\\,∀qϽᗡƎℲƃHIſʞ˥WNOԀὉᴚS⊥∩ΛMXʎZ0ƖᄅƐㄣϛ9ㄥ86";
+    private static final String FLIP = "ɐqɔpǝɟbɥıɾʞlɯuodbɹsʇnʌʍxʎz‾'؛˙¿¡/\\,∀qϽᗡƎℲƃHIſʞ˥WNOԀὉᴚS⊥∩ΛMXʎZ0ƖᄅƐㄣϛ9ㄥ86";
+    /**
+     * original text
+     */
+    private static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+    static {
+        if (NORMAL.length() != FLIP.length()) {
+            throw new RuntimeException();
+        }
+    }
 
     /**
      * up side down text
      * <p>
      * hello world, i'm dennis -> sıuuǝp ɯ,ı 'p1ɹoʍ o11ǝɥ
      */
-    public static String textToUpsideDown(String text) {
+    private String textToUpsideDown(String text) {
+        setMax(text.length());
         StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
             int a = NORMAL.indexOf(letter);
-            result.append((a != -1) ? FLIP.charAt(a) : letter);
+            if (a != -1) {
+                result.append(FLIP.charAt(a));
+                incConfident();
+            } else {
+                result.append(letter);
+            }
         }
         return new StringBuilder(result.toString()).reverse().toString();
     }
 
-    public static String upsideDownToText(String text) {
+    private String upsideDownToText(String text) {
+        setMax(text.length());
         StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
             letter = text.charAt(i);
             int a = FLIP.indexOf(letter);
-            result.append((a != -1) ? NORMAL.charAt(a) : letter);
+            if (a != -1) {
+                result.append(NORMAL.charAt(a));
+                incConfident();
+            } else {
+                result.append(letter);
+            }
         }
         return new StringBuilder(result.toString()).reverse().toString();
     }
@@ -75,8 +91,6 @@ public class UpsideDownTool extends CodecImpl {
     public String encode(@NonNull String text) {
         return textToUpsideDown(text);
     }
-
-
 
 
 }

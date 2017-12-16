@@ -30,16 +30,18 @@ public class UpperCaseCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         return text.toLowerCase();
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
+        setMax(1);
+        setConfident(1);
         return text.toUpperCase();
     }
-
-
 
 
 }
