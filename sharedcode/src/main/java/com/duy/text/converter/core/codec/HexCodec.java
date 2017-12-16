@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by DUy on 06-Feb-17.
  */
 
-public class HexCodec implements Codec {
+public class HexCodec extends CodecImpl {
 
     /**
      * convert text to hex

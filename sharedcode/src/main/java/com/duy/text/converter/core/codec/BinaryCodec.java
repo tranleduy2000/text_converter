@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by DUy on 06-Feb-17.
  */
 
-public class BinaryCodec implements Codec {
+public class BinaryCodec extends CodecImpl {
 
     /**
      * convert text to binary

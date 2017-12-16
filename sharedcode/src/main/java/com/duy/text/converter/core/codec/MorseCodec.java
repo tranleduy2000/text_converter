@@ -25,7 +25,7 @@ import java.util.HashMap;
  * Created by Duy on 15-Jun-17.
  */
 
-public class MorseCodec implements Codec {
+public class MorseCodec extends CodecImpl {
     public static final char ALPHABET[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
             'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '};
 

@@ -23,14 +23,16 @@ import android.support.annotation.NonNull;
  * Created by DUy on 06-Feb-17.
  */
 
-public class AsciiCodec implements Codec {
-    public static String asciiToText(String text) {
+public class AsciiCodec extends CodecImpl {
+    private String asciiToText(String text) {
         String[] arr = text.split(" ");
+        setMax(arr.length);
         StringBuilder result = new StringBuilder();
         for (String arg : arr) {
             try {
                 char c = (char) Integer.parseInt(arg);
                 result.append(c);
+                incConfident();
             } catch (Exception e) {
                 result.append(arg);
             }
@@ -38,10 +40,12 @@ public class AsciiCodec implements Codec {
         return result.toString();
     }
 
-    public static String textToAscii(String text) {
+    private String textToAscii(String text) {
+        setMax(text.length());
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             result.append((int) text.charAt(i)).append(" ");
+            incConfident();
         }
         return result.toString();
     }
@@ -55,11 +59,7 @@ public class AsciiCodec implements Codec {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        try {
-            return asciiToText(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return asciiToText(text);
     }
 
     @Override

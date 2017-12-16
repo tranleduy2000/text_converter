@@ -16,40 +16,34 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-
 /**
- * Created by DUy on 06-Feb-17.
+ * Created by Duy on 16-Dec-17.
  */
 
-public class UpperCaseCodec extends CodecImpl {
+public abstract class CodecImpl implements Codec {
 
-
-    @NonNull
-    @Override
-    public String decode(@NonNull String text) {
-        return text.toLowerCase();
-    }
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return text.toUpperCase();
-    }
-
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+    protected int max = 0;
+    protected int confident = 0;
 
     @Override
     public int getMax() {
-        return 0;
+        return max;
+    }
+
+    public void setMax(int max) {
+        this.max = max;
     }
 
     @Override
     public int getConfident() {
-        return 0;
+        return confident;
+    }
+
+    public void setConfident(int confident) {
+        this.confident = confident;
+    }
+
+    public void incConfident() {
+        confident++;
     }
 }

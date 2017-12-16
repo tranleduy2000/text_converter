@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by Duy on 08-Aug-17.
  */
 
-public class AtbashCodec implements Codec {
+public class AtbashCodec extends CodecImpl {
     private static final String NORMAL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toUpperCase();
 
     public AtbashCodec() {

@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by Duy on 28-Aug-17.
  */
 
-public class RotCodec implements Codec {
+public class RotCodec extends CodecImpl {
     private static String progress(String text) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {

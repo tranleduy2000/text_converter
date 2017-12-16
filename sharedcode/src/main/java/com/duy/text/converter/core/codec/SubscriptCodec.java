@@ -24,7 +24,7 @@ import android.support.annotation.NonNull;
  * Created by Duy on 05-May-17.
  */
 
-public class SubscriptCodec implements Codec {
+public class SubscriptCodec extends CodecImpl {
     public static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     private static final String SUB_SCRIPT = "ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉";
 

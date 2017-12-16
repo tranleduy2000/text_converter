@@ -25,7 +25,7 @@ import java.util.Arrays;
  * Created by Duy on 08-Aug-17.
  */
 
-public class CaesarCodec implements Codec {
+public class CaesarCodec extends CodecImpl {
     private static final String NORMAL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toUpperCase();
     private String key = "";
 

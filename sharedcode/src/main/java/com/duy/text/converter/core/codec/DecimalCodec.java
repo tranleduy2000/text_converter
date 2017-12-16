@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by DUy on 06-Feb-17.
  */
 
-public class DecimalCodec implements Codec {
+public class DecimalCodec extends CodecImpl {
 
     /**
      * convert text to hex

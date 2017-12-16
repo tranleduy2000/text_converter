@@ -26,7 +26,7 @@ import java.nio.charset.Charset;
  * Created by Duy on 22-Jun-17.
  */
 
-public class Base64Codec implements Codec {
+public class Base64Codec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String token) {

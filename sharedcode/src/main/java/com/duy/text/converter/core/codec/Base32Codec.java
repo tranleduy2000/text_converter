@@ -25,7 +25,7 @@ import org.apache.commons.codec.binary.Base32;
  * Created by Duy on 11-Jul-17.
  */
 
-public class Base32Codec implements Codec {
+public class Base32Codec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {

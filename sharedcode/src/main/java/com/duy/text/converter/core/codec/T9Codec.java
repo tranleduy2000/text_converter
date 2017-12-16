@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * Created by Duy on 28-Aug-17.
  */
 
-public class T9Codec implements Codec {
+public class T9Codec extends CodecImpl {
     private static final ArrayList<Pair<String, String>> list = new ArrayList<>();
 
     static {

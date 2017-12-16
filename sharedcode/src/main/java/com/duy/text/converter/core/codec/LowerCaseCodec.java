@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by DUy on 06-Feb-17.
  */
 
-public class LowerCaseCodec implements Codec {
+public class LowerCaseCodec extends CodecImpl {
 
 
     @NonNull

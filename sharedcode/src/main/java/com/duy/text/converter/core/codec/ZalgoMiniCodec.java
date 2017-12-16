@@ -19,7 +19,7 @@ package com.duy.text.converter.core.codec;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-public class ZalgoMiniCodec implements Codec {
+public class ZalgoMiniCodec extends CodecImpl {
 
     public static final char[] zalgo_up =
             {'\u030d', /*     Ì?     */'\u030e', /*     ÌŽ     */'\u0304', /*     Ì„     */'\u0305', /*     Ì…     */

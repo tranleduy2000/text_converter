@@ -24,7 +24,7 @@ import java.util.ArrayList;
 /**
  * Created by Duy on 11/21/2017.
  */
-public class NatoCodec implements Codec {
+public class NatoCodec extends CodecImpl {
     private static final ArrayList<NatoItem> DATA = new ArrayList<>();
 
     static {

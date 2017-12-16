@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by Duy on 13-Jul-17.
  */
 
-public class ZalgoBigCodec implements Codec {
+public class ZalgoBigCodec extends CodecImpl {
 
     @NonNull
     @Override

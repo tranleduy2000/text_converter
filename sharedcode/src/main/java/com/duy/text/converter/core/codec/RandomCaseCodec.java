@@ -23,7 +23,7 @@ import android.support.annotation.NonNull;
  * Created by Duy on 02-Aug-17.
  */
 
-public class RandomCaseCodec implements Codec {
+public class RandomCaseCodec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {

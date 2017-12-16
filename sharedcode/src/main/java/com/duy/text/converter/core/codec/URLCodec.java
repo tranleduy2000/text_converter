@@ -26,7 +26,7 @@ import org.apache.commons.codec.EncoderException;
  * Created by Duy on 11-Jul-17.
  */
 
-public class URLCodec implements Codec {
+public class URLCodec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {

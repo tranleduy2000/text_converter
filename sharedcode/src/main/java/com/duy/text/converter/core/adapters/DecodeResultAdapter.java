@@ -79,10 +79,27 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
     public static class DecodeItem {
         String name;
         String result;
+        int max, confident;
 
         public DecodeItem(String name, String result) {
             this.name = name;
             this.result = result;
+        }
+
+        public int getMax() {
+            return max;
+        }
+
+        public void setMax(int max) {
+            this.max = max;
+        }
+
+        public int getConfident() {
+            return confident;
+        }
+
+        public void setConfident(int confident) {
+            this.confident = confident;
         }
 
         public String getResult() {

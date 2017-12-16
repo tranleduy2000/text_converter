@@ -24,7 +24,7 @@ import android.util.Log;
  * Created by DUy on 06-Feb-17.
  */
 
-public class OctalCodec implements Codec {
+public class OctalCodec extends CodecImpl {
     private static final String TAG = "OctalCodec";
 
     public static void main(String[] args) {
