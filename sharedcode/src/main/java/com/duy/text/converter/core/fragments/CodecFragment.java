@@ -111,10 +111,13 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
+        mInput.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
+
         mOutput = view.findViewById(R.id.edit_output);
+        mOutput.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
+
         mInput.addTextChangedListener(mInputWatcher);
         mOutput.addTextChangedListener(mOutputWatcher);
-
 
         view.findViewById(R.id.image_paste).setOnClickListener(this);
         view.findViewById(R.id.image_paste_out).setOnClickListener(this);

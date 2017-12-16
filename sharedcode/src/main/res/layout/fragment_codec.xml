@@ -87,7 +87,8 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center"
-            android:text="@string/choose_method" />
+            android:text="@string/choose_method"
+            android:textColor="?android:textColorPrimary" />
 
 
         <android.support.v7.widget.AppCompatSpinner

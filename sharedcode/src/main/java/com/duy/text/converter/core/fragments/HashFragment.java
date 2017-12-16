@@ -35,6 +35,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.duy.common.ShareManager;
+import com.duy.text.converter.R;
 import com.duy.text.converter.core.hashfunction.HashFunction;
 import com.duy.text.converter.core.hashfunction.Md5Tool;
 import com.duy.text.converter.core.hashfunction.Sha1Tool;
@@ -43,7 +44,7 @@ import com.duy.text.converter.core.hashfunction.Sha512Tool;
 import com.duy.text.converter.core.hashfunction.UnixCryptTool;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.view.BaseEditText;
-import com.duy.text.converter.R;
+import com.duy.text.converter.core.view.RoundedBackgroundEditText;
 
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class HashFragment extends Fragment {
     private final Handler mHandler = new Handler();
     private ArrayList<HashFunction> mHashFunctions = new ArrayList<>();
     private BaseEditText mInput, mOutput;
-    private Spinner mSpinnerHash;
+    private Spinner mMethodSpinner;
     private final Runnable convertRunnable = new Runnable() {
         @Override
         public void run() {
@@ -122,7 +123,8 @@ public class HashFragment extends Fragment {
         mOutput = view.findViewById(R.id.edit_output);
         mInput.addTextChangedListener(mInputWatcher);
 
-        mSpinnerHash = view.findViewById(R.id.spinner_choose);
+        mMethodSpinner = view.findViewById(R.id.spinner_choose);
+        mMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
         view.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,8 +145,8 @@ public class HashFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_list_item_1, names);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        mSpinnerHash.setAdapter(adapter);
-        mSpinnerHash.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mMethodSpinner.setAdapter(adapter);
+        mMethodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 convert();
@@ -158,7 +160,7 @@ public class HashFragment extends Fragment {
     }
 
     private void convert() {
-        int index = mSpinnerHash.getSelectedItemPosition();
+        int index = mMethodSpinner.getSelectedItemPosition();
         try {
             mOutput.setText(mHashFunctions.get(index).encode(mInput.getText().toString()));
         } catch (Exception e) {

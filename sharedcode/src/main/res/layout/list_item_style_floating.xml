@@ -34,7 +34,8 @@
             android:background="?android:attr/selectableItemBackground"
             android:contentDescription="@string/copy"
             android:padding="4dp"
-            android:src="@drawable/ic_content_copy_white_24dp" />
+            android:src="@drawable/ic_content_copy_white_24dp"
+            android:tint="?imageTintColor" />
 
     </LinearLayout>
 
