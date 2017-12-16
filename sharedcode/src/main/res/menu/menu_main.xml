@@ -42,21 +42,18 @@
         android:visible="false"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_open_codec"
-        android:icon="@drawable/ic_settings_white_24dp"
-        android:title="@string/floating_codec"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_open_stylish"
-        android:icon="@drawable/ic_settings_white_24dp"
-        android:title="@string/floating_stylish"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/action_setting"
         android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/setting"
         app:showAsAction="ifRoom" />
-
+    <item
+        android:id="@+id/action_open_codec"
+        android:title="@string/floating_codec"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_open_stylish"
+        android:title="@string/floating_stylish"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_review"
         android:icon="@drawable/ic_rate_review_white_24dp"
