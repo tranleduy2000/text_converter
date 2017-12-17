@@ -25,8 +25,8 @@ android {
         applicationId "duy.com.text_converter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 33
-        versionName "3.8.3"
+        versionCode 34
+        versionName "3.8.4"
     }
 
 
