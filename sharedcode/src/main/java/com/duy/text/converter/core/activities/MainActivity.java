@@ -36,14 +36,12 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.duy.common.ShareManager;
 import com.duy.common.StoreUtil;
-import com.duy.text.converter.BuildConfig;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.PagerSectionAdapter;
 import com.duy.text.converter.core.fragments.AdsFragment;
 import com.duy.text.converter.pro.license.Premium;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crash.FirebaseCrash;
 import com.kobakei.ratethisapp.RateThisApp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
@@ -56,8 +54,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MobileAds.initialize(this);
-        FirebaseCrash.setCrashCollectionEnabled(!BuildConfig.DEBUG);
+        if (!Premium.isPremium(this)) {
+            MobileAds.initialize(this);
+        }
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -175,7 +174,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
         } else if (id == R.id.action_upgrade) {
             mFirebaseAnalytics.logEvent("click_upgrade", new Bundle());
-            StoreUtil.gotoPlayStore(this, "com.duy.text_converter.pro");
+            Premium.showDialogUpgrade(this);
         }
         return super.onOptionsItemSelected(item);
     }
