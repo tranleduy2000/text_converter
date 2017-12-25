@@ -37,11 +37,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.duy.text.converter.R;
 import com.duy.text.converter.core.barcode.BarcodeEncodedActivity;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.core.view.BaseEditText;
-import com.duy.text.converter.R;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
 import com.google.zxing.NotFoundException;
@@ -159,10 +159,12 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case REQUEST_READ_EXTERNAL_STORAGE:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    decodeImage();
-                } else {
-                    Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_SHORT).show();
+                if (grantResults.length > 0) {
+                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        decodeImage();
+                    } else {
+                        Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
         }
@@ -274,7 +276,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                     Log.e(TAG, "decode exception", e);
                     return null;
                 }
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 e.printStackTrace();
                 return null;
             }

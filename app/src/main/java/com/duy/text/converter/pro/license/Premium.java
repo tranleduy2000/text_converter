@@ -32,8 +32,8 @@ import com.duy.text.converter.core.activities.UpgradeActivity;
 
 public class Premium {
     public static final String PRO_PACKAGE = "com.duy.text_converter.pro";
+    private static final String FREE_PACKAGE = "duy.com.text_converter";
     private static final String KEY_CRACKED = "pirate";
-    private static final String FREE_PACKAGE = "com.duy.text_converter";
     private static final String TAG = "Premium";
 
     public static boolean isCrack(Context context) {

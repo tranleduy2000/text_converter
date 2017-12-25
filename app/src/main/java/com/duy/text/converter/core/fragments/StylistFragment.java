@@ -58,15 +58,6 @@ public class StylistFragment extends Fragment implements TextWatcher {
         return fragment;
     }
 
-    public static StylistFragment newInstance(String input, boolean processText) {
-        StylistFragment fragment = new StylistFragment();
-        Bundle args = new Bundle();
-        args.putString(KEY_INPUT, input);
-        args.putBoolean(KEY_PROCESS_TEXT, processText);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
 
     @Override
     public void onAttach(Context context) {
@@ -83,22 +74,21 @@ public class StylistFragment extends Fragment implements TextWatcher {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String input = getArguments().getString(KEY_INPUT);
-        boolean processText = getArguments().getBoolean(KEY_PROCESS_TEXT);
 
         mInput = view.findViewById(R.id.edit_input);
-        if (processText) mInput.setVisibility(View.GONE);
 
         mListResult = view.findViewById(R.id.recycler_view);
         mListResult.setLayoutManager(new LinearLayoutManager(getContext()));
         mListResult.setHasFixedSize(true);
 
-        mAdapter = new StyleAdapter(getActivity(),
-                processText ? R.layout.list_item_encode_all : R.layout.list_item_style);
+        mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
         mListResult.setAdapter(mAdapter);
 
         mInput.addTextChangedListener(this);
+
+        restore();
     }
+
 
 
     public void convert(String inp) {
@@ -120,21 +110,17 @@ public class StylistFragment extends Fragment implements TextWatcher {
     public void afterTextChanged(Editable s) {
 
     }
-
+    private void restore() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        mInput.setText(sharedPreferences.getString(KEY + 1, ""));
+    }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         sharedPreferences.edit().putString(KEY + 1, mInput.getText().toString()).apply();
+        super.onDestroyView();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (getArguments().getString(KEY_INPUT) == null) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-            mInput.setText(sharedPreferences.getString(KEY + 1, ""));
-        }
-    }
+
 }

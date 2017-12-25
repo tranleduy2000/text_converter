@@ -40,7 +40,7 @@ android {
             def propFile = new File('signing.properties')
             props.load(new FileInputStream(propFile))
 
-            buildConfigField "String", "BASE64_KEY", file(props['BASE64_KEY']) as String
+            buildConfigField "String", "BASE64_KEY", "\"" + props['BASE64_KEY'] + "\""
         }
 
         debug {

@@ -21,13 +21,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.duy.text.converter.R;
 import com.duy.text.converter.core.fragments.AdsFragment;
 import com.duy.text.converter.core.fragments.BarCodeFragment;
 import com.duy.text.converter.core.fragments.CodecFragment;
 import com.duy.text.converter.core.fragments.DecorateFragment;
 import com.duy.text.converter.core.fragments.HashFragment;
 import com.duy.text.converter.core.fragments.StylistFragment;
-import com.duy.text.converter.R;
 
 
 /**
@@ -54,10 +54,10 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return CodecFragment.newInstance(init);
-            case 2:
-                return BarCodeFragment.newInstance();
             case AdsFragment.INDEX:
                 return AdsFragment.newInstance();
+            case 2:
+                return BarCodeFragment.newInstance();
             case 3:
                 return StylistFragment.newInstance();
             case 4:
@@ -74,10 +74,10 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return context.getString(R.string.codec);
-            case 2:
-                return context.getString(R.string.barcode);
             case AdsFragment.INDEX:
                 return context.getString(R.string.ads);
+            case 2:
+                return context.getString(R.string.barcode);
             case 3:
                 return context.getString(R.string.stylish);
             case 4:

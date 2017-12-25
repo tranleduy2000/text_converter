@@ -176,12 +176,10 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
             menu.findItem(R.id.action_upgrade).setVisible(false);
             menu.findItem(R.id.action_open_codec).setVisible(true);
             menu.findItem(R.id.action_open_stylish).setVisible(true);
-            menu.findItem(R.id.action_setting).setVisible(true);
         } else {
             menu.findItem(R.id.action_upgrade).setVisible(true);
             menu.findItem(R.id.action_open_codec).setVisible(false);
             menu.findItem(R.id.action_open_stylish).setVisible(false);
-            menu.findItem(R.id.action_setting).setVisible(false);
         }
 
         if (StoreUtil.isAppInstalled(this, "com.duy.converter")) {

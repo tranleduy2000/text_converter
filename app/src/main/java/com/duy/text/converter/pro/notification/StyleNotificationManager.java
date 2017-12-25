@@ -42,7 +42,7 @@ public class StyleNotificationManager {
 
     public static void showNotificationEncodeIfNeed(@NonNull Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sharedPreferences.getBoolean(context.getString(R.string.pref_key_enable_encode), false)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.pref_key_enable_encode_notification), false)) {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
             builder.setSmallIcon(R.mipmap.ic_launcher)
                     .setAutoCancel(true);
@@ -95,7 +95,7 @@ public class StyleNotificationManager {
     public static void showNotificationDecodeIfNeed(@NonNull Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
-        if (sharedPreferences.getBoolean(context.getString(R.string.pref_key_enable_encode), false)) {
+        if (sharedPreferences.getBoolean(context.getString(R.string.pref_key_enable_encode_notification), false)) {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
             builder.setSmallIcon(R.mipmap.ic_launcher)
                     .setAutoCancel(true);

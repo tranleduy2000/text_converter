@@ -15,7 +15,9 @@
   -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory android:title="@string/user_interface">
+    <PreferenceCategory
+        android:key="pref_user_interface"
+        android:title="@string/user_interface">
 
         <ListPreference
             android:defaultValue="@string/theme_dark"
@@ -26,7 +28,9 @@
 
         </ListPreference>
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/floating_window">
+    <PreferenceCategory
+        android:key="pref_floating_window"
+        android:title="@string/floating_window">
         <Preference
             android:key="open_floating_codec"
             android:summary="@string/open_codec_desc"
@@ -50,13 +54,13 @@
     <PreferenceCategory android:title="@string/notification">
         <SwitchPreference
             android:defaultValue="false"
-            android:key="@string/pref_key_enable_encode"
+            android:key="@string/pref_key_enable_encode_notification"
             android:summary="You can encode by click notification"
             android:title="@string/encode_notifi" />
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="@string/pref_key_enable_decode"
+            android:key="@string/pref_key_enable_decode_notification"
             android:summary="You can decode by click notification"
             android:title="@string/decode_notifi" />
 
@@ -65,58 +69,73 @@
     <PreferenceCategory android:title="@string/encode_notifi">
         <ListPreference
             android:defaultValue="@string/ascii"
+            android:dependency="@string/pref_key_enable_encode_notification"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_1"
             android:title="Style 1" />
         <ListPreference
             android:defaultValue="@string/binary"
+            android:dependency="@string/pref_key_enable_encode_notification"
+
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_2"
             android:title="Style 2" />
         <ListPreference
             android:defaultValue="@string/hex"
+            android:dependency="@string/pref_key_enable_encode_notification"
+
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_3"
             android:title="Style 3" />
         <ListPreference
             android:defaultValue="@string/zalgo_mini"
+            android:dependency="@string/pref_key_enable_encode_notification"
             android:entries="@array/codec_methods"
+
             android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_4"
             android:title="Style 4" />
 
         <ListPreference
             android:defaultValue="@string/reverser"
+            android:dependency="@string/pref_key_enable_encode_notification"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_encode_style_5"
+
             android:title="Style 5" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/decode_notifi">
         <ListPreference
             android:defaultValue="@string/ascii"
+            android:dependency="@string/pref_key_enable_decode_notification"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_decode_style_1"
             android:title="Style 1" />
         <ListPreference
             android:defaultValue="@string/binary"
+            android:dependency="@string/pref_key_enable_decode_notification"
+
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_decode_style_2"
             android:title="Style 2" />
         <ListPreference
             android:defaultValue="@string/hex"
+            android:dependency="@string/pref_key_enable_decode_notification"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_decode_style_3"
+
             android:title="Style 3" />
         <ListPreference
             android:defaultValue="@string/morse_code"
+            android:dependency="@string/pref_key_enable_decode_notification"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_decode_style_4"
@@ -124,6 +143,8 @@
 
         <ListPreference
             android:defaultValue="@string/reverser"
+            android:dependency="@string/pref_key_enable_decode_notification"
+
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_decode_style_5"

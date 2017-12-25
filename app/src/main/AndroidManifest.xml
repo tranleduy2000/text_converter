@@ -16,10 +16,6 @@
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <!--Save data-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:name="com.duy.common.CrashReportApplication"
         android:allowBackup="true"
@@ -30,10 +26,6 @@
         android:supportsRtl="false"
         android:theme="@style/AppThemeDark"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".core.barcode.BarcodeEncodedActivity" />
-        <activity android:name=".core.activities.UpgradeActivity" />
-        <activity android:name=".pro.activities.CodecAllActivity" />
 
         <activity android:name="com.duy.text.converter.core.activities.MainActivity">
             <intent-filter>
@@ -53,6 +45,10 @@
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
+
+        <activity android:name=".core.barcode.BarcodeEncodedActivity" />
+        <activity android:name=".core.activities.UpgradeActivity" />
+        <activity android:name=".pro.activities.CodecAllActivity" />
 
         <!--Encode and decode menu-->
         <activity
