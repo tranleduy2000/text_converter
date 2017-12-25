@@ -18,7 +18,9 @@ package com.duy.common.utils;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.widget.Toast;
 
@@ -135,6 +137,14 @@ public class StoreUtil {
             activity.startActivity(Intent.createChooser(intent, "Send mail..."));
         } catch (ActivityNotFoundException ex) {
             Toast.makeText(activity, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public static boolean isAppInstalled(Context context, String appId) {
+        try {
+            context.getPackageManager().getApplicationInfo(appId, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
         }
     }
 }

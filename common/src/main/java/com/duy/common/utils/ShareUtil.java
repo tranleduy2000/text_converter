@@ -46,7 +46,12 @@ public class ShareUtil {
         context.startActivity(Intent.createChooser(intent, "Share image via"));
     }
 
+    @Deprecated
     public static void shareText(String text, Context context) {
+        shareText(context, text);
+    }
+
+    public static void shareText(Context context, CharSequence text) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_TEXT, text);

@@ -16,4 +16,82 @@
 
 <resources>
     <string name="app_name">Text Converter</string>
+    <string name="copy">Copy</string>
+    <string name="share">Share</string>
+    <string name="rate">Rate</string>
+    <string name="more_app">More app from develop</string>
+    <string name="choose_method">Choose method</string>
+    <string name="ouput_here">Enter here for decode…</string>
+    <string name="input_here">Enter here for encode…</string>
+
+    <string name="type_something">Type something</string>
+    <string name="get_ascii_app">Get Ascii Art app</string>
+    <string name="write_review_in_playstore">Write review in PlayStore</string>
+    <string name="setting">Setting</string>
+    <string name="upgrade">Upgrade to pro version</string>
+    <string name="key">Key</string>
+
+    <string name="encode_">Encode</string>
+    <string name="decode_">Decode</string>
+    <string name="hash_function">Hash</string>
+    <string name="codec">Codec</string>
+    <string name="stylish">Stylish</string>
+    <string name="ads">Ads</string>
+    <string name="decorate">Decorate</string>
+    <string name="encode">Encode</string>
+    <string name="barcode">Barcode</string>
+    <string name="input_data">Input data</string>
+    <string name="sample">Sample</string>
+    <string name="save">Save</string>
+    <string name="saved_in_gallery">Saved in gallery</string>
+    <string name="paste">Paste</string>
+    <string name="encode_this_data">Encode this data</string>
+    <string name="decode">Decode</string>
+    <string name="using_camera">Using camera</string>
+    <string name="decoded">Decoded</string>
+    <string name="cannot_decode">Can not decode this image</string>
+
+    <!--Ad-->
+    <string name="remove_ads">Get pro version</string>
+
+    <string name="copied">Copied</string>
+
+
+    <string name="pirated">Seems like the app wasn\'t purchased through Play Store! If you pirated it, then shame on you!</string>
+    <string name="tool">Tool</string>
+    <string name="floating_notification_description">Tap to open</string>
+    <string name="open_floating_codec">Open floating codec</string>
+    <string name="open_floating_stylish">Open floating stylish</string>
+    <string name="floating_codec">Floating codec</string>
+    <string name="floating_stylish">Floating stylish</string>
+    <string name="floating_window">Floating window</string>
+    <string name="open_codec_desc">Click to open floating codec</string>
+    <string name="open_floating_stylish_desc">Click to open floating stylish</string>
+    <string name="notification">Notification</string>
+    <string name="encode_notifi">Encode notification</string>
+    <string name="encode_style">Encode style</string>
+    <string name="decode_notifi">Decode notification</string>
+    <string name="decode_style">Decode style</string>
+    <string name="menu_text">Menu text (Android M and above)</string>
+
+    <string name="pro_feature"><![CDATA[1. Remove ads\n
+    2. Floating codec (small window)\n
+    3. Floating stylish (small window)\n
+    4. More theme (7 themes)\n
+    5. Encode/Decode menu (Android M)\n
+    6. Encode/Decode notification\n
+    7. You can encode/decode a file\n
+    8. (New) Encode all and decode all with one click\n
+    ]]>
+    </string>
+
+    <string name="pro_version">Pro version</string>
+    <string name="close_drawer">Close drawer</string>
+    <string name="open_drawer">Open drawer</string>
+    <string name="file">File</string>
+    <string name="get_unit_converter_app">Get Unit Converter app</string>
+    <string name="read_permission_msg">Please granted read storage permission</string>
+    <string name="select_image">Select Image</string>
+    <string name="saved_in">Saved in</string>
+    <string name="theme">Theme</string>
 </resources>

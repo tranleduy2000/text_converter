@@ -27,7 +27,7 @@ import io.fabric.sdk.android.Fabric;
  * Created by Duy on 25-Dec-17.
  */
 
-public class BaseApplication extends Application {
+public class CrashReportApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();

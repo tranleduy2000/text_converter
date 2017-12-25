@@ -23,7 +23,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 
-import com.duy.common.StoreUtil;
+import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.MainActivity;
 

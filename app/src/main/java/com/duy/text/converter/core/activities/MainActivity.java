@@ -34,8 +34,8 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 
-import com.duy.common.ShareManager;
-import com.duy.common.StoreUtil;
+import com.duy.common.utils.ShareUtil;
+import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.PagerSectionAdapter;
 import com.duy.text.converter.core.fragments.AdsFragment;
@@ -156,7 +156,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         int id = item.getItemId();
         if (id == R.id.action_share) {
             mFirebaseAnalytics.logEvent("click_share", new Bundle());
-            ShareManager.shareApp(this, getPackageName());
+            ShareUtil.shareApp(this, getPackageName());
 
         } else if (id == R.id.action_download_ascii) {
             mFirebaseAnalytics.logEvent("click_ascii", new Bundle());

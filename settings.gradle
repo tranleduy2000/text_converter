@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include ':sharedcode',  ':lvl', ':common'
+include ':app',  ':lvl', ':common'

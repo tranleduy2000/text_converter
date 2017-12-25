@@ -34,7 +34,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.duy.common.ShareManager;
+import com.duy.common.utils.ShareUtil;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.hashfunction.HashFunction;
 import com.duy.text.converter.core.hashfunction.Md5Tool;
@@ -128,7 +128,7 @@ public class HashFragment extends Fragment {
         view.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShareManager.shareText(getContext(), mOutput.getText().toString());
+                ShareUtil.shareText(getContext(), mOutput.getText().toString());
             }
         });
         view.findViewById(R.id.img_copy_out).setOnClickListener(new View.OnClickListener() {

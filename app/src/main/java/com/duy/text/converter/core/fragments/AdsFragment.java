@@ -28,7 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-import com.duy.common.StoreUtil;
+import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
