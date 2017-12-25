@@ -58,7 +58,7 @@
         <activity
             android:name=".pro.menu.EncodeProcessTextActivity"
             android:exported="true"
-            android:label="@string/encode_now"
+            android:label="@string/encode_it"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />

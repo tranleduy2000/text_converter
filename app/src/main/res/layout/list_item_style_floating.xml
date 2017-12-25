@@ -20,24 +20,17 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <LinearLayout
+
+    <ImageButton
+        android:id="@+id/img_copy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?colorPrimaryDark"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/img_copy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|center"
-            android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/copy"
-            android:padding="4dp"
-            android:src="@drawable/ic_content_copy_white_24dp"
-            android:tint="?imageTintColor" />
-
-    </LinearLayout>
+        android:layout_gravity="end|center"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/copy"
+        android:padding="4dp"
+        android:src="@drawable/ic_content_copy_white_24dp"
+        android:tint="?imageTintColor" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"

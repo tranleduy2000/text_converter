@@ -31,7 +31,7 @@
     <string name="upgrade">Upgrade to pro version</string>
     <string name="key">Key</string>
 
-    <string name="encode_now">Encode It!</string>
+    <string name="encode_it">Encode It!</string>
     <string name="encode_pro">Encode (Pro)</string>
     <string name="decode_pro">Decode (Pro)</string>
     <string name="hash_function">Hash</string>
@@ -95,4 +95,5 @@
     <string name="select_image">Select Image</string>
     <string name="saved_in">Saved in</string>
     <string name="theme">Theme</string>
+    <string name="user_interface">User interface</string>
 </resources>

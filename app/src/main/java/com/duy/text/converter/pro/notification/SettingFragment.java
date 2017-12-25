@@ -25,7 +25,7 @@ import com.duy.text.converter.R;
 import com.duy.text.converter.pro.floating.codec.FloatingCodecOpenShortCutActivity;
 import com.duy.text.converter.pro.floating.stylish.FloatingStylishOpenShortCutActivity;
 
-import static com.duy.text.converter.pro.notification.PrefUtil.bindPreferenceSummaryToValue;
+import static com.duy.common.preferences.PreferencesUtil.bindPreferenceSummaryToValue;
 
 /**
  * This fragment shows notification preferences only. It is used when the
@@ -54,7 +54,6 @@ public class SettingFragment extends PreferenceFragment {
         bindPreferenceSummaryToValue(findPreference("pref_decode_style_5"));
 
         bindPreferenceSummaryToValue(findPreference("pref_key_encode_menu"));
-        bindPreferenceSummaryToValue(findPreference("pref_key_decode_menu"));
 
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_theme)));
         addEvent();
