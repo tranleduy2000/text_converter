@@ -24,6 +24,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 
 import com.duy.common.purchase.InAppPurchaseActivity;
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.MainActivity;
 
@@ -35,6 +36,7 @@ public class Premium {
     private static final String KEY_CRACKED = "pirate";
     private static final String PRO_PACKAGE = "com.duy.text_converter.pro";
     private static final String FREE_PACKAGE = "com.duy.text_converter";
+    private static final String TAG = "Premium";
 
     public static boolean isCrack(Context context) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -51,8 +53,11 @@ public class Premium {
     }
 
     public static boolean isPremium(MainActivity context) {
+        DLog.d(TAG, "isPremium() called with: context = [" + context + "]");
         boolean proPackage = context.getPackageName().equals(PRO_PACKAGE) && !isCrack(context);
+        DLog.d(TAG, "proPackage = " + proPackage);
         boolean premiumUser = com.duy.common.purchase.Premium.isPremiumUser(context);
+        DLog.d(TAG, "premiumUser = " + premiumUser);
         return proPackage || premiumUser;
     }
 

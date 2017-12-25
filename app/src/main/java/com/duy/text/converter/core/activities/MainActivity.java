@@ -20,36 +20,50 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.duy.common.utils.ShareUtil;
 import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.PagerSectionAdapter;
 import com.duy.text.converter.core.fragments.AdsFragment;
+import com.duy.text.converter.pro.PagerSectionAdapterPro;
+import com.duy.text.converter.pro.SettingActivity;
+import com.duy.text.converter.pro.floating.codec.FloatingCodecOpenShortCutActivity;
+import com.duy.text.converter.pro.floating.stylish.FloatingStylishOpenShortCutActivity;
+import com.duy.text.converter.pro.license.Key;
+import com.duy.text.converter.pro.license.PolicyFactory;
 import com.duy.text.converter.pro.license.Premium;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.vending.licensing.LicenseChecker;
+import com.google.android.vending.licensing.LicenseCheckerCallback;
+import com.google.android.vending.licensing.Policy;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kobakei.ratethisapp.RateThisApp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, DrawerLayout.DrawerListener {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+    private static final int REQ_CODE_SETTING = 1201;
     protected Toolbar mToolbar;
+    private LicenseChecker mChecker;
+    private CheckLicenseCallBack mCallBack;
     private CoordinatorLayout mCoordinatorLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
+
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +78,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         bindView();
         setupToolbar();
         showDialogRate();
+        checkLicense();
+    }
+
+    private void checkLicense() {
+        mHandler = new Handler();
+        Policy policy = PolicyFactory.createPolicy(this, getPackageName());
+        mChecker = new LicenseChecker(this, policy, Key.BASE_64_PUBLIC_KEY);
+        mCallBack = new CheckLicenseCallBack();
+        mChecker.checkAccess(mCallBack);
     }
 
     private void showDialogRate() {
@@ -75,6 +98,13 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         if (Premium.isFree(this) && !showed && launchCount % 10 == 0) {
             Premium.showDialogUpgrade(this);
         }
+    }
+
+
+    private void handleCracked() {
+        FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());
+        Premium.setCracked(this, true);
+        Toast.makeText(this, "Licence check failed", Toast.LENGTH_LONG).show();
     }
 
     protected void setupToolbar() {
@@ -99,7 +129,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
 
     protected FragmentPagerAdapter getPageAdapter(String initValue) {
-        return new PagerSectionAdapter(this, getSupportFragmentManager(), initValue);
+        if (Premium.isPremium(this)) {
+            return new PagerSectionAdapterPro(this, getSupportFragmentManager(), initValue);
+        } else {
+            return new PagerSectionAdapter(this, getSupportFragmentManager(), initValue);
+        }
     }
 
     @Nullable
@@ -136,10 +170,17 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.action_upgrade).setVisible(true);
-        menu.findItem(R.id.action_open_codec).setVisible(false);
-        menu.findItem(R.id.action_open_stylish).setVisible(false);
-        menu.findItem(R.id.action_setting).setVisible(false);
+        if (Premium.isPremium(this)) {
+            menu.findItem(R.id.action_upgrade).setVisible(false);
+            menu.findItem(R.id.action_open_codec).setVisible(true);
+            menu.findItem(R.id.action_open_stylish).setVisible(true);
+            menu.findItem(R.id.action_setting).setVisible(true);
+        } else {
+            menu.findItem(R.id.action_upgrade).setVisible(true);
+            menu.findItem(R.id.action_open_codec).setVisible(false);
+            menu.findItem(R.id.action_open_stylish).setVisible(false);
+            menu.findItem(R.id.action_setting).setVisible(false);
+        }
 
         if (StoreUtil.isAppInstalled(this, "com.duy.converter")) {
             menu.findItem(R.id.action_download_unit_converter).setVisible(false);
@@ -175,8 +216,25 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         } else if (id == R.id.action_upgrade) {
             mFirebaseAnalytics.logEvent("click_upgrade", new Bundle());
             Premium.showDialogUpgrade(this);
+        } else if (id == R.id.action_setting) {
+            Intent intent = new Intent(this, SettingActivity.class);
+            startActivityForResult(intent, REQ_CODE_SETTING);
+        } else if (id == R.id.action_open_stylish) {
+            startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
+        } else if (id == R.id.action_open_codec) {
+            startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_CODE_SETTING) {
+            if (resultCode == RESULT_OK) {
+                recreate();
+            }
+        }
     }
 
     /**
@@ -201,7 +259,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         showAppBar();
     }
 
-
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -221,28 +278,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     }
 
-    @Override
-    public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-
-    }
-
-    @Override
-    public void onDrawerOpened(@NonNull View drawerView) {
-        hideKeyboard();
-    }
-
-    @Override
-    public void onDrawerClosed(@NonNull View drawerView) {
-
-    }
-
-    @Override
-    public void onDrawerStateChanged(int newState) {
-
-    }
-
-
-    private class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
+    private static class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
         MainActivity activity;
 
         KeyBoardEventListener(MainActivity activityIde) {
@@ -264,6 +300,27 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             } else {
                 activity.onShowKeyboard();
             }
+        }
+    }
+
+    private class CheckLicenseCallBack implements LicenseCheckerCallback {
+
+        @Override
+        public void allow(int reason) {
+        }
+
+        @Override
+        public void dontAllow(int reason) {
+            if (isFinishing()) {
+                return;
+            }
+            if (reason == Policy.NOT_LICENSED) {
+                handleCracked();
+            }
+        }
+
+        @Override
+        public void applicationError(int errorCode) {
         }
     }
 }
