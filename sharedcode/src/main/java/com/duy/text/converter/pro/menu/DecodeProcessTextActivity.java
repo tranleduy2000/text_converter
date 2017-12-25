@@ -16,44 +16,52 @@
 
 package com.duy.text.converter.pro.menu;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.widget.Toast;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
-import com.duy.text.converter.core.codec.interfaces.CodecUtil;
+import com.duy.common.DLog;
+import com.duy.text.converter.R;
+import com.duy.text.converter.core.adapters.DecodeResultAdapter;
+import com.duy.text.converter.core.fragments.DecodeAllFragment;
+import com.duy.text.converter.pro.license.Premium;
 
 /**
  * Created by Duy on 29-Jul-17.
  */
+@RequiresApi(api = Build.VERSION_CODES.M)
+public class DecodeProcessTextActivity extends AppCompatActivity implements DecodeResultAdapter.OnTextSelectedListener {
+    private static final String TAG = "DecodeProcessTextActivi";
 
-public class DecodeProcessTextActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CharSequence text = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
-        boolean readonly = getIntent().getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false);
+        if (text != null && !Premium.isCrack(this)) {
+            setContentView(R.layout.activity_decode_process_text);
 
-        if (!readonly && text != null) {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-            if (pref.getBoolean("pirate", false)) {
-                Toast.makeText(this, "Pirate version", Toast.LENGTH_SHORT).show();
-                finish();
-                return;
-            }
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            setTitle(R.string.decode);
+            toolbar.setSubtitle(text);
 
-            String method = pref.getString("pref_key_decode_menu", "");
-            if (method.isEmpty()) {
-                finish();
-                return;
-            }
-            String result = CodecUtil.decode(method, this, text.toString());
-            Intent intent = getIntent();
-            intent.putExtra(Intent.EXTRA_PROCESS_TEXT, result);
-            setResult(RESULT_OK, intent);
+            String input = text.toString();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content, DecodeAllFragment.newInstance(input, true)).commit();
+        } else {
+            DLog.d(TAG, "onCreate: " + text);
+            finish();
         }
-        finish();
+    }
+
+    @Override
+    public void onTextSelected(String text) {
+        Intent intent = getIntent();
+        intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
+        setResult(RESULT_OK, intent);
     }
 }

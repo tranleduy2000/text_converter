@@ -52,12 +52,12 @@ public class CodecAllActivity extends BaseActivity {
         } else if (EXTRA_ACTION_DECODE.equals(action)) {
             String input = getIntent().getStringExtra(EXTRA_INPUT);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content, DecodeAllFragment.newInstance(input)).commit();
+            fragmentTransaction.replace(R.id.content, DecodeAllFragment.newInstance(input, false)).commit();
 
             setTitle(R.string.decode);
             toolbar.setSubtitle(input);
         } else {
-            finish();
+//            finish();
         }
     }
 

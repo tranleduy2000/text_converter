@@ -42,16 +42,23 @@ import java.util.Arrays;
  */
 
 public class DecodeAllFragment extends Fragment {
-    private static final String KEY_INPUT = "input";
+    private static final String KEY_INPUT = "KEY_INPUT";
+    private static final String KEY_PROCESS_TEXT = "KEY_PROCESS_TEXT";
     @Nullable
     private DecodeTask mDecodeTask;
     private ArrayList<Codec> mDecoders;
     private DecodeResultAdapter mDecodeResultAdapter;
 
-    public static DecodeAllFragment newInstance(String input) {
+    /**
+     * @param input       - input data
+     * @param processText - start from {@link com.duy.text.converter.pro.menu.DecodeProcessTextActivity}
+     * @return DecodeAllFragment
+     */
+    public static DecodeAllFragment newInstance(String input, boolean processText) {
 
         Bundle args = new Bundle();
         args.putString(KEY_INPUT, input);
+        args.putBoolean(KEY_PROCESS_TEXT, processText);
         DecodeAllFragment fragment = new DecodeAllFragment();
         fragment.setArguments(args);
         return fragment;
@@ -66,16 +73,18 @@ public class DecodeAllFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        initCodec();
+        String input = getArguments().getString(KEY_INPUT);
+        boolean processText = getArguments().getBoolean(KEY_PROCESS_TEXT);
 
         RecyclerView recyclerView = view.findViewById(R.id.list_decoded);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mDecodeResultAdapter = new DecodeResultAdapter(getContext());
+        mDecodeResultAdapter = new DecodeResultAdapter(getContext(), processText);
+        if (processText && getActivity() instanceof DecodeResultAdapter.OnTextSelectedListener) {
+            mDecodeResultAdapter.setListener((DecodeResultAdapter.OnTextSelectedListener) getActivity());
+        }
         recyclerView.setAdapter(mDecodeResultAdapter);
 
-        String input = getArguments().getString(KEY_INPUT);
+        initCodec();
         generateResult(input);
     }
 

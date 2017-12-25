@@ -34,10 +34,13 @@ import java.util.ArrayList;
 public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapter.ViewHolder> {
     private static final String TAG = "DecodeResultAdapter";
     private final Context context;
+    private boolean processText;
     private ArrayList<DecodeItem> mDecodeItems = new ArrayList<>();
+    private OnTextSelectedListener listener;
 
-    public DecodeResultAdapter(Context context) {
+    public DecodeResultAdapter(Context context, boolean processText) {
         this.context = context;
+        this.processText = processText;
     }
 
     public void add(DecodeItem decodeItem) {
@@ -47,8 +50,8 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_decode_all,
-                parent, false);
+        int resource = processText ? R.layout.list_item_decode_all_process_text : R.layout.list_item_decode_all;
+        View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
         return new ViewHolder(view);
     }
 
@@ -87,6 +90,14 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
                 }
             });
         }
+        if (holder.imgSelect != null) {
+            holder.imgSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) listener.onTextSelected(str);
+                }
+            });
+        }
     }
 
     @Override
@@ -94,10 +105,18 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
         return mDecodeItems.size();
     }
 
+    public void setListener(OnTextSelectedListener listener) {
+        this.listener = listener;
+    }
+
+    public interface OnTextSelectedListener {
+        void onTextSelected(String text);
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtResult, txtTitle;
         ProgressBar progressBar;
-        View imgCopy, imgShare, shareMsg;
+        View imgCopy, imgShare, shareMsg, imgSelect;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -108,6 +127,7 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
             imgCopy = itemView.findViewById(R.id.img_copy);
             imgShare = itemView.findViewById(R.id.img_share);
             shareMsg = itemView.findViewById(R.id.img_share_msg);
+            imgSelect = itemView.findViewById(R.id.img_select);
         }
 
     }
