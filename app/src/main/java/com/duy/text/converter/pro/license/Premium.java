@@ -23,7 +23,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 
-import com.duy.common.utils.StoreUtil;
+import com.duy.common.purchase.InAppPurchaseActivity;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.MainActivity;
 
@@ -32,37 +32,41 @@ import com.duy.text.converter.core.activities.MainActivity;
  */
 
 public class Premium {
-    public static final String KEY_CRACK = "pirate";
-    public static boolean PREMIUM = true;
+    private static final String KEY_CRACKED = "pirate";
+    private static final String PRO_PACKAGE = "com.duy.text_converter.pro";
+    private static final String FREE_PACKAGE = "com.duy.text_converter";
 
     public static boolean isCrack(Context context) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        return pref.getBoolean(KEY_CRACK, false);
+        return pref.getBoolean(KEY_CRACKED, false);
     }
 
-    public static void setCrack(Context context, boolean isCrack) {
+    public static void setCracked(Context context, boolean isCrack) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        pref.edit().putBoolean(KEY_CRACK, isCrack).apply();
+        pref.edit().putBoolean(KEY_CRACKED, isCrack).apply();
     }
 
     public static boolean isFree(Context context) {
-        return context.getPackageName().equals("duy.com.text_converter")
-                || isCrack(context);
+        return context.getPackageName().equals(FREE_PACKAGE) || isCrack(context);
     }
 
     public static boolean isPremium(MainActivity context) {
-        return context.getPackageName().equals("com.duy.text_converter.pro")
-                && !isCrack(context);
+        boolean proPackage = context.getPackageName().equals(PRO_PACKAGE) && !isCrack(context);
+        boolean premiumUser = com.duy.common.purchase.Premium.isPremiumUser(context);
+        return proPackage || premiumUser;
     }
 
     public static void showDialogUpgrade(final Activity activity) {
+        if (!(activity instanceof InAppPurchaseActivity)) {
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(R.string.upgrade);
         builder.setMessage(R.string.pro_feature);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                StoreUtil.gotoPlayStore(activity, "com.duy.text_converter.pro");
+                ((InAppPurchaseActivity) activity).clickUpgrade();
             }
         });
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

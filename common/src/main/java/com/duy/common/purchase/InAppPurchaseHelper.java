@@ -105,9 +105,10 @@ public class InAppPurchaseHelper {
         if (info != null) {
             if (info.getSku().equals(Premium.SKU_PREMIUM)) {
                 Premium.setPremiumUser(mActivity, true);
-                mActivity.updateUiPremium();
+                mActivity.updateUi(true);
             } else {
                 Premium.setPremiumUser(mActivity, false);
+                mActivity.updateUi(false);
             }
         }
     }
@@ -120,9 +121,7 @@ public class InAppPurchaseHelper {
 //            if (BuildConfig.DEBUG) {
 //                Premium.setPremiumUser(mActivity, true);
 //            }
-            if (Premium.isPremiumUser(mActivity)) {
-                mActivity.updateUiPremium();
-            }
+            mActivity.updateUi(Premium.isPremiumUser(mActivity));
         }
     }
 

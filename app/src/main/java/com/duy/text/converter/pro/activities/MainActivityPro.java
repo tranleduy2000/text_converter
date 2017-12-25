@@ -107,8 +107,7 @@ public class MainActivityPro extends MainActivity {
 
     private void showDialogCrack() {
         FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());
-        Premium.PREMIUM = false;
-        Premium.setCrack(this, true);
+        Premium.setCracked(this, true);
         mHandler.post(new Runnable() {
             @Override
             public void run() {

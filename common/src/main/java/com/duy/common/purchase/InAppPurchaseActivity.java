@@ -38,7 +38,12 @@ public abstract class InAppPurchaseActivity extends AdsActivity implements IabBr
     protected FirebaseAnalytics mFirebaseAnalytics;
     protected InAppPurchaseHelper mInAppPurchaseHelper;
 
+    @Deprecated
     public void updateUiPremium() {
+
+    }
+
+    public void updateUi(boolean premium) {
 
     }
 
