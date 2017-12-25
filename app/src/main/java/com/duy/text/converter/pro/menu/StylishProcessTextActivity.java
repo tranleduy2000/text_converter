@@ -41,7 +41,7 @@ import com.duy.text.converter.pro.menu.fragments.StylistProcessTextFragment;
 @TargetApi(Build.VERSION_CODES.M)
 public class StylishProcessTextActivity extends AppCompatActivity implements OnTextSelectedListener {
     private static final String TAG = "EncodeAllProcessTextActivity";
-    private static final String KEY_CHANCE = "EncodeAllProcessTextActivity_KEY_CHANCE";
+    private static final String KEY_CHANCE = "StylishProcessTextActivity_KEY_CHANCE";
     private static final int MAX_CHANCE_VALUE = 5;
 
     @Override
@@ -49,7 +49,7 @@ public class StylishProcessTextActivity extends AppCompatActivity implements OnT
         super.onCreate(savedInstanceState);
         CharSequence text = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
         if (text != null) {
-            setContentView(R.layout.activity_encode_process_text);
+            setContentView(R.layout.activity_process_text);
 
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -90,10 +90,10 @@ public class StylishProcessTextActivity extends AppCompatActivity implements OnT
             if (getChanceRemaining() <= 0) {
                 Toast.makeText(this, R.string.please_upgrade, Toast.LENGTH_SHORT).show();
                 return;
+            } else {
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+                pref.edit().putInt(KEY_CHANCE, getChanceRemaining() - 1).apply();
             }
-        } else {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-            pref.edit().putInt(KEY_CHANCE, getChanceRemaining() - 1).apply();
         }
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);

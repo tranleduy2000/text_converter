@@ -17,6 +17,7 @@
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="400dp"
@@ -24,7 +25,6 @@
     android:orientation="vertical">
 
     <include layout="@layout/appbar" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,11 @@
         <TextView
             android:id="@+id/txt_message"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textColor="?android:textColorPrimary"
+            android:textStyle="italic"
+            tools:text="@string/chance_remaining" />
 
         <FrameLayout
             android:id="@+id/content"
@@ -44,4 +48,5 @@
             android:orientation="vertical" />
 
     </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>

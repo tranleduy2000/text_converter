@@ -49,7 +49,7 @@ public class DecodeAllProcessTextActivity extends AppCompatActivity implements O
         super.onCreate(savedInstanceState);
         CharSequence text = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
         if (text != null) {
-            setContentView(R.layout.activity_decode_process_text);
+            setContentView(R.layout.activity_process_text);
 
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -89,10 +89,10 @@ public class DecodeAllProcessTextActivity extends AppCompatActivity implements O
             if (getChanceRemaining() <= 0) {
                 Toast.makeText(this, R.string.please_upgrade, Toast.LENGTH_SHORT).show();
                 return;
+            } else {
+                SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+                pref.edit().putInt(KEY_CHANCE, getChanceRemaining() - 1).apply();
             }
-        } else {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-            pref.edit().putInt(KEY_CHANCE, getChanceRemaining() - 1).apply();
         }
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
