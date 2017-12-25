@@ -73,7 +73,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mRootView = inflater.inflate(R.layout.fragment_style_list, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_stylish, container, false);
         return mRootView;
     }
 
@@ -81,7 +81,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mInput = mRootView.findViewById(R.id.edit_input);
-        mListResult = mRootView.findViewById(R.id.list_out);
+        mListResult = mRootView.findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         mListResult.setLayoutManager(linearLayoutManager);
         mListResult.setHasFixedSize(true);

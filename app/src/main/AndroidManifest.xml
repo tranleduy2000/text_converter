@@ -89,6 +89,17 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".pro.menu.StylishProcessTextActivity"
+            android:label="@string/stylish_it"
+            android:theme="@style/AppThemeLight.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
         <!--End region-->
 
         <receiver

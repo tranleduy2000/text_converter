@@ -59,7 +59,7 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
     protected View onCreateView(@NonNull ViewGroup parent) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.floating_stylish, parent, false);
         mInput = view.findViewById(R.id.edit_input);
-        mListResult = view.findViewById(R.id.list_out);
+        mListResult = view.findViewById(R.id.recycler_view);
         mListResult.setLayoutManager(new LinearLayoutManager(getContext()));
         mListResult.setHasFixedSize(true);
 

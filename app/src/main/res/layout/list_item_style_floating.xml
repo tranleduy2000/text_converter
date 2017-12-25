@@ -41,7 +41,7 @@
         android:scrollbarSize="4dp">
 
         <com.duy.text.converter.core.view.BaseTextView
-            android:id="@+id/text_view"
+            android:id="@+id/txt_result"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:clickable="true"

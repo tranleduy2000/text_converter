@@ -15,21 +15,26 @@
   -->
 
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/container"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <include layout="@layout/appbar" />
-
-    <FrameLayout
-        android:id="@+id/content"
+    <com.duy.text.converter.core.view.BaseTextView
+        android:id="@+id/txt_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:clickable="true"
+        android:ellipsize="end"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="?android:textColorPrimary"
+        tools:text="sample asd asd asd asd asd asd asd asd asd as das d asd as" />
 
-</android.support.design.widget.CoordinatorLayout>
+
+</FrameLayout>
+
+
