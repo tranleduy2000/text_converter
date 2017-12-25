@@ -30,6 +30,7 @@ import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapter.ViewHolder> {
     private static final String TAG = "DecodeResultAdapter";
@@ -64,7 +65,11 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
             DLog.d(TAG, "onBindViewHolder() called with: holder = [" + holder + "], position = [" + position + "]");
             holder.progressBar.setMax(item.getMax());
             holder.progressBar.setProgress(item.getConfident());
+
+            int percent = (int) ((float) item.getConfident() / (float) item.getMax() * 100f);
+            holder.txtTitle.append(String.format(Locale.US, " %d%%", percent));
         }
+
         final String str = item.getResult();
         if (holder.imgShare != null) {
             holder.imgShare.setOnClickListener(new View.OnClickListener() {
