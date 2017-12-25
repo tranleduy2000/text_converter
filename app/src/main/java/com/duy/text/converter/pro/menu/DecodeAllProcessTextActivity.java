@@ -23,8 +23,8 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
-import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.menu.fragments.DecodeAllFragment;
 import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
@@ -45,6 +45,7 @@ public class DecodeAllProcessTextActivity extends AppCompatActivity implements O
 
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setTitle(R.string.decode);
             toolbar.setSubtitle(text);
 
@@ -62,5 +63,16 @@ public class DecodeAllProcessTextActivity extends AppCompatActivity implements O
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
         setResult(RESULT_OK, intent);
         finish();
+        overridePendingTransition(0, 0);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

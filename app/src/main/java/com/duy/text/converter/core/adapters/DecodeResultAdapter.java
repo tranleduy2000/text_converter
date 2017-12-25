@@ -52,8 +52,7 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        int resource = processText ? R.layout.list_item_decode_all_process_text : R.layout.list_item_decode_all;
-        View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_decode_all, parent, false);
         return new ViewHolder(view);
     }
 
@@ -72,37 +71,48 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
         }
 
         final String str = item.getResult();
-        if (holder.imgShare != null) {
-            holder.imgShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ShareManager.share(str, context);
-                }
-            });
-        }
-        if (holder.imgCopy != null) {
-            holder.imgCopy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ClipboardUtil.setClipboard(context, str);
-                }
-            });
-        }
-        if (holder.shareMsg != null) {
-            holder.shareMsg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ShareManager.shareMessenger(str, context);
-                }
-            });
-        }
-        if (holder.imgSelect != null) {
-            holder.imgSelect.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) listener.onTextSelected(str);
-                }
-            });
+        if (processText) {
+            if (holder.imgCopy != null) holder.imgCopy.setVisibility(View.GONE);
+            if (holder.imgShare != null) holder.imgShare.setVisibility(View.GONE);
+            if (holder.shareMsg != null) holder.shareMsg.setVisibility(View.GONE);
+            if (holder.imgSelect != null) holder.imgSelect.setVisibility(View.VISIBLE);
+            if (holder.imgSelect != null) {
+                holder.imgSelect.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener != null) listener.onTextSelected(str);
+                    }
+                });
+            }
+        } else {
+            if (holder.imgCopy != null) holder.imgCopy.setVisibility(View.VISIBLE);
+            if (holder.imgShare != null) holder.imgShare.setVisibility(View.VISIBLE);
+            if (holder.shareMsg != null) holder.shareMsg.setVisibility(View.VISIBLE);
+            if (holder.imgSelect != null) holder.imgSelect.setVisibility(View.GONE);
+            if (holder.imgShare != null) {
+                holder.imgShare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareManager.share(str, context);
+                    }
+                });
+            }
+            if (holder.imgCopy != null) {
+                holder.imgCopy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ClipboardUtil.setClipboard(context, str);
+                    }
+                });
+            }
+            if (holder.shareMsg != null) {
+                holder.shareMsg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareManager.shareMessenger(str, context);
+                    }
+                });
+            }
         }
     }
 
@@ -123,7 +133,6 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
 
         ViewHolder(View itemView) {
             super(itemView);
-            setIsRecyclable(false);
             progressBar = itemView.findViewById(R.id.progress_bar);
             txtResult = itemView.findViewById(R.id.txt_result);
             txtTitle = itemView.findViewById(R.id.txt_name);

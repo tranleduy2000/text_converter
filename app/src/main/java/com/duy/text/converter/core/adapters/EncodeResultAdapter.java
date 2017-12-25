@@ -121,7 +121,6 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
 
         ViewHolder(View itemView) {
             super(itemView);
-            setIsRecyclable(false);
             txtResult = itemView.findViewById(R.id.txt_result);
             txtTitle = itemView.findViewById(R.id.txt_name);
             imgCopy = itemView.findViewById(R.id.img_copy);

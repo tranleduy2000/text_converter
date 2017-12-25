@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.menu.fragments.EncodeAllFragment;
@@ -45,6 +46,7 @@ public class EncodeAllProcessTextActivity extends AppCompatActivity implements O
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             setTitle(R.string.encode);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbar.setSubtitle(text);
 
             String input = text.toString();
@@ -59,7 +61,16 @@ public class EncodeAllProcessTextActivity extends AppCompatActivity implements O
     public void onTextSelected(String text) {
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
-        setResult(RESULT_OK, intent);
-        finish();
+        setResult(RESULT_OK, intent);finish();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
