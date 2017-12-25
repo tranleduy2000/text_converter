@@ -21,8 +21,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.Toast;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.pro.license.Premium;
 
 /**
  * Created by Duy on 9/4/2017.
@@ -34,6 +36,10 @@ public class FloatingStylishOpenShortCutActivity extends Activity {
     @Override
     public void onCreate(Bundle state) {
         super.onCreate(state);
+        if (!Premium.isPremium(this)) {
+            finish();
+            return;
+        }
         if (android.os.Build.VERSION.SDK_INT >= 23 && !Settings.canDrawOverlays(this)) {
             Uri uri = Uri.parse("package:" + getPackageName());
             Intent activity = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, uri);
