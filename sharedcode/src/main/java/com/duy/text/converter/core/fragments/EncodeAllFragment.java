@@ -28,7 +28,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.duy.common.DLog;
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.adapters.EncodeResultAdapter;
 import com.duy.text.converter.core.codec.interfaces.Codec;

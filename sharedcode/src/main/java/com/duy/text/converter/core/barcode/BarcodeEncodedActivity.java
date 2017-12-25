@@ -22,7 +22,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
-import com.duy.common.services.ads.AdsManager;
+import com.duy.common.ads.AdsManager;
 import com.duy.text.converter.core.activities.BaseActivity;
 import com.duy.text.converter.R;
 
@@ -41,6 +41,7 @@ public class BarcodeEncodedActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         setTitle(R.string.barcode);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         String text = getIntent().getStringExtra("data");
         if (text == null) text = "";
         toolbar.setSubtitle(text);

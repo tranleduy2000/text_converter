@@ -24,7 +24,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.duy.common.DLog;
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.adapters.DecodeResultAdapter;
 import com.duy.text.converter.core.fragments.DecodeAllFragment;
@@ -63,5 +63,6 @@ public class DecodeProcessTextActivity extends AppCompatActivity implements Deco
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
         setResult(RESULT_OK, intent);
+        finish();
     }
 }

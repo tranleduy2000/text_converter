@@ -14,21 +14,35 @@
  * limitations under the License.
  */
 
-package com.duy.common;
+package com.duy.common.utils;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.duy.text.converter.BuildConfig;
-
+import com.crashlytics.android.Crashlytics;
+import com.duy.common.BuildConfig;
 
 /**
- * Created by Duy on 27-Mar-17.
+ * Android logcat
+ * Setup Crashlytics https://firebase.google.com/docs/crashlytics/get-started?authuser=0
  */
 public class DLog {
     private static final String TAG = "DLog";
+    /**
+     * Android environment
+     */
     public static boolean ANDROID = true;
+
+    /**
+     * Show log
+     */
     private static boolean DEBUG = BuildConfig.DEBUG;
 
+    /**
+     * Debug log
+     * <p>
+     * -
+     */
     public static void d(Object msg) {
         if (DEBUG) {
             if (ANDROID) {
@@ -39,6 +53,9 @@ public class DLog {
         }
     }
 
+    /**
+     * debug log
+     */
     public static void d(String TAG, Object msg) {
         if (DEBUG) {
             if (ANDROID) {
@@ -49,6 +66,9 @@ public class DLog {
         }
     }
 
+    /**
+     * warning log
+     */
     public static void w(Object msg) {
         if (DEBUG) {
             if (ANDROID) {
@@ -59,6 +79,9 @@ public class DLog {
         }
     }
 
+    /**
+     * warning log
+     */
     public static void w(String TAG, Object msg) {
         if (DEBUG) {
             if (ANDROID) {
@@ -69,27 +92,52 @@ public class DLog {
         }
     }
 
-    public static void e(Exception exception) {
+    /**
+     * warning log
+     */
+    public static void w(String TAG, Object msg, Throwable e) {
         if (DEBUG) {
             if (ANDROID) {
-                Log.e(TAG, "Error ", exception);
+                Log.w(TAG, msg.toString(), e);
             } else {
-                System.err.println(TAG + ": " + exception.toString());
+                System.out.println(TAG + ": " + msg.toString());
+                e.printStackTrace();
             }
         }
     }
 
-    public static void e(String TAG, Exception exception) {
+    /**
+     * Error log
+     */
+    public static void e(Throwable exception) {
         if (DEBUG) {
             if (ANDROID) {
                 Log.e(TAG, "Error ", exception);
             } else {
-                System.err.println(TAG + ": " + exception.toString());
+                System.err.println(TAG + ": " + exception.getMessage());
+                exception.printStackTrace();
             }
         }
     }
 
-    public static void e(String TAG, String exception) {
+    /**
+     * Error log
+     */
+    public static void e(String TAG, Throwable e) {
+        if (DEBUG) {
+            if (ANDROID) {
+                Log.e(TAG, "Error ", e);
+            } else {
+                System.err.println(TAG + ": " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * error log
+     */
+    public static void e(@NonNull String TAG, @NonNull String exception) {
         if (DEBUG) {
             if (ANDROID) {
                 Log.e(TAG, exception);
@@ -99,7 +147,10 @@ public class DLog {
         }
     }
 
-    public static void e(String TAG, String msg, Exception e) {
+    /**
+     * Error log
+     */
+    public static void e(@NonNull String TAG, @NonNull String msg, @NonNull Throwable e) {
         if (DEBUG) {
             if (ANDROID) {
                 Log.e(TAG, msg, e);
@@ -110,7 +161,10 @@ public class DLog {
         }
     }
 
-    public static void i(Object msg) {
+    /**
+     * info log
+     */
+    public static void i(@NonNull Object msg) {
         if (DEBUG) {
             if (ANDROID) {
                 Log.i(TAG, msg.toString());
@@ -120,13 +174,39 @@ public class DLog {
         }
     }
 
-    public static void i(String tag, String msg) {
+    /**
+     * info log
+     */
+    public static void i(String tag, @NonNull Object msg) {
         if (DEBUG) {
             if (ANDROID) {
-                Log.i(tag, msg);
+                Log.i(tag, msg.toString());
             } else {
                 System.err.println(tag + ": " + msg);
             }
         }
     }
+
+    public static void reportException(@NonNull Throwable e) {
+        if (!DEBUG) {
+            Crashlytics.logException(e);
+        }
+    }
+
+    /**
+     * Report an error to firebase server
+     *
+     * @param throwable - any error
+     */
+    @Deprecated
+    public static void reportServer(Throwable throwable) {
+        if (ANDROID) {
+            Crashlytics.logException(throwable);
+        } else {
+            System.err.println("Fatal exception : ");
+            throwable.printStackTrace();
+        }
+    }
+
+
 }

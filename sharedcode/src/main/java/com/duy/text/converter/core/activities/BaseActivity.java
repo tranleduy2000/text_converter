@@ -24,7 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.duy.common.DLog;
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.themes.ThemeHelper;
 
@@ -78,4 +78,5 @@ public class BaseActivity extends AppCompatActivity implements SharedPreferences
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
+
 }

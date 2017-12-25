@@ -1,31 +1,22 @@
 <resources>
 
-    <style name="AppThemeLight.Dialog">
-        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
+    <style name="AppThemeLight.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/light.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
+        <item name="colorAccent">@color/light.colorAccent</item>
+        <item name="android:windowBackground">@color/light.windowBackgroundColor</item>
 
-        <item name="android:windowFrame">@null</item>
-        <item name="android:windowTitleStyle">@style/RtlOverlay.DialogWindowTitle.AppCompat</item>
-        <item name="android:windowTitleBackgroundStyle">
-            @style/Base.DialogWindowTitleBackground.AppCompat
-        </item>
-        <item name="android:windowBackground">@drawable/abc_dialog_material_background</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowAnimationStyle">@style/Animation.AppCompat.Dialog</item>
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="cardBackgroundColor">#FFF</item>
+        <item name="roundBackground">@drawable/bg_edit_text_light</item>
+        <item name="imageTintColor">#000</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
 
         <item name="windowActionBar">false</item>
-        <item name="windowActionModeOverlay">true</item>
+        <item name="windowNoTitle">true</item>
 
-        <item name="listPreferredItemPaddingLeft">24dip</item>
-        <item name="listPreferredItemPaddingRight">24dip</item>
-
-        <item name="android:listDivider">@null</item>
-
-        <item name="android:windowMinWidthMajor">96%</item>
-        <item name="android:windowMinWidthMinor">96%</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
     </style>
 
     <style name="AppThemeLight.Theme1">

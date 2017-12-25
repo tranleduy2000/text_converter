@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.duy.common.DLog;
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
