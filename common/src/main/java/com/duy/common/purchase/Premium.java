@@ -30,7 +30,7 @@ public class Premium {
     public static final String BASE64_KEY = BuildConfig.BASE64_KEY;
 
     //SKU for my product: the premium upgrade
-    public static final String SKU_PREMIUM = "unit_converter_premium";
+    public static final String SKU_PREMIUM = "text_converter_premium";
 
     public static final int RESULT_UPGRADE = 10002;
     public static final int FREE_USER = 0;

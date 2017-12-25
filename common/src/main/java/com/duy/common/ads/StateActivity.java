@@ -23,7 +23,7 @@ import android.view.MenuItem;
  * Created by Duy on 25-Dec-17.
  */
 
-public class AdsActivity extends AppCompatActivity {
+public class StateActivity extends AppCompatActivity {
     /**
      * Activity on top of screen
      */

@@ -61,8 +61,9 @@ public class EncodeAllProcessTextActivity extends AppCompatActivity implements O
     public void onTextSelected(String text) {
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
-        setResult(RESULT_OK, intent);finish();
+        setResult(RESULT_OK, intent);
         overridePendingTransition(0, 0);
+        finish();
     }
 
     @Override

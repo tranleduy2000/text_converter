@@ -62,8 +62,8 @@ public class DecodeAllProcessTextActivity extends AppCompatActivity implements O
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
         setResult(RESULT_OK, intent);
-        finish();
         overridePendingTransition(0, 0);
+        finish();
     }
 
     @Override

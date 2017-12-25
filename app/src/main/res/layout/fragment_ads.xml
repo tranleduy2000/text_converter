@@ -14,7 +14,8 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -23,36 +24,32 @@
         android:id="@+id/container_ad"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:adSize="MEDIUM_RECTANGLE"
+            app:adUnitId="@string/ad_unit_id_main">
+
+        </com.google.android.gms.ads.AdView>
     </FrameLayout>
 
-    <LinearLayout
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_pro_version"
+        style="@style/Base.Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/remove_ads"
+        android:textAllCaps="false" />
 
-        <android.support.v7.widget.AppCompatTextView
-            style="@style/Base.TextAppearance.AppCompat.Headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pro_version" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_pro_feature"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="@string/pro_feature" />
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_pro_version"
-            style="@style/Base.Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/remove_ads"
-            android:textAllCaps="false" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

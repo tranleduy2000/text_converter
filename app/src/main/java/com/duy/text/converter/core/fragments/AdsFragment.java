@@ -16,7 +16,6 @@
 
 package com.duy.text.converter.core.fragments;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,13 +23,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.license.Premium;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.NativeExpressAdView;
+import com.google.android.gms.ads.AdView;
 
 
 /**
@@ -40,7 +37,7 @@ import com.google.android.gms.ads.NativeExpressAdView;
 public class AdsFragment extends Fragment {
     public static final int INDEX = 1;
     private static final String TAG = "AdsFragment";
-    private NativeExpressAdView mAdView;
+    private AdView mAdView;
 
     public static AdsFragment newInstance() {
 
@@ -70,28 +67,9 @@ public class AdsFragment extends Fragment {
     }
 
     private void loadAd(View view) {
-        final ViewGroup containerAd = view.findViewById(R.id.container_ad);
-        containerAd.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    containerAd.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                } else {
-                    containerAd.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                }
-
-                mAdView = new NativeExpressAdView(getContext());
-                mAdView.setAdSize(AdSize.MEDIUM_RECTANGLE);
-                mAdView.setAdUnitId("ca-app-pub-9351804859208340/4981122038");
-
-                containerAd.removeAllViews();
-                ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                containerAd.addView(mAdView, params);
-
-                AdRequest.Builder builder = new AdRequest.Builder().addTestDevice("D2281648CE409430157A9596175BF172");
-                mAdView.loadAd(builder.build());
-            }
-        });
+        mAdView = view.findViewById(R.id.ad_view);
+        AdRequest.Builder builder = new AdRequest.Builder().addTestDevice("D2281648CE409430157A9596175BF172");
+        mAdView.loadAd(builder.build());
     }
 
 

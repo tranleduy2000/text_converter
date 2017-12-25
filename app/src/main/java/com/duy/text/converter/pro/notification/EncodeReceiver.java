@@ -26,7 +26,6 @@ import android.widget.Toast;
 
 import com.duy.text.converter.core.codec.interfaces.CodecUtil;
 import com.duy.text.converter.core.utils.ClipboardUtil;
-import com.duy.text.converter.pro.license.Premium;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 //import android.util.Log;
@@ -42,10 +41,6 @@ public class EncodeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         FirebaseAnalytics.getInstance(context).logEvent("encode_notification", new Bundle());
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (Premium.isCrack(context)) {
-            Toast.makeText(context, "Pirate version", Toast.LENGTH_SHORT).show();
-            return;
-        }
         if (intent != null) {
             String name = "";
             if (intent.getAction().equals(StyleNotification.ACTION_ENCODE_STYLE_1)) {

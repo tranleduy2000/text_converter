@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
-import com.duy.common.ads.AdsActivity;
+import com.duy.common.ads.StateActivity;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import aidl.util.IabBroadcastReceiver;
@@ -31,7 +31,7 @@ import aidl.util.IabBroadcastReceiver;
  * Created by Duy on 9/14/2017.
  */
 
-public abstract class InAppPurchaseActivity extends AdsActivity implements IabBroadcastReceiver.IabBroadcastListener {
+public abstract class InAppPurchaseActivity extends StateActivity implements IabBroadcastReceiver.IabBroadcastListener {
 
     protected final Handler mHandler = new Handler();
 

@@ -109,7 +109,7 @@ public class AdsManager {
         return Premium.isPremiumUser(context);
     }
 
-    public static void showFullScreenAdsIfRequired(final AdsActivity activity) {
+    public static void showFullScreenAdsIfRequired(final StateActivity activity) {
         if (Premium.isPremiumUser(activity)) return;
         final InterstitialAd interstitialAd = new InterstitialAd(activity.getApplicationContext());
         interstitialAd.setAdUnitId(AdConstants.AdUnitId.AD_UNIT_ID_INTERSTITIAL);
@@ -173,7 +173,7 @@ public class AdsManager {
     /**
      * Auto detect banner ad view and load ad
      */
-    public static void loadBannerAds(AdsActivity activity) {
+    public static void loadBannerAds(StateActivity activity) {
         if (activity == null) return;
         loadBannerAds(activity, activity.findViewById(R.id.container_ad), activity.findViewById(R.id.ad_view));
     }

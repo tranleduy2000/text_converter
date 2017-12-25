@@ -23,6 +23,5 @@
     <string name="pref_key_encode_menu" translatable="false">pref_key_encode_menu</string>
 
     <string name="ad_unit_id_barcode">ca-app-pub-7060049030570268/4176792975</string>
-    <string name="ad_unit_id_exit">ca-app-pub-7060049030570268/4640781697</string>
-    <string name="ad_unit_id_main">ca-app-pub-7060049030570268/3354507032</string>
+    <string name="ad_unit_id_main">ca-app-pub-9351804859208340/4981122038</string>
 </resources>

@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.duy.common.utils.DLog;
+import com.duy.text.converter.BuildConfig;
 import com.duy.text.converter.core.activities.UpgradeActivity;
 
 /**
@@ -30,8 +31,8 @@ import com.duy.text.converter.core.activities.UpgradeActivity;
  */
 
 public class Premium {
-    private static final String KEY_CRACKED = "pirate";
     public static final String PRO_PACKAGE = "com.duy.text_converter.pro";
+    private static final String KEY_CRACKED = "pirate";
     private static final String FREE_PACKAGE = "com.duy.text_converter";
     private static final String TAG = "Premium";
 
@@ -50,6 +51,7 @@ public class Premium {
     }
 
     public static boolean isPremium(Context context) {
+        if (BuildConfig.DEBUG) return true;
         DLog.d(TAG, "isPremium() called with: context = [" + context + "]");
         boolean proPackage = context.getPackageName().equals(PRO_PACKAGE) && !isCrack(context);
         DLog.d(TAG, "proPackage = " + proPackage);

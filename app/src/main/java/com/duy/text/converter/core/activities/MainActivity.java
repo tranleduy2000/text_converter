@@ -56,7 +56,7 @@ import com.kobakei.ratethisapp.RateThisApp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager.OnPageChangeListener {
     private static final int REQ_CODE_SETTING = 1201;
     private static final String TAG = "MainActivity";
     protected Toolbar mToolbar;
