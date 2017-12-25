@@ -64,9 +64,8 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
             if (holder.imgCopy != null) holder.imgCopy.setVisibility(View.GONE);
             if (holder.imgShare != null) holder.imgShare.setVisibility(View.GONE);
             if (holder.shareMsg != null) holder.shareMsg.setVisibility(View.GONE);
-            if (holder.imgSelect != null) holder.imgSelect.setVisibility(View.VISIBLE);
-            if (holder.imgSelect != null) {
-                holder.imgSelect.setOnClickListener(new View.OnClickListener() {
+            if (holder.rootView != null) {
+                holder.rootView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (listener != null) listener.onTextSelected(str);
@@ -77,7 +76,6 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
             if (holder.imgCopy != null) holder.imgCopy.setVisibility(View.VISIBLE);
             if (holder.imgShare != null) holder.imgShare.setVisibility(View.VISIBLE);
             if (holder.shareMsg != null) holder.shareMsg.setVisibility(View.VISIBLE);
-            if (holder.imgSelect != null) holder.imgSelect.setVisibility(View.GONE);
             if (holder.imgShare != null) {
                 holder.imgShare.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -117,7 +115,7 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtResult, txtTitle;
-        View imgCopy, imgShare, shareMsg, imgSelect;
+        View imgCopy, imgShare, shareMsg, rootView;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -126,8 +124,7 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
             imgCopy = itemView.findViewById(R.id.img_copy);
             imgShare = itemView.findViewById(R.id.img_share);
             shareMsg = itemView.findViewById(R.id.img_share_msg);
-            imgSelect = itemView.findViewById(R.id.img_select);
-
+            rootView = itemView.findViewById(R.id.root_view);
         }
 
     }

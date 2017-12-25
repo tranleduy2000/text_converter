@@ -136,6 +136,8 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         mMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
         mMethodSpinner.setAdapter(adapter);
         mMethodSpinner.setOnItemSelectedListener(this);
+
+        restore();
     }
 
     @Override
@@ -160,7 +162,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
             shareText(mOutput);
 
         } else if (id == R.id.img_encode_all) {
-            if (Premium.isFree(getContext())) {
+            if (!Premium.isPremium(getContext())) {
                 showDialogUpgrade();
             } else {
                 Intent intent = new Intent(getContext(), CodecAllActivity.class);
@@ -169,7 +171,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
                 startActivity(intent);
             }
         } else if (id == R.id.img_decode_all) {
-            if (Premium.isFree(getContext())) {
+            if (!Premium.isPremium(getContext())) {
                 showDialogUpgrade();
             } else {
                 Intent intent = new Intent(getContext(), CodecAllActivity.class);
@@ -186,6 +188,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
 
     @Override
     public void onDestroyView() {
+        save();
         mInput.removeTextChangedListener(mInputWatcher);
         mOutput.removeTextChangedListener(mOutputWatcher);
         super.onDestroyView();
@@ -207,17 +210,6 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        save();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        restore();
-    }
 
     public void save() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());

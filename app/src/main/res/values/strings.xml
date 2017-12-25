@@ -97,4 +97,6 @@
     <string name="theme">Theme</string>
     <string name="user_interface">User interface</string>
     <string name="stylish_it">Stylish it (Pro)</string>
+    <string name="chance_remaining">This feature fully only available in PRO version. Click here to upgrade. You have %o chance remaining.</string>
+    <string name="please_upgrade">Please upgrade to pro version</string>
 </resources>

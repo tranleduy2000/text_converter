@@ -47,11 +47,12 @@ public class Premium {
     }
 
     public static boolean isFree(Context context) {
-        return context.getPackageName().equals(FREE_PACKAGE) || isCrack(context);
+       /* return context.getPackageName().equals(FREE_PACKAGE) || isCrack(context);*/
+        return !isPremium(context);
     }
 
     public static boolean isPremium(Context context) {
-        if (BuildConfig.DEBUG) return true;
+        if (BuildConfig.DEBUG) return false;
         DLog.d(TAG, "isPremium() called with: context = [" + context + "]");
         boolean proPackage = context.getPackageName().equals(PRO_PACKAGE) && !isCrack(context);
         DLog.d(TAG, "proPackage = " + proPackage);

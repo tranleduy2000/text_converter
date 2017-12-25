@@ -29,14 +29,20 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.pro.license.Premium;
 import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
 import com.duy.text.converter.pro.menu.fragments.StylistProcessTextFragment;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class StylishProcessTextActivity extends AppCompatActivity implements OnTextSelectedListener {
     private static final String TAG = "EncodeAllProcessTextActivity";
+    private static final String KEY_CHANCE = "EncodeAllProcessTextActivity_KEY_CHANCE";
+    private static final int MAX_CHANCE_VALUE = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,20 @@ public class StylishProcessTextActivity extends AppCompatActivity implements OnT
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbar.setSubtitle(text);
 
+            TextView txtMessage = findViewById(R.id.txt_message);
+            if (Premium.isPremium(this)) {
+                txtMessage.setVisibility(View.GONE);
+            } else {
+                txtMessage.setText(getString(R.string.chance_remaining, getChanceRemaining()));
+                txtMessage.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Premium.upgrade(StylishProcessTextActivity.this);
+                    }
+                });
+            }
+
+
             String input = text.toString();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content, StylistProcessTextFragment.newInstance(input)).commit();
@@ -59,10 +79,22 @@ public class StylishProcessTextActivity extends AppCompatActivity implements OnT
         }
     }
 
+    private int getChanceRemaining() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        return pref.getInt(KEY_CHANCE, MAX_CHANCE_VALUE);
+    }
+
     @Override
     public void onTextSelected(String text) {
-
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!Premium.isPremium(this)) {
+            if (getChanceRemaining() <= 0) {
+                Toast.makeText(this, R.string.please_upgrade, Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } else {
+            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+            pref.edit().putInt(KEY_CHANCE, getChanceRemaining() - 1).apply();
+        }
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
         setResult(RESULT_OK, intent);
