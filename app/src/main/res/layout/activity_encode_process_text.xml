@@ -20,15 +20,19 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="400dp"
+    android:background="@android:color/transparent"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/appbar" />
+    <include
+        layout="@layout/appbar"
+        android:background="@android:color/transparent" />
 
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

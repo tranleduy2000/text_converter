@@ -26,15 +26,15 @@ import android.support.v7.widget.Toolbar;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.adapters.DecodeResultAdapter;
-import com.duy.text.converter.core.fragments.DecodeAllFragment;
 import com.duy.text.converter.pro.license.Premium;
+import com.duy.text.converter.pro.menu.fragments.DecodeAllFragment;
+import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
 
 /**
  * Created by Duy on 29-Jul-17.
  */
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class DecodeAllProcessTextActivity extends AppCompatActivity implements DecodeResultAdapter.OnTextSelectedListener {
+public class DecodeAllProcessTextActivity extends AppCompatActivity implements OnTextSelectedListener {
     private static final String TAG = "DecodeProcessTextActivi";
 
     @Override

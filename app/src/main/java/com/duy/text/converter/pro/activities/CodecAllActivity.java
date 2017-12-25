@@ -22,8 +22,8 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.BaseActivity;
-import com.duy.text.converter.core.fragments.DecodeAllFragment;
-import com.duy.text.converter.core.fragments.EncodeAllFragment;
+import com.duy.text.converter.pro.menu.fragments.DecodeAllFragment;
+import com.duy.text.converter.pro.menu.fragments.EncodeAllFragment;
 
 /**
  * Created by Duy on 11/13/2017.
@@ -45,7 +45,7 @@ public class CodecAllActivity extends BaseActivity {
         if (EXTRA_ACTION_ENCODE.equals(action)) {
             String input = getIntent().getStringExtra(EXTRA_INPUT);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.content, EncodeAllFragment.newInstance(input)).commit();
+            fragmentTransaction.replace(R.id.content, EncodeAllFragment.newInstance(input, false)).commit();
 
             setTitle(R.string.encode);
             toolbar.setSubtitle(input);

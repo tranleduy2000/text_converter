@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.fragments;
+package com.duy.text.converter.pro.menu.fragments;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -42,16 +42,18 @@ import java.util.Arrays;
  */
 
 public class EncodeAllFragment extends Fragment {
-    private static final String KEY_INPUT = "input";
+    private static final String KEY_INPUT = "KEY_INPUT";
+    private static final String KEY_PROCESS_TEXT = "KEY_PROCESS_TEXT";
     @Nullable
     private EncodeTask mEncodeTask;
     private ArrayList<Codec> mEncoders;
     private EncodeResultAdapter mEncodeResultAdapter;
 
-    public static EncodeAllFragment newInstance(String input) {
+    public static EncodeAllFragment newInstance(String input, boolean processText) {
 
         Bundle args = new Bundle();
         args.putString(KEY_INPUT, input);
+        args.putBoolean(KEY_PROCESS_TEXT, processText);
         EncodeAllFragment fragment = new EncodeAllFragment();
         fragment.setArguments(args);
         return fragment;
@@ -66,16 +68,19 @@ public class EncodeAllFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String input = getArguments().getString(KEY_INPUT);
+        boolean processText = getArguments().getBoolean(KEY_PROCESS_TEXT);
 
-
-        initCodec();
 
         RecyclerView recyclerView = view.findViewById(R.id.list_decoded);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mEncodeResultAdapter = new EncodeResultAdapter(getContext());
+        mEncodeResultAdapter = new EncodeResultAdapter(getContext(), processText);
+        if (processText && getActivity() instanceof OnTextSelectedListener) {
+            mEncodeResultAdapter.setListener((OnTextSelectedListener) getActivity());
+        }
         recyclerView.setAdapter(mEncodeResultAdapter);
 
-        String input = getArguments().getString(KEY_INPUT);
+        initCodec();
         generateResult(input);
     }
 

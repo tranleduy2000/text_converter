@@ -28,6 +28,7 @@ import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
+import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -114,9 +115,6 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
         this.listener = listener;
     }
 
-    public interface OnTextSelectedListener {
-        void onTextSelected(String text);
-    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtResult, txtTitle;

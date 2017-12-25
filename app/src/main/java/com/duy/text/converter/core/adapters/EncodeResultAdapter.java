@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
+import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
 
 import java.util.ArrayList;
 
@@ -33,8 +34,9 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
     private static final String TAG = "DecodeResultAdapter";
     private final Context context;
     private ArrayList<EncodeItem> mEncodeItems = new ArrayList<>();
+    private OnTextSelectedListener listener;
 
-    public EncodeResultAdapter(Context context) {
+    public EncodeResultAdapter(Context context, boolean processText) {
         this.context = context;
     }
 
@@ -80,6 +82,14 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
                 }
             });
         }
+        if (holder.imgSelect != null) {
+            holder.imgSelect.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) listener.onTextSelected(str);
+                }
+            });
+        }
     }
 
     @Override
@@ -87,9 +97,13 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
         return mEncodeItems.size();
     }
 
+    public void setListener(OnTextSelectedListener listener) {
+        this.listener = listener;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView txtResult, txtTitle;
-        View imgCopy, imgShare, shareMsg;
+        View imgCopy, imgShare, shareMsg, imgSelect;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -99,6 +113,8 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
             imgCopy = itemView.findViewById(R.id.img_copy);
             imgShare = itemView.findViewById(R.id.img_share);
             shareMsg = itemView.findViewById(R.id.img_share_msg);
+            imgSelect = itemView.findViewById(R.id.img_select);
+
         }
 
     }

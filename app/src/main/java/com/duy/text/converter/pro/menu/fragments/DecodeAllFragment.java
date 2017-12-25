@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.fragments;
+package com.duy.text.converter.pro.menu.fragments;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -80,8 +80,8 @@ public class DecodeAllFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.list_decoded);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mDecodeResultAdapter = new DecodeResultAdapter(getContext(), processText);
-        if (processText && getActivity() instanceof DecodeResultAdapter.OnTextSelectedListener) {
-            mDecodeResultAdapter.setListener((DecodeResultAdapter.OnTextSelectedListener) getActivity());
+        if (processText && getActivity() instanceof OnTextSelectedListener) {
+            mDecodeResultAdapter.setListener((OnTextSelectedListener) getActivity());
         }
         recyclerView.setAdapter(mDecodeResultAdapter);
 

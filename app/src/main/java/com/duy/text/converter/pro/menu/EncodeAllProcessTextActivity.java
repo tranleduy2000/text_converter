@@ -23,24 +23,43 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.pro.menu.fragments.EncodeAllFragment;
+import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
 
 @TargetApi(Build.VERSION_CODES.M)
-public class EncodeAllProcessTextActivity extends AppCompatActivity {
+public class EncodeAllProcessTextActivity extends AppCompatActivity implements OnTextSelectedListener {
+    private static final String TAG = "EncodeAllProcessTextActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_encode_process_text);
         CharSequence text = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
-        boolean readonly = getIntent().getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false);
+        if (text != null) {
+            setContentView(R.layout.activity_encode_process_text);
 
-        if (!readonly && text != null && !text.toString().isEmpty()) {
-//            String result = CodecUtil.encode(method, this, text.toString());
-//            Intent intent = getIntent();
-//            intent.putExtra(Intent.EXTRA_PROCESS_TEXT, result);
-//            setResult(RESULT_OK, intent);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            setTitle(R.string.encode);
+            toolbar.setSubtitle(text);
+
+            String input = text.toString();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.content, EncodeAllFragment.newInstance(input, true)).commit();
+        } else {
+            finish();
         }
+    }
+
+    @Override
+    public void onTextSelected(String text) {
+        Intent intent = getIntent();
+        intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
