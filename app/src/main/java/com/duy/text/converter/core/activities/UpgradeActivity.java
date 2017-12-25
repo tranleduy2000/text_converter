@@ -18,7 +18,9 @@ package com.duy.text.converter.core.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
+import com.duy.common.activities.ActivityHelper;
 import com.duy.common.purchase.InAppPurchaseActivity;
 import com.duy.text.converter.R;
 
@@ -31,6 +33,12 @@ public class UpgradeActivity extends InAppPurchaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade);
-        showDialogUpgrade();
+        ActivityHelper.setupToolbar(this);
+        findViewById(R.id.btn_upgrade).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogUpgrade();
+            }
+        });
     }
 }

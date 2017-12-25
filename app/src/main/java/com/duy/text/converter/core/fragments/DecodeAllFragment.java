@@ -33,6 +33,7 @@ import com.duy.text.converter.R;
 import com.duy.text.converter.core.adapters.DecodeResultAdapter;
 import com.duy.text.converter.core.codec.interfaces.Codec;
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;
+import com.duy.text.converter.pro.menu.DecodeAllProcessTextActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,7 +52,7 @@ public class DecodeAllFragment extends Fragment {
 
     /**
      * @param input       - input data
-     * @param processText - start from {@link com.duy.text.converter.pro.menu.DecodeProcessTextActivity}
+     * @param processText - start from {@link DecodeAllProcessTextActivity}
      * @return DecodeAllFragment
      */
     public static DecodeAllFragment newInstance(String input, boolean processText) {

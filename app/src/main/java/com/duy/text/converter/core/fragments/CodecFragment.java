@@ -89,9 +89,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
     public static CodecFragment newInstance(String init) {
         CodecFragment fragment = new CodecFragment();
         Bundle bundle = new Bundle();
-        if (init != null) {
-            bundle.putString(Intent.EXTRA_TEXT, init);
-        }
+        bundle.putString(Intent.EXTRA_TEXT, init);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -183,7 +181,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
     }
 
     private void showDialogUpgrade() {
-        Premium.showDialogUpgrade(getActivity());
+        Premium.upgrade(getActivity());
     }
 
     @Override

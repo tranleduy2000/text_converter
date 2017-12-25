@@ -27,7 +27,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:theme="@style/AppThemeLight"
+        android:theme="@style/AppThemeDark"
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".core.barcode.BarcodeEncodedActivity" />
@@ -53,10 +53,11 @@
                 android:resource="@xml/shortcuts" />
         </activity>
 
-
+        <!--Encode and decode menu-->
         <activity
             android:name=".pro.menu.EncodeProcessTextActivity"
-            android:label="@string/encode_"
+            android:exported="true"
+            android:label="@string/encode_now"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
@@ -64,9 +65,11 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".pro.menu.DecodeProcessTextActivity"
-            android:label="@string/decode_"
+            android:name=".pro.menu.EncodeAllProcessTextActivity"
+            android:exported="true"
+            android:label="@string/encode_pro"
             android:theme="@style/AppThemeLight.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
@@ -74,6 +77,18 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".pro.menu.DecodeAllProcessTextActivity"
+            android:label="@string/decode_pro"
+            android:theme="@style/AppThemeLight.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <!--End region-->
 
         <receiver
             android:name=".pro.notification.EncodeReceiver"

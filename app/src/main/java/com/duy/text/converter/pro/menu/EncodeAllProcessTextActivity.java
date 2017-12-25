@@ -20,41 +20,27 @@ package com.duy.text.converter.pro.menu;
 
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 
-import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.codec.interfaces.CodecUtil;
 
 @TargetApi(Build.VERSION_CODES.M)
-public class EncodeProcessTextActivity extends Activity {
-    private static final String TAG = "EncodeProcessTextActivi";
-
+public class EncodeAllProcessTextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        DLog.d(TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]");
-
+        setContentView(R.layout.activity_encode_process_text);
         CharSequence text = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
         boolean readonly = getIntent().getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false);
 
         if (!readonly && text != null && !text.toString().isEmpty()) {
-            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-            String method = pref.getString(getString(R.string.pref_key_encode_menu), "");
-            if (method.isEmpty()) {
-                finish();
-                return;
-            }
-            String result = CodecUtil.encode(method, this, text.toString());
-            Intent intent = getIntent();
-            intent.putExtra(Intent.EXTRA_PROCESS_TEXT, result);
-            setResult(RESULT_OK, intent);
+//            String result = CodecUtil.encode(method, this, text.toString());
+//            Intent intent = getIntent();
+//            intent.putExtra(Intent.EXTRA_PROCESS_TEXT, result);
+//            setResult(RESULT_OK, intent);
         }
-        finish();
     }
 }

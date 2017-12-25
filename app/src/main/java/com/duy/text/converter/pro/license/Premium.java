@@ -18,15 +18,12 @@ package com.duy.text.converter.pro.license;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
 
-import com.duy.common.purchase.InAppPurchaseActivity;
 import com.duy.common.utils.DLog;
-import com.duy.text.converter.R;
-import com.duy.text.converter.core.activities.MainActivity;
+import com.duy.text.converter.core.activities.UpgradeActivity;
 
 /**
  * Created by Duy on 26-Jul-17.
@@ -52,7 +49,7 @@ public class Premium {
         return context.getPackageName().equals(FREE_PACKAGE) || isCrack(context);
     }
 
-    public static boolean isPremium(MainActivity context) {
+    public static boolean isPremium(Context context) {
         DLog.d(TAG, "isPremium() called with: context = [" + context + "]");
         boolean proPackage = context.getPackageName().equals(PRO_PACKAGE) && !isCrack(context);
         DLog.d(TAG, "proPackage = " + proPackage);
@@ -61,25 +58,8 @@ public class Premium {
         return proPackage || premiumUser;
     }
 
-    public static void showDialogUpgrade(final Activity activity) {
-        if (!(activity instanceof InAppPurchaseActivity)) {
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle(R.string.upgrade);
-        builder.setMessage(R.string.pro_feature);
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                ((InAppPurchaseActivity) activity).clickUpgrade();
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.create().show();
+    public static void upgrade(final Activity activity) {
+        Intent intent = new Intent(activity, UpgradeActivity.class);
+        activity.startActivity(intent);
     }
 }

@@ -16,20 +16,18 @@
 
 package com.duy.text.converter.core.fragments;
 
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
-import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
+import com.duy.text.converter.pro.license.Premium;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.NativeExpressAdView;
@@ -65,7 +63,7 @@ public class AdsFragment extends Fragment {
         view.findViewById(R.id.btn_pro_version).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StoreUtil.gotoPlayStore(getActivity(), "com.duy.text_converter.pro");
+                Premium.upgrade(getActivity());
             }
         });
         loadAd(view);
@@ -96,18 +94,6 @@ public class AdsFragment extends Fragment {
         });
     }
 
-    /**
-     * This method converts device specific pixels to density independent pixels.
-     *
-     * @param px A value in px (pixels) unit. Which we need to convert into db
-     * @return A float value to represent dp equivalent to px value
-     */
-    public float convertPixelsToDp(float px) {
-        Resources resources = getContext().getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
-        return dp;
-    }
 
     /**
      * Called when leaving the activity

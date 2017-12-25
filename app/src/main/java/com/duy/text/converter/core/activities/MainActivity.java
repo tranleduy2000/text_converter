@@ -34,6 +34,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.duy.common.utils.DLog;
 import com.duy.common.utils.ShareUtil;
 import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
@@ -57,12 +58,12 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
     private static final int REQ_CODE_SETTING = 1201;
+    private static final String TAG = "MainActivity";
     protected Toolbar mToolbar;
     private LicenseChecker mChecker;
     private CheckLicenseCallBack mCallBack;
     private CoordinatorLayout mCoordinatorLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
-
     private Handler mHandler;
 
     @Override
@@ -96,10 +97,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         boolean showed = RateThisApp.showRateDialogIfNeeded(this);
         int launchCount = RateThisApp.getLaunchCount(this);
         if (Premium.isFree(this) && !showed && launchCount % 10 == 0) {
-            Premium.showDialogUpgrade(this);
+            Premium.upgrade(this);
         }
     }
-
 
     private void handleCracked() {
         FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());
@@ -188,52 +188,56 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 menu.findItem(R.id.action_download_ascii).setVisible(true);
             }
         }
-
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        mFirebaseAnalytics.logEvent(item.getTitle().toString(), new Bundle());
         int id = item.getItemId();
-        if (id == R.id.action_share) {
-            mFirebaseAnalytics.logEvent("click_share", new Bundle());
-            ShareUtil.shareApp(this, getPackageName());
-
-        } else if (id == R.id.action_download_ascii) {
-            mFirebaseAnalytics.logEvent("click_ascii", new Bundle());
-            StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
-
-        } else if (id == R.id.action_download_unit_converter) {
-            mFirebaseAnalytics.logEvent("click_ascii", new Bundle());
-            StoreUtil.gotoPlayStore(this, "com.duy.converter");
-
-        } else if (id == R.id.action_review) {
-            StoreUtil.gotoPlayStore(this, getPackageName());
-
-        } else if (id == R.id.action_more) {
-            StoreUtil.moreApp(this);
-
-        } else if (id == R.id.action_upgrade) {
-            mFirebaseAnalytics.logEvent("click_upgrade", new Bundle());
-            Premium.showDialogUpgrade(this);
-        } else if (id == R.id.action_setting) {
-            Intent intent = new Intent(this, SettingActivity.class);
-            startActivityForResult(intent, REQ_CODE_SETTING);
-        } else if (id == R.id.action_open_stylish) {
-            startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
-        } else if (id == R.id.action_open_codec) {
-            startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
+        switch (id) {
+            case R.id.action_share:
+                ShareUtil.shareThisApp(this);
+                break;
+            case R.id.action_download_ascii:
+                StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
+                break;
+            case R.id.action_download_unit_converter:
+                StoreUtil.gotoPlayStore(this, "com.duy.converter");
+                break;
+            case R.id.action_review:
+                StoreUtil.gotoPlayStore(this, getPackageName());
+                break;
+            case R.id.action_more:
+                StoreUtil.moreApp(this);
+                break;
+            case R.id.action_upgrade:
+                Premium.upgrade(this);
+                break;
+            case R.id.action_setting:
+                Intent intent = new Intent(this, SettingActivity.class);
+                startActivityForResult(intent, REQ_CODE_SETTING);
+                break;
+            case R.id.action_open_stylish:
+                startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
+                break;
+            case R.id.action_open_codec:
+                startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        DLog.d(TAG, "onActivityResult() called with: requestCode = [" + requestCode + "], resultCode = [" + resultCode + "], data = [" + data + "]");
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQ_CODE_SETTING) {
-            if (resultCode == RESULT_OK) {
-                recreate();
-            }
+        switch (requestCode) {
+            case REQ_CODE_SETTING:
+                if (resultCode == RESULT_OK) {
+                    recreate();
+                }
+                break;
         }
     }
 

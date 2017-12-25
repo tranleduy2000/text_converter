@@ -34,7 +34,7 @@ import com.duy.text.converter.pro.license.Premium;
  * Created by Duy on 29-Jul-17.
  */
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class DecodeProcessTextActivity extends AppCompatActivity implements DecodeResultAdapter.OnTextSelectedListener {
+public class DecodeAllProcessTextActivity extends AppCompatActivity implements DecodeResultAdapter.OnTextSelectedListener {
     private static final String TAG = "DecodeProcessTextActivi";
 
     @Override
