@@ -26,7 +26,6 @@ import android.support.v7.widget.Toolbar;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.pro.license.Premium;
 import com.duy.text.converter.pro.menu.fragments.DecodeAllFragment;
 import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
 
@@ -41,7 +40,7 @@ public class DecodeAllProcessTextActivity extends AppCompatActivity implements O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CharSequence text = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
-        if (text != null && !Premium.isCrack(this)) {
+        if (text != null) {
             setContentView(R.layout.activity_decode_process_text);
 
             Toolbar toolbar = findViewById(R.id.toolbar);
@@ -53,7 +52,6 @@ public class DecodeAllProcessTextActivity extends AppCompatActivity implements O
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.content, DecodeAllFragment.newInstance(input, true)).commit();
         } else {
-            DLog.d(TAG, "onCreate: " + text);
             finish();
         }
     }

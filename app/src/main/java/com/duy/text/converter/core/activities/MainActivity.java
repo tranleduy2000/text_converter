@@ -104,7 +104,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private void handleCracked() {
         FirebaseAnalytics.getInstance(this).logEvent("crack_version", new Bundle());
         Premium.setCracked(this, true);
-        Toast.makeText(this, "Licence check failed", Toast.LENGTH_LONG).show();
+        if (getPackageName().equals(Premium.PRO_PACKAGE)) {
+            Toast.makeText(this, "Licence check failed", Toast.LENGTH_LONG).show();
+        }
     }
 
     protected void setupToolbar() {

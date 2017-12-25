@@ -33,11 +33,13 @@ import java.util.ArrayList;
 public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapter.ViewHolder> {
     private static final String TAG = "DecodeResultAdapter";
     private final Context context;
+    private boolean processText;
     private ArrayList<EncodeItem> mEncodeItems = new ArrayList<>();
     private OnTextSelectedListener listener;
 
     public EncodeResultAdapter(Context context, boolean processText) {
         this.context = context;
+        this.processText = processText;
     }
 
     public void add(EncodeItem encodeItem) {
@@ -58,38 +60,50 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
         holder.txtResult.setText(item.getResult());
         holder.txtTitle.setText(item.getName());
         final String str = item.getResult();
-        if (holder.imgShare != null) {
-            holder.imgShare.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ShareManager.share(str, context);
-                }
-            });
+        if (processText) {
+            if (holder.imgCopy != null) holder.imgCopy.setVisibility(View.GONE);
+            if (holder.imgShare != null) holder.imgShare.setVisibility(View.GONE);
+            if (holder.shareMsg != null) holder.shareMsg.setVisibility(View.GONE);
+            if (holder.imgSelect != null) holder.imgSelect.setVisibility(View.VISIBLE);
+            if (holder.imgSelect != null) {
+                holder.imgSelect.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener != null) listener.onTextSelected(str);
+                    }
+                });
+            }
+        } else {
+            if (holder.imgCopy != null) holder.imgCopy.setVisibility(View.VISIBLE);
+            if (holder.imgShare != null) holder.imgShare.setVisibility(View.VISIBLE);
+            if (holder.shareMsg != null) holder.shareMsg.setVisibility(View.VISIBLE);
+            if (holder.imgSelect != null) holder.imgSelect.setVisibility(View.GONE);
+            if (holder.imgShare != null) {
+                holder.imgShare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareManager.share(str, context);
+                    }
+                });
+            }
+            if (holder.imgCopy != null) {
+                holder.imgCopy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ClipboardUtil.setClipboard(context, str);
+                    }
+                });
+            }
+            if (holder.shareMsg != null) {
+                holder.shareMsg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ShareManager.shareMessenger(str, context);
+                    }
+                });
+            }
         }
-        if (holder.imgCopy != null) {
-            holder.imgCopy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ClipboardUtil.setClipboard(context, str);
-                }
-            });
-        }
-        if (holder.shareMsg != null) {
-            holder.shareMsg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ShareManager.shareMessenger(str, context);
-                }
-            });
-        }
-        if (holder.imgSelect != null) {
-            holder.imgSelect.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) listener.onTextSelected(str);
-                }
-            });
-        }
+
     }
 
     @Override

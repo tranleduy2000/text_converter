@@ -17,6 +17,8 @@
 
         <item name="android:windowMinWidthMajor">90%</item>
         <item name="android:windowMinWidthMinor">90%</item>
+
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 
     <style name="AppThemeLight.Theme1">
