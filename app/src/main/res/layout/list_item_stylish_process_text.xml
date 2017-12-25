@@ -15,10 +15,15 @@
   -->
 
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="?cardBackgroundColor"
+    app:cardElevation="0dp"
+    app:cardUseCompatPadding="true">
+
 
     <com.duy.text.converter.core.view.BaseTextView
         android:id="@+id/txt_result"
@@ -33,8 +38,5 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="?android:textColorPrimary"
         tools:text="sample asd asd asd asd asd asd asd asd asd as das d asd as" />
-
-
-</FrameLayout>
-
+</android.support.v7.widget.CardView>
 

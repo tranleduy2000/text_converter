@@ -21,8 +21,10 @@ package com.duy.text.converter.pro.menu;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -59,6 +61,8 @@ public class StylishProcessTextActivity extends AppCompatActivity implements OnT
 
     @Override
     public void onTextSelected(String text) {
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         Intent intent = getIntent();
         intent.putExtra(Intent.EXTRA_PROCESS_TEXT, text);
         setResult(RESULT_OK, intent);
