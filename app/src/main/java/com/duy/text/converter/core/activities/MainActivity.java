@@ -181,13 +181,6 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
             menu.findItem(R.id.action_open_codec).setVisible(false);
             menu.findItem(R.id.action_open_stylish).setVisible(false);
         }
-
-        if (StoreUtil.isAppInstalled(this, "com.duy.converter")) {
-            menu.findItem(R.id.action_download_unit_converter).setVisible(false);
-            if (!StoreUtil.isAppInstalled(this, "com.duy.asciiart")) {
-                menu.findItem(R.id.action_download_ascii).setVisible(true);
-            }
-        }
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -199,17 +192,8 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
             case R.id.action_share:
                 ShareUtil.shareThisApp(this);
                 break;
-            case R.id.action_download_ascii:
-                StoreUtil.gotoPlayStore(this, "com.duy.asciiart");
-                break;
-            case R.id.action_download_unit_converter:
-                StoreUtil.gotoPlayStore(this, "com.duy.converter");
-                break;
             case R.id.action_review:
                 StoreUtil.gotoPlayStore(this, getPackageName());
-                break;
-            case R.id.action_more:
-                StoreUtil.moreApp(this);
                 break;
             case R.id.action_upgrade:
                 Premium.upgrade(this);
@@ -223,6 +207,10 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 break;
             case R.id.action_open_codec:
                 startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
+                break;
+            case R.id.action_how_to_use:
+                StoreUtil.openBrowser(this, "https://www.youtube.com/watch?v=" +
+                                "I0RDj4NCVMM&list=PL18TMow0k9uHvY-lApOoTIEX5UwGowYSC", 0);
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -16,25 +16,19 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_download_unit_converter"
-        android:icon="@drawable/ic_unit_converter"
-        android:title="@string/get_unit_converter_app"
-        app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_download_ascii"
-        android:icon="@drawable/ic_ascii"
-        android:title="@string/get_ascii_app"
-        android:visible="false"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_upgrade"
         android:icon="@drawable/ic_lock_open_white_24dp"
         android:title="@string/upgrade"
-        android:visible="false"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_how_to_use"
+        android:icon="@drawable/ic_help_white_24dp"
+        android:title="@string/how_to_use"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_setting"
         android:icon="@drawable/ic_settings_white_24dp"
@@ -43,7 +37,7 @@
     <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_share_white_24dp"
-        android:title="@string/share" />
+        android:title="@string/share_this_app" />
     <item
         android:id="@+id/action_open_codec"
         android:title="@string/floating_codec"
@@ -57,8 +51,4 @@
         android:icon="@drawable/ic_rate_review_white_24dp"
         android:title="@string/write_review_in_playstore" />
 
-    <item
-        android:id="@+id/action_more"
-        android:icon="@drawable/ic_file_download_white_24dp"
-        android:title="@string/more_app" />
 </menu>

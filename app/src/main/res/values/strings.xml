@@ -93,4 +93,6 @@
     <string name="chance_remaining">This feature fully only available in PRO version. Click here to upgrade. You have %o chance remaining.</string>
     <string name="please_upgrade">Please upgrade to pro version</string>
     <string name="recommend_application">Recommend application</string>
+    <string name="share_this_app">Share this app</string>
+    <string name="how_to_use">How to use</string>
 </resources>
