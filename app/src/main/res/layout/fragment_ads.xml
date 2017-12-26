@@ -40,6 +40,14 @@
         </com.google.android.gms.ads.AdView>
     </FrameLayout>
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_pro_version"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/container_ad" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_pro_version"

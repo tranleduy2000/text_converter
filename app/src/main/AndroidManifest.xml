@@ -42,7 +42,7 @@
             </intent-filter>
 
             <meta-data
-                android:name="android.app.shortcuts"
+                android:name="android.application.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
 

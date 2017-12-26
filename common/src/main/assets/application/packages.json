@@ -1,0 +1,46 @@
+{
+  "apps": [
+    {
+      "name": "Text Converter - Codec - Stylish Text",
+      "icon": "icons/ic_text_converter.png",
+      "icon_url": "https://lh3.googleusercontent.com/M4xTftd4qkXhPDdLLlvHwmQj8GBrH18VKhc0NZRelab2GDCagpLEKJfjaw4AnBEjFKM=w300-rw",
+      "wall_url": "",
+      "package": "duy.com.text_converter"
+    },
+    {
+      "name": "Pascal N-IDE (No Ads)",
+      "icon": "icons/ic_pascal.png",
+      "icon_url": "",
+      "wall_url": "",
+      "package": "com.duy.pascal.compiler"
+    },
+    {
+      "name": "Material Floating Calculator (No Ads)",
+      "icon": "icons/ic_floating_calc.png",
+      "icon_url": "",
+      "wall_url": "",
+      "package": "com.duy.calculator.floating"
+    },
+    {
+      "name": "NCALC (No Ads)",
+      "icon": "icons/ic_ncalc.png",
+      "icon_url": "",
+      "wall_url": "",
+      "package": "com.duy.calculator.free"
+    },
+    {
+      "name": "Digital Compass  (No Ads)",
+      "icon": "icons/ic_compass.png",
+      "icon_url": "",
+      "wall_url": "",
+      "package": "com.duy.compass"
+    },
+    {
+      "name": "Unit Converter - All in one",
+      "icon": "icons/ic_converter.png",
+      "icon_url": "",
+      "wall_url": "",
+      "package": "com.duy.converter"
+    }
+  ]
+}
