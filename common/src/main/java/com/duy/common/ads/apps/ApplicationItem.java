@@ -31,6 +31,16 @@ class ApplicationItem implements Serializable, Cloneable {
         this.wallpaperUrl = wallpaperUrl;
     }
 
+    @Override
+    public String toString() {
+        return "ApplicationItem{" +
+                "name='" + name + '\'' +
+                ", applicationId='" + applicationId + '\'' +
+                ", iconUrl='" + iconUrl + '\'' +
+                ", wallpaperUrl='" + wallpaperUrl + '\'' +
+                '}';
+    }
+
     public String getWallpaperUrl() {
         return wallpaperUrl;
     }

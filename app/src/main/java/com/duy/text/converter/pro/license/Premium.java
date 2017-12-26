@@ -53,10 +53,9 @@ public class Premium {
 
     public static boolean isPremium(Context context) {
         if (BuildConfig.DEBUG) return false;
-        DLog.d(TAG, "isPremium() called with: context = [" + context + "]");
         boolean proPackage = context.getPackageName().equals(PRO_PACKAGE) && !isCrack(context);
-        DLog.d(TAG, "proPackage = " + proPackage);
         boolean premiumUser = com.duy.common.purchase.Premium.isPremiumUser(context);
+        DLog.d(TAG, "proPackage = " + proPackage);
         DLog.d(TAG, "premiumUser = " + premiumUser);
         return proPackage || premiumUser;
     }

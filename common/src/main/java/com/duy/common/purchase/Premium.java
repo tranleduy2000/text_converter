@@ -31,10 +31,6 @@ public class Premium {
 
     //SKU for my product: the premium upgrade
     public static final String SKU_PREMIUM = "text_converter_premium";
-
-    public static final int RESULT_UPGRADE = 10002;
-    public static final int FREE_USER = 0;
-    public static final int ADVANCED_USER = 1;
     private static final String TAG = "Premium";
 
     /**
@@ -64,40 +60,13 @@ public class Premium {
         }
     }
 
-    /**
-     * @param context - the android context
-     * @return true if this user is advanced user
-     */
-    public static boolean isAdvancedUser(Context context) {
-//        return getUserType(context) == ADVANCED_USER;
-        return false;
-    }
 
     /**
      * @param context - the android context
      * @return true if free user
      */
     public static boolean isFreeUser(Context context) {
-        return getUserType(context) == FREE_USER;
-    }
-
-    /**
-     * @param context - the android context
-     * @return user type : free, advanced, premium
-     */
-    public static int getUserType(Context context) {
-//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-//        return pref.getInt(KEY_USER_TYPE, FREE_USER);
-        return FREE_USER;
-    }
-
-    public static void setUserType(Context context, int type) {
-//        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-//        pref.edit().putInt(KEY_USER_TYPE, type).apply();
-    }
-
-    public static boolean canUseAdvancedFeature(Context context) {
-        return isPremiumUser(context) || isAdvancedUser(context);
+        return !isPremiumUser(context);
     }
 
 

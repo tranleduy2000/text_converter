@@ -22,7 +22,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.crashlytics.android.BuildConfig;
+import com.duy.common.BuildConfig;
 import com.duy.common.R;
 import com.duy.common.purchase.Premium;
 import com.google.android.gms.ads.AdListener;
@@ -43,6 +43,7 @@ public class AdsManager {
      * Delay time for show full screen ads
      */
     public static final long DELAY_TIME = 4000; //4s
+    private static final String TEST_DEVICE_ID = "D2281648CE409430157A9596175BF172";
 
 
     /**
@@ -66,7 +67,7 @@ public class AdsManager {
             publisherAdView.setAdUnitId(AdConstants.AdUnitId.AD_UNIT_ID_NATIVE_MAIN_320_50);
 
             PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
-            if (BuildConfig.DEBUG) builder.addTestDevice("D2281648CE409430157A9596175BF172");
+            if (BuildConfig.DEBUG) builder.addTestDevice(TEST_DEVICE_ID);
 
             publisherAdView.loadAd(builder.build());
             container.removeAllViews();
@@ -90,7 +91,7 @@ public class AdsManager {
             publisherAdView.setAdUnitId(AdConstants.AdUnitId.AD_UNIT_ID_NATIVE_MAIN_320_50);
 
             PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
-            if (BuildConfig.DEBUG) builder.addTestDevice("D2281648CE409430157A9596175BF172");
+            if (BuildConfig.DEBUG) builder.addTestDevice(TEST_DEVICE_ID);
 
             publisherAdView.loadAd(builder.build());
             container.removeAllViews();
@@ -115,7 +116,7 @@ public class AdsManager {
         interstitialAd.setAdUnitId(AdConstants.AdUnitId.AD_UNIT_ID_INTERSTITIAL);
         AdRequest.Builder request = new AdRequest.Builder();
         if (BuildConfig.DEBUG) {
-            request.addTestDevice("D2281648CE409430157A9596175BF172");
+            request.addTestDevice(TEST_DEVICE_ID);
         }
         interstitialAd.loadAd(request.build());
         interstitialAd.setAdListener(new AdListener() {
@@ -135,9 +136,19 @@ public class AdsManager {
         }
     }
 
-
+    @Deprecated
     public static boolean loadBannerAds(Context context, @Nullable View container,
                                         @Nullable View adView) {
+        return loadAds(context, container, adView);
+    }
+
+    public static boolean loadAds(Context context, View view) {
+        View container = view.findViewById(R.id.container_ad);
+        View adView = view.findViewById(R.id.ad_view);
+        return container != null && adView != null && loadAds(context, container, adView);
+    }
+
+    public static boolean loadAds(Context context, View container, View adView) {
         if (isPremiumUser(context)) {
             if (container != null) {
                 container.setVisibility(View.GONE);
@@ -147,21 +158,21 @@ public class AdsManager {
             if (adView instanceof AdView) {
                 AdRequest.Builder builder = new AdRequest.Builder();
                 if (BuildConfig.DEBUG) {
-                    builder.addTestDevice("D2281648CE409430157A9596175BF172");
+                    builder.addTestDevice(TEST_DEVICE_ID);
                 }
                 ((AdView) adView).loadAd(builder.build());
                 return true;
             } else if (adView instanceof PublisherAdView) {
                 PublisherAdRequest.Builder builder = new PublisherAdRequest.Builder();
                 if (BuildConfig.DEBUG) {
-                    builder.addTestDevice("D2281648CE409430157A9596175BF172");
+                    builder.addTestDevice(TEST_DEVICE_ID);
                 }
                 ((PublisherAdView) adView).loadAd(builder.build());
                 return true;
             } else if (adView instanceof NativeExpressAdView) {
                 AdRequest.Builder builder = new AdRequest.Builder();
                 if (BuildConfig.DEBUG) {
-                    builder.addTestDevice("D2281648CE409430157A9596175BF172");
+                    builder.addTestDevice(TEST_DEVICE_ID);
                 }
                 ((NativeExpressAdView) adView).loadAd(builder.build());
                 return true;

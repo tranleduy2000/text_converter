@@ -17,10 +17,14 @@
 package com.duy.common.ads.apps;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 
+import com.duy.common.BuildConfig;
 import com.duy.common.utils.DLog;
+import com.duy.common.utils.StoreUtil;
+import com.duy.common.views.viewpager.AutoScrollViewPager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,26 +35,35 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+
 /**
  * Created by Duy on 26-Dec-17.
  */
 
 public class ApplicationHelper {
-    private static final String TAG = "ApplicationUtil";
+    private static final String TAG = "ApplicationHelper";
 
-    public static void setup(ViewPager viewPager, FragmentManager fragmentManager, Context context) {
-        if (viewPager == null) return;
-        viewPager.setAdapter(new ApplicationPagerAdapter(fragmentManager, context));
+    @Nullable
+    public static ApplicationPagerAdapter setup(AutoScrollViewPager viewPager, FragmentManager fragmentManager, Context context) {
+        if (viewPager == null) return null;
+        DLog.d(TAG, "setup() called");
+        ApplicationPagerAdapter adapter = new ApplicationPagerAdapter(fragmentManager, context);
+        viewPager.setAdapter(adapter);
+        viewPager.startAutoScroll();
+        return adapter;
     }
 
+    @NonNull
     static ArrayList<ApplicationItem> getAllPackage(Context context) {
-        return loadData(context);
+        return loadData(context, false);
     }
 
-    private static ArrayList<ApplicationItem> loadData(Context mContext) {
+    @NonNull
+    private static ArrayList<ApplicationItem> loadData(Context context, boolean includeInstalledApp) {
+        includeInstalledApp |= BuildConfig.DEBUG;
         ArrayList<ApplicationItem> items = new ArrayList<>();
         try {
-            InputStream stream = mContext.getAssets().open("application/packages.json");
+            InputStream stream = context.getAssets().open("application/packages.json");
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();
             int nRead;
             byte[] data = new byte[1024];
@@ -66,11 +79,18 @@ public class ApplicationHelper {
             JSONArray jsonArray = jsonObject.getJSONArray("apps");
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject app = jsonArray.getJSONObject(i);
-                items.add(new ApplicationItem(
+                ApplicationItem applicationItem = new ApplicationItem(
                         app.getString("name"),
                         app.getString("package"),
                         app.getString("icon_url"),
-                        app.getString("wallpaperUrl")));
+                        app.getString("wall_url"));
+                if (StoreUtil.isAppInstalled(context, applicationItem.getApplicationId())) {
+                    if (includeInstalledApp) {
+                        items.add(applicationItem);
+                    }
+                } else {
+                    items.add(applicationItem);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
