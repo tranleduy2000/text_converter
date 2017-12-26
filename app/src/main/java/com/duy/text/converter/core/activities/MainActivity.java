@@ -40,6 +40,7 @@ import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.PagerSectionAdapter;
 import com.duy.text.converter.core.fragments.AdsFragment;
+import com.duy.text.converter.core.help.HelpDialog;
 import com.duy.text.converter.pro.PagerSectionAdapterPro;
 import com.duy.text.converter.pro.SettingActivity;
 import com.duy.text.converter.pro.floating.codec.FloatingCodecOpenShortCutActivity;
@@ -209,8 +210,8 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
                 break;
             case R.id.action_how_to_use:
-                StoreUtil.openBrowser(this, "https://www.youtube.com/watch?v=" +
-                                "I0RDj4NCVMM&list=PL18TMow0k9uHvY-lApOoTIEX5UwGowYSC", 0);
+                HelpDialog helpDialog = new HelpDialog();
+                helpDialog.show(getSupportFragmentManager(), HelpDialog.TAG);
                 break;
         }
         return super.onOptionsItemSelected(item);
