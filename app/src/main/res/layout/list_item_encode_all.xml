@@ -22,6 +22,8 @@
     android:layout_marginBottom="2dp"
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
+    android:foreground="?selectableItemBackground"
+
     app:cardBackgroundColor="?cardBackgroundColor"
     app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true">

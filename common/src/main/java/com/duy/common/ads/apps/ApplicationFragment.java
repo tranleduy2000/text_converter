@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.duy.common.R;
 import com.duy.common.utils.StoreUtil;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 /**
  * Created by Duy on 26-Dec-17.
@@ -68,8 +69,11 @@ public class ApplicationFragment extends Fragment {
         view.findViewById(R.id.root_view).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StoreUtil.gotoPlayStore(getActivity(), applicationItem.getApplicationId());
+                String applicationId = applicationItem.getApplicationId();
+                FirebaseAnalytics.getInstance(getActivity()).logEvent(applicationId, new Bundle());
+                StoreUtil.gotoPlayStore(getActivity(), applicationId);
             }
         });
     }
+
 }

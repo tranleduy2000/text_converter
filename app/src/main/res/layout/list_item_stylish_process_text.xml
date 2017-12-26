@@ -20,6 +20,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:foreground="?selectableItemBackground"
     app:cardBackgroundColor="?cardBackgroundColor"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="true">
