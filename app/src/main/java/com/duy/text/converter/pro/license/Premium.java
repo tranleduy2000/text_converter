@@ -22,8 +22,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.duy.common.purchase.InAppPurchaseHelper;
 import com.duy.common.utils.DLog;
-import com.duy.text.converter.BuildConfig;
 import com.duy.text.converter.core.activities.UpgradeActivity;
 
 /**
@@ -52,7 +52,6 @@ public class Premium {
     }
 
     public static boolean isPremium(Context context) {
-        if (BuildConfig.DEBUG) return false;
         boolean proPackage = context.getPackageName().equals(PRO_PACKAGE) && !isCrack(context);
         boolean premiumUser = com.duy.common.purchase.Premium.isPremiumUser(context);
         DLog.d(TAG, "proPackage = " + proPackage);
@@ -62,6 +61,6 @@ public class Premium {
 
     public static void upgrade(final Activity activity) {
         Intent intent = new Intent(activity, UpgradeActivity.class);
-        activity.startActivity(intent);
+        activity.startActivityForResult(intent, InAppPurchaseHelper.RC_REQUEST_UPGRADE);
     }
 }

@@ -40,5 +40,14 @@ public class UpgradeActivity extends InAppPurchaseActivity {
                 showDialogUpgrade();
             }
         });
+        setResult(RESULT_CANCELED);
+    }
+
+    @Override
+    public void updateUi(boolean premium) {
+        super.updateUi(premium);
+        if (premium) {
+            setResult(RESULT_OK);
+        }
     }
 }

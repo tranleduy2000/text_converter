@@ -25,22 +25,26 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 35
-        versionName "3.8.5"
+        versionCode 386
+        versionName "3.8.6"
     }
     signingConfigs {
-        proRelease
-        freeRelease
+        proRelease {
+//            android.defaultConfig.applicationId "com.duy.text_converter.pro"
+        }
+        freeRelease{
+//            android.defaultConfig.applicationId "duy.com.text_converter"
+        }
     }
-    flavorDimensions "default"
+    flavorDimensions "applicationId"
     productFlavors {
         free {
-            android.defaultConfig.applicationId "duy.com.text_converter"
             signingConfig signingConfigs.freeRelease
+            applicationId "duy.com.text_converter"
         }
         pro {
-            android.defaultConfig.applicationId "com.duy.text_converter.pro"
             signingConfig signingConfigs.proRelease
+            applicationId "com.duy.text_converter.pro"
         }
     }
     buildTypes {

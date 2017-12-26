@@ -34,6 +34,7 @@ import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.duy.common.purchase.InAppPurchaseHelper;
 import com.duy.common.utils.DLog;
 import com.duy.common.utils.ShareUtil;
 import com.duy.common.utils.StoreUtil;
@@ -224,6 +225,11 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         switch (requestCode) {
             case REQ_CODE_SETTING:
                 if (resultCode == RESULT_OK) {
+                    recreate();
+                }
+                break;
+            case InAppPurchaseHelper.RC_REQUEST_UPGRADE:
+                if (resultCode == RESULT_OK){
                     recreate();
                 }
                 break;

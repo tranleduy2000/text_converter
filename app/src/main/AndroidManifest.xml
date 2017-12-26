@@ -14,7 +14,7 @@
 
     <!--Check license-->
     <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:name="com.duy.common.CrashReportApplication"
@@ -22,7 +22,6 @@
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppThemeDark"
         tools:ignore="GoogleAppIndexingWarning">

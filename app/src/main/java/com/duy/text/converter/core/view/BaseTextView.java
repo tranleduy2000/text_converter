@@ -47,7 +47,11 @@ public class BaseTextView extends android.support.v7.widget.AppCompatTextView {
     private void setup(Context context) {
         AssetManager assetManager = context.getAssets();
         Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/DejaVuSerif.ttf");
-        typeface = Typeface.create(typeface, getTypeface().getStyle());
+        try {
+            typeface = Typeface.create(typeface, getTypeface().getStyle());
+        } catch (Exception ignored) {
+            ignored.printStackTrace();
+        }
         setTypeface(typeface);
     }
 }
