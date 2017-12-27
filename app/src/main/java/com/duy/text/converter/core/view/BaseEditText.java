@@ -20,6 +20,9 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.widget.Toast;
+
+import com.duy.text.converter.R;
 
 /**
  * Created by Duy on 23-Mar-17.
@@ -47,5 +50,15 @@ public class BaseEditText extends android.support.v7.widget.AppCompatEditText {
         AssetManager assetManager = context.getAssets();
         Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/DejaVuSerif.ttf");
         setTypeface(typeface);
+    }
+
+    @Override
+    public void setText(CharSequence text, BufferType type) {
+        try {
+            super.setText(text, type);
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), R.string.out_of_memory, Toast.LENGTH_SHORT).show();
+        }
     }
 }
