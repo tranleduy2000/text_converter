@@ -41,7 +41,8 @@ public class HelpDialog extends DialogFragment {
     public void onStart() {
         super.onStart();
         Window window = getDialog().getWindow();
-        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        if (window != null)
+            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
     }
 
     @Nullable
@@ -53,9 +54,11 @@ public class HelpDialog extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Glide.with(getContext()).load(R.raw.help_1).into((ImageView) view.findViewById(R.id.img_1));
-        Glide.with(getContext()).load(R.raw.help_2).into((ImageView) view.findViewById(R.id.img_2));
-        Glide.with(getContext()).load(R.raw.help_3).into((ImageView) view.findViewById(R.id.img_3));
-
+        if (getContext() != null) {
+            //faster by using Glide
+            Glide.with(getContext()).load(R.raw.help_1).into((ImageView) view.findViewById(R.id.img_1));
+            Glide.with(getContext()).load(R.raw.help_2).into((ImageView) view.findViewById(R.id.img_2));
+            Glide.with(getContext()).load(R.raw.help_3).into((ImageView) view.findViewById(R.id.img_3));
+        }
     }
 }

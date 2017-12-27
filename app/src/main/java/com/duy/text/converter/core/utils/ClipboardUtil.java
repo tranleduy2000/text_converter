@@ -33,8 +33,10 @@ public class ClipboardUtil {
     public static void setClipboard(Context context, String text) {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clip = ClipData.newPlainText("Copied Text", text);
-        clipboard.setPrimaryClip(clip);
-        Toast.makeText(context, R.string.copied, Toast.LENGTH_SHORT).show();
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(context, R.string.copied, Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
