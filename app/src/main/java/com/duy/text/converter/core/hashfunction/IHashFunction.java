@@ -16,26 +16,13 @@
 
 package com.duy.text.converter.core.hashfunction;
 
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.digest.Sha2Crypt;
-
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 08-Aug-17.
  */
 
-public class Sha256Tool implements HashFunction {
+public interface IHashFunction {
+    String getName();
 
-    @Override
-    public String getName() {
-        return "SHA-256";
-    }
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return Sha2Crypt.sha256Crypt(text.getBytes());
-    }
-
+    String encode(String data);
 
 }

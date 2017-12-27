@@ -70,12 +70,6 @@ public class AdsFragment extends Fragment {
         AdsManager.loadAds(getContext(), view);
     }
 
-    private void loadAd(View view) {
-        mAdView = view.findViewById(R.id.ad_view);
-        AdRequest.Builder builder = new AdRequest.Builder().addTestDevice("D2281648CE409430157A9596175BF172");
-        mAdView.loadAd(builder.build());
-    }
-
 
     /**
      * Called when leaving the activity

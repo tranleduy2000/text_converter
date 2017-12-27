@@ -24,7 +24,7 @@ import junit.framework.TestCase;
 public class Sha1CodecTest extends TestCase {
     public void testEncode() throws Exception {
         String input = "asdhasdasdasdasd";
-        String encode = new Sha1Tool().encode(input);
+        String encode = new Sha1HashFunction().encode(input);
         System.out.println(encode);
     }
 

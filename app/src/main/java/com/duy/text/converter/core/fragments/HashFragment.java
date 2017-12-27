@@ -36,12 +36,12 @@ import android.widget.Spinner;
 
 import com.duy.common.utils.ShareUtil;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.hashfunction.HashFunction;
-import com.duy.text.converter.core.hashfunction.Md5Tool;
-import com.duy.text.converter.core.hashfunction.Sha1Tool;
-import com.duy.text.converter.core.hashfunction.Sha256Tool;
-import com.duy.text.converter.core.hashfunction.Sha512Tool;
-import com.duy.text.converter.core.hashfunction.UnixCryptTool;
+import com.duy.text.converter.core.hashfunction.IHashFunction;
+import com.duy.text.converter.core.hashfunction.Md5HashFunction;
+import com.duy.text.converter.core.hashfunction.Sha1HashFunction;
+import com.duy.text.converter.core.hashfunction.Sha256HashFunction;
+import com.duy.text.converter.core.hashfunction.Sha512HashFunction;
+import com.duy.text.converter.core.hashfunction.UnixCryptHashFunction;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.view.BaseEditText;
 import com.duy.text.converter.core.view.RoundedBackgroundEditText;
@@ -55,7 +55,7 @@ import java.util.ArrayList;
 public class HashFragment extends Fragment {
     private static final String TAG = "HashFragment";
     private final Handler mHandler = new Handler();
-    private ArrayList<HashFunction> mHashFunctions = new ArrayList<>();
+    private ArrayList<IHashFunction> mHashFunctions = new ArrayList<>();
     private BaseEditText mInput, mOutput;
     private Spinner mMethodSpinner;
     private final Runnable convertRunnable = new Runnable() {
@@ -83,9 +83,7 @@ public class HashFragment extends Fragment {
     };
 
     public static HashFragment newInstance() {
-
         Bundle args = new Bundle();
-
         HashFragment fragment = new HashFragment();
         fragment.setArguments(args);
         return fragment;
@@ -95,11 +93,11 @@ public class HashFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mHashFunctions.clear();
-        mHashFunctions.add(new Md5Tool());
-        mHashFunctions.add(new Sha1Tool());
-        mHashFunctions.add(new Sha256Tool());
-        mHashFunctions.add(new Sha512Tool());
-        mHashFunctions.add(new UnixCryptTool());
+        mHashFunctions.add(new Md5HashFunction());
+        mHashFunctions.add(new Sha1HashFunction());
+        mHashFunctions.add(new Sha256HashFunction());
+        mHashFunctions.add(new Sha512HashFunction());
+        mHashFunctions.add(new UnixCryptHashFunction());
     }
 
     @Override
@@ -139,7 +137,7 @@ public class HashFragment extends Fragment {
         });
 
         ArrayList<String> names = new ArrayList<>();
-        for (HashFunction mHashFunction : mHashFunctions) {
+        for (IHashFunction mHashFunction : mHashFunctions) {
             names.add(mHashFunction.getName());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
@@ -162,8 +160,10 @@ public class HashFragment extends Fragment {
     private void convert() {
         int index = mMethodSpinner.getSelectedItemPosition();
         try {
-            mOutput.setText(mHashFunctions.get(index).encode(mInput.getText().toString()));
-        } catch (Exception e) {
+            IHashFunction hashFunction = mHashFunctions.get(index);
+            String encoded = hashFunction.encode(mInput.getText().toString());
+            mOutput.setText(encoded);
+        } catch (Throwable e) { //out of memory
             e.printStackTrace();
         }
     }

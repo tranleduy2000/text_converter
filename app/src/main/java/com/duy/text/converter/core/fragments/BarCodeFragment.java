@@ -17,6 +17,8 @@
 package com.duy.text.converter.core.fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -24,19 +26,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.barcode.BarcodeEncodedActivity;
 import com.duy.text.converter.core.utils.ClipboardUtil;
@@ -145,12 +149,17 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_encode) {
-            encode(mInput.getText().toString());
-        } else if (v.getId() == R.id.btn_decode_cam) {
-            decodeUseCamera();
-        } else if (v.getId() == R.id.btn_decode_image) {
-            decodeImage();
+        int id = v.getId();
+        switch (id) {
+            case R.id.btn_encode:
+                encode(mInput.getText().toString());
+                break;
+            case R.id.btn_decode_cam:
+                decodeUseCamera();
+                break;
+            case R.id.btn_decode_image:
+                decodeImage();
+                break;
         }
     }
 
@@ -163,7 +172,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         decodeImage();
                     } else {
-                        Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
@@ -192,7 +201,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                 if (mDecodeImageTask != null && !mDecodeImageTask.isCancelled()) {
                     mDecodeImageTask.cancel(true);
                 }
-                mDecodeImageTask = new DecodeImageTask();
+                mDecodeImageTask = new DecodeImageTask(getContext().getApplicationContext(), mInput);
                 mDecodeImageTask.execute(data.getData());
             }
 
@@ -223,13 +232,13 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
 
 
     private void decodeImage() {
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             int result = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
             if (result != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_SHORT).show();
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_READ_EXTERNAL_STORAGE);
+                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                requestPermissions(permissions, REQUEST_READ_EXTERNAL_STORAGE);
                 return;
             }
         }
@@ -246,10 +255,25 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
 
             startActivityForResult(chooserIntent, REQUEST_PICK_IMAGE);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    private class DecodeImageTask extends AsyncTask<Uri, Void, String> {
+    @SuppressLint("StaticFieldLeak")
+    private static class DecodeImageTask extends AsyncTask<Uri, Void, String> {
+        private Context context;
+        private TextView txtResult;
+
+        private DecodeImageTask(@NonNull Context context, @NonNull TextView txtResult) {
+            this.context = context;
+            this.txtResult = txtResult;
+        }
+
+        @NonNull
+        public Context getContext() {
+            return context;
+        }
+
         @Override
         protected String doInBackground(Uri... params) {
             Uri uri = params[0];
@@ -259,7 +283,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                 opts.outWidth = 1024;
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream, null, opts);
                 if (bitmap == null) {
-                    Log.e(TAG, "uri is not a bitmap," + uri.toString());
+                    DLog.e(TAG, "uri is not a bitmap," + uri.toString());
                     return null;
                 }
                 int width = bitmap.getWidth(), height = bitmap.getHeight();
@@ -273,7 +297,7 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
                     Result result = reader.decode(bBitmap);
                     return result.getText();
                 } catch (NotFoundException e) {
-                    Log.e(TAG, "decode exception", e);
+                    DLog.e(TAG, "decode exception", e);
                     return null;
                 }
             } catch (Throwable e) {
@@ -285,9 +309,11 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if (isCancelled()) return;
+            if (isCancelled()) {
+                return;
+            }
             if (s != null) {
-                mInput.setText(s);
+                txtResult.setText(s);
                 Toast.makeText(getContext(), R.string.decoded, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getContext(), R.string.cannot_decode, Toast.LENGTH_SHORT).show();

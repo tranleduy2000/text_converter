@@ -128,11 +128,11 @@ public class NatoCodec extends CodecImpl {
             this.value = value;
         }
 
-        public String getSource() {
+        String getSource() {
             return source;
         }
 
-        public String getValue() {
+        String getValue() {
             return value;
         }
 
@@ -147,7 +147,7 @@ public class NatoCodec extends CodecImpl {
             return super.equals(obj);
         }
 
-        public NatoItem makeReverser() {
+        NatoItem makeReverser() {
             return new NatoItem(value, source);
         }
 

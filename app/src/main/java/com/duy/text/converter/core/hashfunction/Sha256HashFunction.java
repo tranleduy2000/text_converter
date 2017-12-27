@@ -24,16 +24,18 @@ import org.apache.commons.codec.digest.Sha2Crypt;
  * Created by Duy on 11-Jul-17.
  */
 
-public class Sha512Tool implements HashFunction {
+public class Sha256HashFunction implements IHashFunction {
 
     @Override
     public String getName() {
-        return "SHA-512";
+        return "SHA-256";
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return Sha2Crypt.sha512Crypt(text.getBytes());
+        return Sha2Crypt.sha256Crypt(text.getBytes());
     }
+
+
 }

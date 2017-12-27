@@ -36,14 +36,18 @@ public class RightEffect implements Style {
     @NonNull
     @Override
     public String generate(@NonNull String input) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == ' ') {
-                result.append(" ");
-            } else {
-                result.append(input.charAt(i)).append(character);
+        try {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < input.length(); i++) {
+                if (input.charAt(i) == ' ') {
+                    result.append(" ");
+                } else {
+                    result.append(input.charAt(i)).append(character);
+                }
             }
+            return result.toString();
+        } catch (OutOfMemoryError e) {
+            return "";
         }
-        return result.toString();
     }
 }

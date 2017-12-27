@@ -24,7 +24,7 @@ import org.apache.commons.codec.digest.Md5Crypt;
  * Created by Duy on 11-Jul-17.
  */
 
-public class Md5Tool implements HashFunction {
+public class Md5HashFunction implements IHashFunction {
     @Override
     public String getName() {
         return "MD5";

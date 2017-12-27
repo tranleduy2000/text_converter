@@ -25,7 +25,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by Duy on 11-Jul-17.
  */
 
-public class Sha1Tool implements HashFunction {
+public class Sha1HashFunction implements IHashFunction {
     private static String convertToHex(byte[] data) {
         StringBuilder buf = new StringBuilder();
         for (byte b : data) {

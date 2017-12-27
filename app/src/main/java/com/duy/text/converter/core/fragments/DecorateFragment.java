@@ -20,21 +20,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.duy.common.utils.DLog;
+import com.duy.text.converter.R;
 import com.duy.text.converter.core.adapters.StyleAdapter;
 import com.duy.text.converter.core.stylish.DecorateTool;
-import com.duy.text.converter.R;
 
 import java.util.ArrayList;
 
@@ -55,9 +56,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
 
 
     public static DecorateFragment newInstance() {
-
         Bundle args = new Bundle();
-
         DecorateFragment fragment = new DecorateFragment();
         fragment.setArguments(args);
         return fragment;
@@ -71,7 +70,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_stylish, container, false);
         return mRootView;
@@ -93,10 +92,10 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     }
 
     private void convert() {
-        String inp = mInput.getText().toString();
-        Log.d(TAG, "convert: " + inp);
-        ArrayList<String> translate = DecorateTool.generate(inp);
-        mAdapter.setData(translate);
+        String input = mInput.getText().toString();
+        DLog.d(TAG, "convert: " + input);
+        ArrayList<String> converted = DecorateTool.generate(input);
+        mAdapter.setData(converted);
     }
 
     @Override
@@ -113,7 +112,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
 
     }
 
-    public void save() {
+    public void saveData() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         sharedPreferences.edit().putString(KEY + 1, mInput.getText().toString()).apply();
     }
@@ -121,13 +120,12 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     public void restore() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
         mInput.setText(sharedPreferences.getString(KEY + 1, ""));
-
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        save();
+        saveData();
     }
 
     @Override

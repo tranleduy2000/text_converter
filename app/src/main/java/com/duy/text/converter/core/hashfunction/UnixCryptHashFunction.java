@@ -16,13 +16,24 @@
 
 package com.duy.text.converter.core.hashfunction;
 
+import android.support.annotation.NonNull;
+
+import org.apache.commons.codec.digest.UnixCrypt;
+
 /**
- * Created by Duy on 08-Aug-17.
+ * Created by Duy on 11-Jul-17.
  */
 
-public interface HashFunction {
-    String getName();
+public class UnixCryptHashFunction implements IHashFunction {
 
-    String encode(String data);
+    @Override
+    public String getName() {
+        return "Crypt (Unix)";
+    }
 
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
+        return UnixCrypt.crypt(text.getBytes());
+    }
 }

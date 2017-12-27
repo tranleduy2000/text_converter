@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -101,14 +102,14 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_codec, container, false);
     }
 
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
         mInput.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
@@ -143,42 +144,59 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.img_copy) {
-            ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
+        switch (id) {
+            case R.id.img_copy:
+                ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
 
-        } else if (id == R.id.image_paste) {
-            mInput.setText(ClipboardUtil.getClipboard(getContext()));
+                break;
+            case R.id.image_paste:
+                mInput.setText(ClipboardUtil.getClipboard(getContext()));
 
-        } else if (id == R.id.img_copy_out) {
-            ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
+                break;
+            case R.id.img_copy_out:
+                ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
 
-        } else if (id == R.id.image_paste_out) {
-            mOutput.setText(ClipboardUtil.getClipboard(getContext()));
+                break;
+            case R.id.image_paste_out:
+                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
 
-        } else if (id == R.id.img_share) {
-            shareText(mInput);
+                break;
+            case R.id.img_share:
+                shareText(mInput);
 
-        } else if (id == R.id.img_share_out) {
-            shareText(mOutput);
+                break;
+            case R.id.img_share_out:
+                shareText(mOutput);
 
-        } else if (id == R.id.img_encode_all) {
-            if (!Premium.isPremium(getContext())) {
-                showDialogUpgrade();
-            } else {
-                Intent intent = new Intent(getContext(), CodecAllActivity.class);
-                intent.setAction(CodecAllActivity.EXTRA_ACTION_ENCODE);
-                intent.putExtra(CodecAllActivity.EXTRA_INPUT, mInput.getText().toString());
-                startActivity(intent);
-            }
-        } else if (id == R.id.img_decode_all) {
-            if (!Premium.isPremium(getContext())) {
-                showDialogUpgrade();
-            } else {
-                Intent intent = new Intent(getContext(), CodecAllActivity.class);
-                intent.setAction(CodecAllActivity.EXTRA_ACTION_DECODE);
-                intent.putExtra(CodecAllActivity.EXTRA_INPUT, mOutput.getText().toString());
-                startActivity(intent);
-            }
+                break;
+            case R.id.img_encode_all:
+                encodeAll();
+                break;
+            case R.id.img_decode_all:
+                decodeAll();
+                break;
+        }
+    }
+
+    private void decodeAll() {
+        if (!Premium.isPremium(getContext())) {
+            showDialogUpgrade();
+        } else {
+            Intent intent = new Intent(getContext(), CodecAllActivity.class);
+            intent.setAction(CodecAllActivity.EXTRA_ACTION_DECODE);
+            intent.putExtra(CodecAllActivity.EXTRA_INPUT, mOutput.getText().toString());
+            startActivity(intent);
+        }
+    }
+
+    private void encodeAll() {
+        if (!Premium.isPremium(getContext())) {
+            showDialogUpgrade();
+        } else {
+            Intent intent = new Intent(getContext(), CodecAllActivity.class);
+            intent.setAction(CodecAllActivity.EXTRA_ACTION_ENCODE);
+            intent.putExtra(CodecAllActivity.EXTRA_INPUT, mInput.getText().toString());
+            startActivity(intent);
         }
     }
 
@@ -188,7 +206,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
 
     @Override
     public void onDestroyView() {
-        save();
+        saveData();
         mInput.removeTextChangedListener(mInputWatcher);
         mOutput.removeTextChangedListener(mOutputWatcher);
         super.onDestroyView();
@@ -211,7 +229,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
     }
 
 
-    public void save() {
+    public void saveData() {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         pref.edit().putString(TAG, mInput.getText().toString()).apply();
     }

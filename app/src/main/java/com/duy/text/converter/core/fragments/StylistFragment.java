@@ -45,8 +45,6 @@ import java.util.ArrayList;
 
 public class StylistFragment extends Fragment implements TextWatcher {
     public static final String KEY = "StylistFragment";
-    private static final String KEY_INPUT = "KEY_INPUT";
-    private static final String KEY_PROCESS_TEXT = "KEY_PROCESS_TEXT";
     private EditText mInput;
     private RecyclerView mListResult;
     private StyleAdapter mAdapter;
