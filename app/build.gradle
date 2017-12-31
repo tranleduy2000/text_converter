@@ -30,10 +30,10 @@ android {
     }
     signingConfigs {
         proRelease {
-//            android.defaultConfig.applicationId "com.duy.text_converter.pro"
+
         }
         freeRelease{
-//            android.defaultConfig.applicationId "duy.com.text_converter"
+       
         }
     }
     flavorDimensions "applicationId"
