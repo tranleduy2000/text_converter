@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2017 by Tran Le Duy
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <string name="ascii">Ascii</string>
+    <string name="binary">Binary</string>
+    <string name="hex">Hex</string>
+    <string name="zalgo_mini">Zalog mini</string>
+    <string name="reverser">Reverser</string>
+    <string name="morse_code">Morse code</string>
+
+    <string-array name="codec_methods">
+        <item>@string/ascii</item>
+        <item>@string/binary</item>
+        <item>@string/hex</item>
+        <item>Octal</item>
+        <item>@string/reverser</item>
+        <item>Upper</item>
+        <item>Lower</item>
+        <item>Upside down</item>
+        <item>Superscript</item>
+        <item>Subscript</item>
+        <item>@string/morse_code</item>
+        <item>@string/zalgo_mini</item>
+        <item>Zalgo normal</item>
+        <item>Zalgo big</item>
+        <item>Base32</item>
+        <item>Base64</item>
+        <item>URL</item>
+        <item>Random Case</item>
+        <item>Caesar offset 1</item>
+        <item>Atbash</item>
+        <item>ROT 13</item>
+        <item>NATO</item>
+    </string-array>
+
+    <string-array name="barcode_format">
+        <item>Aztec 2D</item>
+        <item>CODABAR 1D</item>
+        <item>Code 39 1D</item>
+        <item>Code 93 1D</item>
+        <item>Code 128 1D</item>
+        <item>Data Matrix 2D</item>
+        <item>EAN-8 1D</item>
+        <item>EAN-13 1D</item>
+        <item>ITF 1D</item>
+        <item>MaxiCode 2D</item>
+        <item>PDF417</item>
+        <item>QR Code 2D</item>
+        <item>RSS 14</item>
+        <item>RSS EXPANDED</item>
+        <item>UPC-A 1D</item>
+        <item>UPC-E 1D</item>
+        <item>UPC/EAN extension</item>
+    </string-array>
+
+    <string name="theme_dark">Theme Dark</string>
+    <string-array name="theme_names">
+        <item>@string/theme_dark</item>
+        <!--<item>Theme Dark 1</item>-->
+        <!--<item>Theme Dark 2</item>-->
+        <!--<item>Theme Dark 3</item>-->
+        <!--<item>Theme Dark 4</item>-->
+        <!--<item>Theme Dark 5</item>-->
+        <!--<item>Theme Dark 6</item>-->
+        <item>Theme Light 1</item>
+        <item>Theme Light 2</item>
+        <item>Theme Light 3</item>
+        <item>Theme Light 4</item>
+        <item>Theme Light 5</item>
+        <item>Theme Light 6</item>
+    </string-array>
+</resources>

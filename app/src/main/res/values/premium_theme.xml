@@ -1,0 +1,110 @@
+<resources>
+
+    <style name="AppThemeLight.Dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/light.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
+        <item name="colorAccent">@color/light.colorAccent</item>
+        <item name="android:windowBackground">@color/light.windowBackgroundColor</item>
+
+        <item name="cardBackgroundColor">#FFF</item>
+        <item name="roundBackground">@drawable/bg_edit_text_light</item>
+        <item name="imageTintColor">#000</item>
+        <item name="toolbarTheme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+    </style>
+
+    <style name="AppThemeLight.Theme1">
+        <item name="colorPrimary">@color/themeLight1.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeLight1.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeLight1.colorAccent</item>
+        <item name="android:windowBackground">@color/themeLight1.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeLight.Theme2">
+        <item name="colorPrimary">@color/themeLight2.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeLight2.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeLight2.colorAccent</item>
+        <item name="android:windowBackground">@color/themeLight2.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeLight.Theme3">
+        <item name="colorPrimary">@color/themeLight3.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeLight3.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeLight3.colorAccent</item>
+        <item name="android:windowBackground">@color/themeLight3.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeLight.Theme4">
+        <item name="colorPrimary">@color/themeLight4.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeLight4.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeLight4.colorAccent</item>
+        <item name="android:windowBackground">@color/themeLight4.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeLight.Theme5">
+        <item name="colorPrimary">@color/themeLight5.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeLight5.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeLight5.colorAccent</item>
+        <item name="android:windowBackground">@color/themeLight5.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeLight.Theme6">
+        <item name="colorPrimary">@color/themeLight6.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeLight6.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeLight6.colorAccent</item>
+        <item name="android:windowBackground">@color/themeLight6.windowBackgroundColor</item>
+    </style>
+
+
+    <style name="AppThemeDark.Theme1">
+        <item name="colorPrimary">@color/themeDark1.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeDark1.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeDark1.colorAccent</item>
+        <item name="android:windowBackground">@color/themeDark1.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeDark.Theme2">
+        <item name="colorPrimary">@color/themeDark2.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeDark2.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeDark2.colorAccent</item>
+        <item name="android:windowBackground">@color/themeDark2.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeDark.Theme3">
+        <item name="colorPrimary">@color/themeDark3.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeDark3.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeDark3.colorAccent</item>
+        <item name="android:windowBackground">@color/themeDark3.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeDark.Theme4">
+        <item name="colorPrimary">@color/themeDark4.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeDark4.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeDark4.colorAccent</item>
+        <item name="android:windowBackground">@color/themeDark4.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeDark.Theme5">
+        <item name="colorPrimary">@color/themeDark5.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeDark5.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeDark5.colorAccent</item>
+        <item name="android:windowBackground">@color/themeDark5.windowBackgroundColor</item>
+    </style>
+
+    <style name="AppThemeDark.Theme6">
+        <item name="colorPrimary">@color/themeDark6.colorPrimary</item>
+        <item name="colorPrimaryDark">@color/themeDark6.colorPrimaryDark</item>
+        <item name="colorAccent">@color/themeDark6.colorAccent</item>
+        <item name="android:windowBackground">@color/themeDark6.windowBackgroundColor</item>
+    </style>
+</resources>
