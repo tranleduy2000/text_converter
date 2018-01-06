@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.stylish;
+package com.duy.text.converter.core.adapters;
 
 /**
- * Created by DUy on 07-Feb-17.
+ * Created by Duy on 1/7/2018.
  */
-public interface Style {
-    String generate(String input);
 
+public interface ItemTouchHelperAdapter {
+    void onItemMove(int fromPosition, int toPosition);
 
+    void onItemMoved(int fromPos, int toPos);
 }

@@ -50,4 +50,9 @@ public class RightEffect implements Style {
             return "";
         }
     }
+
+    @Override
+    public int hashCode() {
+        return character.hashCode();
+    }
 }

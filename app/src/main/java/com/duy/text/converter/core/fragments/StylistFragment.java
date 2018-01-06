@@ -25,6 +25,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.adapters.ItemTouchHelperCallback;
 import com.duy.text.converter.core.adapters.StyleAdapter;
 import com.duy.text.converter.core.stylish.StylistGenerator;
 
@@ -82,16 +84,19 @@ public class StylistFragment extends Fragment implements TextWatcher {
         mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
         mListResult.setAdapter(mAdapter);
 
+        ItemTouchHelperCallback callback = new ItemTouchHelperCallback(mAdapter);
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(mListResult);
+
         mInput.addTextChangedListener(this);
 
         restore();
     }
 
 
-
     public void convert(String inp) {
         if (inp.isEmpty()) inp = "Type something";
-        ArrayList<String> translate = new StylistGenerator().generate(inp);
+        ArrayList<String> translate = new StylistGenerator(getContext()).generate(inp);
         mAdapter.setData(translate);
     }
 
@@ -108,6 +113,7 @@ public class StylistFragment extends Fragment implements TextWatcher {
     public void afterTextChanged(Editable s) {
 
     }
+
     private void restore() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mInput.setText(sharedPreferences.getString(KEY + 1, ""));

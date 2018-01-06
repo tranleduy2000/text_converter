@@ -25,7 +25,7 @@ import java.util.ArrayList;
  */
 public class StylistGeneratorTest extends TestCase {
     public void testGenerate() throws Exception {
-        ArrayList<String> generate = new StylistGenerator().generate("package com.duy.sharedcode.stylist;");
+        ArrayList<String> generate = new StylistGenerator().generate( "package com.duy.sharedcode.stylist;");
         for (String s : generate) {
             System.out.println(generate);
         }

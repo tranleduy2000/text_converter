@@ -20,6 +20,8 @@ import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.stylish.Style;
 
+import java.util.Arrays;
+
 /**
  * Created by Duy on 13-Jul-17.
  */
@@ -62,5 +64,10 @@ public class BlueEffect implements Style {
             }
         }
         return result.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(EFFECTS);
     }
 }

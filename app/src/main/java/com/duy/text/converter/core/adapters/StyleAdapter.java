@@ -24,18 +24,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.duy.text.converter.R;
+import com.duy.text.converter.core.stylish.StylistGenerator;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
-import com.duy.text.converter.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
-public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> {
+public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder>
+        implements ItemTouchHelperAdapter {
+    private static final String TAG = "StyleAdapter";
     private Context context;
     private int layout;
     private LayoutInflater inflater;
-    private ArrayList<String> mList = new ArrayList<>();
+    private ArrayList<String> mItems = new ArrayList<>();
 
     public StyleAdapter(Context context, @LayoutRes int layout) {
         this.inflater = LayoutInflater.from(context);
@@ -44,13 +48,13 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
     }
 
     public void add(String arg) {
-        mList.add(arg);
-        notifyItemInserted(mList.size() - 1);
+        mItems.add(arg);
+        notifyItemInserted(mItems.size() - 1);
     }
 
     public void setData(ArrayList<String> list) {
-        mList.clear();
-        mList.addAll(list);
+        mItems.clear();
+        mItems.addAll(list);
         notifyDataSetChanged();
     }
 
@@ -61,8 +65,8 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final String str = mList.get(position);
-        holder.textView.setText(mList.get(position));
+        final String str = mItems.get(position);
+        holder.textView.setText(mItems.get(position));
         if (holder.imgShare != null) {
             holder.imgShare.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -91,8 +95,34 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mItems.size();
     }
+
+    public void onItemMove(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mItems, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mItems, i, i - 1);
+            }
+        }
+        notifyItemMoved(fromPosition, toPosition);
+
+    }
+
+    @Override
+    public void onItemMoved(int fromPos, int toPos) {
+        swapAndSaveStylePosition(fromPos, toPos);
+    }
+
+
+    // TODO: 1/7/2018 improve
+    private void swapAndSaveStylePosition(int fromPosition, int toPosition) {
+        StylistGenerator.swapPosition(context, fromPosition, toPosition);
+    }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;

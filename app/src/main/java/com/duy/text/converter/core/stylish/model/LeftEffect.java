@@ -47,4 +47,9 @@ public class LeftEffect implements Style {
         result.append(left);
         return result.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return left.hashCode();
+    }
 }

@@ -81,7 +81,7 @@ public class StylistProcessTextFragment extends Fragment {
 
     public void convert(String inp) {
         if (inp.isEmpty()) inp = "Type something";
-        ArrayList<String> translate = new StylistGenerator().generate(inp);
+        ArrayList<String> translate = new StylistGenerator(getContext()).generate(inp);
         mAdapter.addAll(translate);
     }
 

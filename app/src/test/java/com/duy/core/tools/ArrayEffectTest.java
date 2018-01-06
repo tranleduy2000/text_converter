@@ -32,7 +32,7 @@ public class ArrayEffectTest extends TestCase {
 
     public void test1() throws IOException {
         StylistGenerator effectEncoder = new StylistGenerator();
-        ArrayList<String> generate = effectEncoder.generate("the quick brown fox jumps over the lazy dog");
+        ArrayList<String> generate = effectEncoder.generate( "the quick brown fox jumps over the lazy dog");
 
         final File fileDir = new File("C:\\github\\text_converter\\sharedcode\\src\\test\\java\\com\\d" +
                 "uy\\sharedcode\\tools", "test1.txt");
@@ -47,7 +47,7 @@ public class ArrayEffectTest extends TestCase {
 
     public void testUnicode() throws IOException {
         StylistGenerator effectEncoder = new StylistGenerator();
-        ArrayList<String> generate = effectEncoder.generate("Xin chào tất cả các bạn");
+        ArrayList<String> generate = effectEncoder.generate( "Xin chào tất cả các bạn");
 
         final File fileDir = new File("C:\\github\\text_converter\\sharedcode\\src\\test\\java\\com\\d" +
                 "uy\\sharedcode\\tools", "testUnicode.txt");

@@ -46,4 +46,12 @@ public class LeftRightStyle implements Style {
         }
         return result.toString();
     }
+
+
+    @Override
+    public int hashCode() {
+        int result = left.hashCode();
+        result = 31 * result + right.hashCode();
+        return result;
+    }
 }

@@ -75,12 +75,10 @@
                 android:id="@+id/txt_result"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:clickable="true"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textIsSelectable="true"
                 tools:text="The quick brown fox jumps over the lazy dog" />
         </HorizontalScrollView>
 

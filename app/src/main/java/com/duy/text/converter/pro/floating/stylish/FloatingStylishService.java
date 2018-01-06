@@ -87,7 +87,7 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
     public void convert() {
         String inp = mInput.getText().toString();
         if (inp.isEmpty()) inp = mInput.getHint().toString();
-        ArrayList<String> translate = new StylistGenerator().generate(inp);
+        ArrayList<String> translate = new StylistGenerator(getContext()).generate( inp);
         mAdapter.setData(translate);
     }
 
