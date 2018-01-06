@@ -40,6 +40,7 @@ import com.duy.common.utils.ShareUtil;
 import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.PagerSectionAdapter;
+import com.duy.text.converter.core.codec.BinaryCodec;
 import com.duy.text.converter.core.fragments.AdsFragment;
 import com.duy.text.converter.core.help.HelpDialog;
 import com.duy.text.converter.pro.PagerSectionAdapterPro;
@@ -82,6 +83,18 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         setupToolbar();
         showDialogRate();
         checkLicense();
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 1; i <= 100 * 1024; i++) {
+            builder.append(" ");
+        }
+        System.out.println("string length " + builder.length());
+        BinaryCodec codec = new BinaryCodec();
+        String encoded = codec.encode(builder.toString());
+
+        System.out.println("encode = " + encoded);
+
+        ShareUtil.shareText(this, encoded);
     }
 
     private void checkLicense() {
@@ -229,7 +242,7 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 }
                 break;
             case InAppPurchaseHelper.RC_REQUEST_UPGRADE:
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     recreate();
                 }
                 break;

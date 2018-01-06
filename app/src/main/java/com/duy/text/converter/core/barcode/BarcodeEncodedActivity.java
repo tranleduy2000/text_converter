@@ -21,10 +21,12 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.duy.common.ads.AdsManager;
 import com.duy.text.converter.core.activities.BaseActivity;
 import com.duy.text.converter.R;
+import com.duy.text.converter.pro.license.Premium;
 
 /**
  * Created by Duy on 14-Aug-17.
@@ -52,7 +54,12 @@ public class BarcodeEncodedActivity extends BaseActivity {
         viewPager.setCurrentItem(8); //barcode
         ((TabLayout) findViewById(R.id.tab_layout)).setupWithViewPager(viewPager);
 
-        AdsManager.loadBannerAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
+        if (Premium.isPremium(this)){
+            View containerAd = findViewById(R.id.ads_wrapper);
+            if (containerAd != null) containerAd.setVisibility(View.GONE);
+        }else {
+            AdsManager.loadBannerAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
+        }
     }
 
 

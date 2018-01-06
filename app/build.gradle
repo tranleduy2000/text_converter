@@ -27,6 +27,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 386
         versionName "3.8.6"
+
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
     signingConfigs {
         proRelease {
