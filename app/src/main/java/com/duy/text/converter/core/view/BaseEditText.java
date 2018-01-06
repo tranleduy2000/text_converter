@@ -61,4 +61,5 @@ public class BaseEditText extends android.support.v7.widget.AppCompatEditText {
             Toast.makeText(getContext(), R.string.out_of_memory, Toast.LENGTH_SHORT).show();
         }
     }
+
 }
