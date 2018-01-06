@@ -34,17 +34,30 @@ public class BinaryCodec extends CodecImpl {
         char[] bytes = text.toCharArray();
         setMax(bytes);
         StringBuilder binary = new StringBuilder();
-        for (char c : bytes) {
+        for (int i = 0; i < bytes.length; i++) {
+            char c = bytes[i];
             try {
-                String string = Integer.toBinaryString(c);
-                binary.append(string);
-                binary.append(' ');
+                String bin = Integer.toBinaryString(c);
+                bin = appendZero(bin);
+                binary.append(bin);
+                if (i != bytes.length - 1) {
+                    binary.append(' ');
+                }
                 incConfident();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return binary.toString();
+    }
+
+    private String appendZero(String binary) {
+        int length = binary.length();
+        int count = 8;
+        while (count < length) count += 8;
+        StringBuilder binBuilder = new StringBuilder(binary);
+        while (binBuilder.length() < count) binBuilder.insert(0, "0");
+        return binBuilder.toString();
     }
 
 
