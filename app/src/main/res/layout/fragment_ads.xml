@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             app:adSize="MEDIUM_RECTANGLE"
-            app:adUnitId="@string/ad_unit_id_main">
+            app:adUnitId="@string/ad_unit_id_banner">
 
         </com.google.android.gms.ads.AdView>
 

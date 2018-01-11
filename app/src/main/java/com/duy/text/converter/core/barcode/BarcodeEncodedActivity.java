@@ -58,7 +58,7 @@ public class BarcodeEncodedActivity extends BaseActivity {
             View containerAd = findViewById(R.id.ads_wrapper);
             if (containerAd != null) containerAd.setVisibility(View.GONE);
         }else {
-            AdsManager.loadBannerAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
+            AdsManager.loadAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
         }
     }
 

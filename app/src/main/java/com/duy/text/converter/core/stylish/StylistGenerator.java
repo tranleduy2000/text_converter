@@ -55,7 +55,11 @@ public class StylistGenerator {
             //get data from SharedPreferences
             SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
             for (int i = 0; i < mEncoders.size(); i++) {
-                int newPos = pref.getInt(i + "", i);
+                int newPos = pref.getInt(i + "", -1);
+                if (newPos == -1) {
+                    pref.edit().putInt(i + "", i).apply();
+                    newPos = i;
+                }
                 position.put(mEncoders.get(i), newPos);
             }
 
