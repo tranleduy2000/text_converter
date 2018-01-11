@@ -23,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -34,8 +35,8 @@ import android.widget.EditText;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
 import com.duy.text.converter.core.stylish.DecorateTool;
+import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,6 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     private static final String TAG = "DecorateFragment";
 
     private View mRootView;
-    private Context mContext;
     private EditText mInput;
     private RecyclerView mListResult;
     private StyleAdapter mAdapter;
@@ -65,7 +65,6 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mContext = context;
     }
 
     @Nullable
@@ -80,13 +79,13 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mInput = mRootView.findViewById(R.id.edit_input);
-        mListResult = mRootView.findViewById(R.id.recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        mListResult.setLayoutManager(linearLayoutManager);
-        mListResult.setHasFixedSize(true);
-
         mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
+
+        mListResult = mRootView.findViewById(R.id.recycler_view);
+        mListResult.setLayoutManager(new LinearLayoutManager(getContext()));
+        mListResult.setHasFixedSize(true);
         mListResult.setAdapter(mAdapter);
+        mListResult.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
         mInput.addTextChangedListener(this);
     }
@@ -113,12 +112,12 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     }
 
     public void saveData() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         sharedPreferences.edit().putString(KEY + 1, mInput.getText().toString()).apply();
     }
 
     public void restore() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         mInput.setText(sharedPreferences.getString(KEY + 1, ""));
     }
 
