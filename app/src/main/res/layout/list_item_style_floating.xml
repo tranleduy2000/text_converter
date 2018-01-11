@@ -14,43 +14,43 @@
   ~ limitations under the License.
   -->
 
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp">
 
 
-    <ImageButton
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/img_copy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
-        android:background="?android:attr/selectableItemBackground"
+        android:background="?selectableBackground"
         android:contentDescription="@string/copy"
-        android:padding="4dp"
+        android:padding="8dp"
         android:src="@drawable/ic_content_copy_white_24dp"
         android:tint="?imageTintColor" />
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+
+    <com.duy.text.converter.core.view.BaseTextView
+        android:id="@+id/txt_result"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:fillViewport="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:scrollbarSize="4dp">
-
-        <com.duy.text.converter.core.view.BaseTextView
-            android:id="@+id/txt_result"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:gravity="center"
-            android:maxLines="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textIsSelectable="true"
-            tools:text="The quick brown fox jumps over the lazy dog" />
-    </HorizontalScrollView>
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:foreground="?selectableBackground"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="?android:textColorPrimary"
+        tools:text="The quick brown fox jumps over the lazy dog" />
 
 </LinearLayout>

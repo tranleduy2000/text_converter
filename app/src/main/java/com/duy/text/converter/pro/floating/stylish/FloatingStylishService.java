@@ -21,6 +21,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -30,9 +31,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
-import com.duy.text.converter.core.stylish.StylistGenerator;
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.stylish.StylistGenerator;
+import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
 import com.duy.text.converter.pro.floating.FloatingView;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import java.util.ArrayList;
 
 public class FloatingStylishService extends FloatingView implements TextWatcher {
 
-
+    private StylistGenerator mGenerator;
     private EditText mInput;
     private RecyclerView mListResult;
     private StyleAdapter mAdapter;
@@ -57,13 +58,17 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
     @NonNull
     @Override
     protected View onCreateView(@NonNull ViewGroup parent) {
+        mGenerator = new StylistGenerator(getContext());
+
         View view = LayoutInflater.from(getContext()).inflate(R.layout.floating_stylish, parent, false);
         mInput = view.findViewById(R.id.edit_input);
+
+        mAdapter = new StyleAdapter(getContext(), R.layout.list_item_style_floating);
+
         mListResult = view.findViewById(R.id.recycler_view);
         mListResult.setLayoutManager(new LinearLayoutManager(getContext()));
         mListResult.setHasFixedSize(true);
-
-        mAdapter = new StyleAdapter(getContext(), R.layout.list_item_style_floating);
+        mListResult.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         mListResult.setAdapter(mAdapter);
 
         mInput.addTextChangedListener(this);
@@ -87,7 +92,7 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
     public void convert() {
         String inp = mInput.getText().toString();
         if (inp.isEmpty()) inp = mInput.getHint().toString();
-        ArrayList<String> translate = new StylistGenerator(getContext()).generate( inp);
+        ArrayList<String> translate = mGenerator.generate(inp);
         mAdapter.setData(translate);
     }
 
