@@ -25,7 +25,7 @@ import com.duy.text.converter.core.fragments.BarCodeFragment;
 import com.duy.text.converter.core.fragments.CodecFragment;
 import com.duy.text.converter.core.fragments.DecorateFragment;
 import com.duy.text.converter.core.fragments.HashFragment;
-import com.duy.text.converter.core.fragments.StylistFragment;
+import com.duy.text.converter.core.stylish.fragments.StylistFragment;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.fragment.CodecFileFragment;
 

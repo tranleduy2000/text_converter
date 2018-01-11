@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.fragments;
+package com.duy.text.converter.core.stylish.fragments;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -35,7 +35,7 @@ import android.widget.EditText;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.adapters.ItemTouchHelperCallback;
-import com.duy.text.converter.core.adapters.StyleAdapter;
+import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
 import com.duy.text.converter.core.stylish.StylistGenerator;
 
 import java.util.ArrayList;

@@ -45,7 +45,6 @@ public class StylistGenerator {
         long time = System.currentTimeMillis();
         mEncoders = StylistFactory.makeStyle();
         if (context != null) {
-
             //init position, from 0 to mEncoders.size() - 1
             final HashMap<Style, Integer> position = new HashMap<>();
             for (int i = 0; i < mEncoders.size(); i++) {

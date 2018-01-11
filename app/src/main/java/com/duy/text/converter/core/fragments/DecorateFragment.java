@@ -34,7 +34,7 @@ import android.widget.EditText;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.adapters.StyleAdapter;
+import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
 import com.duy.text.converter.core.stylish.DecorateTool;
 
 import java.util.ArrayList;
