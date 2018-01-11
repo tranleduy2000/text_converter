@@ -24,9 +24,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.adapters.ItemTouchHelperAdapter;
-import com.duy.text.converter.core.stylish.StylistGenerator;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 
@@ -41,11 +40,16 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder>
     private int layout;
     private LayoutInflater inflater;
     private ArrayList<String> mItems = new ArrayList<>();
+    private OnSwapStyleListener mOnSwapStyleListener;
 
     public StyleAdapter(Context context, @LayoutRes int layout) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
         this.layout = layout;
+    }
+
+    public void setOnSwapStyleListener(OnSwapStyleListener onSwapStyleListener) {
+        this.mOnSwapStyleListener = onSwapStyleListener;
     }
 
     public void add(String arg) {
@@ -99,7 +103,10 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder>
         return mItems.size();
     }
 
+    @Override
     public void onItemMove(int fromPosition, int toPosition) {
+        if (DLog.DEBUG)
+            DLog.d(TAG, "onItemMove() called with: fromPosition = [" + fromPosition + "], toPosition = [" + toPosition + "]");
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
                 Collections.swap(mItems, i, i + 1);
@@ -110,18 +117,15 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder>
             }
         }
         notifyItemMoved(fromPosition, toPosition);
-
     }
 
     @Override
     public void onItemMoved(int fromPos, int toPos) {
-        swapAndSaveStylePosition(fromPos, toPos);
-    }
-
-
-    // TODO: 1/7/2018 improve
-    private void swapAndSaveStylePosition(int fromPosition, int toPosition) {
-        StylistGenerator.swapPosition(context, fromPosition, toPosition);
+        if (DLog.DEBUG)
+            DLog.d(TAG, "onItemMoved() called with: fromPos = [" + fromPos + "], toPos = [" + toPos + "]");
+        if (mOnSwapStyleListener != null) {
+            mOnSwapStyleListener.onSwap(fromPos, toPos);
+        }
     }
 
 

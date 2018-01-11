@@ -34,9 +34,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.adapters.ItemTouchHelperCallback;
-import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
 import com.duy.text.converter.core.stylish.StylistGenerator;
+import com.duy.text.converter.core.stylish.adapter.ItemTouchHelperCallback;
+import com.duy.text.converter.core.stylish.adapter.OnSwapStyleListener;
+import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public class StylistFragment extends Fragment implements TextWatcher {
     private EditText mInput;
     private RecyclerView mListResult;
     private StyleAdapter mAdapter;
+    private StylistGenerator mGenerator;
 
     public static StylistFragment newInstance() {
         StylistFragment fragment = new StylistFragment();
@@ -57,7 +59,6 @@ public class StylistFragment extends Fragment implements TextWatcher {
         fragment.setArguments(args);
         return fragment;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -74,14 +75,22 @@ public class StylistFragment extends Fragment implements TextWatcher {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mGenerator = new StylistGenerator(getContext());
 
         mInput = view.findViewById(R.id.edit_input);
+
+
+        mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
+        mAdapter.setOnSwapStyleListener(new OnSwapStyleListener() {
+            @Override
+            public void onSwap(int fromPosition, int toPosition) {
+                mGenerator.swapPosition(fromPosition, toPosition);
+            }
+        });
 
         mListResult = view.findViewById(R.id.recycler_view);
         mListResult.setLayoutManager(new LinearLayoutManager(getContext()));
         mListResult.setHasFixedSize(true);
-
-        mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
         mListResult.setAdapter(mAdapter);
 
         ItemTouchHelperCallback callback = new ItemTouchHelperCallback(mAdapter);
@@ -93,10 +102,9 @@ public class StylistFragment extends Fragment implements TextWatcher {
         restore();
     }
 
-
     public void convert(String inp) {
         if (inp.isEmpty()) inp = "Type something";
-        ArrayList<String> translate = new StylistGenerator(getContext()).generate(inp);
+        ArrayList<String> translate = mGenerator.generate(inp);
         mAdapter.setData(translate);
     }
 

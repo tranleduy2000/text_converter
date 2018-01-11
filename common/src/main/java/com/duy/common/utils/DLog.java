@@ -27,16 +27,15 @@ import com.duy.common.BuildConfig;
  * Setup Crashlytics https://firebase.google.com/docs/crashlytics/get-started?authuser=0
  */
 public class DLog {
+    /**
+     * Show log
+     */
+    public static final boolean DEBUG = BuildConfig.DEBUG;
     private static final String TAG = "DLog";
     /**
      * Android environment
      */
     public static boolean ANDROID = true;
-
-    /**
-     * Show log
-     */
-    private static boolean DEBUG = BuildConfig.DEBUG;
 
     /**
      * Debug log

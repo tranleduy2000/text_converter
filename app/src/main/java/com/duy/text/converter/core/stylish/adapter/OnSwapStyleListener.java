@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.adapters;
+package com.duy.text.converter.core.stylish.adapter;
 
 /**
- * Created by Duy on 1/7/2018.
+ * Created by Duy on 1/11/2018.
  */
 
-public interface ItemTouchHelperAdapter {
-    void onItemMove(int fromPosition, int toPosition);
-
-    void onItemMoved(int fromPos, int toPos);
+public interface OnSwapStyleListener {
+    void onSwap(int fromPosition, int toPosition);
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.adapters;
+package com.duy.text.converter.core.stylish.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
