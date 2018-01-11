@@ -23,6 +23,7 @@ import com.duy.text.converter.core.stylish.model.LeftEffect;
 import com.duy.text.converter.core.stylish.model.LeftRightStyle;
 import com.duy.text.converter.core.stylish.model.ReplaceEffect;
 import com.duy.text.converter.core.stylish.model.RightEffect;
+import com.duy.text.converter.core.stylish.model.Style;
 
 import java.util.ArrayList;
 

@@ -20,6 +20,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 
+import com.duy.text.converter.core.stylish.model.Style;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;

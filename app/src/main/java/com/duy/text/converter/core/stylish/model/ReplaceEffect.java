@@ -16,8 +16,6 @@
 
 package com.duy.text.converter.core.stylish.model;
 
-import com.duy.text.converter.core.stylish.Style;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

@@ -17,6 +17,7 @@
 package com.duy.text.converter.core.stylish;
 
 import com.duy.text.converter.core.stylish.model.ReplaceEffect;
+import com.duy.text.converter.core.stylish.model.Style;
 
 import junit.framework.TestCase;
 
