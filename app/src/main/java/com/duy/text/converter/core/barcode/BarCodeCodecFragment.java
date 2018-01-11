@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.fragments;
+package com.duy.text.converter.core.barcode;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -42,7 +42,6 @@ import android.widget.Toast;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.barcode.BarcodeEncodedActivity;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.core.view.BaseEditText;
@@ -64,7 +63,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by Duy on 14-Aug-17.
  */
 
-public class BarCodeFragment extends Fragment implements View.OnClickListener {
+public class BarCodeCodecFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "BarCodeFragment";
     private static final String KEY_TEXT = "KEY_TEXT";
     private static final int REQUEST_PICK_IMAGE = 1010;
@@ -72,11 +71,11 @@ public class BarCodeFragment extends Fragment implements View.OnClickListener {
     private BaseEditText mInput;
     private DecodeImageTask mDecodeImageTask;
 
-    public static BarCodeFragment newInstance() {
+    public static BarCodeCodecFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        BarCodeFragment fragment = new BarCodeFragment();
+        BarCodeCodecFragment fragment = new BarCodeCodecFragment();
         fragment.setArguments(args);
         return fragment;
     }
