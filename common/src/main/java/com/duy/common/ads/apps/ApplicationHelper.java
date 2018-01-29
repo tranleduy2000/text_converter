@@ -60,6 +60,8 @@ public class ApplicationHelper {
 
     @NonNull
     private static ArrayList<ApplicationItem> loadData(Context context, boolean includeInstalledApp) {
+        if (DLog.DEBUG)
+            DLog.d(TAG, "loadData() called with: context = [" + context + "], includeInstalledApp = [" + includeInstalledApp + "]");
         includeInstalledApp |= BuildConfig.DEBUG;
         ArrayList<ApplicationItem> items = new ArrayList<>();
         try {
