@@ -26,9 +26,6 @@
     <string name="hint_input_here">Enter here for encode…</string>
     <string name="hint_type_something">Type something</string>
 
-    <string name="action_rate">Write review in PlayStore</string>
-    <string name="action_setting">Setting</string>
-    <string name="action_upgrade">Upgrade to pro version</string>
     <string name="key">Key</string>
 
     <string name="encode_it">Encode It!</string>
@@ -63,10 +60,8 @@
     <string name="floating_notification_description">Tap to open</string>
     <string name="open_floating_codec">Open floating codec</string>
     <string name="open_floating_stylish">Open floating stylish</string>
-    <string name="action_open_floating_codec">Floating codec</string>
-    <string name="action_floating_stylish">Floating stylish</string>
-    <string name="floating_window">Floating window</string>
-    <string name="open_codec_desc">Click to open floating codec</string>
+    <string name="pref_title_floating_window">Floating window</string>
+    <string name="pref_desc_open_codec">Click to open floating codec</string>
     <string name="open_floating_stylish_desc">Click to open floating stylish</string>
     <string name="notification">Notification</string>
     <string name="encode_notifi">Encode notification</string>
@@ -91,13 +86,21 @@
     <string name="chance_remaining">This feature fully only available in PRO version. Click here to upgrade. You have %o chance remaining.</string>
     <string name="please_upgrade">Please upgrade to pro version</string>
     <string name="recommend_application">Recommend application</string>
-    <string name="action_share_this_app">Share this app</string>
-    <string name="action_how_to_use">How to use</string>
     <string name="out_of_memory">Out of memory</string>
+
+    <string name="action_rate">Write review in PlayStore</string>
+    <string name="action_setting">Setting</string>
+    <string name="action_upgrade">Upgrade to pro version</string>
+    <string name="action_open_floating_codec">Floating codec</string>
+    <string name="action_floating_stylish">Floating stylish</string>
+    <string name="action_share">Share this app</string>
+    <string name="action_help">How to use</string>
 
     <string name="pref_title_theme">Theme</string>
     <string name="pref_title_user_interface">User interface</string>
     <string name="pref_title_process_text">Process text menu</string>
 
     <string name="pref_desc_show_process_text_menu">Show menu when select text</string>
+    <string name="pref_user_interface">pref_user_interface</string>
+    <string name="pref_floating_window">pref_floating_window</string>
 </resources>

@@ -26,7 +26,7 @@
     <item
         android:id="@+id/action_how_to_use"
         android:icon="@drawable/ic_help_white_24dp"
-        android:title="@string/action_how_to_use"
+        android:title="@string/action_help"
         app:showAsAction="ifRoom" />
 
     <item
@@ -37,7 +37,7 @@
     <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_share_white_24dp"
-        android:title="@string/action_share_this_app" />
+        android:title="@string/action_share" />
     <item
         android:id="@+id/action_open_codec"
         android:title="@string/action_open_floating_codec"

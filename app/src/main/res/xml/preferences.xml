@@ -16,7 +16,7 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
-        android:key="pref_user_interface"
+        android:key="@string/pref_user_interface"
         android:title="@string/pref_title_user_interface">
 
         <ListPreference
@@ -36,11 +36,11 @@
 
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="pref_floating_window"
-        android:title="@string/floating_window">
+        android:key="@string/pref_floating_window"
+        android:title="@string/pref_title_floating_window">
         <Preference
             android:key="open_floating_codec"
-            android:summary="@string/open_codec_desc"
+            android:summary="@string/pref_desc_open_codec"
             android:title="@string/action_open_floating_codec" />
 
         <Preference
