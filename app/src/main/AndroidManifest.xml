@@ -39,10 +39,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.application.shortcuts"
-                android:resource="@xml/shortcuts" />
         </activity>
 
         <activity android:name=".core.barcode.BarcodeEncodedActivity" />
