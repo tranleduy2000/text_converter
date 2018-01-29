@@ -17,15 +17,21 @@
 package com.duy.text.converter.pro;
 
 import android.app.FragmentTransaction;
+import android.content.ComponentName;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.BaseActivity;
+import com.duy.text.converter.pro.menu.DecodeAllProcessTextActivity;
+import com.duy.text.converter.pro.menu.EncodeAllProcessTextActivity;
+import com.duy.text.converter.pro.menu.StylishProcessTextActivity;
 import com.duy.text.converter.pro.notification.SettingFragment;
 import com.duy.text.converter.pro.notification.StyleNotificationManager;
 
@@ -34,6 +40,8 @@ import com.duy.text.converter.pro.notification.StyleNotificationManager;
  */
 
 public class SettingActivity extends BaseActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+    private static final String TAG = "SettingActivity";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,7 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
         setTitle(R.string.action_setting);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -60,13 +69,43 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        super.onSharedPreferenceChanged(sharedPreferences, s);
-        if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_encode_notification))) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        super.onSharedPreferenceChanged(sharedPreferences, key);
+        if (key.equalsIgnoreCase(getString(R.string.pref_key_enable_encode_notification))) {
             StyleNotificationManager.showNotificationEncodeIfNeed(this);
-        } else if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_decode_notification))) {
+        } else if (key.equalsIgnoreCase(getString(R.string.pref_key_enable_decode_notification))) {
             StyleNotificationManager.showNotificationDecodeIfNeed(this);
-        } else if (s.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
+        } else if (key.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
+        } else if (key.equals(getString(R.string.pref_key_enable_progress_text))) {
+            changeModeProcessTextMenu(sharedPreferences, key);
+        }
+    }
+
+    private void changeModeProcessTextMenu(SharedPreferences pref, String key) {
+        if (DLog.DEBUG)
+            DLog.d(TAG, "changeModeProcessTextMenu() called with: pref = [" + pref + "], key = [" + key + "]");
+        boolean show = pref.getBoolean(key, true);
+        final String[] classes = new String[]{
+                DecodeAllProcessTextActivity.class.getName(),
+                EncodeAllProcessTextActivity.class.getName(),
+                StylishProcessTextActivity.class.getName()};
+        final PackageManager pm = getApplicationContext().getPackageManager();
+        if (show) {
+            for (String activityClass : classes) {
+                ComponentName compName = new ComponentName(getPackageName(), activityClass);
+                pm.setComponentEnabledSetting(
+                        compName,
+                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        PackageManager.DONT_KILL_APP);
+            }
+        } else {
+            for (String activityClass : classes) {
+                ComponentName compName = new ComponentName(getPackageName(), activityClass);
+                pm.setComponentEnabledSetting(
+                        compName,
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                        PackageManager.DONT_KILL_APP);
+            }
         }
     }
 

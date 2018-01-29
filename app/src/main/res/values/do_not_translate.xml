@@ -18,10 +18,8 @@
 
     <string name="pref_key_enable_encode_notification" translatable="false">pref_encode_notification</string>
     <string name="pref_key_enable_decode_notification" translatable="false">pref_decode_notification</string>
-    <string name="pref_key_floating_window" translatable="false">pref_key_floating_window</string>
     <string name="pref_key_theme" translatable="false">pref_key_theme</string>
     <string name="pref_key_encode_menu" translatable="false">pref_key_encode_menu</string>
-    <string name="pref_key_decode_notification" translatable="false">pref_decode_notification</string>
     <string name="pref_key_enable_progress_text" translatable="false">pref_key_enable_progress_text</string>
     <string name="pref_key_user_interface" translatable="false">pref_user_interface</string>
     <string name="pref_key_category_floating_window" translatable="false">pref_key_category_floating_window</string>

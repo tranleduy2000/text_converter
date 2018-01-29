@@ -66,45 +66,4 @@
     </style>
 
 
-    <style name="AppThemeDark.Theme1">
-        <item name="colorPrimary">@color/themeDark1.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/themeDark1.colorPrimaryDark</item>
-        <item name="colorAccent">@color/themeDark1.colorAccent</item>
-        <item name="android:windowBackground">@color/themeDark1.windowBackgroundColor</item>
-    </style>
-
-    <style name="AppThemeDark.Theme2">
-        <item name="colorPrimary">@color/themeDark2.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/themeDark2.colorPrimaryDark</item>
-        <item name="colorAccent">@color/themeDark2.colorAccent</item>
-        <item name="android:windowBackground">@color/themeDark2.windowBackgroundColor</item>
-    </style>
-
-    <style name="AppThemeDark.Theme3">
-        <item name="colorPrimary">@color/themeDark3.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/themeDark3.colorPrimaryDark</item>
-        <item name="colorAccent">@color/themeDark3.colorAccent</item>
-        <item name="android:windowBackground">@color/themeDark3.windowBackgroundColor</item>
-    </style>
-
-    <style name="AppThemeDark.Theme4">
-        <item name="colorPrimary">@color/themeDark4.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/themeDark4.colorPrimaryDark</item>
-        <item name="colorAccent">@color/themeDark4.colorAccent</item>
-        <item name="android:windowBackground">@color/themeDark4.windowBackgroundColor</item>
-    </style>
-
-    <style name="AppThemeDark.Theme5">
-        <item name="colorPrimary">@color/themeDark5.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/themeDark5.colorPrimaryDark</item>
-        <item name="colorAccent">@color/themeDark5.colorAccent</item>
-        <item name="android:windowBackground">@color/themeDark5.windowBackgroundColor</item>
-    </style>
-
-    <style name="AppThemeDark.Theme6">
-        <item name="colorPrimary">@color/themeDark6.colorPrimary</item>
-        <item name="colorPrimaryDark">@color/themeDark6.colorPrimaryDark</item>
-        <item name="colorAccent">@color/themeDark6.colorAccent</item>
-        <item name="android:windowBackground">@color/themeDark6.windowBackgroundColor</item>
-    </style>
 </resources>
