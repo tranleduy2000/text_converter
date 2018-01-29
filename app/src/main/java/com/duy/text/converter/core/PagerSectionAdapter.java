@@ -34,7 +34,7 @@ import com.duy.text.converter.core.stylish.fragments.StylistFragment;
  * Created by DUy on 06-Feb-17.
  */
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 5;
+    private static final int COUNT = 6;
     private Context context;
     private String init;
 
