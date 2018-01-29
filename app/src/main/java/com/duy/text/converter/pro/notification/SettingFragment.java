@@ -63,8 +63,8 @@ public class SettingFragment extends PreferenceFragment {
 
     private void disableView() {
         if (!Premium.isPremium(getActivity())) {
-            findPreference("pref_user_interface").setEnabled(false);
-            findPreference("pref_floating_window").setEnabled(false);
+            findPreference(getString(R.string.pref_key_theme)).setEnabled(false);
+            findPreference(getString(R.string.pref_key_category_floating_window)).setEnabled(false);
             findPreference(getString(R.string.pref_key_enable_encode_notification)).setEnabled(false);
             findPreference(getString(R.string.pref_key_enable_decode_notification)).setEnabled(false);
         }

@@ -101,6 +101,5 @@
     <string name="pref_title_process_text">Process text menu</string>
 
     <string name="pref_desc_show_process_text_menu">Show menu when select text</string>
-    <string name="pref_user_interface">pref_user_interface</string>
-    <string name="pref_floating_window">pref_floating_window</string>
+
 </resources>
