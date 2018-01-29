@@ -17,16 +17,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
         android:key="pref_user_interface"
-        android:title="@string/user_interface">
+        android:title="@string/pref_title_user_interface">
 
         <ListPreference
             android:defaultValue="@string/theme_dark"
             android:entries="@array/theme_names"
             android:entryValues="@array/theme_names"
             android:key="@string/pref_key_theme"
-            android:title="@string/theme">
+            android:title="@string/pref_title_theme">
 
         </ListPreference>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="@string/pref_key_enable_progress_text"
+            android:summary="@string/pref_desc_show_process_text_menu"
+            android:title="@string/pref_title_process_text" />
+
     </PreferenceCategory>
     <PreferenceCategory
         android:key="pref_floating_window"
@@ -34,12 +41,12 @@
         <Preference
             android:key="open_floating_codec"
             android:summary="@string/open_codec_desc"
-            android:title="@string/floating_codec" />
+            android:title="@string/action_open_floating_codec" />
 
         <Preference
             android:key="open_floating_stylish"
             android:summary="@string/open_floating_stylish_desc"
-            android:title="@string/floating_stylish" />
+            android:title="@string/action_floating_stylish" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/menu_text">

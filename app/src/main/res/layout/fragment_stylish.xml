@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:hint="@string/type_something"
+            android:hint="@string/hint_type_something"
             android:maxLines="1" />
 
         <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView

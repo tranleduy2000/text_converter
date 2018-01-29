@@ -20,35 +20,35 @@
     <item
         android:id="@+id/action_upgrade"
         android:icon="@drawable/ic_lock_open_white_24dp"
-        android:title="@string/upgrade"
+        android:title="@string/action_upgrade"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_how_to_use"
         android:icon="@drawable/ic_help_white_24dp"
-        android:title="@string/how_to_use"
+        android:title="@string/action_how_to_use"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_setting"
         android:icon="@drawable/ic_settings_white_24dp"
-        android:title="@string/setting"
+        android:title="@string/action_setting"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_share"
         android:icon="@drawable/ic_share_white_24dp"
-        android:title="@string/share_this_app" />
+        android:title="@string/action_share_this_app" />
     <item
         android:id="@+id/action_open_codec"
-        android:title="@string/floating_codec"
+        android:title="@string/action_open_floating_codec"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_open_stylish"
-        android:title="@string/floating_stylish"
+        android:title="@string/action_floating_stylish"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_review"
         android:icon="@drawable/ic_rate_review_white_24dp"
-        android:title="@string/write_review_in_playstore" />
+        android:title="@string/action_rate" />
 
 </menu>

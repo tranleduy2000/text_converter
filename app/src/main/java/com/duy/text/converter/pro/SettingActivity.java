@@ -40,7 +40,7 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
         setContentView(R.layout.activity_setting);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        setTitle(R.string.setting);
+        setTitle(R.string.action_setting);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
@@ -67,9 +67,6 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
         } else if (s.equalsIgnoreCase(getString(R.string.pref_key_enable_decode_notification))) {
             StyleNotificationManager.showNotificationDecodeIfNeed(this);
         } else if (s.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
-//            overridePendingTransition(0, 0);
-//            finish();
-//            startActivity(new Intent(this, SettingActivity.class));
         }
     }
 
