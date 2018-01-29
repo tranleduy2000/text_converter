@@ -19,10 +19,40 @@
       "package": "duy.com.text_converter"
     },
     {
-      "name": "N-CALC (No Ads)",
-      "icon_url": "https://lh3.googleusercontent.com/g-oo-nmI2vaPVjd4YYqXAnaOCmRuFR4GYgBRdeiXmxrfF-VcUlcz_VEkPGwlPHTTwA=w300-rw",
-      "wall_url": "https://lh3.googleusercontent.com/nTWqsq5fy-eRrBgGQI3w4llYf2JRfQ-WEMYfXQXaloP1dmqc5sdHaCBEnzNa25Z8Ek4cfr2CQbbvo-03yBfM3p4B=h500",
-      "package": "com.duy.calculator.free"
+      "name": "Casio Graphite",
+      "icon_url": "https://lh3.googleusercontent.com/zAtW_1hqNEgHMNKpALjR8WqKu-xSQlc23ndRKzXc0-oZ2_PE81q5p26cbq01IDdcTA=w300-rw",
+      "wall_url": "https://lh3.googleusercontent.com/VY1-uUVfs5NFPi1skgIEIFsdGuZh53Eez3hbpotPhi8IigupVsWOO0QX3cW8ayAw8eM=h900-rw",
+      "package": "com.nstudio.calc.casio.graphite"
+    },
+    {
+      "name": "Casio Modern",
+      "icon_url": "https://lh3.googleusercontent.com/jwanp2CsntvFf6JbrajVG17lacpPAidNawHNX6qxVv6BWhpcy7ZnqS4fBPIeesSkXavY=w300-rw",
+      "wall_url": "https://lh3.googleusercontent.com/Sg6WnYbFe1ZKActwKqFXWknQOPMBO90OmcWxA4h2P1ek4ZmVr4qCufYf99IjHBtG1boz=h900-rw",
+      "package": "com.nstudio.calc.casio.modern"
+    },
+    {
+      "name": "Casio Office",
+      "icon_url": "https://lh3.googleusercontent.com/KqAXbzoeA6chDPsJRyND4L_PA4NB9KBdwVuxKColYmGjThXMZb-waT_c882wP5hLJqs=w300-rw",
+      "wall_url": "https://lh3.googleusercontent.com/QacAqiAg7mf1M7NH-BkSlyMkG991wU-ilU-aDByXr-7FZ15RJ0hspI7B9fI9A-TBsQ=h900-rw",
+      "package": "com.nstudio.calc.casio.office"
+    },
+    {
+      "name": "Casio Retro",
+      "icon_url": "https://lh3.googleusercontent.com/3Kfo1BIqUUhA1K99X2iJl9qNnpyVhRgrEt2A6eAtSpvjrUjk6A3h1g0AD5tKimtF3w=w300-rw",
+      "wall_url": "https://lh3.googleusercontent.com/9IKGvHfxvDD4Lwnd1ySFqClxbEZyBLKioNXDeIc9TjnCy7D7lyyz3hcvg8E4gPko9Xdw=h900-rw",
+      "package": "com.nstudio.calc.casio.retro"
+    },
+    {
+      "name": "Casio Rustic",
+      "icon_url": "https://lh3.googleusercontent.com/9tWZfklzM2csycRENZW2m8YdNPv3DhpvMq8KqfkpVvGpW1BSGInmnnTk5D9sf5aX0ew=w300-rw",
+      "wall_url": "https://lh3.googleusercontent.com/HrmYN9J0uF7NTtauN6TKSQads9dM4YjcGe8mlW1yDKq9-JRTa8dDjNoCVx3lXMoqYZzJ=h900-rw",
+      "package": "com.nstudio.calc.casio.rustic"
+    },
+    {
+      "name": "Casio Tavern",
+      "icon_url": "https://lh3.googleusercontent.com/xZG95Ej5LoG3aa5OJr7LPkDULyQOTV9fN8v2uwvbJDXkuOL_wzj3fO2fVZOyzXrID0s=w300-rw",
+      "wall_url": "https://lh3.googleusercontent.com/9XPqd8z0cToS6u1JxGJ8E3oaldjTdG4XK8liMxlmJEStCIZZEhp3LIPtAr8E8PYh4HY=h900-rw",
+      "package": "com.nstudio.calc.casio"
     }
   ]
 }
