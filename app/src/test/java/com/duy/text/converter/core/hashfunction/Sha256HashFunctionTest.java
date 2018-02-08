@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,26 +16,17 @@
 
 package com.duy.text.converter.core.hashfunction;
 
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.digest.DigestUtils;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 2/8/2018.
  */
-
-public class Sha256HashFunction implements IHashFunction {
-
-    @Override
-    public String getName() {
-        return "SHA-256";
+public class Sha256HashFunctionTest {
+    @Test
+    public void encode() throws Exception {
+        String encoded = new Sha256HashFunction().encode("abc");
+        Assert.assertEquals(encoded, "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
     }
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return DigestUtils.sha256Hex(text.getBytes());
-    }
-
 
 }
