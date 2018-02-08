@@ -18,8 +18,7 @@ package com.duy.text.converter.core.hashfunction;
 
 import android.support.annotation.NonNull;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Created by Duy on 11-Jul-17.
@@ -48,15 +47,9 @@ public class Sha1HashFunction implements IHashFunction {
     @Override
     public String encode(@NonNull String text) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] textBytes = text.getBytes();
-            md.update(textBytes, 0, textBytes.length);
-            byte[] sha1Hash = md.digest();
-            return convertToHex(sha1Hash);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            return "Not found SHA-1 algorithm";
+            return DigestUtils.sha1Hex(text.getBytes());
+        } catch (Exception e) {
+            return "";
         }
-
     }
 }

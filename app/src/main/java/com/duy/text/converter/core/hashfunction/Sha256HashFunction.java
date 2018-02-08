@@ -34,7 +34,11 @@ public class Sha256HashFunction implements IHashFunction {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return DigestUtils.sha256Hex(text.getBytes());
+        try {
+            return DigestUtils.sha256Hex(text.getBytes());
+        } catch (Exception e) {
+            return "";
+        }
     }
 
 

@@ -18,7 +18,7 @@ package com.duy.text.converter.core.hashfunction;
 
 import android.support.annotation.NonNull;
 
-import org.apache.commons.codec.digest.Md5Crypt;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Created by Duy on 11-Jul-17.
@@ -33,7 +33,11 @@ public class Md5HashFunction implements IHashFunction {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return Md5Crypt.md5Crypt(text.getBytes());
+        try {
+            return DigestUtils.md5Hex(text.getBytes());
+        } catch (Exception e) {
+            return "";
+        }
     }
 
 }

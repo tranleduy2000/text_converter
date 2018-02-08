@@ -23,6 +23,6 @@ package com.duy.text.converter.core.hashfunction;
 public interface IHashFunction {
     String getName();
 
-    String encode(String data);
+    String encode(String text);
 
 }
