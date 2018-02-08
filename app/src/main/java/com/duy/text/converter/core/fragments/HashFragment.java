@@ -40,6 +40,7 @@ import com.duy.text.converter.core.hashfunction.IHashFunction;
 import com.duy.text.converter.core.hashfunction.Md5HashFunction;
 import com.duy.text.converter.core.hashfunction.Sha1HashFunction;
 import com.duy.text.converter.core.hashfunction.Sha256HashFunction;
+import com.duy.text.converter.core.hashfunction.Sha384HashFunction;
 import com.duy.text.converter.core.hashfunction.Sha512HashFunction;
 import com.duy.text.converter.core.hashfunction.UnixCryptHashFunction;
 import com.duy.text.converter.core.utils.ClipboardUtil;
@@ -96,6 +97,7 @@ public class HashFragment extends Fragment {
         mHashFunctions.add(new Md5HashFunction());
         mHashFunctions.add(new Sha1HashFunction());
         mHashFunctions.add(new Sha256HashFunction());
+        mHashFunctions.add(new Sha384HashFunction());
         mHashFunctions.add(new Sha512HashFunction());
         mHashFunctions.add(new UnixCryptHashFunction());
     }
