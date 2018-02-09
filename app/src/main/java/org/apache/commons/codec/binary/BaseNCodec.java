@@ -1,12 +1,11 @@
 /*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
+ * Copyright (c) 2018 by Tran Le Duy
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,12 +16,12 @@
 
 package org.apache.commons.codec.binary;
 
-import java.util.Arrays;
-
-import org.apache.commons.codec.BinaryDecoder;
-import org.apache.commons.codec.BinaryEncoder;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.EncoderException;
+import org.apache.commons.codec.FBinaryDecoder;
+import org.apache.commons.codec.FBinaryEncoder;
+
+import java.util.Arrays;
 
 /**
  * Abstract superclass for Base-N encoders and decoders.
@@ -33,7 +32,7 @@ import org.apache.commons.codec.EncoderException;
  *
  * @version $Id: BaseNCodec.java 1811344 2017-10-06 15:19:57Z ggregory $
  */
-public abstract class BaseNCodec implements BinaryEncoder, BinaryDecoder {
+public abstract class BaseNCodec implements FBinaryEncoder, FBinaryDecoder {
 
     /**
      * Holds thread context so classes can be thread-safe.

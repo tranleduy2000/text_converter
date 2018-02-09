@@ -94,3 +94,5 @@
   **[] $VALUES;
   public *;
 }
+
+-keep class org.apache.commons.codec.**

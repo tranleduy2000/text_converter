@@ -16,8 +16,8 @@
 
 package org.apache.commons.codec.binary;
 
-import org.apache.commons.codec.BinaryDecoder;
-import org.apache.commons.codec.BinaryEncoder;
+import org.apache.commons.codec.FBinaryDecoder;
+import org.apache.commons.codec.FBinaryEncoder;
 import org.apache.commons.codec.CharEncoding;
 import org.apache.commons.codec.Charsets;
 import org.apache.commons.codec.DecoderException;
@@ -35,7 +35,7 @@ import java.nio.charset.Charset;
  * @since 1.1
  * @version $Id: Hex.java 1811344 2017-10-06 15:19:57Z ggregory $
  */
-public class FHex implements BinaryEncoder, BinaryDecoder {
+public class FHex implements FBinaryEncoder, FBinaryDecoder {
 
     /**
      * Default charset is {@link Charsets#UTF_8}
