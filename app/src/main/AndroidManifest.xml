@@ -26,7 +26,9 @@
         android:theme="@style/AppThemeDark"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="com.duy.text.converter.core.activities.MainActivity">
+        <activity
+            android:name="com.duy.text.converter.core.activities.MainActivity"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

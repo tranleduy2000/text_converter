@@ -16,12 +16,12 @@
 
 package com.duy.text.converter.core.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,20 +68,24 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
         for (Map.Entry<Base, EditText> entry : mEditTextBase.entrySet()) {
             EditText editText = entry.getValue();
             editText.addTextChangedListener(new OnBaseChangeListener(editText, entry.getKey()));
-            editText.setInputType(InputType.TYPE_NULL);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                editText.setShowSoftInputOnFocus(false);
+            } else {
+                editText.setTextIsSelectable(true);
+            }
         }
 
         View containerKeyboard = view.findViewById(R.id.container_keyboard);
-        addKeyEvent((ViewGroup) containerKeyboard);
+        addKeyEvent(containerKeyboard);
     }
 
     private void addKeyEvent(View view) {
-        if (view instanceof Button) {
-            view.setOnClickListener(this);
-        } else if (view instanceof ViewGroup) {
+        if (view instanceof ViewGroup) {
             for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
                 addKeyEvent(((ViewGroup) view).getChildAt(i));
             }
+        } else {
+            view.setOnClickListener(this);
         }
     }
 
@@ -120,26 +124,53 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
     }
 
     private void clear() {
-
+        EditText editText = getCurrentEditText();
+        if (editText != null) {
+            editText.getText().clear();
+            editText.setSelection(0);
+        }
     }
 
     private void backspace() {
-
+        EditText editText = getCurrentEditText();
+        if (editText != null) {
+            int selectionStart = editText.getSelectionStart();
+            int selectionEnd = editText.getSelectionEnd();
+            selectionStart = Math.max(0, selectionStart);
+            selectionEnd = Math.max(0, selectionEnd);
+            if (selectionStart != selectionEnd) {
+                editText.getText().replace(selectionStart, selectionEnd, "");
+            } else {
+                if (selectionEnd > 0) {
+                    editText.getText().delete(selectionEnd - 1, selectionEnd);
+                    editText.setSelection(selectionEnd - 1);
+                }
+            }
+        }
     }
 
     private void insert(CharSequence text) {
+        EditText editText = getCurrentEditText();
+        if (editText != null) {
+            int selectionStart = editText.getSelectionStart();
+            int selectionEnd = editText.getSelectionEnd();
+            selectionStart = Math.max(0, selectionStart);
+            selectionEnd = Math.max(0, selectionEnd);
+            editText.getText().replace(selectionStart, selectionEnd, "");
+            editText.getText().insert(selectionStart, text);
+        }
+
+    }
+
+    @Nullable
+    private EditText getCurrentEditText() {
         for (Map.Entry<Base, EditText> entry : mEditTextBase.entrySet()) {
             EditText editText = entry.getValue();
             if (editText.isFocused()) {
-                int selectionStart = editText.getSelectionStart();
-                int selectionEnd = editText.getSelectionEnd();
-                selectionStart = Math.max(0, selectionStart);
-                selectionEnd = Math.max(0, selectionEnd);
-                editText.getText().replace(selectionStart, selectionEnd, "");
-                editText.getText().insert(selectionStart, text);
-                break;
+                return editText;
             }
         }
+        return null;
     }
 
     enum Base {

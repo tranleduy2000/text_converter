@@ -26,22 +26,23 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-
-        <android.support.v7.widget.AppCompatButton
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/btn_copy"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:src="@drawable/ic_content_copy_white_24dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:tint="?imageTintColor" />
 
-            android:text="E"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-        <android.support.v7.widget.AppCompatButton
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/btn_paste"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
-            android:text="F"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:src="@drawable/ic_content_paste_white_24dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:tint="?imageTintColor" />
 
         <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/btn_delete"
@@ -49,7 +50,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_backspace_black_24dp"
-            android:text="DEL"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:tint="?imageTintColor" />
 
@@ -98,6 +98,22 @@
             android:layout_weight="1"
 
             android:text="D"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:text="E"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:text="F"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
     </LinearLayout>
 
