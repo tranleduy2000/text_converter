@@ -92,7 +92,7 @@ dependencies {
     compile "com.android.support:design:$androidSupportVersion"
     compile "com.android.support:support-v4:$androidSupportVersion"
 
-
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
     compile 'com.google.zxing:core:3.3.0'
     compile 'com.journeyapps:zxing-android-embedded:3.5.0@aar'
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'

@@ -58,7 +58,7 @@ public class BaseEditText extends android.support.v7.widget.AppCompatEditText {
             super.setText(text, type);
         } catch (OutOfMemoryError e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), R.string.out_of_memory, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.message_out_of_memory, Toast.LENGTH_SHORT).show();
         }
     }
 

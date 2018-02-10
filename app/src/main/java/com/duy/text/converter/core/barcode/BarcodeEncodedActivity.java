@@ -41,7 +41,7 @@ public class BarcodeEncodedActivity extends BaseActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        setTitle(R.string.barcode);
+        setTitle(R.string.tab_title_barcode);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String text = getIntent().getStringExtra("data");

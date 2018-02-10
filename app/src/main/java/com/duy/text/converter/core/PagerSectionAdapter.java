@@ -22,11 +22,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.barcode.BarCodeCodecFragment;
 import com.duy.text.converter.core.fragments.AdsFragment;
-import com.duy.text.converter.core.fragments.BaseConverterFragment;
-import com.duy.text.converter.core.fragments.HashFragment;
+import com.duy.text.converter.core.barcode.BarCodeCodecFragment;
+import com.duy.text.converter.core.fragments.CodecFragment;
 import com.duy.text.converter.core.stylish.fragments.DecorateFragment;
+import com.duy.text.converter.core.fragments.HashFragment;
 import com.duy.text.converter.core.stylish.fragments.StylistFragment;
 
 
@@ -53,7 +53,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return BaseConverterFragment.newInstance();
+                return CodecFragment.newInstance(init);
             case 1:
                 return AdsFragment.newInstance();
             case 2:
@@ -73,17 +73,17 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return context.getString(R.string.codec);
+                return context.getString(R.string.tab_title_codec);
             case 1:
-                return context.getString(R.string.ads);
+                return context.getString(R.string.tab_title_ads);
             case 2:
-                return context.getString(R.string.barcode);
+                return context.getString(R.string.tab_title_barcode);
             case 3:
-                return context.getString(R.string.stylish);
+                return context.getString(R.string.tab_title_stylish);
             case 4:
-                return context.getString(R.string.decorate);
+                return context.getString(R.string.tab_title_decorate);
             case 5:
-                return context.getString(R.string.hash_function);
+                return context.getString(R.string.tab_title_hash_function);
         }
         return super.getPageTitle(position);
     }

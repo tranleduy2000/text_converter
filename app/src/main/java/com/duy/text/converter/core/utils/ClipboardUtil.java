@@ -35,7 +35,7 @@ public class ClipboardUtil {
         ClipData clip = ClipData.newPlainText("Copied Text", text);
         if (clipboard != null) {
             clipboard.setPrimaryClip(clip);
-            Toast.makeText(context, R.string.copied, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.message_copied, Toast.LENGTH_SHORT).show();
         }
     }
 

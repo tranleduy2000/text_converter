@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/copy"
+                android:contentDescription="@string/action_copy"
                 android:padding="8dp"
                 android:src="@drawable/ic_content_copy_white_24dp"
                 android:tint="?imageTintColor" />
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/paste"
+                android:contentDescription="@string/action_paste"
                 android:padding="8dp"
                 android:src="@drawable/ic_content_paste_white_24dp"
                 android:tint="?imageTintColor" />
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/share"
+                android:contentDescription="@string/action_share_text"
                 android:padding="8dp"
                 android:src="@drawable/ic_share_white_24dp"
                 android:tint="?imageTintColor" />
@@ -84,7 +84,7 @@
         style="@style/Base.Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/encode_it" />
+        android:text="@string/process_text_title_encode_it" />
 
     <LinearLayout
         android:layout_width="match_parent"

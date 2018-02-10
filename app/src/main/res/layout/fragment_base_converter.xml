@@ -23,52 +23,52 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Binary (2)">
+        android:hint="@string/hint_binary">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edit_binary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Octal (8)">
+        android:hint="@string/hint_octal">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edit_octal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Decimal (10)">
+        android:hint="@string/hint_decimal">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edit_decimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Hex (16)">
+        android:hint="@string/hint_hex">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edit_hex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none" />
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 

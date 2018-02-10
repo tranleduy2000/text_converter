@@ -171,7 +171,7 @@ public class BarCodeCodecFragment extends Fragment implements View.OnClickListen
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                         decodeImage();
                     } else {
-                        Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), R.string.message_read_permission, Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
@@ -234,7 +234,7 @@ public class BarCodeCodecFragment extends Fragment implements View.OnClickListen
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             int result = ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
             if (result != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getContext(), R.string.read_permission_msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.message_read_permission, Toast.LENGTH_SHORT).show();
                 String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE};
                 requestPermissions(permissions, REQUEST_READ_EXTERNAL_STORAGE);
@@ -249,7 +249,7 @@ public class BarCodeCodecFragment extends Fragment implements View.OnClickListen
             Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             pickIntent.setType("image/*");
 
-            Intent chooserIntent = Intent.createChooser(getIntent, getString(R.string.select_image));
+            Intent chooserIntent = Intent.createChooser(getIntent, getString(R.string.title_select_image));
             chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickIntent});
 
             startActivityForResult(chooserIntent, REQUEST_PICK_IMAGE);
@@ -315,7 +315,7 @@ public class BarCodeCodecFragment extends Fragment implements View.OnClickListen
                 txtResult.setText(s);
                 Toast.makeText(getContext(), R.string.decoded, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getContext(), R.string.cannot_decode, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), R.string.message_cannot_decode, Toast.LENGTH_SHORT).show();
             }
         }
     }

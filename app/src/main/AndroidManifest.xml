@@ -52,7 +52,7 @@
             android:name=".pro.menu.EncodeProcessTextActivity"
             android:enabled="true"
             android:exported="true"
-            android:label="@string/encode_it"
+            android:label="@string/process_text_title_encode_it"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
@@ -65,7 +65,7 @@
             android:name=".pro.menu.EncodeAllProcessTextActivity"
             android:enabled="true"
             android:exported="true"
-            android:label="@string/encode_pro"
+            android:label="@string/process_text_title_encode_pro"
             android:theme="@style/AppThemeLight.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
@@ -78,7 +78,7 @@
             android:name=".pro.menu.DecodeAllProcessTextActivity"
             android:enabled="true"
             android:exported="true"
-            android:label="@string/decode_pro"
+            android:label="@string/process_text_title_decode_pro"
             android:theme="@style/AppThemeLight.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
@@ -91,7 +91,7 @@
             android:name=".pro.menu.StylishProcessTextActivity"
             android:enabled="true"
             android:exported="true"
-            android:label="@string/stylish_it"
+            android:label="@string/process_text_title_stylish_it"
             android:theme="@style/AppThemeLight.Dialog">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />

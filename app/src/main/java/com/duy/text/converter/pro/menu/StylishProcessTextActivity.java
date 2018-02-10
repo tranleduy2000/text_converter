@@ -53,7 +53,7 @@ public class StylishProcessTextActivity extends AppCompatActivity implements OnT
 
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            setTitle(R.string.stylish_it);
+            setTitle(R.string.process_text_title_stylish_it);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             toolbar.setSubtitle(text);
 

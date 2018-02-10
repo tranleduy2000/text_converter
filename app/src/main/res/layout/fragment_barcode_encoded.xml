@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/save" />
+            android:text="@string/action_save" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_share"
@@ -65,6 +65,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/share" />
+            android:text="@string/action_share_text" />
     </LinearLayout>
 </LinearLayout>

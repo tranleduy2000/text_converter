@@ -165,12 +165,13 @@ public enum CodecMethod {
         public Codec getCodec() {
             return new RotCodec();
         }
-    }, NATO{
+    },
+    NATO {
         @Override
         public Codec getCodec() {
             return new NatoCodec();
         }
-    } ;
+    };
 
     public abstract Codec getCodec();
 }

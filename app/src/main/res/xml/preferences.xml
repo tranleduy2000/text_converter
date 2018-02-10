@@ -45,35 +45,35 @@
 
         <Preference
             android:key="open_floating_stylish"
-            android:summary="@string/open_floating_stylish_desc"
+            android:summary="@string/pref_desc_open_floating_stylish"
             android:title="@string/action_floating_stylish" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/menu_text">
+    <PreferenceCategory android:title="@string/pref_title_menu_text">
         <ListPreference
             android:defaultValue="@string/binary"
             android:entries="@array/codec_methods"
             android:entryValues="@array/codec_methods"
             android:key="pref_key_encode_menu"
-            android:title="@string/encode_it" />
+            android:title="@string/process_text_title_encode_it" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/notification">
+    <PreferenceCategory android:title="@string/pref_title_notification">
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/pref_key_enable_encode_notification"
             android:summary="You can encode by click notification"
-            android:title="@string/encode_notifi" />
+            android:title="@string/pref_title_encode_notifi" />
 
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/pref_key_enable_decode_notification"
             android:summary="You can decode by click notification"
-            android:title="@string/decode_notifi" />
+            android:title="@string/pref_title_decode_notifi" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/encode_notifi">
+    <PreferenceCategory android:title="@string/pref_title_encode_notifi">
         <ListPreference
             android:defaultValue="@string/ascii"
             android:dependency="@string/pref_key_enable_encode_notification"
@@ -116,7 +116,7 @@
             android:title="Style 5" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/decode_notifi">
+    <PreferenceCategory android:title="@string/pref_title_decode_notifi">
         <ListPreference
             android:defaultValue="@string/ascii"
             android:dependency="@string/pref_key_enable_decode_notification"

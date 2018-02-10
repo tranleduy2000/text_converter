@@ -74,17 +74,17 @@ public class PagerSectionAdapterPro extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return context.getString(R.string.codec);
+                return context.getString(R.string.tab_title_codec);
             case 1:
-                return context.getString(R.string.barcode);
+                return context.getString(R.string.tab_title_barcode);
             case 2:
-                return context.getString(R.string.stylish);
+                return context.getString(R.string.tab_title_stylish);
             case 3:
-                return context.getString(R.string.decorate);
+                return context.getString(R.string.tab_title_decorate);
             case 4:
-                return context.getString(R.string.hash_function);
+                return context.getString(R.string.tab_title_hash_function);
             case 5:
-                return context.getString(R.string.file);
+                return context.getString(R.string.tab_title_file);
         }
         return super.getPageTitle(position);
     }

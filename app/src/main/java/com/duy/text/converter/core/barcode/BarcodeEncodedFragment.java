@@ -138,7 +138,7 @@ public class BarcodeEncodedFragment extends Fragment {
             }
             file.setReadable(true);
             mCurrentBarcode.compress(Bitmap.CompressFormat.PNG, 100, new FileOutputStream(file));
-            Toast.makeText(getContext(), getString(R.string.saved_in) + " " + file.getPath(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.message_saved_in) + " " + file.getPath(), Toast.LENGTH_SHORT).show();
             return file;
         }
         return null;

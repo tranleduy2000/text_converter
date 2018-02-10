@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="@string/copy"
+                    android:contentDescription="@string/action_copy"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_copy_white_24dp"
                     android:tint="?imageTintColor" />
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="@string/paste"
+                    android:contentDescription="@string/action_paste"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_paste_white_24dp"
                     android:tint="?imageTintColor" />
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="@string/copy"
+                    android:contentDescription="@string/action_copy"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_copy_white_24dp"
                     android:tint="?imageTintColor" />
@@ -122,7 +122,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="?android:attr/selectableItemBackground"
-                    android:contentDescription="@string/paste"
+                    android:contentDescription="@string/action_paste"
                     android:padding="8dp"
                     android:src="@drawable/ic_content_paste_white_24dp"
                     android:tint="?imageTintColor" />

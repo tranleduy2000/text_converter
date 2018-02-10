@@ -16,73 +16,70 @@
 
 <resources>
     <string name="app_name">Text Converter</string>
-    <string name="copy">Copy</string>
-    <string name="share">Share</string>
     <string name="choose_method">Choose method</string>
-
-    <string name="hint_output_here">Enter here for decode…</string>
-    <string name="hint_input_here">Enter here for encode…</string>
-    <string name="hint_type_something">Type something</string>
-
-    <string name="encode_it">Encode It!</string>
-    <string name="encode_pro">Encode (Pro)</string>
-    <string name="decode_pro">Decode (Pro)</string>
-    <string name="hash_function">Hash</string>
-    <string name="codec">Codec</string>
-    <string name="stylish">Stylish</string>
-    <string name="ads">Ads</string>
-    <string name="decorate">Decorate</string>
     <string name="encode">Encode</string>
-    <string name="barcode">Barcode</string>
-    <string name="save">Save</string>
-    <string name="paste">Paste</string>
     <string name="decode">Decode</string>
-    <string name="using_camera">Camera</string>
     <string name="decoded">Decoded</string>
-    <string name="cannot_decode">Can not decode this image</string>
+    <string name="using_camera">Camera</string>
 
-    <!--Ad-->
-    <string name="remove_ads">Get pro version</string>
+    <string name="message_copied">Copied</string>
+    <string name="message_out_of_memory">Out of memory</string>
+    <string name="message_read_permission">Please granted read storage permission</string>
+    <string name="message_cannot_decode">Can not decode this image</string>
+    <string name="message_saved_in">Saved in</string>
 
-    <string name="copied">Copied</string>
-
+    <string name="title_select_image">Select Image</string>
 
     <string name="floating_notification_description">Tap to open</string>
-    <string name="pref_title_floating_window">Floating window</string>
-    <string name="pref_desc_open_codec">Click to open floating codec</string>
-    <string name="open_floating_stylish_desc">Click to open floating stylish</string>
-    <string name="notification">Notification</string>
-    <string name="encode_notifi">Encode notification</string>
-    <string name="decode_notifi">Decode notification</string>
-    <string name="menu_text">Menu text (Android M and above)</string>
-
-    <string name="pro_feature"><![CDATA[1. Remove ads\n2. Floating codec (small window)\n3. Floating stylish (small window)\n4. More theme (7 themes)\n5. Encode/Decode menu (Android M)\n6. Encode/Decode notification\n7. You can encode/decode a file\n8. (New) Encode all and decode all with one click\n
-    ]]>
-    </string>
-
+    <string name="pro_feature"><![CDATA[1. Remove ads\n2. Floating codec (small window)\n3. Floating stylish (small window)\n4. More theme (7 themes)\n5. Encode/Decode menu (Android M)\n6. Encode/Decode notification\n7. You can encode/decode a file\n8. (New) Encode all and decode all with one click\n]]></string>
     <string name="pro_version">Pro version</string>
-    <string name="file">File</string>
-    <string name="read_permission_msg">Please granted read storage permission</string>
-    <string name="select_image">Select Image</string>
-    <string name="saved_in">Saved in</string>
-    <string name="stylish_it">Stylish it (Pro)</string>
+    <string name="remove_ads">Get pro version</string>
     <string name="chance_remaining">This feature fully only available in PRO version. Click here to upgrade. You have %o chance remaining. You can hide this menu in setting.</string>
     <string name="please_upgrade">Please upgrade to pro version</string>
     <string name="recommend_application">Recommend application</string>
-    <string name="out_of_memory">Out of memory</string>
 
     <string name="action_rate">Write review in PlayStore</string>
     <string name="action_setting">Setting</string>
     <string name="action_upgrade">Upgrade to pro version</string>
     <string name="action_open_floating_codec">Floating codec</string>
     <string name="action_floating_stylish">Floating stylish</string>
-    <string name="action_share">Share this app</string>
+    <string name="action_share_app">Share this app</string>
     <string name="action_help">How to use</string>
+    <string name="action_save">Save</string>
+    <string name="action_paste">Paste</string>
+    <string name="action_copy">Copy</string>
+    <string name="action_share_text">Share</string>
 
     <string name="pref_title_theme">Theme</string>
     <string name="pref_title_user_interface">User interface</string>
     <string name="pref_title_process_text">Process text menu</string>
-
+    <string name="pref_title_floating_window">Floating window</string>
+    <string name="pref_title_notification">Notification</string>
+    <string name="pref_title_encode_notifi">Encode notification</string>
+    <string name="pref_title_decode_notifi">Decode notification</string>
+    <string name="pref_title_menu_text">Menu text (Android M and above)</string>
+    <string name="pref_desc_open_codec">Click to open floating codec</string>
     <string name="pref_desc_show_process_text_menu">Show menu when select text</string>
+    <string name="pref_desc_open_floating_stylish">Click to open floating stylish</string>
 
+    <string name="hint_decimal">Decimal (10)</string>
+    <string name="hint_octal">Octal (8)</string>
+    <string name="hint_binary">Binary (2)</string>
+    <string name="hint_hex">Hex (16)</string>
+    <string name="hint_output_here">Enter here for decode…</string>
+    <string name="hint_input_here">Enter here for encode…</string>
+    <string name="hint_type_something">Type something</string>
+
+    <string name="process_text_title_encode_it">Encode It!</string>
+    <string name="process_text_title_encode_pro">Encode (Pro)</string>
+    <string name="process_text_title_decode_pro">Decode (Pro)</string>
+    <string name="process_text_title_stylish_it">Stylish it (Pro)</string>
+
+    <string name="tab_title_hash_function">Hash</string>
+    <string name="tab_title_codec">Codec</string>
+    <string name="tab_title_stylish">Stylish</string>
+    <string name="tab_title_ads">Ads</string>
+    <string name="tab_title_decorate">Decorate</string>
+    <string name="tab_title_barcode">Barcode</string>
+    <string name="tab_title_file">File</string>
 </resources>
