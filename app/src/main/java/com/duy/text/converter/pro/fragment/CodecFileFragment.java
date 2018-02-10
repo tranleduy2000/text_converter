@@ -101,14 +101,12 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
         }
 
         String[] data = getResources().getStringArray(R.array.codec_methods);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_list_item_1, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, data);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+
         mCodecMethodSpinner = view.findViewById(R.id.spinner_codec_methods);
         mCodecMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
         mCodecMethodSpinner.setAdapter(adapter);
-
-
     }
 
     public void setOutputPath(final String outputPath) {
