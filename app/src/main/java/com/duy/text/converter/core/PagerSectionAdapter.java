@@ -22,11 +22,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.fragments.AdsFragment;
 import com.duy.text.converter.core.barcode.BarCodeCodecFragment;
-import com.duy.text.converter.core.fragments.CodecFragment;
-import com.duy.text.converter.core.stylish.fragments.DecorateFragment;
+import com.duy.text.converter.core.fragments.AdsFragment;
+import com.duy.text.converter.core.fragments.BaseConverterFragment;
 import com.duy.text.converter.core.fragments.HashFragment;
+import com.duy.text.converter.core.stylish.fragments.DecorateFragment;
 import com.duy.text.converter.core.stylish.fragments.StylistFragment;
 
 
@@ -53,7 +53,7 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return CodecFragment.newInstance(init);
+                return BaseConverterFragment.newInstance();
             case 1:
                 return AdsFragment.newInstance();
             case 2:
