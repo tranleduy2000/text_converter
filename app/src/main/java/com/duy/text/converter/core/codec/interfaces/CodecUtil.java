@@ -69,7 +69,7 @@ public class CodecUtil {
                 return new BinaryCodec().decode(inp);
             case HEX:
                 return new HexCodec().decode(inp);
-            case UPPER:
+            case UPPER_CASE:
                 return new UpperCaseCodec().decode(inp);
             case LOWER:
                 return new LowerCaseCodec().decode(inp);
@@ -132,7 +132,7 @@ public class CodecUtil {
                 return new BinaryCodec().encode(inp);
             case HEX:
                 return new HexCodec().encode(inp);
-            case UPPER:
+            case UPPER_CASE:
                 return new UpperCaseCodec().encode(inp);
             case LOWER:
                 return new LowerCaseCodec().encode(inp);

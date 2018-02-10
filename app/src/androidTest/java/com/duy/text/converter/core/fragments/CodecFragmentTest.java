@@ -24,6 +24,7 @@ import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.MainActivity;
 import com.duy.text.converter.core.codec.interfaces.Codec;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +34,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -52,9 +53,20 @@ import static com.duy.text.converter.core.codec.interfaces.CodecMethod.NATO;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.OCTAL;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.RANDOM_CASE;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.REVERSER;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ROT_13;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.SUB_SCRIPT;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.SUPPER_SCRIPT;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.UNICODE;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.UPPER_CASE;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.UPSIDE_DOWNSIDE;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.URL;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_BIG;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_MINI;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_NORMAL;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
+
 
 /**
  * Created by Duy on 2/10/2018.
@@ -65,6 +77,10 @@ public class CodecFragmentTest {
     @Rule
     public ActivityTestRule<MainActivity> mRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
+    @Before
+    public void selectCodecFragment() {
+        onView(withText(mRule.getActivity().getString(R.string.tab_title_codec))).perform(click());
+    }
 
     @Test
     public void AsciiCodec_encode() throws InterruptedException {
@@ -185,7 +201,9 @@ public class CodecFragmentTest {
     @Test
     public void RandomCaseCodec_decode() throws InterruptedException {
         testDecode(RANDOM_CASE.getCodec(), RANDOM_CASE.getCodec().encode("Decode RANDOM_CASE"));
-    } @Test
+    }
+
+    @Test
     public void ReverserCodec_encode() throws InterruptedException {
         testEncode(REVERSER.getCodec(), "Encode REVERSER");
     }
@@ -195,10 +213,107 @@ public class CodecFragmentTest {
         testDecode(REVERSER.getCodec(), REVERSER.getCodec().encode("Decode REVERSER"));
     }
 
+    @Test
+    public void RotCodec_encode() throws InterruptedException {
+        testEncode(ROT_13.getCodec(), "Encode ROT_13");
+    }
+
+    @Test
+    public void RotCodec_decode() throws InterruptedException {
+        testDecode(ROT_13.getCodec(), ROT_13.getCodec().encode("Decode ROT_13"));
+    }
+
+    @Test
+    public void SubscriptCodec_encode() throws InterruptedException {
+        testEncode(SUB_SCRIPT.getCodec(), "Encode SUB_SCRIPT");
+    }
+
+    @Test
+    public void SubscriptCodec_decode() throws InterruptedException {
+        testDecode(SUB_SCRIPT.getCodec(), SUB_SCRIPT.getCodec().encode("Decode SUB_SCRIPT"));
+    }
+
+    @Test
+    public void SuperscriptCodec_encode() throws InterruptedException {
+        testEncode(SUPPER_SCRIPT.getCodec(), "Encode SUPPER_SCRIPT");
+    }
+
+    @Test
+    public void SuperscriptCodec_decode() throws InterruptedException {
+        testDecode(SUPPER_SCRIPT.getCodec(), SUPPER_SCRIPT.getCodec().encode("Decode SUPPER_SCRIPT"));
+    }
+
+    @Test
+    public void UnicodeCodec_encode() throws InterruptedException {
+        testEncode(UNICODE.getCodec(), "Xin chào các bạn đây là tiếng việt");
+    }
+
+    @Test
+    public void UnicodeCodec_decode() throws InterruptedException {
+        testDecode(UNICODE.getCodec(), UNICODE.getCodec().encode("Xin chào các bạn đây là tiếng việt"));
+    }
+
+    @Test
+    public void UpperCaseCodec_encode() throws InterruptedException {
+        testEncode(UPPER_CASE.getCodec(), "Encode UPPER");
+    }
+
+    @Test
+    public void UpperCaseCodec_decode() throws InterruptedException {
+        testDecode(UPPER_CASE.getCodec(), UPPER_CASE.getCodec().encode("Decode UPPER"));
+    }
+
+    @Test
+    public void UpsideDownCodec_encode() throws InterruptedException {
+        testEncode(UPSIDE_DOWNSIDE.getCodec(), "Encode UPSIDE_DOWNSIDE");
+    }
+
+    @Test
+    public void UpsideDownCodec_decode() throws InterruptedException {
+        testDecode(UPSIDE_DOWNSIDE.getCodec(), UPSIDE_DOWNSIDE.getCodec().encode("Decode UPSIDE_DOWNSIDE"));
+    }
+
+    @Test
+    public void URLCodec_encode() throws InterruptedException {
+        testEncode(URL.getCodec(), "https://play.google.com/apps/publish/?account=7055567654109499514#AppDashboardPlace:p=com.duy.text_converter.pro");
+    }
+
+    @Test
+    public void URLCodec_decode() throws InterruptedException {
+        testDecode(URL.getCodec(), URL.getCodec().encode("https://play.google.com/apps/publish/?account=7055567654109499514#AppDashboardPlace:p=com.duy.text_converter.pro"));
+    }
+
+    @Test
+    public void ZalgoBigCodec_encode() throws InterruptedException {
+        testEncode(ZALGO_BIG.getCodec(), "Encode ZALGO_BIG");
+    }
+
+    @Test
+    public void ZalgoBigCodec_decode() throws InterruptedException {
+        testDecode(ZALGO_BIG.getCodec(), ZALGO_BIG.getCodec().encode("Decode ZALGO_BIG"));
+    }
+
+    @Test
+    public void ZalgoMiniCodec_encode() throws InterruptedException {
+        testEncode(ZALGO_MINI.getCodec(), "Encode ZALGO_MINI");
+    }
+
+    @Test
+    public void ZalgoMiniCodec_decode() throws InterruptedException {
+        testDecode(ZALGO_MINI.getCodec(), ZALGO_MINI.getCodec().encode("Decode ZALGO_MINI"));
+    }
+
+    @Test
+    public void ZalgoNormalCodec_encode() throws InterruptedException {
+        testEncode(ZALGO_NORMAL.getCodec(), "Encode ZALGO_NORMAL");
+    }
+
+    @Test
+    public void ZalgoNormalCodec_decode() throws InterruptedException {
+        testDecode(ZALGO_NORMAL.getCodec(), ZALGO_NORMAL.getCodec().encode("Decode ZALGO_NORMAL"));
+    }
 
     private void testEncode(Codec codec, String stringToBeType) throws InterruptedException {
-
-
         String selectionText = codec.getName(mRule.getActivity());
         onView(allOf(withId(R.id.spinner_codec_methods), isDisplayed())).perform(click());
         onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
@@ -208,7 +323,7 @@ public class CodecFragmentTest {
         onView(allOf(withId(R.id.edit_input), isDisplayed()))
                 .perform(click())
                 .perform(clearText())
-                .perform(typeText(stringToBeType))
+                .perform(replaceText(stringToBeType))
                 .perform(closeSoftKeyboard());
 
 
@@ -224,7 +339,7 @@ public class CodecFragmentTest {
 
         onView(allOf(withId(R.id.edit_output), isDisplayed()))
                 .perform(click())
-                .perform(clearText()).perform(typeText(stringToBeType))
+                .perform(clearText()).perform(replaceText(stringToBeType))
                 .perform(closeSoftKeyboard());
 
 

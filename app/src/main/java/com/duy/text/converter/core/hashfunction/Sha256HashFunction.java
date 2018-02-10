@@ -26,6 +26,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class Sha256HashFunction implements IHashFunction {
 
+    @NonNull
     @Override
     public String getName() {
         return "SHA-256";

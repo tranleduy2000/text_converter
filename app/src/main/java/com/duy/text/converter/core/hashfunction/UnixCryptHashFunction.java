@@ -26,6 +26,7 @@ import org.apache.commons.codec.digest.UnixCrypt;
 
 public class UnixCryptHashFunction implements IHashFunction {
 
+    @NonNull
     @Override
     public String getName() {
         return "Crypt (Unix)";

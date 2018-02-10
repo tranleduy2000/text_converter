@@ -25,6 +25,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 
 public class Md5HashFunction implements IHashFunction {
+    @NonNull
     @Override
     public String getName() {
         return "MD5";

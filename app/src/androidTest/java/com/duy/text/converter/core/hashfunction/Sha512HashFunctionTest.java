@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,29 +16,15 @@
 
 package com.duy.text.converter.core.hashfunction;
 
-import android.support.annotation.NonNull;
-
-import org.apache.commons.codec.digest.DigestUtils;
+import org.junit.Test;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 2/10/2018.
  */
-
-public class Sha512HashFunction implements IHashFunction {
-
-    @NonNull
-    @Override
-    public String getName() {
-        return "SHA-512";
+public class Sha512HashFunctionTest {
+    @Test
+    public void encode() throws Exception {
+        new Sha512HashFunction().encode("Sha512HashFunctionTest");
     }
 
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        try {
-            return DigestUtils.sha512Hex(text.getBytes());
-        } catch (Exception e) {
-            return "";
-        }
-    }
 }

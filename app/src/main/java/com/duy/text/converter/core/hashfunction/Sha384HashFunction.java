@@ -16,6 +16,8 @@
 
 package com.duy.text.converter.core.hashfunction;
 
+import android.support.annotation.NonNull;
+
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -23,6 +25,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  */
 
 public class Sha384HashFunction implements IHashFunction {
+    @NonNull
     @Override
     public String getName() {
         return "SHA-384";

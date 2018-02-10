@@ -71,7 +71,7 @@ public enum CodecMethod {
             return new ReverserCodec();
         }
     },
-    UPPER {
+    UPPER_CASE {
         @Override
         public Codec getCodec() {
             return new UpperCaseCodec();
