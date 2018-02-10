@@ -22,6 +22,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +70,7 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
         for (Map.Entry<Base, EditText> entry : mEditTextBase.entrySet()) {
             EditText editText = entry.getValue();
             editText.addTextChangedListener(new OnBaseChangeListener(editText, entry.getKey()));
+            editText.setFilters(new InputFilter[]{new BaseInputFilter(entry.getKey())});
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 editText.setShowSoftInputOnFocus(false);
             } else {
@@ -218,6 +221,27 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
         @Override
         public void afterTextChanged(Editable s) {
 
+        }
+    }
+
+    private class BaseInputFilter implements InputFilter {
+        private static final String NUMBER = "0123456789ABCDEF";
+        private String mAcceptChar;
+
+        public BaseInputFilter(Base base) {
+            mAcceptChar = NUMBER.substring(0, base.getRadix());
+        }
+
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            String str = source.toString();
+            StringBuilder result = new StringBuilder();
+            for (char c : str.toCharArray()) {
+                if (mAcceptChar.contains(Character.toString(Character.toUpperCase(c)))) {
+                    result.append(c);
+                }
+            }
+            return result.toString();
         }
     }
 }
