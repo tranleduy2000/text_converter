@@ -36,7 +36,6 @@ import android.widget.Spinner;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;
-import com.duy.text.converter.core.codec.interfaces.CodecUtil;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.core.view.BaseEditText;
@@ -221,10 +220,10 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         CodecMethod method = CodecMethod.values()[index];
         if (isEncode) {
             String inp = mInput.getText().toString();
-            mOutput.setText(CodecUtil.encode(method, inp));
+            mOutput.setText(method.getCodec().encode(inp));
         } else {
             String out = mOutput.getText().toString();
-            mInput.setText(CodecUtil.decode(method, out));
+            mInput.setText(method.getCodec().decode(out));
         }
     }
 

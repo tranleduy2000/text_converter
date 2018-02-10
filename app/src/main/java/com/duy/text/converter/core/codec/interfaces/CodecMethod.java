@@ -33,6 +33,7 @@ import com.duy.text.converter.core.codec.RotCodec;
 import com.duy.text.converter.core.codec.SubscriptCodec;
 import com.duy.text.converter.core.codec.SupscriptCodec;
 import com.duy.text.converter.core.codec.URLCodec;
+import com.duy.text.converter.core.codec.UnicodeCodec;
 import com.duy.text.converter.core.codec.UpperCaseCodec;
 import com.duy.text.converter.core.codec.UpsideDownTool;
 import com.duy.text.converter.core.codec.ZalgoBigCodec;
@@ -170,6 +171,12 @@ public enum CodecMethod {
         @Override
         public Codec getCodec() {
             return new NatoCodec();
+        }
+    },
+    UNICODE {
+        @Override
+        public Codec getCodec() {
+            return new UnicodeCodec();
         }
     };
 

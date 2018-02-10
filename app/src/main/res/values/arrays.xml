@@ -46,6 +46,7 @@
         <item>Atbash</item>
         <item>ROT 13</item>
         <item>NATO</item>
+        <item>Unicode</item>
     </string-array>
 
     <string-array name="barcode_format">
