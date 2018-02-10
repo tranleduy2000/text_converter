@@ -38,6 +38,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ASCII;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ATBASH;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.BASE_32;
 import static org.hamcrest.CoreMatchers.allOf;
 
 /**
@@ -51,14 +53,12 @@ public class CodecFragmentTest {
 
     @Test
     public void binary_encode() throws InterruptedException {
-        String toBeEncode = "Hello Android, Binary codec";
-        testEncode(CodecMethod.BINARY.getCodec(), toBeEncode);
+        testEncode(CodecMethod.BINARY.getCodec(), "Hello Android, Binary codec");
     }
 
     @Test
     public void binary_decode() throws InterruptedException {
-        String toBeEncode = "01010100101010010";
-        testDecode(CodecMethod.BINARY.getCodec(), toBeEncode);
+        testDecode(CodecMethod.BINARY.getCodec(), "01010100101010010");
     }
 
     @Test
@@ -68,8 +68,29 @@ public class CodecFragmentTest {
 
     @Test
     public void ascii_decode() throws InterruptedException {
-        testDecode(ASCII.getCodec(), "104 101 108 108 111");
+        testDecode(ASCII.getCodec(), ASCII.getCodec().encode("Hello ascii"));
     }
+
+    @Test
+    public void AtbashCodec_encode() throws InterruptedException {
+        testEncode(ATBASH.getCodec(), "De ATBASH");
+    }
+
+    @Test
+    public void AtbashCodec_decode() throws InterruptedException {
+        testDecode(ATBASH.getCodec(), ATBASH.getCodec().encode("Hello ATBASH"));
+    }
+
+    @Test
+    public void Base32Codec_encode() throws InterruptedException {
+        testEncode(BASE_32.getCodec(), "De ATBASH");
+    }
+
+    @Test
+    public void Base32Codec_decode() throws InterruptedException {
+        testDecode(BASE_32.getCodec(), BASE_32.getCodec().encode("Hello BASE_32"));
+    }
+
 
     private void testEncode(Codec codec, String stringToBeType) throws InterruptedException {
         onView(allOf(withId(R.id.spinner_choose), isDisplayed())).perform(click());

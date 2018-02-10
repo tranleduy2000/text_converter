@@ -45,7 +45,10 @@ public class AsciiCodec extends CodecImpl {
         setMax(text.length());
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
-            result.append((int) text.charAt(i)).append(" ");
+            result.append((int) text.charAt(i));
+            if (i != text.length() - 1) {
+                result.append(" ");
+            }
             incConfident();
         }
         return result.toString();
