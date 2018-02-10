@@ -95,4 +95,4 @@
   public *;
 }
 
--keep class org.apache.commons.codec.**
+-keep class org.apache.commons.codec.** { *; }

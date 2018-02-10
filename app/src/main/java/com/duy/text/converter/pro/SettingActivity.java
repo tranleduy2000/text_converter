@@ -35,6 +35,8 @@ import com.duy.text.converter.pro.menu.StylishProcessTextActivity;
 import com.duy.text.converter.pro.notification.SettingFragment;
 import com.duy.text.converter.pro.notification.StyleNotificationManager;
 
+import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
+
 /**
  * Created by Duy on 26-Jul-17.
  */
@@ -90,23 +92,18 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
                 EncodeAllProcessTextActivity.class.getName(),
                 StylishProcessTextActivity.class.getName()};
         final PackageManager pm = getApplicationContext().getPackageManager();
-        if (show) {
-            for (String activityClass : classes) {
+        for (String activityClass : classes) {
+            try {
                 ComponentName compName = new ComponentName(getPackageName(), activityClass);
                 pm.setComponentEnabledSetting(
                         compName,
-                        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                        show ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : COMPONENT_ENABLED_STATE_DISABLED,
                         PackageManager.DONT_KILL_APP);
-            }
-        } else {
-            for (String activityClass : classes) {
-                ComponentName compName = new ComponentName(getPackageName(), activityClass);
-                pm.setComponentEnabledSetting(
-                        compName,
-                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                        PackageManager.DONT_KILL_APP);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
+
     }
 
     @Override

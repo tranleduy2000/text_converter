@@ -48,6 +48,7 @@
         <!--Encode and decode menu-->
         <activity
             android:name=".pro.menu.EncodeProcessTextActivity"
+            android:enabled="true"
             android:exported="true"
             android:label="@string/encode_it"
             android:theme="@style/Theme.Transparent">
@@ -60,6 +61,7 @@
 
         <activity
             android:name=".pro.menu.EncodeAllProcessTextActivity"
+            android:enabled="true"
             android:exported="true"
             android:label="@string/encode_pro"
             android:theme="@style/AppThemeLight.Dialog">
@@ -72,6 +74,8 @@
 
         <activity
             android:name=".pro.menu.DecodeAllProcessTextActivity"
+            android:enabled="true"
+            android:exported="true"
             android:label="@string/decode_pro"
             android:theme="@style/AppThemeLight.Dialog">
             <intent-filter>
@@ -83,6 +87,8 @@
 
         <activity
             android:name=".pro.menu.StylishProcessTextActivity"
+            android:enabled="true"
+            android:exported="true"
             android:label="@string/stylish_it"
             android:theme="@style/AppThemeLight.Dialog">
             <intent-filter>
@@ -91,7 +97,6 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <!--End region-->
 
         <receiver
             android:name=".pro.notification.EncodeReceiver"
