@@ -19,7 +19,7 @@ package com.duy.text.converter.core;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.barcode.BarCodeCodecFragment;
@@ -34,7 +34,7 @@ import com.duy.text.converter.core.stylish.fragments.StylistFragment;
 /**
  * Created by DUy on 06-Feb-17.
  */
-public class PagerSectionAdapter extends FragmentPagerAdapter {
+public class PagerSectionAdapter extends FragmentStatePagerAdapter {
     private static final int COUNT = 7;
     private Context context;
     private String init;

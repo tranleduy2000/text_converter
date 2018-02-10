@@ -25,8 +25,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.duy.common.ads.AdsManager;
+import com.duy.common.ads.apps.ApplicationHelper;
+import com.duy.common.views.viewpager.AutoScrollViewPager;
 import com.duy.text.converter.R;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+
+import me.relex.circleindicator.CircleIndicator;
 
 
 /**
@@ -56,8 +61,13 @@ public class AdsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        AdsManager.loadAds(getContext(), view.findViewById(R.id.container_ad), view.findViewById(R.id.ad_view));
-        AdsManager.loadAds(getContext(), view.findViewById(R.id.container_ad2), view.findViewById(R.id.ad_view2));
+        AutoScrollViewPager viewPager = view.findViewById(R.id.view_pager);
+        ApplicationHelper.setup(viewPager, getChildFragmentManager(), getContext());
+
+        CircleIndicator indicator = view.findViewById(R.id.indicator);
+        indicator.setViewPager(viewPager);
+
+        AdsManager.loadAds(getContext(), view);
     }
 
 

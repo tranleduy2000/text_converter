@@ -24,7 +24,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -120,7 +120,7 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         String text = getTextFromAnotherApp();
 
         ViewPager viewPager = findViewById(R.id.view_pager);
-        FragmentPagerAdapter adapter = getPageAdapter(text);
+        PagerAdapter adapter = getPageAdapter(text);
         viewPager.setOffscreenPageLimit(adapter.getCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(this);
@@ -131,7 +131,7 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardEventListener);
     }
 
-    protected FragmentPagerAdapter getPageAdapter(String initValue) {
+    protected PagerAdapter getPageAdapter(String initValue) {
         if (Premium.isPremium(this)) {
             return new PagerSectionAdapterPro(this, getSupportFragmentManager(), initValue);
         } else {
@@ -228,7 +228,7 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 }
                 break;
             case InAppPurchaseHelper.RC_REQUEST_UPGRADE:
-                if (resultCode == RESULT_OK){
+                if (resultCode == RESULT_OK) {
                     recreate();
                 }
                 break;

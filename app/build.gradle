@@ -25,8 +25,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 394
-        versionName "3.9.4"
+        versionCode 395
+        versionName "3.9.5"
 
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }

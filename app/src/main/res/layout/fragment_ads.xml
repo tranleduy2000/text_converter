@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,7 +23,10 @@
     <FrameLayout
         android:id="@+id/container_ad"
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="250dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/ad_view"
@@ -37,22 +40,41 @@
 
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/container_ad2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/container_ad"
+        android:orientation="vertical">
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/ad_view2"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            app:adSize="LARGE_BANNER"
-            app:adUnitId="@string/ad_unit_id_banner">
+            android:padding="4dp"
+            android:text="@string/recommend_application"
+            android:textColor="?android:textColorPrimary" />
 
-        </com.google.android.gms.ads.AdView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="?cardBackgroundColor"
+            app:cardUseCompatPadding="true">
 
-    </FrameLayout>
+
+            <com.duy.common.views.viewpager.AutoScrollViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_gravity="bottom|end" />
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

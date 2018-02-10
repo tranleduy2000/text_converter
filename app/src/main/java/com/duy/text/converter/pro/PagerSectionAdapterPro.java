@@ -23,6 +23,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.barcode.BarCodeCodecFragment;
+import com.duy.text.converter.core.fragments.BaseConverterFragment;
 import com.duy.text.converter.core.fragments.CodecFragment;
 import com.duy.text.converter.core.fragments.HashFragment;
 import com.duy.text.converter.core.stylish.fragments.DecorateFragment;
@@ -35,7 +36,7 @@ import com.duy.text.converter.pro.fragment.CodecFileFragment;
  */
 
 public class PagerSectionAdapterPro extends FragmentPagerAdapter {
-    private static final int COUNT = 6;
+    private static final int COUNT = 7;
     private String init;
     private Context context;
 
@@ -63,8 +64,10 @@ public class PagerSectionAdapterPro extends FragmentPagerAdapter {
                 return DecorateFragment.newInstance();
             case 4:
                 return HashFragment.newInstance();
-            case 5:
+            case 6:
                 return CodecFileFragment.newInstance();
+            case 5:
+                return BaseConverterFragment.newInstance();
             default:
                 return null;
         }
@@ -85,6 +88,8 @@ public class PagerSectionAdapterPro extends FragmentPagerAdapter {
                 return context.getString(R.string.tab_title_hash_function);
             case 5:
                 return context.getString(R.string.tab_title_file);
+            case 6:
+                return context.getString(R.string.tab_title_base);
         }
         return super.getPageTitle(position);
     }
