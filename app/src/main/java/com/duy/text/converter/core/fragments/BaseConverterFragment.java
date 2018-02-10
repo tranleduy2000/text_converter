@@ -32,6 +32,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.utils.ClipboardUtil;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -118,11 +119,32 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
             case R.id.btn_clear:
                 clear();
                 break;
+            case R.id.btn_copy:
+                copy();
+                break;
+            case R.id.btn_paste:
+                paste();
+                break;
             default:
                 if (v instanceof Button) {
                     insert(((Button) v).getText());
                 }
                 break;
+        }
+    }
+
+    private void paste() {
+        EditText editText = getCurrentEditText();
+        if (editText != null) {
+            String clipboard = ClipboardUtil.getClipboard(getContext());
+            editText.setText(clipboard);
+        }
+    }
+
+    private void copy() {
+        EditText editText = getCurrentEditText();
+        if (editText != null) {
+            ClipboardUtil.setClipboard(getContext(), editText.getText().toString());
         }
     }
 
