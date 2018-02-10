@@ -137,7 +137,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder>
             super(itemView);
             textView = itemView.findViewById(R.id.txt_result);
             imgCopy = itemView.findViewById(R.id.img_copy);
-            imgShare = itemView.findViewById(R.id.img_share);
+            imgShare = itemView.findViewById(R.id.btn_share);
             shareMsg = itemView.findViewById(R.id.img_share_msg);
         }
     }

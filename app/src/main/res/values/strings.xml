@@ -75,11 +75,12 @@
     <string name="process_text_title_decode_pro">Decode (Pro)</string>
     <string name="process_text_title_stylish_it">Stylish it (Pro)</string>
 
-    <string name="tab_title_hash_function">Hash</string>
     <string name="tab_title_codec">Codec</string>
-    <string name="tab_title_stylish">Stylish</string>
     <string name="tab_title_ads">Ads</string>
+    <string name="tab_title_stylish">Stylish</string>
     <string name="tab_title_decorate">Decorate</string>
     <string name="tab_title_barcode">Barcode</string>
+    <string name="tab_title_hash_function">Hash</string>
     <string name="tab_title_file">File</string>
+    <string name="tab_title_base">Base</string>
 </resources>

@@ -123,7 +123,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         view.findViewById(R.id.image_paste_out).setOnClickListener(this);
         view.findViewById(R.id.img_copy).setOnClickListener(this);
         view.findViewById(R.id.img_copy_out).setOnClickListener(this);
-        view.findViewById(R.id.img_share).setOnClickListener(this);
+        view.findViewById(R.id.btn_share).setOnClickListener(this);
         view.findViewById(R.id.img_share_out).setOnClickListener(this);
         view.findViewById(R.id.img_encode_all).setOnClickListener(this);
         view.findViewById(R.id.img_decode_all).setOnClickListener(this);
@@ -164,7 +164,7 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
                 mOutput.setText(ClipboardUtil.getClipboard(getContext()));
 
                 break;
-            case R.id.img_share:
+            case R.id.btn_share:
                 shareText(mInput);
 
                 break;

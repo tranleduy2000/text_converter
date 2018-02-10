@@ -54,7 +54,7 @@
                 android:tint="?imageTintColor" />
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/img_share"
+                android:id="@+id/btn_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"

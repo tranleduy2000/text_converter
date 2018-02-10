@@ -133,7 +133,7 @@ public class DecodeResultAdapter extends RecyclerView.Adapter<DecodeResultAdapte
             txtResult = itemView.findViewById(R.id.txt_result);
             txtTitle = itemView.findViewById(R.id.txt_name);
             imgCopy = itemView.findViewById(R.id.img_copy);
-            imgShare = itemView.findViewById(R.id.img_share);
+            imgShare = itemView.findViewById(R.id.btn_share);
             shareMsg = itemView.findViewById(R.id.img_share_msg);
             rootView = itemView.findViewById(R.id.root_view);
         }

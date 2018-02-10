@@ -22,11 +22,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.fragments.AdsFragment;
 import com.duy.text.converter.core.barcode.BarCodeCodecFragment;
+import com.duy.text.converter.core.fragments.AdsFragment;
+import com.duy.text.converter.core.fragments.BaseConverterFragment;
 import com.duy.text.converter.core.fragments.CodecFragment;
-import com.duy.text.converter.core.stylish.fragments.DecorateFragment;
 import com.duy.text.converter.core.fragments.HashFragment;
+import com.duy.text.converter.core.stylish.fragments.DecorateFragment;
 import com.duy.text.converter.core.stylish.fragments.StylistFragment;
 
 
@@ -34,7 +35,7 @@ import com.duy.text.converter.core.stylish.fragments.StylistFragment;
  * Created by DUy on 06-Feb-17.
  */
 public class PagerSectionAdapter extends FragmentPagerAdapter {
-    private static final int COUNT = 6;
+    private static final int COUNT = 7;
     private Context context;
     private String init;
 
@@ -64,6 +65,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return DecorateFragment.newInstance();
             case 5:
                 return HashFragment.newInstance();
+            case 6:
+                return BaseConverterFragment.newInstance();
             default:
                 return null;
         }
@@ -84,6 +87,8 @@ public class PagerSectionAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.tab_title_decorate);
             case 5:
                 return context.getString(R.string.tab_title_hash_function);
+            case 6:
+                return context.getString(R.string.tab_title_base);
         }
         return super.getPageTitle(position);
     }

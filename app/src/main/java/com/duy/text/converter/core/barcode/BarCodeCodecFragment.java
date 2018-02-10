@@ -90,7 +90,7 @@ public class BarCodeCodecFragment extends Fragment implements View.OnClickListen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
-        view.findViewById(R.id.img_share).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ShareManager.share(mInput.getText(), getContext());

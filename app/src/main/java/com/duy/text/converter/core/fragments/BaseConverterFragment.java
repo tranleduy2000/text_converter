@@ -31,6 +31,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.duy.common.utils.ShareUtil;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.utils.ClipboardUtil;
 
@@ -64,11 +65,15 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //bind view
         mEditTextBase.clear();
         mEditTextBase.put(Base.BINARY, (EditText) view.findViewById(R.id.edit_binary));
         mEditTextBase.put(Base.OCTAL, (EditText) view.findViewById(R.id.edit_octal));
         mEditTextBase.put(Base.DECIMAL, (EditText) view.findViewById(R.id.edit_decimal));
         mEditTextBase.put(Base.HEX, (EditText) view.findViewById(R.id.edit_hex));
+
+        //set input filter, disable keyboard
         for (Map.Entry<Base, EditText> entry : mEditTextBase.entrySet()) {
             EditText editText = entry.getValue();
             editText.addTextChangedListener(new OnBaseChangeListener(editText, entry.getKey()));
@@ -80,8 +85,7 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
             }
         }
 
-        View containerKeyboard = view.findViewById(R.id.container_keyboard);
-        addKeyEvent(containerKeyboard);
+        addKeyEvent(view.findViewById(R.id.container_keyboard));
     }
 
     private void addKeyEvent(View view) {
@@ -126,11 +130,21 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
             case R.id.btn_paste:
                 paste();
                 break;
+            case R.id.btn_share:
+                shareCurrentText();
+                break;
             default:
                 if (v instanceof Button) {
                     insert(((Button) v).getText());
                 }
                 break;
+        }
+    }
+
+    private void shareCurrentText() {
+        EditText currentEditText = getCurrentEditText();
+        if (currentEditText != null){
+            ShareUtil.shareText(getContext(), currentEditText.getText());
         }
     }
 
