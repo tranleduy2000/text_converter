@@ -27,12 +27,15 @@ import java.util.HashMap;
  */
 
 public class MorseCodec extends CodecImpl {
-    private static final char ALPHABET[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
-            'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' '};
+    private static final char ALPHABET[] = {
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+            'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ',
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
     private static final String MORSE_CODE[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
             "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...",
-            "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "/"};
+            "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "/",
+            "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."};
     private static final HashMap<Character, String> TEXT_TO_MORSE_CODES;
     private static final HashMap<String, Character> MORSE_CODE_TO_TEXT;
 
@@ -42,6 +45,9 @@ public class MorseCodec extends CodecImpl {
         for (int i = 0; i < ALPHABET.length; i++) {
             TEXT_TO_MORSE_CODES.put(ALPHABET[i], MORSE_CODE[i]);
             MORSE_CODE_TO_TEXT.put(MORSE_CODE[i], ALPHABET[i]);
+        }
+        if (TEXT_TO_MORSE_CODES.size() != MORSE_CODE_TO_TEXT.size()) {
+            throw new RuntimeException("Wrong size");
         }
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +20,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Created by Duy on 15-Jun-17.
+ * Created by Duy on 2/10/2018.
  */
-public class MorseCodecTest {
-    private static final String TO_BE_ENCODE = "morsecodectest0123456789";
-    private static final String TO_BE_DECODE = "-- --- .-. ... . -.-. --- -.. . -.-. - . ... - ----- .---- ..--- ...-- ....- ..... -.... --... ---.. ----.";
-    private MorseCodec codec = new MorseCodec();
+public class LowerCaseCodecTest {
+    private static final String TO_BE_ENCODE = "LOWERCASECODECTEST";
+    private static final String TO_BE_DECODE = "lowercasecodectest";
+    private LowerCaseCodec codec = new LowerCaseCodec();
 
     @Test
     public void encode() throws Exception {
