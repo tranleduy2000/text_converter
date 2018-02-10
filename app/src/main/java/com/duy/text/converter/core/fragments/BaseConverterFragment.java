@@ -36,6 +36,7 @@ import com.duy.text.converter.core.utils.ClipboardUtil;
 
 import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -103,7 +104,7 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
     private String convert(Base fromBase, Base newBase, String source) {
         try {
             BigInteger bigInteger = new BigInteger(source, fromBase.getRadix());
-            return bigInteger.toString(newBase.getRadix());
+            return bigInteger.toString(newBase.getRadix()).toUpperCase(Locale.US);
         } catch (Exception e) {
             e.printStackTrace();
         }
