@@ -123,7 +123,7 @@ public class HashFragment extends Fragment {
         mOutput = view.findViewById(R.id.edit_output);
         mInput.addTextChangedListener(mInputWatcher);
 
-        mMethodSpinner = view.findViewById(R.id.spinner_choose);
+        mMethodSpinner = view.findViewById(R.id.spinner_hash_methods);
         mMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
         view.findViewById(R.id.img_share_out).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -96,11 +96,7 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         // Monitor launch times and interval from installation
         RateThisApp.onCreate(this);
         // If the criteria is satisfied, "Rate this app" dialog will be shown
-        boolean showed = RateThisApp.showRateDialogIfNeeded(this);
-        int launchCount = RateThisApp.getLaunchCount(this);
-        if (Premium.isFree(this) && !showed && launchCount % 10 == 0) {
-            Premium.upgrade(this);
-        }
+        RateThisApp.showRateDialogIfNeeded(this);
     }
 
     private void handleCracked() {

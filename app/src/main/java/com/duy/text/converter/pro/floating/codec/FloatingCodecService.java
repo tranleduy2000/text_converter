@@ -96,7 +96,7 @@ public class FloatingCodecService extends FloatingView implements ViewPager.OnPa
         view.findViewById(R.id.img_copy_out).setOnClickListener(this);
         view.findViewById(R.id.image_paste_out).setOnClickListener(this);
 
-        mConvertMethod = view.findViewById(R.id.spinner_choose);
+        mConvertMethod = view.findViewById(R.id.spinner_codec_methods);
         mConvertMethod.setAdapter(new CodecMethodAdapter(getContext()));
         mConvertMethod.addOnPageChangeListener(this);
         ((TabLayout) view.findViewById(R.id.tab_layout)).setupWithViewPager(mConvertMethod);

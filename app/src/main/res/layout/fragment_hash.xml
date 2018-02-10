@@ -56,7 +56,7 @@
 
 
         <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/spinner_choose"
+            android:id="@+id/spinner_hash_methods"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="end"

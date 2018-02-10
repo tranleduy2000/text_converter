@@ -128,11 +128,15 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         view.findViewById(R.id.img_encode_all).setOnClickListener(this);
         view.findViewById(R.id.img_decode_all).setOnClickListener(this);
 
-        String[] data = getResources().getStringArray(R.array.codec_methods);
+        CodecMethod[] codecMethods = CodecMethod.values();
+        String[] names = new String[codecMethods.length];
+        for (int i = 0; i < names.length; i++) {
+            names[i] = codecMethods[i].getCodec().getName(getContext());
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_list_item_1, data);
+                android.R.layout.simple_list_item_1, names);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        mMethodSpinner = view.findViewById(R.id.spinner_choose);
+        mMethodSpinner = view.findViewById(R.id.spinner_codec_methods);
         mMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
         mMethodSpinner.setAdapter(adapter);
         mMethodSpinner.setOnItemSelectedListener(this);
