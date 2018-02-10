@@ -40,6 +40,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ASCII;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ATBASH;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.BASE_32;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.BASE_64;
 import static org.hamcrest.CoreMatchers.allOf;
 
 /**
@@ -89,6 +90,16 @@ public class CodecFragmentTest {
     @Test
     public void Base32Codec_decode() throws InterruptedException {
         testDecode(BASE_32.getCodec(), BASE_32.getCodec().encode("Hello BASE_32"));
+    }
+
+    @Test
+    public void Base64Codec_encode() throws InterruptedException {
+        testEncode(BASE_64.getCodec(), "Encode BASE_64");
+    }
+
+    @Test
+    public void Base64Codec_decode() throws InterruptedException {
+        testDecode(BASE_64.getCodec(), BASE_64.getCodec().encode("Decode BASE_64"));
     }
 
 
