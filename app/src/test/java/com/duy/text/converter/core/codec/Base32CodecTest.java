@@ -34,7 +34,7 @@ public class Base32CodecTest {
 
     @Test
     public void decode() throws Exception {
-        Assert.assertEquals(codec.encode(TO_BE_DECODE), TO_BE_ENCODE);
+        Assert.assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
     }
 
 }
