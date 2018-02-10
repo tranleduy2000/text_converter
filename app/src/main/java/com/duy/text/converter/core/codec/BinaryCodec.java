@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
@@ -97,5 +98,8 @@ public class BinaryCodec extends CodecImpl {
         return binaryToText(text);
     }
 
-
+    @Override
+    public String getName(Context context) {
+        return "Binary";
+    }
 }
