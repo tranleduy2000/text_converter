@@ -17,6 +17,7 @@
 package com.duy.text.converter.pro.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -35,9 +36,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duy.text.converter.R;
@@ -47,8 +48,9 @@ import com.duy.text.converter.core.view.RoundedBackgroundEditText;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.util.Arrays;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -60,10 +62,12 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
     private static final int REQUEST_SELECT_FILE = 1002;
     private static final String TAG = "CodecFileFragment";
     private static final int RED_PERCUSSION_READ_STORAGE = 13;
-    private String inputPath;
-    private EditText mEditInputPath, mEditOutPath;
+    private Uri mInputUri;
+    private TextView mEditInputPath, mEditOutPath;
     private RadioButton mIsEncode;
     private Spinner mCodecMethodSpinner;
+    private EncodeTask mEncodeTask;
+    private View mBtnProcess, mBtnOpenOutput;
 
     public static CodecFileFragment newInstance() {
         Bundle args = new Bundle();
@@ -82,12 +86,17 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btn_select_file).setOnClickListener(this);
-        view.findViewById(R.id.btn_submit).setOnClickListener(this);
+
+        mBtnProcess = view.findViewById(R.id.btn_submit);
+        mBtnProcess.setOnClickListener(this);
+        mBtnOpenOutput = view.findViewById(R.id.btn_open_result);
+        mBtnOpenOutput.setOnClickListener(this);
+
         mIsEncode = view.findViewById(R.id.rad_encode);
         mEditInputPath = view.findViewById(R.id.edit_input_path);
         mEditOutPath = view.findViewById(R.id.edit_output_path);
         if (savedInstanceState != null) {
-            setInputPath(savedInstanceState.getString("input_path"));
+            setInputUri((Uri) savedInstanceState.getParcelable("input_path"));
             setOutputPath(savedInstanceState.getString("output_path"));
         }
 
@@ -98,12 +107,36 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
         mCodecMethodSpinner = view.findViewById(R.id.spinner_codec_methods);
         mCodecMethodSpinner.setBackgroundDrawable(RoundedBackgroundEditText.createRoundedBackground(getContext()));
         mCodecMethodSpinner.setAdapter(adapter);
-        view.findViewById(R.id.btn_open_result).setOnClickListener(new View.OnClickListener() {
+
+
+    }
+
+    public void setOutputPath(final String outputPath) {
+        mEditOutPath.post(new Runnable() {
             @Override
-            public void onClick(View v) {
-                openResult();
+            public void run() {
+                mEditOutPath.setText(outputPath);
             }
         });
+        mBtnOpenOutput.setEnabled(true);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int i = v.getId();
+        switch (i) {
+            case R.id.btn_select_file:
+                selectFile();
+
+                break;
+            case R.id.btn_submit:
+                progressFile();
+
+                break;
+            case R.id.btn_open_result:
+                openResult();
+                break;
+        }
     }
 
     private void openResult() {
@@ -125,37 +158,26 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
         }
     }
 
-    public void setOutputPath(final String outputPath) {
-        mEditOutPath.post(new Runnable() {
-            @Override
-            public void run() {
-                mEditOutPath.setText(outputPath);
-            }
-        });
-    }
-
-    @Override
-    public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.btn_select_file) {
-            selectFile();
-
-        } else if (i == R.id.btn_submit) {
-            progressFile();
-
-        }
-    }
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("input_path", inputPath);
+        outState.putParcelable("input_path", mInputUri);
         outState.putString("output_path", mEditOutPath.getText().toString());
     }
 
     private void progressFile() {
-        new EncodeTask(getContext(), mIsEncode.isChecked(),
-                mCodecMethodSpinner.getSelectedItem().toString()).execute(inputPath);
+        if (mInputUri != null) {
+            try {
+                String methodName = mCodecMethodSpinner.getSelectedItem().toString();
+                mEncodeTask = new EncodeTask(getContext(), mIsEncode.isChecked(), methodName);
+                InputStream inputStream = getContext().getContentResolver().openInputStream(mInputUri);
+                mEncodeTask.execute(inputStream);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Toast.makeText(getContext(), R.string.message_select_text_file, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void selectFile() {
@@ -167,7 +189,7 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
             return;
         }
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("*/*");
+        intent.setType("text/plain");
         startActivityForResult(intent, REQUEST_SELECT_FILE);
     }
 
@@ -201,31 +223,38 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_SELECT_FILE:
-                if (resultCode == RESULT_OK) {
-                    setInputPath(data.getData().getPath());
+                if (resultCode == RESULT_OK && data.getData() != null) {
+                    setInputUri(data.getData());
                 }
                 break;
         }
     }
 
-    public void setInputPath(final String inputPath) {
-        this.inputPath = inputPath;
-        mEditInputPath.post(new Runnable() {
-            @Override
-            public void run() {
-                mEditInputPath.setText(inputPath);
-            }
-        });
+    public void setInputUri(final Uri inputPath) {
+        mInputUri = inputPath;
+        if (mInputUri != null) {
+            mEditInputPath.post(new Runnable() {
+                @Override
+                public void run() {
+                    mEditInputPath.setText(inputPath.toString());
+                }
+            });
+            mBtnProcess.setEnabled(true);
+        } else {
+            mBtnProcess.setEnabled(false);
+            mBtnOpenOutput.setEnabled(false);
+        }
     }
 
-    private class EncodeTask extends AsyncTask<String, Integer, File> {
+    @SuppressLint("StaticFieldLeak")
+    private class EncodeTask extends AsyncTask<InputStream, Integer, File> {
 
         private Context context;
         private boolean encode;
         private String methodName;
         private ProgressDialog mProgressDialog;
 
-        public EncodeTask(Context context, boolean encode, String methodName) {
+        EncodeTask(Context context, boolean encode, String methodName) {
             this.context = context;
             this.encode = encode;
             this.methodName = methodName;
@@ -241,14 +270,13 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
         }
 
         @Override
-        protected File doInBackground(String... params) {
-            Log.d(TAG, "doInBackground() called with: params = [" + params + "]");
-
+        protected File doInBackground(InputStream... params) {
+            Log.d(TAG, "doInBackground() called with: params = [" + Arrays.toString(params) + "]");
             try {
-                File file = new File(params[0]);
+                InputStream file = params[0];
                 Log.d(TAG, "doInBackground file = " + file);
                 publishProgress(0);
-                String content = FileUtil.streamToString(new FileInputStream(file));
+                String content = FileUtil.streamToString(file);
                 Log.d(TAG, "doInBackground content = " + content);
 
                 publishProgress(1);
@@ -256,11 +284,11 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
                         CodecUtil.decode(methodName, context, content);
 
                 publishProgress(2);
-                File out = new File(FileUtil.APP_PATH, file.getName().replace(".", "_") + "_" + methodName + ".txt");
+                String fileName = String.format("%s_%s.txt", System.currentTimeMillis(), methodName);
+                File out = new File(FileUtil.APP_PATH, fileName);
                 if (!out.exists()) {
                     out.getParentFile().mkdirs();
                     out.createNewFile();
-                    out.setReadable(true);
                 }
                 BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(out));
                 bufferedWriter.write(content);

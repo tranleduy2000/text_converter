@@ -15,149 +15,137 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?cardBackgroundColor"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        android:padding="8dp">
 
-        <RelativeLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp">
+            android:hint="Input file">
 
-            <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_input_path"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/btn_select_file"
-                android:layout_toStartOf="@+id/btn_select_file"
-                android:hint="Input file">
+                android:editable="false"
+                android:singleLine="true" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/edit_input_path"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_select_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Select text file" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:listDivider" />
 
 
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_select_file"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:text="Select file" />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?cardBackgroundColor"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <RadioButton
+                android:id="@+id/rad_encode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="@string/encode" />
+
+            <RadioButton
+                android:id="@+id/rad_decode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/decode" />
+        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="4dp">
 
-            <RadioGroup
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/choose_method" />
+
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spinner_codec_methods"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:id="@+id/rad_encode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Encode file" />
-
-                <RadioButton
-                    android:id="@+id/rad_decode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Decode file" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp">
-
-                <android.support.v7.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center"
-                    android:text="@string/choose_method"
-                    android:textColor="?colorAccent" />
-
-
-                <android.support.v7.widget.AppCompatSpinner
-                    android:id="@+id/spinner_codec_methods"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:background="@drawable/bg_edit_text_dark" />
-            </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="@drawable/bg_edit_text_dark" />
         </LinearLayout>
-
-    </android.support.v7.widget.CardView>
+    </LinearLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_submit"
         style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="center"
+        android:enabled="false"
         android:text="Progress file" />
 
-    <android.support.v7.widget.CardView
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:listDivider" />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?cardBackgroundColor"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        android:padding="4dp">
 
-        <RelativeLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp">
+            android:hint="Output path">
 
-            <android.support.design.widget.TextInputLayout
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_output_path"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/btn_open_result"
-                android:layout_toStartOf="@+id/btn_open_result"
-                android:hint="Output file">
+                android:editable="false" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/edit_output_path"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        </android.support.design.widget.TextInputLayout>
 
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_open_result"
-                style="@style/Base.Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="right"
-                android:layout_weight="1"
-                android:text="Open output" />
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_open_result"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:enabled="false"
+            android:text="Open output" />
+    </LinearLayout>
 
 
 </LinearLayout>

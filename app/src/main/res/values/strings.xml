@@ -62,10 +62,10 @@
     <string name="pref_desc_show_process_text_menu">Show menu when select text</string>
     <string name="pref_desc_open_floating_stylish">Click to open floating stylish</string>
 
-    <string name="hint_decimal">Decimal (10)</string>
-    <string name="hint_octal">Octal (8)</string>
-    <string name="hint_binary">Binary (2)</string>
-    <string name="hint_hex">Hex (16)</string>
+    <string name="hint_decimal">Decimal (0–9)</string>
+    <string name="hint_octal">Octal (0–8)</string>
+    <string name="hint_binary">Binary (0–1)</string>
+    <string name="hint_hex">Hex (0–9A-F)</string>
     <string name="hint_output_here">Enter here for decode…</string>
     <string name="hint_input_here">Enter here for encode…</string>
     <string name="hint_type_something">Type something</string>
@@ -83,4 +83,5 @@
     <string name="tab_title_hash_function">Hash</string>
     <string name="tab_title_file">File</string>
     <string name="tab_title_base">Base</string>
+    <string name="message_select_text_file">Please select text file</string>
 </resources>

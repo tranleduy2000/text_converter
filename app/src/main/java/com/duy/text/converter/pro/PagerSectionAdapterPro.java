@@ -64,9 +64,9 @@ public class PagerSectionAdapterPro extends FragmentPagerAdapter {
                 return DecorateFragment.newInstance();
             case 4:
                 return HashFragment.newInstance();
-            case 6:
-                return CodecFileFragment.newInstance();
             case 5:
+                return CodecFileFragment.newInstance();
+            case 6:
                 return BaseConverterFragment.newInstance();
             default:
                 return null;
