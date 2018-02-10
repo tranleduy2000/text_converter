@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,10 +23,7 @@
     <FrameLayout
         android:id="@+id/container_ad"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="250dp">
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/ad_view"
@@ -40,40 +37,22 @@
 
     </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/container_ad2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/container_ad"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/ad_view2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="@string/recommend_application" />
+            android:layout_gravity="center"
+            app:adSize="LARGE_BANNER"
+            app:adUnitId="@string/ad_unit_id_banner">
 
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardBackgroundColor="?cardBackgroundColor"
-            app:cardUseCompatPadding="true">
+        </com.google.android.gms.ads.AdView>
 
-
-            <com.duy.common.views.viewpager.AutoScrollViewPager
-                android:id="@+id/view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <me.relex.circleindicator.CircleIndicator
-                android:id="@+id/indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="24dp"
-                android:layout_gravity="bottom|end" />
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
+    </FrameLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

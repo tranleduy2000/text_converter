@@ -31,16 +31,19 @@ import com.duy.text.converter.core.hashfunction.Sha512HashFunction;
 import com.duy.text.converter.core.hashfunction.UnixCryptHashFunction;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -55,18 +58,21 @@ import static org.hamcrest.CoreMatchers.is;
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class HashFragmentTest {
     @Rule
     public ActivityTestRule<MainActivity> mRule = new ActivityTestRule<>(MainActivity.class);
 
     @Before
     public void selectCodecFragment() {
-        onView(withText(mRule.getActivity().getString(R.string.tab_title_hash_function))).perform(click());
+        onView(withText(mRule.getActivity().getString(R.string.tab_title_hash_function)))
+                .perform(scrollTo())
+                .perform(click());
     }
 
     @Test
     public void Md5HashFunction_encode() throws InterruptedException {
-        testEncode(new Md5HashFunction(), "HashFragmentTest");
+        testEncode(new Md5HashFunction(), "Md5HashFunction");
     }
 
     @Test
@@ -103,7 +109,7 @@ public class HashFragmentTest {
         onView(allOf(withId(R.id.edit_input), isDisplayed()))
                 .perform(click())
                 .perform(clearText())
-                .perform(replaceText(stringToBeType))
+                .perform(typeText(stringToBeType))
                 .perform(closeSoftKeyboard());
 
         onView(allOf(withId(R.id.edit_output), isDisplayed()))
