@@ -35,7 +35,7 @@ import com.duy.text.converter.core.codec.SuperscriptCodec;
 import com.duy.text.converter.core.codec.URLCodec;
 import com.duy.text.converter.core.codec.UnicodeCodec;
 import com.duy.text.converter.core.codec.UpperCaseCodec;
-import com.duy.text.converter.core.codec.UpsideDownTool;
+import com.duy.text.converter.core.codec.UpsideDownCodec;
 import com.duy.text.converter.core.codec.ZalgoBigCodec;
 import com.duy.text.converter.core.codec.ZalgoMiniCodec;
 import com.duy.text.converter.core.codec.ZalgoNormalCodec;
@@ -86,7 +86,7 @@ public enum CodecMethod {
     UPSIDE_DOWNSIDE {
         @Override
         public Codec getCodec() {
-            return new UpsideDownTool();
+            return new UpsideDownCodec();
         }
     },
     SUPPER_SCRIPT {

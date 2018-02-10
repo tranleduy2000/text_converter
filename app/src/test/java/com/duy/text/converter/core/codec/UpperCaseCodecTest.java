@@ -17,24 +17,25 @@
 package com.duy.text.converter.core.codec;
 
 import com.duy.text.converter.core.codec.interfaces.Codec;
-import com.duy.text.converter.core.codec.interfaces.CodecMethod;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 2/10/2018.
  */
-public class URLCodecTest {
-    private static final String LINK = "https://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/net/URLCodec.html";
-    private Codec urlTool = CodecMethod.URL.getCodec();
+public class UpperCaseCodecTest {
+    private static final String TO_BE_ENCODE = "uppercasecodectest";
+    private static final String TO_BE_DECODE = "UPPERCASECODECTEST";
+    private Codec codec = new UpperCaseCodec();
 
     @Test
-    public void encode() {
-        String encode = urlTool.encode(LINK);
-        String decode = urlTool.decode(encode);
-
-        Assert.assertEquals(decode, LINK);
+    public void encode() throws Exception {
+        Assert.assertEquals(codec.encode(TO_BE_ENCODE), TO_BE_DECODE);
     }
 
+    @Test
+    public void decode() throws Exception {
+        Assert.assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
+    }
 }

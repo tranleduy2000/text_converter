@@ -38,6 +38,7 @@ import com.duy.common.purchase.InAppPurchaseHelper;
 import com.duy.common.utils.DLog;
 import com.duy.common.utils.ShareUtil;
 import com.duy.common.utils.StoreUtil;
+import com.duy.text.converter.BuildConfig;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.PagerSectionAdapter;
 import com.duy.text.converter.core.fragments.AdsFragment;
@@ -96,7 +97,9 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         // Monitor launch times and interval from installation
         RateThisApp.onCreate(this);
         // If the criteria is satisfied, "Rate this app" dialog will be shown
-        RateThisApp.showRateDialogIfNeeded(this);
+        if (!BuildConfig.DEBUG) {
+            RateThisApp.showRateDialogIfNeeded(this);
+        }
     }
 
     private void handleCracked() {

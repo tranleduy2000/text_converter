@@ -36,7 +36,7 @@ import com.duy.text.converter.core.codec.SubscriptCodec;
 import com.duy.text.converter.core.codec.SuperscriptCodec;
 import com.duy.text.converter.core.codec.URLCodec;
 import com.duy.text.converter.core.codec.UpperCaseCodec;
-import com.duy.text.converter.core.codec.UpsideDownTool;
+import com.duy.text.converter.core.codec.UpsideDownCodec;
 import com.duy.text.converter.core.codec.ZalgoBigCodec;
 import com.duy.text.converter.core.codec.ZalgoMiniCodec;
 import com.duy.text.converter.core.codec.ZalgoNormalCodec;
@@ -76,7 +76,7 @@ public class CodecUtil {
             case REVERSER:
                 return new ReverserCodec().decode(inp);
             case UPSIDE_DOWNSIDE:
-                return new UpsideDownTool().decode(inp);
+                return new UpsideDownCodec().decode(inp);
             case SUPPER_SCRIPT:
                 return new SuperscriptCodec().decode(inp);
             case SUB_SCRIPT:
@@ -139,7 +139,7 @@ public class CodecUtil {
             case REVERSER:
                 return new ReverserCodec().encode(inp);
             case UPSIDE_DOWNSIDE:
-                return new UpsideDownTool().encode(inp);
+                return new UpsideDownCodec().encode(inp);
             case SUPPER_SCRIPT:
                 return new SuperscriptCodec().encode(inp);
             case SUB_SCRIPT:

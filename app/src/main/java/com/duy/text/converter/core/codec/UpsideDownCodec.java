@@ -26,7 +26,7 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
  * Created by DUy on 06-Feb-17.
  */
 
-public class UpsideDownTool extends CodecImpl {
+public class UpsideDownCodec extends CodecImpl {
     /**
      * upside down text
      */

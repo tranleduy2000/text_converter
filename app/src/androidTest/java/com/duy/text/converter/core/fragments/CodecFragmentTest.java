@@ -50,6 +50,8 @@ import static com.duy.text.converter.core.codec.interfaces.CodecMethod.LOWER;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.MORSE_CODE;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.NATO;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.OCTAL;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.RANDOM_CASE;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.REVERSER;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -175,41 +177,56 @@ public class CodecFragmentTest {
         testDecode(OCTAL.getCodec(), OCTAL.getCodec().encode("Decode OCTAL"));
     }
 
+    @Test
+    public void RandomCaseCodec_encode() throws InterruptedException {
+        testEncode(RANDOM_CASE.getCodec(), "Encode RANDOM_CASE");
+    }
+
+    @Test
+    public void RandomCaseCodec_decode() throws InterruptedException {
+        testDecode(RANDOM_CASE.getCodec(), RANDOM_CASE.getCodec().encode("Decode RANDOM_CASE"));
+    } @Test
+    public void ReverserCodec_encode() throws InterruptedException {
+        testEncode(REVERSER.getCodec(), "Encode REVERSER");
+    }
+
+    @Test
+    public void ReverserCodec_decode() throws InterruptedException {
+        testDecode(REVERSER.getCodec(), REVERSER.getCodec().encode("Decode REVERSER"));
+    }
+
+
     private void testEncode(Codec codec, String stringToBeType) throws InterruptedException {
-//        Thread.sleep(1000);
+
 
         String selectionText = codec.getName(mRule.getActivity());
         onView(allOf(withId(R.id.spinner_codec_methods), isDisplayed())).perform(click());
         onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
         onView(allOf(withId(R.id.spinner_codec_methods), isDisplayed())).check(matches(withSpinnerText(selectionText)));
-//        Thread.sleep(200);
+
 
         onView(allOf(withId(R.id.edit_input), isDisplayed()))
                 .perform(click())
                 .perform(clearText())
                 .perform(typeText(stringToBeType))
                 .perform(closeSoftKeyboard());
-//        Thread.sleep(200);
+
 
         onView(allOf(withId(R.id.edit_output), isDisplayed()))
                 .check(matches(withText(codec.encode(stringToBeType))));
     }
 
     private void testDecode(Codec codec, String stringToBeType) throws InterruptedException {
-//        Thread.sleep(1000);
-
         String selectionText = codec.getName(mRule.getActivity());
         onView(allOf(withId(R.id.spinner_codec_methods), isDisplayed())).perform(click());
         onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
         onView(withId(R.id.spinner_codec_methods)).check(matches(withSpinnerText(selectionText)));
-//        Thread.sleep(200);
 
         onView(allOf(withId(R.id.edit_output), isDisplayed()))
                 .perform(click())
                 .perform(clearText()).perform(typeText(stringToBeType))
                 .perform(closeSoftKeyboard());
 
-//        Thread.sleep(200);
 
         onView(allOf(withId(R.id.edit_input), isDisplayed()))
                 .check(matches(withText(codec.decode(stringToBeType))));

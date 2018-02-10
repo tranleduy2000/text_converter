@@ -17,24 +17,26 @@
 package com.duy.text.converter.core.codec;
 
 import com.duy.text.converter.core.codec.interfaces.Codec;
-import com.duy.text.converter.core.codec.interfaces.CodecMethod;
 
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 2/10/2018.
  */
-public class URLCodecTest {
-    private static final String LINK = "https://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/net/URLCodec.html";
-    private Codec urlTool = CodecMethod.URL.getCodec();
+public class UpsideDownCodecTest {
+    private static final String TO_BE_ENCODE = "UpsideDownCodecTest";
+    private static final String TO_BE_DECODE = "ʇsǝ⊥ɔǝpoϽuʍoᗡǝpısd∩";
+    private Codec codec = new UpsideDownCodec();
 
     @Test
-    public void encode() {
-        String encode = urlTool.encode(LINK);
-        String decode = urlTool.decode(encode);
+    public void encode() throws Exception {
+        Assert.assertEquals(codec.encode(TO_BE_ENCODE), TO_BE_DECODE);
+    }
 
-        Assert.assertEquals(decode, LINK);
+    @Test
+    public void decode() throws Exception {
+        Assert.assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
     }
 
 }
