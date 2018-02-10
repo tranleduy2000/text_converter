@@ -57,8 +57,5 @@ public abstract class CodecImpl implements Codec {
         confident++;
     }
 
-    @Override
-    public String getName(Context context) {
-        return null;
-    }
+
 }

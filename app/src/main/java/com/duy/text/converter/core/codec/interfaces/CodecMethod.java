@@ -31,7 +31,7 @@ import com.duy.text.converter.core.codec.RandomCaseCodec;
 import com.duy.text.converter.core.codec.ReverserCodec;
 import com.duy.text.converter.core.codec.RotCodec;
 import com.duy.text.converter.core.codec.SubscriptCodec;
-import com.duy.text.converter.core.codec.SupscriptCodec;
+import com.duy.text.converter.core.codec.SuperscriptCodec;
 import com.duy.text.converter.core.codec.URLCodec;
 import com.duy.text.converter.core.codec.UnicodeCodec;
 import com.duy.text.converter.core.codec.UpperCaseCodec;
@@ -92,7 +92,7 @@ public enum CodecMethod {
     SUPPER_SCRIPT {
         @Override
         public Codec getCodec() {
-            return new SupscriptCodec();
+            return new SuperscriptCodec();
         }
     },
     SUB_SCRIPT {

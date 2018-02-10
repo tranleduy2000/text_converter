@@ -16,8 +16,8 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
@@ -26,20 +26,18 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
  */
 
 public class OctalCodec extends CodecImpl {
-    private static final String TAG = "OctalCodec";
-
 
     private String textToOctal(String text) {
         setMax(text.length());
         setConfident(text.length());
-
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
             result.append(Integer.toOctalString(c));
-            result.append(" ");
+            if (i != text.length() - 1) {
+                result.append(" ");
+            }
         }
-        Log.d(TAG, "textToOctal: " + result.toString());
         return result.toString();
     }
 
@@ -57,6 +55,12 @@ public class OctalCodec extends CodecImpl {
             }
         }
         return result.toString();
+    }
+
+    @NonNull
+    @Override
+    public String getName(Context context) {
+        return "Octal";
     }
 
     @NonNull

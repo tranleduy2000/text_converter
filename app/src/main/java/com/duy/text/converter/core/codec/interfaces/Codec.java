@@ -17,11 +17,13 @@
 package com.duy.text.converter.core.codec.interfaces;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Duy on 28-Aug-17.
  */
 public interface Codec extends Decoder, Encoder {
+    @NonNull
     String getName(Context context);
 
     int getMax();

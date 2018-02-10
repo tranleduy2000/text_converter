@@ -17,6 +17,7 @@
 package com.duy.text.converter.core.codec;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
@@ -25,7 +26,7 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
  * Created by Duy on 05-May-17.
  */
 
-public class SupscriptCodec extends CodecImpl {
+public class SuperscriptCodec extends CodecImpl {
     private static final String SUPPER_SCRIPT = "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹";
     private static final String NORMAL = "abcdefghijklmnopqrstuvwxyz_,;.?!/\\'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -35,7 +36,9 @@ public class SupscriptCodec extends CodecImpl {
         }
     }
 
-    private String textToSup(String text) {
+    @NonNull
+    @Override
+    public String encode(@NonNull String text) {
         setMax(text.length());
         StringBuilder result = new StringBuilder();
         char letter;
@@ -52,7 +55,9 @@ public class SupscriptCodec extends CodecImpl {
         return result.toString();
     }
 
-    private String supToText(String text) {
+    @NonNull
+    @Override
+    public String decode(@NonNull String text) {
         StringBuilder result = new StringBuilder();
         char letter;
         for (int i = 0; i < text.length(); i++) {
@@ -70,16 +75,7 @@ public class SupscriptCodec extends CodecImpl {
 
     @NonNull
     @Override
-    public String encode(@NonNull String text) {
-        return textToSup(text);
+    public String getName(Context context) {
+        return "Superscript";
     }
-
-    @NonNull
-    @Override
-    public String decode(@NonNull String text) {
-        return supToText(text);
-
-    }
-
-
 }

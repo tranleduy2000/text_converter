@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,33 +16,25 @@
 
 package com.duy.text.converter.core.codec;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-
-import com.duy.text.converter.core.codec.interfaces.CodecImpl;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
- * Created by Duy on 13-Jul-17.
+ * Created by Duy on 2/10/2018.
  */
+public class OctalCodecTest {
+    private static final String TO_BE_ENCODE = "OctalCodecTest";
+    private static final String TO_BE_DECODE = "117 143 164 141 154 103 157 144 145 143 124 145 163 164";
+    private OctalCodec codec = new OctalCodec();
 
-public class ZalgoBigCodec extends CodecImpl {
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return ZalgoMiniCodec.convert(text, false, false, true, true, true);
+    @Test
+    public void encode() throws Exception {
+        Assert.assertEquals(codec.encode(TO_BE_ENCODE), TO_BE_DECODE);
     }
 
-    @NonNull
-    @Override
-    public String decode(@NonNull String text) {
-        return text;
+    @Test
+    public void decode() throws Exception {
+        Assert.assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
     }
 
-
-    @NonNull
-    @Override
-    public String getName(Context context) {
-        return "Zalgo Big";
-    }
 }

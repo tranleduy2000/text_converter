@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
@@ -39,6 +40,9 @@ public class ZalgoNormalCodec extends CodecImpl {
     }
 
 
-
-
+    @NonNull
+    @Override
+    public String getName(Context context) {
+        return "Zalgo Normal";
+    }
 }

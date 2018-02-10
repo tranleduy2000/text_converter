@@ -98,6 +98,7 @@ public class BinaryCodec extends CodecImpl {
         return binaryToText(text);
     }
 
+    @NonNull
     @Override
     public String getName(Context context) {
         return "Binary";

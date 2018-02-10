@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.codec;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
@@ -102,6 +103,12 @@ public class NatoCodec extends CodecImpl {
 
     @NonNull
     @Override
+    public String getName(Context context) {
+        return "Nato";
+    }
+
+    @NonNull
+    @Override
     public String encode(@NonNull String text) {
         StringBuilder result = new StringBuilder();
         setMax(text.length());
@@ -159,4 +166,5 @@ public class NatoCodec extends CodecImpl {
                     '}';
         }
     }
+
 }

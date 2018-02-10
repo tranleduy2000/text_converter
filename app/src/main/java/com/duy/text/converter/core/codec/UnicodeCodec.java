@@ -28,6 +28,7 @@ import org.apache.commons.lang.StringEscapeUtils;
  */
 
 public class UnicodeCodec implements Codec {
+    @NonNull
     @Override
     public String getName(Context context) {
         return "Unicode";

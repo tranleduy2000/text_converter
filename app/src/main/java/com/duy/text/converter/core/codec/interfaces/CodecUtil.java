@@ -33,7 +33,7 @@ import com.duy.text.converter.core.codec.RandomCaseCodec;
 import com.duy.text.converter.core.codec.ReverserCodec;
 import com.duy.text.converter.core.codec.RotCodec;
 import com.duy.text.converter.core.codec.SubscriptCodec;
-import com.duy.text.converter.core.codec.SupscriptCodec;
+import com.duy.text.converter.core.codec.SuperscriptCodec;
 import com.duy.text.converter.core.codec.URLCodec;
 import com.duy.text.converter.core.codec.UpperCaseCodec;
 import com.duy.text.converter.core.codec.UpsideDownTool;
@@ -78,7 +78,7 @@ public class CodecUtil {
             case UPSIDE_DOWNSIDE:
                 return new UpsideDownTool().decode(inp);
             case SUPPER_SCRIPT:
-                return new SupscriptCodec().decode(inp);
+                return new SuperscriptCodec().decode(inp);
             case SUB_SCRIPT:
                 return new SubscriptCodec().decode(inp);
             case MORSE_CODE:
@@ -141,7 +141,7 @@ public class CodecUtil {
             case UPSIDE_DOWNSIDE:
                 return new UpsideDownTool().encode(inp);
             case SUPPER_SCRIPT:
-                return new SupscriptCodec().encode(inp);
+                return new SuperscriptCodec().encode(inp);
             case SUB_SCRIPT:
                 return new SubscriptCodec().encode(inp);
             case MORSE_CODE:
