@@ -19,7 +19,7 @@ package com.duy.text.converter.core.codec;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.duy.text.converter.core.codec.interfaces.Codec;
+import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 import org.apache.commons.lang.StringEscapeUtils;
 
@@ -27,32 +27,36 @@ import org.apache.commons.lang.StringEscapeUtils;
  * Created by Duy on 2/10/2018.
  */
 
-public class UnicodeCodec implements Codec {
+public class UnicodeCodec extends CodecImpl {
     @NonNull
     @Override
     public String getName(Context context) {
         return "Unicode";
     }
 
-    @Override
-    public int getMax() {
-        return 0;
-    }
-
-    @Override
-    public int getConfident() {
-        return 0;
-    }
-
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        return StringEscapeUtils.unescapeJava(text);
+        setConfident(1);
+        try {
+            String result = StringEscapeUtils.unescapeJava(text);
+            incConfident();
+            return result;
+        } catch (Exception e) {
+            return text;
+        }
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        return StringEscapeUtils.escapeJava(text);
+        setConfident(1);
+        try {
+            String result = StringEscapeUtils.escapeJava(text);
+            incConfident();
+            return result;
+        } catch (Exception e) {
+            return text;
+        }
     }
 }
