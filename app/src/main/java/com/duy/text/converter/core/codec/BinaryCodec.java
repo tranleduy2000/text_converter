@@ -20,6 +20,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
+import com.duy.text.converter.core.utils.CodePointUtil;
+
+import java.util.ArrayList;
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -32,16 +35,17 @@ public class BinaryCodec extends CodecImpl {
      * foo ->  01100110 01101111 01101111
      */
     private String textToBinary(String text) {
-        char[] bytes = text.toCharArray();
-        setMax(bytes);
+        ArrayList<Integer> codePoints = CodePointUtil.codePointsArr(text);
+        setMax(codePoints.size());
+
         StringBuilder binary = new StringBuilder();
-        for (int i = 0; i < bytes.length; i++) {
-            char c = bytes[i];
+        for (int i = 0; i < codePoints.size(); i++) {
+            Integer codePoint = codePoints.get(i);
             try {
-                String bin = Integer.toBinaryString(c);
+                String bin = Integer.toBinaryString(codePoint);
                 bin = appendZero(bin);
                 binary.append(bin);
-                if (i != bytes.length - 1) {
+                if (i != codePoints.size() - 1) {
                     binary.append(' ');
                 }
                 incConfident();
@@ -75,8 +79,8 @@ public class BinaryCodec extends CodecImpl {
         setMax(arr);
         for (String arg : arr) {
             try {
-                int charCode = Integer.parseInt(arg, 2);
-                builder.append(Character.valueOf((char) charCode));
+                int codePoint = Integer.parseInt(arg, 2);
+                builder.append(Character.toChars(codePoint));
                 incConfident();
             } catch (Exception e) {
                 builder.append(" ").append(arg).append(" ");

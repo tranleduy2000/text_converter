@@ -18,31 +18,47 @@ package com.duy.text.converter.core.codec;
 
 import org.junit.Test;
 
+import static com.duy.text.converter.core.codec.AsciiCodecTest.UTF_16_STR;
 import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by Duy on 02-Aug-17.
  */
 public class BinaryCodecTest {
+    BinaryCodec codec = new BinaryCodec();
+
     @Test
     public void testEncode() throws Exception {
-        String encode = new BinaryCodec().encode("\u6c49\u8bed/\u6f22\u8a9e; H\u00e0ny\u01d4 or \u4e2d\u6587; Zh\u014dngw\u00e9n");
+        String encode = codec.encode("汉语/漢語; Hànyǔ or 中文; Zhōngwén");
         System.out.println(encode);
         assertEquals("0110110001001001 1000101111101101 00101111 0110111100100010 1000101010011110 00111011 00100000 01001000 11100000 01101110 01111001 0000000111010100 00100000 01101111 01110010 00100000 0100111000101101 0110010110000111 00111011 00100000 01011010 01101000 0000000101001101 01101110 01100111 01110111 11101001 01101110", encode);
     }
 
     @Test
     public void testDecode() throws Exception {
-        String decode = new BinaryCodec().decode(
-                new BinaryCodec().encode("\u6c49\u8bed/\u6f22\u8a9e; H\u00e0ny\u01d4 or \u4e2d\u6587; Zh\u014dngw\u00e9n"));
-        System.out.println(decode);
-        assertEquals(decode, "\u6c49\u8bed/\u6f22\u8a9e; H\u00e0ny\u01d4 or \u4e2d\u6587; Zh\u014dngw\u00e9n");
+        String expected = "汉语/漢語; Hànyǔ or 中文; Zhōngwén";
+        String decode = codec.decode(codec.encode(expected));
+        assertEquals(expected, decode);
     }
 
     @Test
     public void testEncode2() {
         String encoded = new BinaryCodec().encode("2");
         assertEquals(encoded, "00110010");
+    }
+
+    @Test
+    public void encodeUtf16() {
+        String expected = UTF_16_STR;
+        String encoded = codec.encode(expected);
+        assertEquals("000000011111010010100111", encoded);
+    }
+
+    @Test
+    public void decodeUtf16() {
+        String expected = UTF_16_STR;
+        String decode = codec.decode("000000011111010010100111");
+        assertEquals(expected, decode);
     }
 
 }

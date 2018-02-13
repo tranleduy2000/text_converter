@@ -18,6 +18,7 @@ package com.duy.text.converter.core.utils;
 
 import android.support.annotation.NonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -49,5 +50,14 @@ public class CodePointUtil {
                 };
             }
         };
+    }
+
+    public static ArrayList<Integer> codePointsArr(String text) {
+        Iterable<Integer> iterable = codePoints(text);
+        ArrayList<Integer> codePoints = new ArrayList<>();
+        for (Integer codePoint : iterable) {
+            codePoints.add(codePoint);
+        }
+        return codePoints;
     }
 }

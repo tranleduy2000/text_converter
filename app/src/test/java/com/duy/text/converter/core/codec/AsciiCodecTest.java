@@ -27,7 +27,7 @@ import static org.junit.Assert.assertEquals;
  * Created by Duy on 2/10/2018.
  */
 public class AsciiCodecTest {
-    private static final String UTF_16_STR = "💧";
+    public static final String UTF_16_STR = "💧";
     private static final String TO_BE_ENCODE = "hello";
     private static final String TO_BE_DECODE = "104 101 108 108 111";
 
