@@ -20,6 +20,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
+import com.duy.text.converter.core.utils.CodePointUtil;
+
+import java.util.Iterator;
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -30,13 +33,12 @@ public class AsciiCodec extends CodecImpl {
         String[] arr = text.split(" ");
         setMax(arr.length);
         StringBuilder result = new StringBuilder();
-        for (String arg : arr) {
+        for (String codePoint : arr) {
             try {
-                char c = (char) Integer.parseInt(arg);
-                result.append(c);
+                result.append(Character.toChars(Integer.parseInt(codePoint)));
                 incConfident();
             } catch (Exception e) {
-                result.append(arg);
+                result.append(codePoint);
             }
         }
         return result.toString();
@@ -44,13 +46,15 @@ public class AsciiCodec extends CodecImpl {
 
     private String textToAscii(String text) {
         setMax(text.length());
+        setConfident(text.length());
+
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            result.append((int) text.charAt(i));
-            if (i != text.length() - 1) {
+        Iterator<Integer> codePoints = CodePointUtil.codePoints(text).iterator();
+        while (codePoints.hasNext()) {
+            result.append(codePoints.next());
+            if (codePoints.hasNext()) {
                 result.append(" ");
             }
-            incConfident();
         }
         return result.toString();
     }
