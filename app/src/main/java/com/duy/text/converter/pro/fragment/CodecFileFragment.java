@@ -50,6 +50,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static android.app.Activity.RESULT_OK;
@@ -100,7 +101,7 @@ public class CodecFileFragment extends Fragment implements View.OnClickListener 
             setOutputPath(savedInstanceState.getString("output_path"));
         }
 
-        String[] data = getResources().getStringArray(R.array.codec_methods);
+        ArrayList<String> data = CodecUtil.getAllCodecName(getContext());
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, data);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
 

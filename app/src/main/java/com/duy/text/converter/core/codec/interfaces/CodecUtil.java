@@ -17,6 +17,7 @@
 package com.duy.text.converter.core.codec.interfaces;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.codec.AsciiCodec;
@@ -40,6 +41,8 @@ import com.duy.text.converter.core.codec.UpsideDownCodec;
 import com.duy.text.converter.core.codec.ZalgoBigCodec;
 import com.duy.text.converter.core.codec.ZalgoMiniCodec;
 import com.duy.text.converter.core.codec.ZalgoNormalCodec;
+
+import java.util.ArrayList;
 
 /**
  * Created by Duy on 29-Jul-17.
@@ -171,5 +174,13 @@ public class CodecUtil {
         }
     }
 
+    @NonNull
+    public static ArrayList<String> getAllCodecName(@NonNull Context context) {
+        ArrayList<String> names = new ArrayList<>();
+        for (CodecMethod codec : CodecMethod.values()) {
+            names.add(codec.getCodec().getName(context));
+        }
+        return names;
+    }
 
 }

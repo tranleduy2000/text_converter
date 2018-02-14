@@ -108,8 +108,7 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
         try {
             BigInteger bigInteger = new BigInteger(source, fromBase.getRadix());
             return bigInteger.toString(newBase.getRadix()).toUpperCase(Locale.US);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) { //number exception
         }
         return source;
     }
@@ -142,7 +141,7 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
 
     private void shareCurrentText() {
         EditText currentEditText = getCurrentEditText();
-        if (currentEditText != null){
+        if (currentEditText != null) {
             ShareUtil.shareText(getContext(), currentEditText.getText());
         }
     }

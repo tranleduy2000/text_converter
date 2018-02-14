@@ -16,7 +16,6 @@
 
 package com.duy.text.converter.pro.menu.fragments;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -116,7 +115,7 @@ public class EncodeAllFragment extends Fragment {
                 Codec codec = mEncoders.get(i);
                 if (isCancelled()) return null;
                 String decode = codec.encode(input);
-                publishProgress(decode, i, codec.getName(getContext()));
+                publishProgress(decode, codec.getName(getContext()));
             }
             return null;
         }
@@ -126,13 +125,7 @@ public class EncodeAllFragment extends Fragment {
             super.onProgressUpdate(values);
             DLog.d(TAG, "onProgressUpdate() called with: values = [" + Arrays.toString(values) + "]");
             String result = (String) values[0];
-            int position = (int) values[1];
-            String name = (String) values[2];
-            if (name == null) {
-                Context context = getContext();
-                if (context == null) return;
-                name = context.getResources().getStringArray(R.array.codec_methods)[position];
-            }
+            String name = (String) values[1];
             addToRecycleView(result, name);
         }
 

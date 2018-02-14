@@ -21,22 +21,24 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.duy.text.converter.R;
+import com.duy.text.converter.core.codec.interfaces.CodecUtil;
+
+import java.util.ArrayList;
 
 /**
  * Created by Duy on 9/4/2017.
  */
 
 public class CodecMethodAdapter extends PagerAdapter {
-    private String[] names;
+    private ArrayList<String> names;
 
-    public CodecMethodAdapter(Context context) {
-        names = context.getResources().getStringArray(R.array.codec_methods);
+    CodecMethodAdapter(Context context) {
+        names = CodecUtil.getAllCodecName(context);
     }
 
     @Override
     public int getCount() {
-        return names.length;
+        return names.size();
     }
 
     @Override
@@ -56,6 +58,6 @@ public class CodecMethodAdapter extends PagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return names[position];
+        return names.get(position);
     }
 }
