@@ -37,6 +37,7 @@ public class MorseCodec extends CodecImpl {
             "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...",
             "-", "..-", "...-", ".--", "-..-", "-.--", "--..", "/",
             "-----", ".----", "..---", "...--", "....-", ".....", "-....", "--...", "---..", "----."};
+
     private static final HashMap<Character, String> TEXT_TO_MORSE_CODES;
     private static final HashMap<String, Character> MORSE_CODE_TO_TEXT;
 

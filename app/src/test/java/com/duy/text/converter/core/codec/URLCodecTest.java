@@ -26,15 +26,15 @@ import org.junit.Test;
  * Created by Duy on 11-Jul-17.
  */
 public class URLCodecTest {
-    private static final String LINK = "https://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/net/URLCodec.html";
-    private Codec urlTool = CodecMethod.URL.getCodec();
+    private static final String TO_BE_ENCODE = "https://commons.apache.org/proper/commons-codec/apidocs/org/apache/commons/codec/net/URLCodec.html";
+    private Codec codec = CodecMethod.URL.getCodec();
 
     @Test
     public void encode() {
-        String encode = urlTool.encode(LINK);
-        String decode = urlTool.decode(encode);
+        String encode = codec.encode(TO_BE_ENCODE);
+        String decode = codec.decode(encode);
 
-        Assert.assertEquals(decode, LINK);
+        Assert.assertEquals(decode, TO_BE_ENCODE);
     }
 
 }

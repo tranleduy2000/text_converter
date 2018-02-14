@@ -20,6 +20,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
+import com.duy.text.converter.core.utils.CodePointUtil;
+
+import java.util.ArrayList;
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -50,33 +53,29 @@ public class HexCodec extends CodecImpl {
      */
     private String textToHex(String text) {
         StringBuilder result = new StringBuilder();
-        char[] chars = text.toCharArray();
-        setMax(chars);
-        for (char c : chars) {
+        ArrayList<Integer> chars = CodePointUtil.codePointsArr(text);
+        setMax(chars.size());
+        for (int i = 0; i < chars.size(); i++) {
+            Integer c = chars.get(i);
+            result.append(Integer.toHexString(c));
+            if (i != chars.size() - 1) {
+                result.append(" ");
+            }
             incConfident();
-            result.append(Integer.toHexString(c)).append(" ");
         }
-        return result.toString();
+        return result.toString().toUpperCase();
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        try {
-            return textToHex(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return textToHex(text);
     }
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        try {
-            return hexToTex(text);
-        } catch (Exception e) {
-            return text;
-        }
+        return hexToTex(text);
     }
 
 

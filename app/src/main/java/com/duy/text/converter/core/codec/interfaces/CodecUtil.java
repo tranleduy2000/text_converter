@@ -31,7 +31,7 @@ import com.duy.text.converter.core.codec.MorseCodec;
 import com.duy.text.converter.core.codec.OctalCodec;
 import com.duy.text.converter.core.codec.RandomCaseCodec;
 import com.duy.text.converter.core.codec.ReverserCodec;
-import com.duy.text.converter.core.codec.RotCodec;
+import com.duy.text.converter.core.codec.Rot13Codec;
 import com.duy.text.converter.core.codec.SubscriptCodec;
 import com.duy.text.converter.core.codec.SuperscriptCodec;
 import com.duy.text.converter.core.codec.URLCodec;
@@ -102,7 +102,7 @@ public class CodecUtil {
             case ATBASH:
                 return new AtbashCodec().decode(inp);
             case ROT_13:
-                return new RotCodec().decode(inp);
+                return new Rot13Codec().decode(inp);
             default:
                 return decodeMethod.getCodec().decode(inp);
         }
@@ -165,7 +165,7 @@ public class CodecUtil {
             case ATBASH:
                 return new AtbashCodec().encode(inp);
             case ROT_13:
-                return new RotCodec().encode(inp);
+                return new Rot13Codec().encode(inp);
             default:
                 return encodeMethod.getCodec().encode(inp);
         }

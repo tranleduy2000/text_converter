@@ -37,7 +37,8 @@ public class UnicodeCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        setConfident(1);
+        setMax(1);
+        setConfident(0);
         try {
             String result = StringEscapeUtils.unescapeJava(text);
             incConfident();
@@ -50,7 +51,8 @@ public class UnicodeCodec extends CodecImpl {
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        setConfident(1);
+        setMax(1);
+        setConfident(0);
         try {
             String result = StringEscapeUtils.escapeJava(text);
             incConfident();

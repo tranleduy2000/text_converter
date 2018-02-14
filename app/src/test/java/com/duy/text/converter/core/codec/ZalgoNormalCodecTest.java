@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,11 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 /**
- * Created by Duy on 13-Jul-17.
+ * Created by Duy on 2/14/2018.
  */
-public class ZalgoBigCodecTest {
+public class ZalgoNormalCodecTest {
     private static final String TO_BE_ENCODE = "ZalgoBigCodecTest";
-    private Codec codec = new ZalgoBigCodec();
+    private Codec codec = new ZalgoNormalCodec();
 
     @Test
     public void encode() {
@@ -44,5 +44,4 @@ public class ZalgoBigCodecTest {
         System.out.println("decode = " + decode);
         assertEquals(TO_BE_ENCODE, decode);
     }
-
 }

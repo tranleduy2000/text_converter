@@ -31,12 +31,14 @@ public class WingdingCodecTest {
 
     @Test
     public void encode() throws Exception {
-        Assert.assertEquals(codec.encode(TO_BE_ENCODE), TO_BE_DECODE);
+        String encode = codec.encode(TO_BE_ENCODE);
+        Assert.assertEquals(encode, TO_BE_DECODE);
     }
 
     @Test
     public void decode() throws Exception {
-        Assert.assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
+        String decode = codec.decode(TO_BE_DECODE);
+        Assert.assertEquals(decode, TO_BE_ENCODE);
     }
 
 

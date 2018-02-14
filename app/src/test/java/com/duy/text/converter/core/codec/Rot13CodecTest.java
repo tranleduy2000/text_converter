@@ -21,13 +21,13 @@ import junit.framework.TestCase;
 /**
  * Created by Duy on 28-Aug-17.
  */
-public class RotCodecTest extends TestCase {
+public class Rot13CodecTest extends TestCase {
     public void testDecode() throws Exception {
-        assertEquals(new RotCodec().decode(new RotCodec().encode("hello")), "hello");
+        assertEquals(new Rot13Codec().decode(new Rot13Codec().encode("hello")), "hello");
     }
 
     public void testEncode() throws Exception {
-        assertEquals(new RotCodec().encode(new RotCodec().decode("hello")), "hello");
+        assertEquals(new Rot13Codec().encode(new Rot13Codec().decode("hello")), "hello");
     }
 
 }

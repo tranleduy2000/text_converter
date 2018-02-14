@@ -19,6 +19,8 @@ package com.duy.text.converter.core.codec;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertEquals;
+
 /**
  * Created by Duy on 2/10/2018.
  */
@@ -37,4 +39,17 @@ public class OctalCodecTest {
         Assert.assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
     }
 
+    @Test
+    public void encodeUtf16() {
+        String utf16Str = AsciiCodecTest.UTF_16_STR;
+        String encode = codec.encode(utf16Str);
+        assertEquals("372247", encode);
+    }
+
+    @Test
+    public void decodeUtf16() {
+        String utf16Str = AsciiCodecTest.UTF_16_STR;
+        String encode = codec.encode(utf16Str);
+        assertEquals(utf16Str, codec.decode(encode));
+    }
 }

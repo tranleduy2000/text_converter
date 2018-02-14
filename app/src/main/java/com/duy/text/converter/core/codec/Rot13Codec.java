@@ -25,7 +25,7 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
  * Created by Duy on 28-Aug-17.
  */
 
-public class RotCodec extends CodecImpl {
+public class Rot13Codec extends CodecImpl {
     private String progress(String text) {
         setMax(text.length());
         StringBuilder result = new StringBuilder();

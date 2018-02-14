@@ -24,11 +24,12 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
 /**
- * Created by Duy on 13-Jul-17.
+ * Created by Duy on 10-Jul-17.
  */
-public class ZalgoBigCodecTest {
-    private static final String TO_BE_ENCODE = "ZalgoBigCodecTest";
-    private Codec codec = new ZalgoBigCodec();
+public class ZalgoMiniCodecTest {
+    private static final String TO_BE_ENCODE = "ZalgoCodecTest";
+    private static final String TO_BE_DECODE = "ZalgoCodecTest";
+    private Codec codec = new ZalgoMiniCodec();
 
     @Test
     public void encode() {

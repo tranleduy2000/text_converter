@@ -159,9 +159,9 @@ public class StylistFactory {
         list.add("\u0334");
         list.add("\u0336");
 
-        for (char c : ZalgoMiniCodec.zalgo_up) list.add(c + "");
-        for (char c : ZalgoMiniCodec.zalgo_down) list.add(c + "");
-        for (char c : ZalgoMiniCodec.zalgo_mid) list.add(c + "");
+        for (char c : ZalgoMiniCodec.ZALGO_UP) list.add(c + "");
+        for (char c : ZalgoMiniCodec.ZALGO_DOWN) list.add(c + "");
+        for (char c : ZalgoMiniCodec.ZALGO_MID) list.add(c + "");
         return list;
     }
 

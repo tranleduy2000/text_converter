@@ -36,7 +36,7 @@ public class ZalgoBigCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        return text;
+        return new ZalgoMiniCodec().decode(text);
     }
 
 

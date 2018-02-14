@@ -20,6 +20,9 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
+import com.duy.text.converter.core.utils.CodePointUtil;
+
+import java.util.ArrayList;
 
 /**
  * Created by DUy on 06-Feb-17.
@@ -27,19 +30,6 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 public class OctalCodec extends CodecImpl {
 
-    private String textToOctal(String text) {
-        setMax(text.length());
-        setConfident(text.length());
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            result.append(Integer.toOctalString(c));
-            if (i != text.length() - 1) {
-                result.append(" ");
-            }
-        }
-        return result.toString();
-    }
 
     private String octalToText(String text) {
         String[] arr = text.split(" ");
@@ -47,8 +37,8 @@ public class OctalCodec extends CodecImpl {
         StringBuilder result = new StringBuilder();
         for (String arg : arr) {
             try {
-                char c = (char) Integer.parseInt(arg, 8);
-                result.append(c);
+                int codePoint = Integer.parseInt(arg, 8);
+                result.append(Character.toChars(codePoint));
                 incConfident();
             } catch (Exception e) {
                 result.append(" ").append(arg).append(" ");
@@ -65,8 +55,20 @@ public class OctalCodec extends CodecImpl {
 
     @NonNull
     @Override
-    public String encode(@NonNull String text) {
-        return textToOctal(text);
+    public String encode(@NonNull final String text) {
+        final ArrayList<Integer> chars = CodePointUtil.codePointsArr(text);
+        setMax(chars.size());
+        setConfident(chars.size());
+
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < chars.size(); i++) {
+            Integer c = chars.get(i);
+            result.append(Integer.toOctalString(c));
+            if (i != chars.size() - 1) {
+                result.append(" ");
+            }
+        }
+        return result.toString();
     }
 
     @NonNull

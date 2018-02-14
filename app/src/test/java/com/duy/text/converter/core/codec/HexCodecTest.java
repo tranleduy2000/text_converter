@@ -16,19 +16,24 @@
 
 package com.duy.text.converter.core.codec;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by Duy on 31-Jul-17.
  */
-public class HexCodecTest extends TestCase {
+public class HexCodecTest {
+    private HexCodec codec = new HexCodec();
 
+    @Test
     public void testEncode() {
         String res = new HexCodec().encode("Hello");
         System.out.println(res);
-        assertEquals(res, "48 65 6c 6c 6f ");
+        assertEquals(res, "48 65 6C 6C 6F");
     }
 
+    @Test
     public void testDecode() {
         String input = "Hello";
         String res = new HexCodec().encode(input);
@@ -36,7 +41,8 @@ public class HexCodecTest extends TestCase {
         assertEquals(new HexCodec().decode(res), input);
     }
 
-    public void testChinese() {
+    @Test
+    public void hex_encode_chinese() {
         String input = "汉字/漢字";
         String res = new HexCodec().encode(input);
         System.out.println("encode " + res);
@@ -44,5 +50,19 @@ public class HexCodecTest extends TestCase {
         String decode = new HexCodec().decode(res);
         System.out.println("decode " + decode);
         assertEquals(decode, input);
+    }
+
+    @Test
+    public void encodeUtf16() {
+        String utf16Str = AsciiCodecTest.UTF_16_STR;
+        String encode = codec.encode(utf16Str);
+        assertEquals("1F4A7", encode);
+    }
+
+    @Test
+    public void decodeUtf16() {
+        String utf16Str = AsciiCodecTest.UTF_16_STR;
+        String encode = codec.encode(utf16Str);
+        assertEquals(utf16Str, codec.decode(encode));
     }
 }

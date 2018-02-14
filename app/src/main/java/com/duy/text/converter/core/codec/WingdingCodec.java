@@ -108,8 +108,8 @@ public class WingdingCodec extends CodecImpl {
     public String decode(@NonNull String text) {
         setMax(text.length());
         setConfident(0);
-        StringBuilder decoded = new StringBuilder();
 
+        StringBuilder decoded = new StringBuilder();
         loop:
         for (Integer codePoint : CodePointUtil.codePoints(text)) {
             for (Map.Entry<Character, Integer> entry : WING_DINGS_MAP.entrySet()) {

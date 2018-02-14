@@ -29,7 +29,7 @@ import com.duy.text.converter.core.codec.NatoCodec;
 import com.duy.text.converter.core.codec.OctalCodec;
 import com.duy.text.converter.core.codec.RandomCaseCodec;
 import com.duy.text.converter.core.codec.ReverserCodec;
-import com.duy.text.converter.core.codec.RotCodec;
+import com.duy.text.converter.core.codec.Rot13Codec;
 import com.duy.text.converter.core.codec.SubscriptCodec;
 import com.duy.text.converter.core.codec.SuperscriptCodec;
 import com.duy.text.converter.core.codec.URLCodec;
@@ -164,7 +164,7 @@ public enum CodecMethod {
     ROT_13 {
         @Override
         public Codec getCodec() {
-            return new RotCodec();
+            return new Rot13Codec();
         }
     },
     NATO {

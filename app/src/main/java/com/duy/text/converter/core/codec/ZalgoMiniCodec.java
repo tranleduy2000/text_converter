@@ -21,25 +21,28 @@ import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
+import org.apache.commons.lang.ArrayUtils;
+
 public class ZalgoMiniCodec extends CodecImpl {
 
-    public static final char[] zalgo_up =
-            {'\u030d', /*     Ì?     */'\u030e', /*     ÌŽ     */'\u0304', /*     Ì„     */'\u0305', /*     Ì…     */
+    public static final char[] ZALGO_UP =
+            {
+                    '\u030d', /*     Ì?     */'\u030e', /*     ÌŽ     */'\u0304', /*     Ì„     */'\u0305', /*     Ì…     */
                     '\u033f', /*     Ì¿     */'\u0311', /*     Ì‘     */'\u0306', /*     Ì†     */'\u0310', /*     Ì?     */
-                    '\u0352', /*     Í’     */'\u0357', /*     Í—     */'\u0351', /*     Í‘     */'\u0307', /*     Ì‡     */
+                    '\u0352', /*     Í’     */'\u0357', /*     Í—    */'\u0351', /*     Í‘     */'\u0307', /*     Ì‡     */
                     '\u0308', /*     Ìˆ     */'\u030a', /*     ÌŠ     */'\u0342', /*     Í‚     */'\u0343', /*     Ì“     */
-                    '\u0344', /*     ÌˆÌ?     */'\u034a', /*     ÍŠ     */'\u034b', /*     Í‹     */'\u034c', /*     ÍŒ     */
+                    '\u0344', /*     ÌˆÌ?   */'\u034a', /*     ÍŠ     */'\u034b', /*     Í‹     */'\u034c', /*     ÍŒ     */
                     '\u0303', /*     Ìƒ     */'\u0302', /*     Ì‚     */'\u030c', /*     ÌŒ     */'\u0350', /*     Í?     */
                     '\u0300', /*     Ì€     */'\u0301', /*     Ì?     */'\u030b', /*     Ì‹     */'\u030f', /*     Ì?     */
                     '\u0312', /*     Ì’     */'\u0313', /*     Ì“     */'\u0314', /*     Ì”     */'\u033d', /*     Ì½     */
-                    '\u0309', /*     Ì‰     */'\u0363', /*     Í£     */'\u0364', /*     Í¤     */'\u0365', /*     Í¥     */
+                    '\u0309', /*     Ì‰    */'\u0363', /*     Í£     */'\u0364', /*     Í¤     */'\u0365', /*     Í¥     */
                     '\u0366', /*     Í¦     */'\u0367', /*     Í§     */'\u0368', /*     Í¨     */'\u0369', /*     Í©     */
                     '\u036a', /*     Íª     */'\u036b', /*     Í«     */'\u036c', /*     Í¬     */'\u036d', /*     Í­     */
                     '\u036e', /*     Í®     */'\u036f', /*     Í¯     */'\u033e', /*     Ì¾     */'\u035b', /*     Í›     */
-                    '\u0346', /*     Í†     */'\u031a' /*     Ìš     */
+                    '\u0346', /*     Í†     */'\u031a'  /*     Ìš     */
             };
 
-    public static final char[] zalgo_down =
+    public static final char[] ZALGO_DOWN =
             {'\u0316', /*     Ì–     */'\u0317', /*     Ì—     */'\u0318', /*     Ì˜     */'\u0319', /*     Ì™     */
                     '\u031c', /*     Ìœ     */'\u031d', /*     Ì?     */'\u031e', /*     Ìž     */'\u031f', /*     ÌŸ     */
                     '\u0320', /*     Ì      */'\u0324', /*     Ì¤     */'\u0325', /*     Ì¥     */'\u0326', /*     Ì¦     */
@@ -53,7 +56,7 @@ public class ZalgoMiniCodec extends CodecImpl {
             };
 
     //those always stay in the middle
-    public static final char[] zalgo_mid =
+    public static final char[] ZALGO_MID =
             {'\u0315', /*     Ì•     */'\u031b', /*     Ì›     */'\u0340', /*     Ì€     */'\u0341', /*     Ì?     */
                     '\u0358', /*     Í˜     */'\u0321', /*     Ì¡     */'\u0322', /*     Ì¢     */'\u0327', /*     Ì§     */
                     '\u0328', /*     Ì¨     */'\u0334', /*     Ì´     */'\u0335', /*     Ìµ     */'\u0336', /*     Ì¶     */
@@ -74,7 +77,7 @@ public class ZalgoMiniCodec extends CodecImpl {
 
     //gets a random char from a zalgo char table
 
-    private static char rand_zalgo(char[] array) {
+    private static char randomCharFrom(char[] array) {
         int ind = (int) Math.floor(Math.random() * array.length);
         return array[ind];
     }
@@ -83,17 +86,17 @@ public class ZalgoMiniCodec extends CodecImpl {
     //lookup char to know if its a zalgo char or not
 
     private static boolean isZalgoChar(char c) {
-        for (char aZalgo_up : zalgo_up) {
+        for (char aZalgo_up : ZALGO_UP) {
             if (c == aZalgo_up) {
                 return true;
             }
         }
-        for (char aZalgo_down : zalgo_down) {
+        for (char aZalgo_down : ZALGO_DOWN) {
             if (c == aZalgo_down) {
                 return true;
             }
         }
-        for (char aZalgo_mid : zalgo_mid) {
+        for (char aZalgo_mid : ZALGO_MID) {
             if (c == aZalgo_mid) {
                 return true;
             }
@@ -101,12 +104,12 @@ public class ZalgoMiniCodec extends CodecImpl {
         return false;
     }
 
-    public static String convert(String iText, boolean zalgo_opt_mini, boolean zalgo_opt_normal, boolean up,
-                                 boolean down, boolean mid) {
-        StringBuilder zalgoTxt = new StringBuilder();
+    public static String convert(final String text, boolean isMini, boolean isNormal,
+                                 boolean up, boolean down, boolean mid) {
+        StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < iText.length(); i++) {
-            if (isZalgoChar(iText.charAt(i)))
+        for (int i = 0; i < text.length(); i++) {
+            if (isZalgoChar(text.charAt(i)))
                 continue;
 
             int num_up;
@@ -114,19 +117,17 @@ public class ZalgoMiniCodec extends CodecImpl {
             int num_down;
 
             //add the normal character
-            zalgoTxt.append(iText.charAt(i));
+            result.append(text.charAt(i));
 
-            //options
-            if (zalgo_opt_mini) {
+            if (isMini) {
                 num_up = rand(8);
                 num_mid = rand(2);
                 num_down = rand(8);
-            } else if (zalgo_opt_normal) {
+            } else if (isNormal) {
                 num_up = rand(16) / 2 + 1;
                 num_mid = rand(6) / 2;
                 num_down = rand(16) / 2 + 1;
-            } else //maxi
-            {
+            } else {
                 num_up = rand(64) / 4 + 3;
                 num_mid = rand(16) / 4 + 1;
                 num_down = rand(64) / 4 + 3;
@@ -134,23 +135,23 @@ public class ZalgoMiniCodec extends CodecImpl {
 
             if (up) {
                 for (int j = 0; j < num_up; j++) {
-                    zalgoTxt.append(rand_zalgo(zalgo_up));
+                    result.append(randomCharFrom(ZALGO_UP));
                 }
             }
             if (mid) {
                 for (int j = 0; j < num_mid; j++) {
-                    zalgoTxt.append(rand_zalgo(zalgo_mid));
+                    result.append(randomCharFrom(ZALGO_MID));
                 }
             }
             if (down) {
                 for (int j = 0; j < num_down; j++) {
-                    zalgoTxt.append(rand_zalgo(zalgo_down));
+                    result.append(randomCharFrom(ZALGO_DOWN));
                 }
             }
         }
 
 
-        return zalgoTxt.toString();
+        return result.toString();
     }
 
 
@@ -163,7 +164,17 @@ public class ZalgoMiniCodec extends CodecImpl {
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        return text;
+        StringBuilder decoded = new StringBuilder();
+        char[] chars = text.toCharArray();
+        for (char aChar : chars) {
+            if (ArrayUtils.contains(ZALGO_DOWN, aChar)
+                    || ArrayUtils.contains(ZALGO_MID, aChar)
+                    || ArrayUtils.contains(ZALGO_UP, aChar)) {
+                continue;
+            }
+            decoded.append(aChar);
+        }
+        return decoded.toString();
     }
 
 
