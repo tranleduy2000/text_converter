@@ -37,6 +37,7 @@ public class UpgradeActivity extends InAppPurchaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upgrade);
         ActivityHelper.setupToolbar(this);
+        setTitle(getString(R.string.pro_version));
         findViewById(R.id.btn_upgrade).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

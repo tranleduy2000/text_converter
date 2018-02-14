@@ -173,6 +173,11 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (StoreUtil.isAppInstalled(this, "com.duy.casio.v2")) {
+            menu.findItem(R.id.action_install_ncalc).setVisible(false);
+        } else {
+            menu.findItem(R.id.action_install_ncalc).setVisible(true);
+        }
         if (Premium.isPremium(this)) {
             menu.findItem(R.id.action_upgrade).setVisible(false);
             menu.findItem(R.id.action_open_codec).setVisible(true);
@@ -212,6 +217,9 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
             case R.id.action_how_to_use:
                 HelpDialog helpDialog = new HelpDialog();
                 helpDialog.show(getSupportFragmentManager(), HelpDialog.TAG);
+                break;
+            case R.id.action_install_ncalc:
+                StoreUtil.gotoPlayStore(this, "com.duy.calc.casio.v2");
                 break;
         }
         return super.onOptionsItemSelected(item);

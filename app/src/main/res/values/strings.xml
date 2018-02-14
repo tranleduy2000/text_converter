@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">Text Converter</string>
+    <string name="app_name">Codec</string>
     <string name="choose_method">Choose method</string>
     <string name="encode">Encode</string>
     <string name="decode">Decode</string>
@@ -31,13 +31,12 @@
     <string name="title_select_image">Select Image</string>
 
     <string name="floating_notification_description">Tap to open</string>
-    <string name="pro_feature"><![CDATA[1. \n2.  (small window)\n3.  (small window)\n4. \n5. \n6. Encode/Decode notification\n7. \n8. (New) \n]]></string>
-    <string name="pro_version">Pro version</string>
     <string name="remove_ads">Get pro version</string>
     <string name="chance_remaining">This feature fully only available in PRO version. Click here to upgrade. You have %o chance remaining. You can hide this menu in setting.</string>
     <string name="please_upgrade">Please upgrade to pro version</string>
     <string name="recommend_application">Recommend application</string>
 
+    <string name="pro_version">Pro version</string>
     <string name="pro_feature_remove_ads">Remove ads</string>
     <string name="pro_feature_floating_codec">Floating codec, small window over any app</string>
     <string name="pro_feature_floating_stylish">Floating stylish, small window over any app</string>
