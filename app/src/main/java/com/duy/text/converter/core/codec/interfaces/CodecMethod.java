@@ -36,6 +36,7 @@ import com.duy.text.converter.core.codec.URLCodec;
 import com.duy.text.converter.core.codec.UnicodeCodec;
 import com.duy.text.converter.core.codec.UpperCaseCodec;
 import com.duy.text.converter.core.codec.UpsideDownCodec;
+import com.duy.text.converter.core.codec.WingdingCodec;
 import com.duy.text.converter.core.codec.ZalgoBigCodec;
 import com.duy.text.converter.core.codec.ZalgoMiniCodec;
 import com.duy.text.converter.core.codec.ZalgoNormalCodec;
@@ -177,6 +178,12 @@ public enum CodecMethod {
         @Override
         public Codec getCodec() {
             return new UnicodeCodec();
+        }
+    },
+    WINGDING {
+        @Override
+        public Codec getCodec() {
+            return new WingdingCodec();
         }
     };
 

@@ -62,6 +62,10 @@ import static com.duy.text.converter.core.codec.interfaces.CodecMethod.UNICODE;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.UPPER_CASE;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.UPSIDE_DOWNSIDE;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.URL;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.WINGDING;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_BIG;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_MINI;
+import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_NORMAL;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
@@ -193,15 +197,6 @@ public class CodecFragmentTest {
         testDecode(OCTAL.getCodec(), OCTAL.getCodec().encode("Decode OCTAL"));
     }
 
-//    @Test
-//    public void RandomCaseCodec_encode() throws InterruptedException {
-//        testEncode(RANDOM_CASE.getCodec(), "Encode RANDOM_CASE");
-//    }
-//
-//    @Test
-//    public void RandomCaseCodec_decode() throws InterruptedException {
-//        testDecode(RANDOM_CASE.getCodec(), RANDOM_CASE.getCodec().encode("Decode RANDOM_CASE"));
-//    }
 
     @Test
     public void ReverserCodec_encode() throws InterruptedException {
@@ -283,35 +278,46 @@ public class CodecFragmentTest {
         testDecode(URL.getCodec(), URL.getCodec().encode("https://play.google.com/apps/publish/?account=7055567654109499514#AppDashboardPlace:p=com.duy.text_converter.pro"));
     }
 
-//    @Test
-//    public void ZalgoBigCodec_encode() throws InterruptedException {
-//        testEncode(ZALGO_BIG.getCodec(), "Encode ZALGO_BIG");
-//    }
+    @Test
+    public void WingdingCodec_encode() throws InterruptedException {
+        testEncode(WINGDING.getCodec(), "Encode WINGDING");
+    }
 
-//    @Test
-//    public void ZalgoBigCodec_decode() throws InterruptedException {
-//        testDecode(ZALGO_BIG.getCodec(), ZALGO_BIG.getCodec().encode("Decode ZALGO_BIG"));
-//    }
+    @Test
+    public void WingdingCodec_decode() throws InterruptedException {
+        testDecode(WINGDING.getCodec(), WINGDING.getCodec().encode("Decode WINGDING"));
+    }
 
-//    @Test
-//    public void ZalgoMiniCodec_encode() throws InterruptedException {
-//        testEncode(ZALGO_MINI.getCodec(), "Encode ZALGO_MINI");
-//    }
+    @Test
+    public void ZalgoBigCodec_encode() throws InterruptedException {
+        testEncode(ZALGO_BIG.getCodec(), "Encode ZALGO_BIG");
+    }
 
-//    @Test
-//    public void ZalgoMiniCodec_decode() throws InterruptedException {
-//        testDecode(ZALGO_MINI.getCodec(), ZALGO_MINI.getCodec().encode("Decode ZALGO_MINI"));
-//    }
+    @Test
+    public void ZalgoBigCodec_decode() throws InterruptedException {
+        testDecode(ZALGO_BIG.getCodec(), ZALGO_BIG.getCodec().encode("Decode ZALGO_BIG"));
+    }
 
-//    @Test
-//    public void ZalgoNormalCodec_encode() throws InterruptedException {
-//        testEncode(ZALGO_NORMAL.getCodec(), "Encode ZALGO_NORMAL");
-//    }
+    @Test
+    public void ZalgoMiniCodec_encode() throws InterruptedException {
+        testEncode(ZALGO_MINI.getCodec(), "Encode ZALGO_MINI");
+    }
 
-//    @Test
-//    public void ZalgoNormalCodec_decode() throws InterruptedException {
-//        testDecode(ZALGO_NORMAL.getCodec(), ZALGO_NORMAL.getCodec().encode("Decode ZALGO_NORMAL"));
-//    }
+    @Test
+    public void ZalgoMiniCodec_decode() throws InterruptedException {
+        testDecode(ZALGO_MINI.getCodec(), ZALGO_MINI.getCodec().encode("Decode ZALGO_MINI"));
+    }
+
+    @Test
+    public void ZalgoNormalCodec_encode() throws InterruptedException {
+        testEncode(ZALGO_NORMAL.getCodec(), "Encode ZALGO_NORMAL");
+    }
+
+    @Test
+    public void ZalgoNormalCodec_decode() throws InterruptedException {
+        testDecode(ZALGO_NORMAL.getCodec(), ZALGO_NORMAL.getCodec().encode("Decode ZALGO_NORMAL"));
+    }
+
 
     private void testEncode(Codec codec, String stringToBeType) throws InterruptedException {
         String selectionText = codec.getName(mRule.getActivity());
@@ -323,7 +329,7 @@ public class CodecFragmentTest {
         onView(allOf(withId(R.id.edit_input), isDisplayed()))
                 .perform(click())
                 .perform(clearText())
-                .perform(typeText(stringToBeType))
+                .perform(canType(stringToBeType) ? typeText(stringToBeType) : replaceText(stringToBeType))
                 .perform(closeSoftKeyboard());
 
 
@@ -335,7 +341,7 @@ public class CodecFragmentTest {
         String selectionText = codec.getName(mRule.getActivity());
         onView(allOf(withId(R.id.spinner_codec_methods), isDisplayed())).perform(click());
         onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());
-        onView(withId(R.id.spinner_codec_methods)).check(matches(withSpinnerText(selectionText)));
+        onView(allOf(withId(R.id.spinner_codec_methods), isDisplayed())).check(matches(withSpinnerText(selectionText)));
 
         onView(allOf(withId(R.id.edit_output), isDisplayed()))
                 .perform(click())
@@ -350,8 +356,8 @@ public class CodecFragmentTest {
 
     private boolean canType(String text) {
         for (int i = 0; i < text.length(); i++) {
-            if (!Character.isLetterOrDigit(text.charAt(i))
-                    && !Character.isSpaceChar(text.charAt(i))) {
+            char c = text.charAt(i);
+            if (c < 32 || c > 126){
                 return false;
             }
         }
