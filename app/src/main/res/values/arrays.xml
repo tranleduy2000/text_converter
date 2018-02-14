@@ -47,6 +47,7 @@
         <item>ROT 13</item>
         <item>NATO</item>
         <item>Unicode</item>
+        <item>Winding</item>
     </string-array>
 
     <string-array name="barcode_format">

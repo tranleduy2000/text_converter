@@ -98,7 +98,6 @@ public class HashFragment extends Fragment {
         mHashFunctions.add(new Sha256HashFunction());
         mHashFunctions.add(new Sha384HashFunction());
         mHashFunctions.add(new Sha512HashFunction());
-//        mHashFunctions.add(new UnixCryptHashFunction());
     }
 
     @Override

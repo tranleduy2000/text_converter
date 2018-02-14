@@ -36,7 +36,7 @@
 
     <color name="themeLight2.colorPrimary">#4D12EE</color>
     <color name="themeLight2.colorPrimaryDark">#2F24C1</color>
-    <color name="themeLight2.colorAccent">#3FD1CB</color>
+    <color name="themeLight2.colorAccent">#26a69a</color>
     <color name="themeLight2.windowBackgroundColor">#F8F6F6</color>
 
     <color name="themeLight3.colorPrimary">#118DF0</color>
@@ -56,7 +56,7 @@
 
     <color name="themeLight6.colorPrimary">#253B6E</color>
     <color name="themeLight6.colorPrimaryDark">#1F5F8B</color>
-    <color name="themeLight6.colorAccent">#1891AC</color>
-    <color name="themeLight6.windowBackgroundColor">#D2ECF9</color>
+    <color name="themeLight6.colorAccent">#00838f</color>
+    <color name="themeLight6.windowBackgroundColor">#e1f5fe</color>
 
 </resources>

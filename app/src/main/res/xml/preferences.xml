@@ -28,13 +28,22 @@
 
         </ListPreference>
 
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_title_menu_text">
+        <ListPreference
+            android:defaultValue="@string/binary"
+            android:entries="@array/codec_methods"
+            android:entryValues="@array/codec_methods"
+            android:key="pref_key_encode_menu"
+            android:title="@string/process_text_title_encode_it" />
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="@string/pref_key_enable_progress_text"
             android:summary="@string/pref_desc_show_process_text_menu"
             android:title="@string/pref_title_process_text" />
-
     </PreferenceCategory>
+
     <PreferenceCategory
         android:key="@string/pref_key_category_floating_window"
         android:title="@string/pref_title_floating_window">
@@ -47,15 +56,6 @@
             android:key="open_floating_stylish"
             android:summary="@string/pref_desc_open_floating_stylish"
             android:title="@string/action_floating_stylish" />
-    </PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/pref_title_menu_text">
-        <ListPreference
-            android:defaultValue="@string/binary"
-            android:entries="@array/codec_methods"
-            android:entryValues="@array/codec_methods"
-            android:key="pref_key_encode_menu"
-            android:title="@string/process_text_title_encode_it" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_title_notification">

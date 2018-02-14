@@ -22,28 +22,35 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/appbar" />
+    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:theme="?toolbarTheme"
+            app:layout_scrollFlags="snap|scroll"
+            app:popupTheme="?toolbarPopupTheme"
+            tools:title="Title" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.AppCompatTextView
-            style="@style/Base.TextAppearance.AppCompat.Headline"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pro_version" />
+            android:layout_height="match_parent">
 
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_pro_feature"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:text="@string/pro_feature"
-            android:textColor="?android:textColorPrimary" />
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

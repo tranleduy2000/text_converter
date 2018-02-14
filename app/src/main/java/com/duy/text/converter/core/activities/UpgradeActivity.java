@@ -18,11 +18,14 @@ package com.duy.text.converter.core.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.duy.common.activities.ActivityHelper;
 import com.duy.common.purchase.InAppPurchaseActivity;
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.adapters.PremiumFeatureAdapter;
 
 /**
  * Created by Duy on 25-Dec-17.
@@ -41,6 +44,10 @@ public class UpgradeActivity extends InAppPurchaseActivity {
             }
         });
         setResult(RESULT_CANCELED);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new PremiumFeatureAdapter(this));
+
     }
 
     @Override
@@ -50,4 +57,6 @@ public class UpgradeActivity extends InAppPurchaseActivity {
             setResult(RESULT_OK);
         }
     }
+
+
 }
