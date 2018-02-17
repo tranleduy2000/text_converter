@@ -38,13 +38,13 @@
                 android:title="@string/title_menu_caesar_cipher" />
             <item
                 android:id="@+id/action_frequency_analysis"
-                android:title="Frequency Analysis" />
+                android:title="@string/title_frequency_analysis" />
             <item
                 android:id="@+id/action_rot_13_cipher"
-                android:title="Rot-13 Cipher" />
+                android:title="@string/title_rot_13_cipher" />
             <item
                 android:id="@+id/action_vigenere_cipher"
-                android:title="Vigenère Cipher" />
+                android:title="@string/title_vigenere_cipher" />
 
         </menu>
     </item>

@@ -12,9 +12,9 @@ class FrequencyAnalysis {
 
         for (int i = 0; i < fa.length(); i++) {
             char c = fa.charAt(i);
-            Integer val = map.get(new Character(c));
+            Integer val = map.get(c);
             if (val != null) {
-                map.put(c, new Integer(val + 1));
+                map.put(c, val + 1);
             } else {
                 map.put(c, 1);
             }

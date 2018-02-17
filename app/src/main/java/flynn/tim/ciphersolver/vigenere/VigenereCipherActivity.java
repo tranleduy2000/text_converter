@@ -23,7 +23,6 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,7 +35,7 @@ import com.duy.text.converter.core.activities.base.BaseActivity;
 
 import java.util.ArrayList;
 
-import flynn.tim.ciphersolver.MyListAdapter;
+import flynn.tim.ciphersolver.ResultListAdapter;
 import flynn.tim.ciphersolver.Result;
 
 public class VigenereCipherActivity extends BaseActivity {
@@ -47,6 +46,8 @@ public class VigenereCipherActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vigenere_cipher);
+        setTitle(R.string.title_vigenere_cipher);
+
         final ListView listView = findViewById(R.id.listView3);
         final EditText ciphertext = findViewById(R.id.editText2);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
@@ -89,11 +90,7 @@ public class VigenereCipherActivity extends BaseActivity {
         solve.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                hideKeyboard();
                 String result;
                 resultsList.clear();
                 if (ciphertext.getText().toString().trim().equals("")) {
@@ -110,7 +107,7 @@ public class VigenereCipherActivity extends BaseActivity {
                     }
                 }
 
-                final MyListAdapter adapter = new MyListAdapter(getApplicationContext(), R.layout.list_item_caesar, resultsList);
+                final ResultListAdapter adapter = new ResultListAdapter(VigenereCipherActivity.this, R.layout.list_item_caesar, resultsList);
                 listView.setAdapter(adapter);
 
                 listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -120,7 +117,7 @@ public class VigenereCipherActivity extends BaseActivity {
                         ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                         ClipData clip = ClipData.newPlainText("label", resultsList.get(pos).getResult());
                         clipboard.setPrimaryClip(clip);
-                        Toast.makeText(getApplicationContext(), resultsList.get(pos).getResult().toUpperCase() + " copied to clipboard",
+                        Toast.makeText(VigenereCipherActivity.this, resultsList.get(pos).getResult().toUpperCase() + " copied to clipboard",
                                 Toast.LENGTH_SHORT).show();
 
                         return true;

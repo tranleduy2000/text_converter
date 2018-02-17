@@ -18,11 +18,14 @@ package com.duy.text.converter.core.activities.base;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
@@ -79,4 +82,15 @@ public abstract class BaseActivity extends AppCompatActivity implements SharedPr
         }
     }
 
+    protected void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (inputManager != null) {
+            View currentFocus = getCurrentFocus();
+            IBinder windowToken;
+            if (currentFocus != null) {
+                windowToken = currentFocus.getWindowToken();
+                inputManager.hideSoftInputFromWindow(windowToken, InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
 }

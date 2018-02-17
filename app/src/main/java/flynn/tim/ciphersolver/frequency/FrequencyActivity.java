@@ -17,9 +17,7 @@
 package flynn.tim.ciphersolver.frequency;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -43,13 +41,15 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class FrequencyActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frequency);
+        setupToolbar();
+        setTitle(R.string.title_frequency_analysis);
+
 
         final FrequencyAnalysis fa = new FrequencyAnalysis();
         final BarChart chart = findViewById(R.id.chart);
@@ -60,11 +60,7 @@ public class FrequencyActivity extends BaseActivity {
 
             public void onClick(View v) {
 
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                hideKeyboard();
 
                 Legend legend = chart.getLegend();
                 legend.setEnabled(false);
@@ -127,7 +123,7 @@ public class FrequencyActivity extends BaseActivity {
 
                 //Create BarDataSet using sorted list
                 BarDataSet lds = new BarDataSet(alphaEntryList, "Frequency");
-                lds.setColors(new int[]{R.color.accent_material_light}, getApplicationContext());
+                lds.setColors(new int[]{R.color.accent_material_light}, FrequencyActivity.this);
                 BarData data = new BarData(alphaXVals, lds);
 
                 //Set data to the chart
@@ -136,10 +132,5 @@ public class FrequencyActivity extends BaseActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+
 }

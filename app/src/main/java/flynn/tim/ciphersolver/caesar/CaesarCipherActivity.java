@@ -20,7 +20,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +33,7 @@ import com.duy.text.converter.core.activities.base.BaseActivity;
 
 import java.util.ArrayList;
 
-import flynn.tim.ciphersolver.MyListAdapter;
+import flynn.tim.ciphersolver.ResultListAdapter;
 import flynn.tim.ciphersolver.Result;
 
 public class CaesarCipherActivity extends BaseActivity {
@@ -45,7 +44,8 @@ public class CaesarCipherActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caesar_cipher);
-
+        setupToolbar();
+        setTitle(R.string.title_menu_caesar_cipher);
 
         final EditText userString = findViewById(R.id.editText3);
         final ListView listview = findViewById((R.id.listView2));
@@ -60,11 +60,7 @@ public class CaesarCipherActivity extends BaseActivity {
         button2.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                InputMethodManager inputManager = (InputMethodManager)
-                        getSystemService(INPUT_METHOD_SERVICE);
-
-                inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                        InputMethodManager.HIDE_NOT_ALWAYS);
+                hideKeyboard();
                 String result;
                 resultsList.clear();
                 if (userString.getText().toString().equals("")) {
@@ -114,14 +110,14 @@ public class CaesarCipherActivity extends BaseActivity {
                     }
                 }
 
-                final MyListAdapter adapter = new MyListAdapter(getApplicationContext(), R.layout.list_item_caesar, resultsList);
+                final ResultListAdapter adapter = new ResultListAdapter(CaesarCipherActivity.this, R.layout.list_item_caesar, resultsList);
                 listview.setAdapter(adapter);
 
                 listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        if (!resultsList.get(position).getEx() && resultsList.get(position).getChecked() == false) {
+                        if (!resultsList.get(position).getEx() && !resultsList.get(position).getChecked()) {
                             resultsList.get(position).setEx(true);
                         } else if (resultsList.get(position).getEx()) {
                             resultsList.get(position).setEx(false);
@@ -146,12 +142,12 @@ public class CaesarCipherActivity extends BaseActivity {
                             String part2 = parts[1];
                             ClipData clip = ClipData.newPlainText("label", part2);
                             clipboard.setPrimaryClip(clip);
-                            Toast.makeText(getApplicationContext(), part2 + " copied to clipboard",
+                            Toast.makeText(CaesarCipherActivity.this, part2 + " copied to clipboard",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             ClipData clip = ClipData.newPlainText("label", resultsList.get(pos).getResult().toUpperCase());
                             clipboard.setPrimaryClip(clip);
-                            Toast.makeText(getApplicationContext(), resultsList.get(pos).getResult().toUpperCase() + " copied to clipboard",
+                            Toast.makeText(CaesarCipherActivity.this, resultsList.get(pos).getResult().toUpperCase() + " copied to clipboard",
                                     Toast.LENGTH_SHORT).show();
                         }
 

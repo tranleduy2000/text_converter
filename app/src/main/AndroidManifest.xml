@@ -42,16 +42,23 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".core.barcode.BarcodeEncodedActivity" />
-        <activity android:name=".pro.activities.UpgradeActivity" />
-        <activity android:name=".pro.activities.CodecAllActivity" />
-        <activity android:name=".core.activities.HashActivity" />
         <activity
-            android:name=".core.activities.NumberConverterActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
+            android:name=".core.activities.HashActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".core.activities.CodecFileActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".core.activities.NumberConverterActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity
+            android:name=".core.barcode.BarcodeEncodedActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".pro.activities.UpgradeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".pro.activities.CodecAllActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
