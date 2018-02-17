@@ -46,6 +46,7 @@
         <activity android:name=".core.barcode.BarcodeEncodedActivity" />
         <activity android:name=".core.activities.UpgradeActivity" />
         <activity android:name=".pro.activities.CodecAllActivity" />
+        <activity android:name=".core.activities.HashActivity" />
 
         <!--Encode and decode menu-->
         <activity

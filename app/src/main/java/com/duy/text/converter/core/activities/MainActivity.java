@@ -85,8 +85,8 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         setContentView(R.layout.activity_main);
-        bindView();
         setupToolbar();
+        bindView();
         showDialogRate();
         checkLicense();
     }
@@ -136,12 +136,12 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         KeyBoardEventListener keyBoardEventListener = new KeyBoardEventListener(this);
         mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardEventListener);
 
-
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mNavigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 mToolbar, R.string.desc_open_drawer, R.string.desc_close_drawer);
         mDrawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -207,6 +207,8 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         mFirebaseAnalytics.logEvent(item.getTitle().toString(), new Bundle());
+
+        mDrawerLayout.closeDrawers();
         int id = item.getItemId();
         switch (id) {
             case R.id.action_share:
@@ -234,6 +236,9 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 break;
             case R.id.action_install_ncalc:
                 StoreUtil.gotoPlayStore(this, "com.duy.calc.casio.v2");
+                break;
+            case R.id.action_hash:
+                startActivity(new Intent(this, HashActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
