@@ -63,9 +63,13 @@ public class FrequencyActivity extends BaseActivity implements TextWatcher {
 
     private void initChart() {
         mChart.setDescription("");
+
         mChart.getAxisLeft().setDrawLabels(false);
         mChart.getAxisRight().setDrawLabels(false);
+
         mChart.getXAxis().setTextColor(ViewUtils.getColorFromAttr(this, android.R.attr.textColorPrimary));
+        mChart.getXAxis().setLabelsToSkip(0);
+
         mChart.setPinchZoom(false);
         mChart.setDoubleTapToZoomEnabled(false);
     }
