@@ -74,7 +74,8 @@
     <string name="hint_binary">Binary (0–1)</string>
     <string name="hint_hex">Hex (0–9A–F)</string>
     <string name="hint_output_here">Enter here for decode…</string>
-    <string name="hint_input_here">Enter here for encode…</string>
+    <string name="hint_encode_here">Enter here for encode…</string>
+    <string name="hint_input">Input…</string>
     <string name="hint_type_something">Type something</string>
 
     <string name="process_text_title_encode_it">Encode It!</string>

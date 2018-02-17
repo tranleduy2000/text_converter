@@ -85,7 +85,7 @@
             android:layout_height="match_parent"
             android:background="?roundBackground"
             android:gravity="top"
-            android:hint="@string/hint_input_here"
+            android:hint="@string/hint_encode_here"
             android:inputType="textMultiLine"
             android:padding="8dp" />
 

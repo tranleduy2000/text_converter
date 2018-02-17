@@ -17,10 +17,13 @@
 package flynn.tim.ciphersolver.frequency;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 
+import com.duy.common.ads.AdsManager;
+import com.duy.common.views.ViewUtils;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.base.BaseActivity;
 import com.github.mikephil.charting.animation.Easing;
@@ -41,7 +44,9 @@ import java.util.List;
 import java.util.Map;
 
 
-public class FrequencyActivity extends BaseActivity {
+public class FrequencyActivity extends BaseActivity implements TextWatcher {
+    private BarChart mChartView;
+    private EditText mInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,87 +55,96 @@ public class FrequencyActivity extends BaseActivity {
         setupToolbar();
         setTitle(R.string.title_frequency_analysis);
 
+        mChartView = findViewById(R.id.chart_view);
+        mInput = findViewById(R.id.edit_input);
+        mInput.addTextChangedListener(this);
 
-        final FrequencyAnalysis fa = new FrequencyAnalysis();
-        final BarChart chart = findViewById(R.id.chart);
-        final EditText userString = findViewById(R.id.editText5);
-        final Button button2 = findViewById(R.id.button4);
+        AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
+    }
 
-        button2.setOnClickListener(new View.OnClickListener() {
+    private void drawChart() {
+        Legend legend = mChartView.getLegend();
+        legend.setEnabled(false);
 
-            public void onClick(View v) {
+        mChartView.setDescription("");
+        mChartView.setScaleYEnabled(false);
+        mChartView.setDoubleTapToZoomEnabled(false);
+        mChartView.setDrawHighlightArrow(true);
+        mChartView.animateY(1000, Easing.EasingOption.Linear);
 
-                hideKeyboard();
+        YAxis leftAxis = mChartView.getAxisLeft();
+        leftAxis.setEnabled(false);
+        YAxis rightAxis = mChartView.getAxisRight();
+        rightAxis.setEnabled(false);
+        HashMap<Character, Integer> map = FrequencyAnalysis.analyze(mInput.getText().toString().toUpperCase());
+        XAxis xaxis = mChartView.getXAxis();
+        xaxis.setLabelsToSkip(0);
+        xaxis.setAvoidFirstLastClipping(true);
+        xaxis.setSpaceBetweenLabels(10);
+        List<BarEntry> entryList = new ArrayList<>();
+        ArrayList<String> xVals = new ArrayList<>();
+        Iterator it = map.entrySet().iterator();
 
-                Legend legend = chart.getLegend();
-                legend.setEnabled(false);
-                chart.setDescription("");
-                chart.setScaleYEnabled(false);
-                chart.setDoubleTapToZoomEnabled(false);
-                chart.setDrawHighlightArrow(true);
-                chart.animateY(1000, Easing.EasingOption.Linear);
-                YAxis leftAxis = chart.getAxisLeft();
-                leftAxis.setEnabled(false);
-                YAxis rightAxis = chart.getAxisRight();
-                rightAxis.setEnabled(false);
-                HashMap<Character, Integer> map = fa.analyze(userString.getText().toString().toUpperCase());
-                XAxis xaxis = chart.getXAxis();
-                xaxis.setLabelsToSkip(0);
-                xaxis.setAvoidFirstLastClipping(true);
-                xaxis.setSpaceBetweenLabels(10);
-                List<BarEntry> entryList = new ArrayList<BarEntry>();
-                ArrayList<String> xVals = new ArrayList<String>();
-                Iterator it = map.entrySet().iterator();
+        int x = 0;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry) it.next();
+            if (!pair.getKey().toString().equals(" ")) {
+                xVals.add(pair.getKey().toString());
+                BarEntry e = new BarEntry(Float.parseFloat(pair.getValue().toString()), x);
+                entryList.add(e);
+                x = x + 1;
+            }
+            it.remove(); // avoids a ConcurrentModificationException
+        }
 
-                int x = 0;
+        //Create FrequencyPair list for alphabetical sorting
+        ArrayList<FrequencyPair> fplist = new ArrayList<>();
 
-                while (it.hasNext()) {
-                    Map.Entry pair = (Map.Entry) it.next();
-                    if (pair.getKey().toString().equals(" ")) {
-                        //xVals.add("{space}");
-                    } else {
-                        xVals.add(pair.getKey().toString());
-                        BarEntry e = new BarEntry(Float.parseFloat(pair.getValue().toString()), x);
-                        entryList.add(e);
-                        x = x + 1;
-                    }
-                    it.remove(); // avoids a ConcurrentModificationException
-                }
+        for (int i = 0; i < xVals.size(); i++) {
+            fplist.add(new FrequencyPair(xVals.get(i), Math.round(entryList.get(i).getVal())));
+        }
 
-                //Create FrequencyPair list for alphabetical sorting
-                List<FrequencyPair> fplist = new ArrayList<FrequencyPair>();
-
-                for (int i = 0; i < xVals.size(); i++) {
-                    fplist.add(new FrequencyPair(xVals.get(i), Math.round(entryList.get(i).getVal())));
-                }
-
-                Collections.sort(fplist, new Comparator<FrequencyPair>() {
-                    @Override
-                    public int compare(FrequencyPair lhs, FrequencyPair rhs) {
-                        return lhs.getCharacter().compareTo(rhs.getCharacter());
-                    }
-                });
-
-                //Sorted lists
-                List<String> alphaXVals = new ArrayList<String>();
-                List<BarEntry> alphaEntryList = new ArrayList<BarEntry>();
-
-                //Iterate and populate sorted lists
-                for (int j = 0; j < fplist.size(); j++) {
-                    alphaXVals.add(fplist.get(j).getCharacter());
-                    alphaEntryList.add(new BarEntry(fplist.get(j).getValue(), j));
-                }
-
-                //Create BarDataSet using sorted list
-                BarDataSet lds = new BarDataSet(alphaEntryList, "Frequency");
-                lds.setColors(new int[]{R.color.accent_material_light}, FrequencyActivity.this);
-                BarData data = new BarData(alphaXVals, lds);
-
-                //Set data to the chart
-                chart.setData(data);
+        Collections.sort(fplist, new Comparator<FrequencyPair>() {
+            @Override
+            public int compare(FrequencyPair lhs, FrequencyPair rhs) {
+                return lhs.getCharacter().compareTo(rhs.getCharacter());
             }
         });
+
+        //Sorted lists
+        ArrayList<String> alphaXVals = new ArrayList<>();
+        ArrayList<BarEntry> alphaEntryList = new ArrayList<>();
+
+        //Iterate and populate sorted lists
+        for (int j = 0; j < fplist.size(); j++) {
+            alphaXVals.add(fplist.get(j).getCharacter());
+            alphaEntryList.add(new BarEntry(fplist.get(j).getValue(), j));
+        }
+
+        //Create BarDataSet using sorted list
+        BarDataSet dataSet = new BarDataSet(alphaEntryList, "Frequency");
+        dataSet.setColor(ViewUtils.getAccentColor(this));
+
+        BarData data = new BarData(alphaXVals, dataSet);
+        data.setValueTextColor(ViewUtils.getColorFromAttr(this, android.R.attr.textColorPrimary));
+
+        //Set data to the chart
+        mChartView.setData(data);
+        mChartView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        drawChart();
+    }
 }
