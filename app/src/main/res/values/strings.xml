@@ -91,4 +91,6 @@
     <string name="tab_title_file">File</string>
     <string name="tab_title_base">Base</string>
     <string name="message_select_text_file">Please select text file</string>
+    <string name="desc_close_drawer">Close drawer</string>
+    <string name="desc_open_drawer">Open drawer</string>
 </resources>

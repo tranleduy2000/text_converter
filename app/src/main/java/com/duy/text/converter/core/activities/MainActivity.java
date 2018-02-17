@@ -22,10 +22,14 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,7 +63,7 @@ import com.kobakei.ratethisapp.RateThisApp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 
-public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager.OnPageChangeListener {
+public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
     private static final int REQ_CODE_SETTING = 1201;
     private static final String TAG = "MainActivity";
     protected Toolbar mToolbar;
@@ -68,6 +72,8 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
     private CoordinatorLayout mCoordinatorLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
     private Handler mHandler;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +135,14 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         //attach listener hide/show keyboard
         KeyBoardEventListener keyBoardEventListener = new KeyBoardEventListener(this);
         mCoordinatorLayout.getViewTreeObserver().addOnGlobalLayoutListener(keyBoardEventListener);
+
+
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mNavigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                mToolbar, R.string.desc_open_drawer, R.string.desc_close_drawer);
+        mDrawerLayout.addDrawerListener(drawerToggle);
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
     protected PagerAdapter getPageAdapter(String initValue) {
@@ -282,6 +296,11 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return onOptionsItemSelected(item);
     }
 
     private static class KeyBoardEventListener implements ViewTreeObserver.OnGlobalLayoutListener {
