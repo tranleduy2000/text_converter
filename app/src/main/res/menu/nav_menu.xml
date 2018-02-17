@@ -28,16 +28,36 @@
             android:title="@string/tab_title_base" />
     </group>
 
+    <item android:title="@string/title_menu_cipher">
+        <menu>
+            <item
+                android:id="@+id/action_atbash_cipher"
+                android:title="@string/title_menu_atbash_cipher" />
+            <item
+                android:id="@+id/action_caesar_cipher"
+                android:title="@string/title_menu_caesar_cipher" />
+            <item
+                android:id="@+id/action_frequency_analysis"
+                android:title="Frequency Analysis" />
+            <item
+                android:id="@+id/action_rot_13"
+                android:title="Rot-13 Cipher" />
+            <item
+                android:id="@+id/action_vigenere_cipher"
+                android:title="Vigenère Cipher" />
+
+        </menu>
+    </item>
+
     <item android:title="Floating">
         <menu>
             <item
                 android:id="@+id/action_open_codec"
-                android:title="@string/action_open_floating_codec"
-                app:showAsAction="never" />
+                android:title="@string/action_open_floating_codec" />
             <item
                 android:id="@+id/action_open_stylish"
-                android:title="@string/action_floating_stylish"
-                app:showAsAction="never" />
+                android:title="@string/action_floating_stylish" />
         </menu>
     </item>
+
 </menu>

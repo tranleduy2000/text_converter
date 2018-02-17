@@ -28,19 +28,15 @@
         android:icon="@drawable/ic_lock_open_white_24dp"
         android:title="@string/action_upgrade"
         app:showAsAction="ifRoom" />
-
+    <item
+        android:id="@+id/action_setting"
+        android:icon="@drawable/ic_settings_white_24dp"
+        android:title="@string/action_setting" />
     <item
         android:id="@+id/action_how_to_use"
         android:icon="@drawable/ic_help_white_24dp"
         android:title="@string/action_help"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_setting"
-        android:icon="@drawable/ic_settings_white_24dp"
-        android:title="@string/action_setting"
-        app:showAsAction="ifRoom" />
-
 
     <item
         android:id="@+id/action_share"

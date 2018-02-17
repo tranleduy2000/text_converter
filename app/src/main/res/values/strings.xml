@@ -45,7 +45,7 @@
     <string name="pro_feature_codec_all">You can encode all and decode all with one click</string>
     <string name="pro_feature_theme">More theme (7 themes)</string>
 
-    <string name="action_rate">Write review in PlayStore</string>
+    <string name="action_rate">Rate this app</string>
     <string name="action_setting">Setting</string>
     <string name="action_upgrade">Upgrade to pro version</string>
     <string name="action_open_floating_codec">Floating codec (Pro)</string>
@@ -93,4 +93,8 @@
     <string name="message_select_text_file">Please select text file</string>
     <string name="desc_close_drawer">Close drawer</string>
     <string name="desc_open_drawer">Open drawer</string>
+
+    <string name="title_menu_atbash_cipher">Atbash Cipher</string>
+    <string name="title_menu_cipher">Cipher</string>
+    <string name="title_menu_caesar_cipher">Caesar cipher</string>
 </resources>

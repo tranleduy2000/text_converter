@@ -34,8 +34,8 @@ android {
         proRelease {
 
         }
-        freeRelease{
-       
+        freeRelease {
+
         }
     }
     flavorDimensions "applicationId"
@@ -49,6 +49,11 @@ android {
             applicationId "com.duy.text_converter.pro"
         }
     }
+
+    sourceSets {
+        main.res.srcDirs += 'src/main/res-cipher'
+    }
+
     buildTypes {
         release {
             minifyEnabled true
