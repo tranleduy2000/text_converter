@@ -83,7 +83,8 @@ public class CodecFragmentTest {
 
     @Before
     public void selectCodecFragment() {
-        onView(withText(mRule.getActivity().getString(R.string.tab_title_codec))).perform(click());
+//        onView(withText(mRule.getActivity().getString(R.string.tab_title_codec))).perform(click());
+//        onView(withId(R.id.tab_layout)).perform(clickC)
     }
 
     @Test

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.fragments;
+package com.duy.text.converter.pro;
 
 import android.support.test.rule.ActivityTestRule;
 import android.support.v7.widget.RecyclerView;

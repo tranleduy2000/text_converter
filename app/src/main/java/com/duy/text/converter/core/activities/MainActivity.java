@@ -230,10 +230,18 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 startActivityForResult(intent, REQ_CODE_SETTING);
                 break;
             case R.id.action_open_stylish:
-                startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
+                if (Premium.isPremium(this)) {
+                    startActivity(new Intent(this, FloatingStylishOpenShortCutActivity.class));
+                } else {
+                    Premium.upgrade(this);
+                }
                 break;
             case R.id.action_open_codec:
-                startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
+                if (Premium.isPremium(this)) {
+                    startActivity(new Intent(this, FloatingCodecOpenShortCutActivity.class));
+                } else {
+                    Premium.upgrade(this);
+                }
                 break;
             case R.id.action_how_to_use:
                 HelpDialog helpDialog = new HelpDialog();
@@ -249,7 +257,11 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 startActivity(new Intent(this, NumberConverterActivity.class));
                 break;
             case R.id.action_codec_file:
-                startActivity(new Intent(this, CodecFileActivity.class));
+                if (Premium.isPremium(this)) {
+                    startActivity(new Intent(this, CodecFileActivity.class));
+                } else {
+                    Premium.upgrade(this);
+                }
                 break;
             case R.id.action_caesar_cipher:
                 startActivity(new Intent(this, CaesarCipherActivity.class));

@@ -56,6 +56,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".pro.activities.UpgradeActivity"
+            android:theme="@style/AppThemeLight.Theme5"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".pro.activities.CodecAllActivity"

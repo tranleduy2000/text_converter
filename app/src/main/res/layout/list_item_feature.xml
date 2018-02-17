@@ -22,21 +22,27 @@
     app:cardCornerRadius="4dp"
     app:cardUseCompatPadding="true">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/img_preview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
-        tools:src="@drawable/img_themes" />
+        android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/txt_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="?android:windowBackground"
-        android:padding="4dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        tools:text="Sample" />
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:padding="4dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            tools:text="Sample" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            tools:src="@drawable/img_themes" />
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

@@ -22,22 +22,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:theme="?toolbarTheme"
-            app:layout_scrollFlags="snap|scroll"
-            app:popupTheme="?toolbarPopupTheme"
-            tools:title="Title" />
-
-    </android.support.design.widget.AppBarLayout>
+    <include layout="@layout/appbar" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -48,22 +33,22 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
         </android.support.v7.widget.RecyclerView>
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_upgrade"
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:src="@drawable/ic_file_upload_black_24dp"
+            android:text="@string/remove_ads"
+            android:textAllCaps="false"
+            app:fabSize="normal" />
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_upgrade"
-        style="@style/Base.Widget.AppCompat.Button.Colored"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_file_upload_black_24dp"
-        android:text="@string/remove_ads"
-        android:textAllCaps="false"
-        app:fabSize="normal" />
 
 </android.support.design.widget.CoordinatorLayout>

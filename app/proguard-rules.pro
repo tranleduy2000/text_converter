@@ -96,3 +96,5 @@
 }
 
 -keep class org.apache.commons.codec.** { *; }
+
+-dontwarn io.realm.**

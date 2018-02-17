@@ -24,6 +24,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -32,6 +33,7 @@ import com.duy.common.ads.AdsManager;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.base.BaseActivity;
 import com.duy.text.converter.core.stylish.adapter.ResultAdapter;
+import com.duy.text.converter.pro.license.Premium;
 
 import java.util.ArrayList;
 
@@ -65,7 +67,12 @@ public class VigenereCipherActivity extends BaseActivity implements TextWatcher,
         addEvent();
         setInputFilters();
 
-        AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
+        if (Premium.isPremium(this)){
+            View containerAd = findViewById(R.id.container_ad);
+            if (containerAd != null) containerAd.setVisibility(View.GONE);
+        }else {
+            AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
+        }
     }
 
     private void addEvent() {

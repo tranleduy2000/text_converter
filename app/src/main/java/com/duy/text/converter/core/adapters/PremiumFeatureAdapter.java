@@ -31,6 +31,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.duy.text.converter.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PremiumFeatureAdapter extends RecyclerView.Adapter<PremiumFeatureAdapter.ViewHolder> {
     private ArrayList<FeatureItem> featureItems = new ArrayList<>();
@@ -61,7 +62,7 @@ public class PremiumFeatureAdapter extends RecyclerView.Adapter<PremiumFeatureAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         FeatureItem featureItem = featureItems.get(position);
-        holder.txtTitle.setText(context.getString(featureItem.titleId));
+        holder.txtTitle.setText(String.format(Locale.US, "%d. %s", position + 1, context.getString(featureItem.titleId)));
         if (featureItem.imgId != 0) {
             Glide.with(context).load(featureItem.imgId)
                     .apply(new RequestOptions().fitCenter())
