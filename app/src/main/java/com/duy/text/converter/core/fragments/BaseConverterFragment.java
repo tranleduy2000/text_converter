@@ -16,6 +16,7 @@
 
 package com.duy.text.converter.core.fragments;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -77,11 +78,11 @@ public class BaseConverterFragment extends Fragment implements View.OnClickListe
             EditText editText = entry.getValue();
             editText.addTextChangedListener(new OnBaseChangeListener(editText, entry.getKey()));
             editText.setFilters(new InputFilter[]{new BaseInputFilter(entry.getKey())});
-//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                editText.setShowSoftInputOnFocus(false);
-//            } else {
-//                editText.setTextIsSelectable(true);
-//            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                editText.setShowSoftInputOnFocus(false);
+            } else {
+                editText.setTextIsSelectable(true);
+            }
         }
 
         addKeyEvent(view.findViewById(R.id.container_keyboard));

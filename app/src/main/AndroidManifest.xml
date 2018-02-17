@@ -47,7 +47,9 @@
         <activity android:name=".core.activities.UpgradeActivity" />
         <activity android:name=".pro.activities.CodecAllActivity" />
         <activity android:name=".core.activities.HashActivity" />
-        <activity android:name=".core.activities.BaseConverterActivity" />
+        <activity
+            android:name=".core.activities.BaseConverterActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!--Encode and decode menu-->
         <activity
