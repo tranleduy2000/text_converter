@@ -17,7 +17,6 @@
 package flynn.tim.ciphersolver.frequency;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -26,26 +25,24 @@ import com.duy.common.ads.AdsManager;
 import com.duy.common.views.ViewUtils;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.base.BaseActivity;
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 
 public class FrequencyActivity extends BaseActivity implements TextWatcher {
-    private BarChart mChartView;
+    private BarChart mChart;
     private EditText mInput;
 
     @Override
@@ -55,82 +52,68 @@ public class FrequencyActivity extends BaseActivity implements TextWatcher {
         setupToolbar();
         setTitle(R.string.title_frequency_analysis);
 
-        mChartView = findViewById(R.id.chart_view);
+        mChart = findViewById(R.id.chart_view);
+        initChart();
+
         mInput = findViewById(R.id.edit_input);
         mInput.addTextChangedListener(this);
 
         AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
     }
 
+    private void initChart() {
+        mChart.setDescription("");
+        mChart.getAxisLeft().setDrawLabels(false);
+        mChart.getAxisRight().setDrawLabels(false);
+        mChart.getXAxis().setTextColor(ViewUtils.getColorFromAttr(this, android.R.attr.textColorPrimary));
+        mChart.setPinchZoom(false);
+        mChart.setDoubleTapToZoomEnabled(false);
+    }
+
     private void drawChart() {
-        Legend legend = mChartView.getLegend();
-        legend.setEnabled(false);
 
-        mChartView.setDescription("");
-        mChartView.setScaleYEnabled(false);
-        mChartView.setDoubleTapToZoomEnabled(false);
-        mChartView.setDrawHighlightArrow(true);
-        mChartView.animateY(1000, Easing.EasingOption.Linear);
 
-        YAxis leftAxis = mChartView.getAxisLeft();
-        leftAxis.setEnabled(false);
-        YAxis rightAxis = mChartView.getAxisRight();
-        rightAxis.setEnabled(false);
-        HashMap<Character, Integer> map = FrequencyAnalysis.analyze(mInput.getText().toString().toUpperCase());
-        XAxis xaxis = mChartView.getXAxis();
-        xaxis.setLabelsToSkip(0);
-        xaxis.setAvoidFirstLastClipping(true);
-        xaxis.setSpaceBetweenLabels(10);
-        List<BarEntry> entryList = new ArrayList<>();
-        ArrayList<String> xVals = new ArrayList<>();
-        Iterator it = map.entrySet().iterator();
+        HashMap<Character, Integer> analyze = FrequencyAnalysis.analyze(mInput.getText().toString());
+        ArrayList<String> labels = getLabels(analyze);
 
-        int x = 0;
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            if (!pair.getKey().toString().equals(" ")) {
-                xVals.add(pair.getKey().toString());
-                BarEntry e = new BarEntry(Float.parseFloat(pair.getValue().toString()), x);
-                entryList.add(e);
-                x = x + 1;
-            }
-            it.remove(); // avoids a ConcurrentModificationException
+        ArrayList<BarEntry> yVals = new ArrayList<>();
+        for (Map.Entry<Character, Integer> entry : analyze.entrySet()) {
+            yVals.add(new BarEntry(entry.getValue(), labels.indexOf(entry.getKey() + "")));
         }
 
-        //Create FrequencyPair list for alphabetical sorting
-        ArrayList<FrequencyPair> fplist = new ArrayList<>();
-
-        for (int i = 0; i < xVals.size(); i++) {
-            fplist.add(new FrequencyPair(xVals.get(i), Math.round(entryList.get(i).getVal())));
-        }
-
-        Collections.sort(fplist, new Comparator<FrequencyPair>() {
+        BarDataSet dataSet = new BarDataSet(yVals, "");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setValueFormatter(new ValueFormatter() {
             @Override
-            public int compare(FrequencyPair lhs, FrequencyPair rhs) {
-                return lhs.getCharacter().compareTo(rhs.getCharacter());
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                return String.valueOf((int) value);
             }
         });
 
-        //Sorted lists
-        ArrayList<String> alphaXVals = new ArrayList<>();
-        ArrayList<BarEntry> alphaEntryList = new ArrayList<>();
+        BarData barData = new BarData(labels, dataSet);
+        barData.setValueTextColor(ViewUtils.getColorFromAttr(this, android.R.attr.textColorPrimary));
 
-        //Iterate and populate sorted lists
-        for (int j = 0; j < fplist.size(); j++) {
-            alphaXVals.add(fplist.get(j).getCharacter());
-            alphaEntryList.add(new BarEntry(fplist.get(j).getValue(), j));
+        setData(barData);
+    }
+
+    private void setData(BarData barData) {
+        mChart.setData(barData);
+        mChart.animateY(500);
+        //mChart.invalidate();
+    }
+
+    private ArrayList<String> getLabels(HashMap<Character, Integer> analyze) {
+        ArrayList<String> labels = new ArrayList<>();
+        for (Map.Entry<Character, Integer> entry : analyze.entrySet()) {
+            labels.add(String.valueOf(entry.getKey()));
         }
-
-        //Create BarDataSet using sorted list
-        BarDataSet dataSet = new BarDataSet(alphaEntryList, "Frequency");
-        dataSet.setColor(ViewUtils.getAccentColor(this));
-
-        BarData data = new BarData(alphaXVals, dataSet);
-        data.setValueTextColor(ViewUtils.getColorFromAttr(this, android.R.attr.textColorPrimary));
-
-        //Set data to the chart
-        mChartView.setData(data);
-        mChartView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        Collections.sort(labels, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        return labels;
     }
 
 

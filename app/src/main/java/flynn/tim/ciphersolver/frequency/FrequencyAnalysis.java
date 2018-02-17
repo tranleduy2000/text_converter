@@ -23,11 +23,10 @@ import java.util.HashMap;
  */
 class FrequencyAnalysis {
 
-    static HashMap<Character, Integer> analyze(String fa) {
+    static HashMap<Character, Integer> analyze(String input) {
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-
-        for (int i = 0; i < fa.length(); i++) {
-            char c = fa.charAt(i);
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
             Integer val = map.get(c);
             if (val != null) {
                 map.put(c, val + 1);
