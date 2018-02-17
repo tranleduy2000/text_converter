@@ -14,14 +14,30 @@
   ~ limitations under the License.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/action_hash"
-        android:title="@string/tab_title_hash_function" />
-    <item
-        android:id="@+id/action_codec_file"
-        android:title="@string/tab_title_file" />
-    <item
-        android:id="@+id/action_base_converter"
-        android:title="@string/tab_title_base" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/action_hash"
+            android:title="@string/tab_title_hash_function" />
+        <item
+            android:id="@+id/action_codec_file"
+            android:title="@string/tab_title_file" />
+        <item
+            android:id="@+id/action_base_converter"
+            android:title="@string/tab_title_base" />
+    </group>
+
+    <item android:title="Floating">
+        <menu>
+            <item
+                android:id="@+id/action_open_codec"
+                android:title="@string/action_open_floating_codec"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/action_open_stylish"
+                android:title="@string/action_floating_stylish"
+                app:showAsAction="never" />
+        </menu>
+    </item>
 </menu>

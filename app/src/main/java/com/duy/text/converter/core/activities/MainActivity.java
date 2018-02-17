@@ -195,12 +195,13 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
         }
         if (Premium.isPremium(this)) {
             menu.findItem(R.id.action_upgrade).setVisible(false);
-            menu.findItem(R.id.action_open_codec).setVisible(true);
-            menu.findItem(R.id.action_open_stylish).setVisible(true);
+            // TODO: 2/17/2018   check premium
+//            menu.findItem(R.id.action_open_codec).setVisible(true);
+//            menu.findItem(R.id.action_open_stylish).setVisible(true);
         } else {
             menu.findItem(R.id.action_upgrade).setVisible(true);
-            menu.findItem(R.id.action_open_codec).setVisible(false);
-            menu.findItem(R.id.action_open_stylish).setVisible(false);
+//            menu.findItem(R.id.action_open_codec).setVisible(false);
+//            menu.findItem(R.id.action_open_stylish).setVisible(false);
         }
         return super.onPrepareOptionsMenu(menu);
     }
@@ -243,6 +244,9 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
                 break;
             case R.id.action_base_converter:
                 startActivity(new Intent(this, NumberConverterActivity.class));
+                break;
+            case R.id.action_codec_file:
+                startActivity(new Intent(this, CodecFileActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -50,6 +50,9 @@
         <activity
             android:name=".core.activities.NumberConverterActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".core.activities.CodecFileActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!--Encode and decode menu-->
         <activity

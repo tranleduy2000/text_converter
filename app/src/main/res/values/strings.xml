@@ -48,8 +48,8 @@
     <string name="action_rate">Write review in PlayStore</string>
     <string name="action_setting">Setting</string>
     <string name="action_upgrade">Upgrade to pro version</string>
-    <string name="action_open_floating_codec">Floating codec</string>
-    <string name="action_floating_stylish">Floating stylish</string>
+    <string name="action_open_floating_codec">Floating codec (Pro)</string>
+    <string name="action_floating_stylish">Floating stylish (Pro)</string>
     <string name="action_share_app">Share this app</string>
     <string name="action_help">How to use</string>
     <string name="action_save">Save</string>
