@@ -16,31 +16,32 @@
 
 package flynn.tim.ciphersolver.vigenere;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.Button;
+import android.text.TextWatcher;
+import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
+import com.duy.common.ads.AdsManager;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.base.BaseActivity;
+import com.duy.text.converter.core.stylish.adapter.ResultAdapter;
 
 import java.util.ArrayList;
 
-import flynn.tim.ciphersolver.ResultListAdapter;
-import flynn.tim.ciphersolver.Result;
+public class VigenereCipherActivity extends BaseActivity implements TextWatcher, CompoundButton.OnCheckedChangeListener {
 
-public class VigenereCipherActivity extends BaseActivity {
-
-    private ArrayList<Result> resultsList = new ArrayList<>();
+    private EditText mInput;
+    private RecyclerView mListResult;
+    private RadioButton mCkbEncrypt;
+    private EditText mInputKey;
+    private ResultAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +50,34 @@ public class VigenereCipherActivity extends BaseActivity {
         setupToolbar();
         setTitle(R.string.title_vigenere_cipher);
 
-        final ListView listView = findViewById(R.id.listView3);
-        final EditText ciphertext = findViewById(R.id.edit_input);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        final EditText keyword = findViewById(R.id.editText4);
-        final RadioButton encrypt = findViewById(R.id.radioButton3);
-        final RadioButton decrypt = findViewById(R.id.radioButton4);
-        final Button solve = findViewById(R.id.button3);
-        encrypt.setChecked(true);
+        mInput = findViewById(R.id.edit_input);
+        mInputKey = findViewById(R.id.edit_key);
 
-        ciphertext.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
-        ciphertext.setFilters(new InputFilter[]{
+        mAdapter = new ResultAdapter(this, R.layout.list_item_style);
+        mListResult = findViewById(R.id.recycler_view);
+        mListResult.setLayoutManager(new LinearLayoutManager(this));
+        mListResult.setHasFixedSize(true);
+        mListResult.setAdapter(mAdapter);
+        mListResult.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        mCkbEncrypt = findViewById(R.id.ckb_encrypt);
+        mCkbEncrypt.setChecked(true);
+
+        addEvent();
+        setInputFilters();
+
+        AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
+    }
+
+    private void addEvent() {
+        mInput.addTextChangedListener(this);
+        mInputKey.addTextChangedListener(this);
+        mCkbEncrypt.setOnCheckedChangeListener(this);
+    }
+
+    private void setInputFilters() {
+        mInput.setFilters(new InputFilter[]{
                 new InputFilter() {
+                    @Override
                     public CharSequence filter(CharSequence src, int start, int end, Spanned dst, int dstart, int dend) {
                         if (src.equals("")) { // for backspace
                             return src;
@@ -73,9 +90,9 @@ public class VigenereCipherActivity extends BaseActivity {
                 }
         });
 
-        keyword.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
-        keyword.setFilters(new InputFilter[]{
+        mInputKey.setFilters(new InputFilter[]{
                 new InputFilter() {
+                    @Override
                     public CharSequence filter(CharSequence src, int start, int end, Spanned dst, int dstart, int dend) {
                         if (src.equals("")) { // for backspace
                             return src;
@@ -87,46 +104,43 @@ public class VigenereCipherActivity extends BaseActivity {
                     }
                 }
         });
+    }
 
-        solve.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                hideKeyboard();
-                String result;
-                resultsList.clear();
-                if (ciphertext.getText().toString().trim().equals("")) {
-                    resultsList.add(new Result("No ciphertext entered!", false, true));
-                } else if (keyword.getText().toString().trim().equals("")) {
-                    resultsList.add(new Result("No keyword entered!", false, true));
-                } else {
-                    if (encrypt.isChecked()) {
-                        result = VigenereCipher.encrypt(ciphertext.getText().toString().toUpperCase().trim(), keyword.getText().toString().trim());
-                        resultsList.add(new Result(result, true, false));
-                    } else {
-                        result = VigenereCipher.decrypt(ciphertext.getText().toString().toUpperCase().trim(), keyword.getText().toString().trim());
-                        resultsList.add(new Result(result, true, false));
-                    }
-                }
-
-                final ResultListAdapter adapter = new ResultListAdapter(VigenereCipherActivity.this, R.layout.list_item_caesar, resultsList);
-                listView.setAdapter(adapter);
-
-                listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-                    public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-                                                   int pos, long id) {
-                        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                        ClipData clip = ClipData.newPlainText("label", resultsList.get(pos).getResult());
-                        clipboard.setPrimaryClip(clip);
-                        Toast.makeText(VigenereCipherActivity.this, resultsList.get(pos).getResult().toUpperCase() + " copied to clipboard",
-                                Toast.LENGTH_SHORT).show();
-
-                        return true;
-                    }
-                });
+    private void processData() {
+        String result;
+        if (mInput.getText().toString().trim().equals("")) {
+            result = "No ciphertext entered!";
+        } else if (mInputKey.getText().toString().trim().equals("")) {
+            result = "No keyword entered!";
+        } else {
+            if (mCkbEncrypt.isChecked()) {
+                result = VigenereCipher.encrypt(mInput.getText().toString().toUpperCase().trim(), mInputKey.getText().toString().trim());
+            } else {
+                result = VigenereCipher.decrypt(mInput.getText().toString().toUpperCase().trim(), mInputKey.getText().toString().trim());
             }
-        });
+        }
+        ArrayList<String> list = new ArrayList<>();
+        list.add(result);
+        mAdapter.setData(list);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
     }
 
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        processData();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        processData();
+    }
 }

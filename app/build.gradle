@@ -103,5 +103,7 @@ dependencies {
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     compile 'com.simplecityapps:recyclerview-fastscroll:1.0.16'
     compile 'io.github.kobakei:ratethisapp:1.2.0'
+
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 apply plugin: 'com.google.gms.google-services'

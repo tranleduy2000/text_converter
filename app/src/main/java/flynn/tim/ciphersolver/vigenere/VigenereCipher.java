@@ -20,7 +20,7 @@ package flynn.tim.ciphersolver.vigenere;
  * Created by Tim on 3/22/2015.
  * Code modified from source provided at: http://rosettacode.org/wiki/Vigen%C3%A8re_cipher#Java
  */
-class VigenereCipher {
+class VigenereCipher implements ICipher {
 
     static String encrypt(String text, final String key) {
         StringBuilder res = new StringBuilder();

@@ -102,4 +102,5 @@
     <string name="button_encrypt">Encrypt</string>
     <string name="button_decrypt">Decrypt</string>
     <string name="character_offset">Character Offset</string>
+    <string name="hint_key">Key</string>
 </resources>

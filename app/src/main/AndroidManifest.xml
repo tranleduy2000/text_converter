@@ -65,7 +65,9 @@
             android:name=".core.activities.CaesarCipherActivity"
             android:windowSoftInputMode="stateVisible|adjustNothing" />
 
-        <activity android:name="flynn.tim.ciphersolver.vigenere.VigenereCipherActivity" />
+        <activity
+            android:name="flynn.tim.ciphersolver.vigenere.VigenereCipherActivity"
+            android:windowSoftInputMode="stateVisible|adjustNothing" />
         <activity android:name="flynn.tim.ciphersolver.frequency.FrequencyActivity" />
 
         <!--Encode and decode menu-->
