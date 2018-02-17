@@ -94,10 +94,11 @@
     <string name="desc_close_drawer">Close drawer</string>
     <string name="desc_open_drawer">Open drawer</string>
 
-    <string name="title_menu_atbash_cipher">Atbash Cipher</string>
     <string name="title_menu_cipher">Cipher</string>
     <string name="title_menu_caesar_cipher">Caesar cipher</string>
     <string name="title_frequency_analysis">Frequency Analysis</string>
-    <string name="title_rot_13_cipher">Rot-13 Cipher</string>
     <string name="title_vigenere_cipher">Vigenère Cipher</string>
+    <string name="button_encrypt">Encrypt</string>
+    <string name="button_decrypt">Decrypt</string>
+    <string name="character_offset">Character Offset</string>
 </resources>

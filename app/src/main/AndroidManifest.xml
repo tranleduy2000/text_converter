@@ -63,10 +63,8 @@
 
         <activity
             android:name=".core.activities.CaesarCipherActivity"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name="flynn.tim.ciphersolver.atbash.AtbashActivity"
-            android:windowSoftInputMode="stateVisible" />
+            android:windowSoftInputMode="stateVisible|adjustNothing" />
+
         <activity android:name="flynn.tim.ciphersolver.vigenere.VigenereCipherActivity" />
         <activity android:name="flynn.tim.ciphersolver.frequency.FrequencyActivity" />
 

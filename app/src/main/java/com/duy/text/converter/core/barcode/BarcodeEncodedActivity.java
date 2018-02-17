@@ -55,10 +55,10 @@ public class BarcodeEncodedActivity extends BaseActivity {
         ((TabLayout) findViewById(R.id.tab_layout)).setupWithViewPager(viewPager);
 
         if (Premium.isPremium(this)){
-            View containerAd = findViewById(R.id.ads_wrapper);
+            View containerAd = findViewById(R.id.container_ad);
             if (containerAd != null) containerAd.setVisibility(View.GONE);
         }else {
-            AdsManager.loadAds(this, findViewById(R.id.ads_wrapper), findViewById(R.id.ad_view));
+            AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
         }
     }
 

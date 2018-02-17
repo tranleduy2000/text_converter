@@ -16,35 +16,33 @@
 
 package com.duy.text.converter.core.activities;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.duy.common.ads.AdsManager;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.base.BaseActivity;
 import com.duy.text.converter.core.codec.CaesarCodec;
+import com.duy.text.converter.core.stylish.adapter.ResultAdapter;
 
 import java.util.ArrayList;
-
-import flynn.tim.ciphersolver.Result;
-import flynn.tim.ciphersolver.ResultListAdapter;
+import java.util.Locale;
 
 public class CaesarCipherActivity extends BaseActivity implements TextWatcher {
 
-    private ArrayList<Result> mResultList = new ArrayList<>();
-    private EditText mEditInput;
-    private ListView mListView;
+    private EditText mInput;
+    private RecyclerView mListResult;
     private RadioButton mIsEncrypt;
     private Spinner mSpinnerOffset;
+
+    private ResultAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,30 +50,39 @@ public class CaesarCipherActivity extends BaseActivity implements TextWatcher {
         setContentView(R.layout.activity_caesar_cipher);
         setupToolbar();
         setTitle(R.string.title_menu_caesar_cipher);
-
-        mEditInput = findViewById(R.id.edit_input);
-        mListView = findViewById((R.id.list_result));
         mIsEncrypt = findViewById(R.id.ckb_encrypt);
         mSpinnerOffset = findViewById(R.id.spinner_offset);
         mIsEncrypt.setChecked(true);
 
-        mEditInput.addTextChangedListener(this);
+        mInput = findViewById(R.id.edit_input);
+        mAdapter = new ResultAdapter(this, R.layout.list_item_style);
+
+        mListResult = findViewById(R.id.recycler_view);
+        mListResult.setLayoutManager(new LinearLayoutManager(this));
+        mListResult.setHasFixedSize(true);
+        mListResult.setAdapter(mAdapter);
+        mListResult.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+        mInput.addTextChangedListener(this);
+
+        AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
     }
 
     private void generateResult() {
-        mResultList.clear();
-        String input = mEditInput.getText().toString().trim();
+        ArrayList<String> resultList = new ArrayList<>();
+        resultList.clear();
+        String input = mInput.getText().toString().trim();
         if (!input.isEmpty()) {
             if (mSpinnerOffset.getSelectedItem().toString().equalsIgnoreCase("All")) {
                 if (mIsEncrypt.isChecked()) {
                     for (int offset = 1; offset <= 26; offset++) {
                         String result = new CaesarCodec(offset).encode(input);
-                        mResultList.add(new Result("Offset " + offset + ":\t" + result, false, false));
+                        resultList.add(String.format(Locale.US, "Offset %d:%s", offset, result));
                     }
                 } else {
                     for (int offset = 1; offset <= 26; offset++) {
                         String result = new CaesarCodec(offset).decode(input);
-                        mResultList.add(new Result("Offset " + offset + ":\t" + result, false, false));
+                        resultList.add(String.format(Locale.US, "Offset %d:%s", offset, result));
                     }
                 }
             } else {
@@ -83,50 +90,15 @@ public class CaesarCipherActivity extends BaseActivity implements TextWatcher {
                 if (mIsEncrypt.isChecked()) {
                     String result;
                     result = new CaesarCodec(offset).encode(input);
-                    mResultList.add(new Result(result, true, false));
+                    resultList.add(result);
                 } else {
                     String result;
                     result = new CaesarCodec(offset).decode(input);
-                    mResultList.add(new Result(result, true, false));
+                    resultList.add(result);
                 }
             }
         }
-
-        final ResultListAdapter adapter = new ResultListAdapter(CaesarCipherActivity.this, R.layout.list_item_caesar, mResultList);
-        mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (!mResultList.get(position).getEx() && !mResultList.get(position).getChecked()) {
-                    mResultList.get(position).setEx(true);
-                } else if (mResultList.get(position).getEx()) {
-                    mResultList.get(position).setEx(false);
-                    mResultList.get(position).setChecked(true);
-                } else if (mResultList.get(position).getChecked()) {
-                    mResultList.get(position).setChecked(false);
-                }
-                adapter.updateList(mResultList);
-            }
-        });
-
-        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                String string = mResultList.get(pos).getResult().toUpperCase();
-                if (mSpinnerOffset.getSelectedItem().toString().equalsIgnoreCase("All")) {
-                    String[] parts = string.split(":");
-                    String part2 = parts[1];
-                    ClipData clip = ClipData.newPlainText("label", part2);
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(CaesarCipherActivity.this, part2 + " copied to clipboard", Toast.LENGTH_SHORT).show();
-                } else {
-                    ClipData clip = ClipData.newPlainText("label", mResultList.get(pos).getResult().toUpperCase());
-                    clipboard.setPrimaryClip(clip);
-                    Toast.makeText(CaesarCipherActivity.this, mResultList.get(pos).getResult().toUpperCase() + " copied to clipboard", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
+        mAdapter.setData(resultList);
     }
 
 
