@@ -33,6 +33,7 @@
             android:clipToPadding="false"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
+            app:stl_defaultTabBackground="?attr/rippleBackground"
             app:stl_defaultTabTextColor="@color/white"
             app:stl_defaultTabTextHorizontalPadding="12dp"
             app:stl_dividerColor="@android:color/transparent"

@@ -19,13 +19,13 @@
     <style name="BaseDarkTheme" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="selectableBackground">?android:attr/selectableItemBackground</item>
+        <item name="rippleBackground">?selectableItemBackground</item>
     </style>
 
     <style name="BaseLightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="selectableBackground">?android:attr/selectableItemBackground</item>
+        <item name="rippleBackground">?selectableItemBackground</item>
     </style>
 
     <style name="AppThemeDark" parent="BaseDarkTheme">

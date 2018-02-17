@@ -17,11 +17,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_hash"
-        android:title="Hash" />
+        android:title="@string/tab_title_hash_function" />
     <item
         android:id="@+id/action_codec_file"
-        android:title="File codec (Pro)" />
+        android:title="@string/tab_title_file" />
     <item
         android:id="@+id/action_base_converter"
-        android:title="Base converter" />
+        android:title="@string/tab_title_base" />
 </menu>

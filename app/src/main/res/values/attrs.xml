@@ -19,5 +19,5 @@
     <attr name="imageTintColor" format="color" />
     <attr name="toolbarTheme" format="reference" />
     <attr name="toolbarPopupTheme" format="reference" />
-    <attr name="selectableBackground" format="reference" />
+    <attr name="rippleBackground" format="reference" />
 </resources>

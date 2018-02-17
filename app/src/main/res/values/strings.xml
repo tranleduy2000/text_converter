@@ -88,7 +88,7 @@
     <string name="tab_title_decorate">Decorate</string>
     <string name="tab_title_barcode">Barcode</string>
     <string name="tab_title_hash_function">Hash</string>
-    <string name="tab_title_file">File</string>
+    <string name="tab_title_file">File (Pro)</string>
     <string name="tab_title_base">Base</string>
     <string name="message_select_text_file">Please select text file</string>
     <string name="desc_close_drawer">Close drawer</string>
