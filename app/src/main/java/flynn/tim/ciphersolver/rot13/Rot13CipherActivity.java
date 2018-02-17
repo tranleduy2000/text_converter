@@ -48,7 +48,7 @@ public class Rot13CipherActivity extends BaseActivity {
         setupToolbar();
         setTitle(R.string.title_rot_13_cipher);
 
-        final EditText ciphertext = findViewById(R.id.editText2);
+        final EditText ciphertext = findViewById(R.id.edit_input);
         final Button solve = findViewById(R.id.button3);
         final ListView listview = findViewById(R.id.listView3);
         final RadioButton encrypt = findViewById(R.id.radioButton3);

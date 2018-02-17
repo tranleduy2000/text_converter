@@ -30,13 +30,13 @@ public class CaesarCipher {
 
     //Method for encoding Caesar Cipher
     //Takes two arguments, String enc to be encoded and int offset for number of characters to offset
-    public static String encode(String enc, int offset) {
+    public static String encode(String input, int offset) {
         //Take the offset mod 26 then add 26
         offset = offset % 26 + 26;
         //Declare a StringBuilder to access individual parts of the String
         StringBuilder encoded = new StringBuilder();
         //Iterate through all characters in String enc
-        for (char i : enc.toCharArray()) {
+        for (char i : input.toCharArray()) {
             //Nested ifs to shift individual elements of the character array
             if (Character.isLetter(i)) {
                 //Check for upper case/lower case

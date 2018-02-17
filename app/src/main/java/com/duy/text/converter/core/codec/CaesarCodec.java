@@ -27,74 +27,57 @@ import com.duy.text.converter.core.codec.interfaces.CodecImpl;
 
 public class CaesarCodec extends CodecImpl {
     private static final String NORMAL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toUpperCase();
-    private String key = "";
+    private int offset;
 
     public CaesarCodec() {
         this(1);
     }
 
-    private CaesarCodec(int offset) {
-        key = "";
-        for (int i = 0; i < NORMAL.length(); i++) {
-            key += NORMAL.charAt((i + offset) % NORMAL.length());
-        }
+    CaesarCodec(int offset) {
+        this.offset = offset;
     }
 
 
     @NonNull
     @Override
     public String decode(@NonNull String text) {
-        StringBuilder encoded = new StringBuilder();
-        String[] args = text.split(" ");
-        setMax(args);
-
-        for (int i = 0; i < args.length; i++) {
-            String arg = args[i];
-
-            StringBuilder part = new StringBuilder();
-            for (char c : arg.toCharArray()) {
-                char preChar = (char) (c - 1);
-                if (Character.isLetterOrDigit(preChar) || Character.isSpaceChar(preChar)) {
-                    part.append(preChar);
-                    incConfident();
-                } else {
-                    part = new StringBuilder(arg);
-                    break;
-                }
-            }
-
-            if (i != args.length - 1) part.append(" ");
-            encoded.append(part);
-        }
-        return encoded.toString();
+        return encode(text, 26 - offset);
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
+        return encode(text, offset);
+    }
+
+    private String encode(String text, int offset) {
+        setMax(text.length());
+        setConfident(0);
+
+        //Take the offset mod 26 then add 26
+        offset = offset % 26 + 26;
+        //Declare a StringBuilder to access individual parts of the String
         StringBuilder encoded = new StringBuilder();
-        String[] args = text.split(" ");
-        setMax(args);
-        for (int i = 0; i < args.length; i++) {
-            String arg = args[i];
-
-            StringBuilder part = new StringBuilder();
-            for (char c : arg.toCharArray()) {
-                char nextChar = (char) (c + 1);
-                if (Character.isLetterOrDigit(nextChar) || Character.isSpaceChar(nextChar)) {
-                    part.append(nextChar);
-                    incConfident();
-                } else {
-                    part = new StringBuilder(arg);
-                    break;
+        //Iterate through all characters in String enc
+        for (char i : text.toCharArray()) {
+            //Nested ifs to shift individual elements of the character array
+            if (Character.isLetter(i)) {
+                //Check for upper case/lower case
+                if (Character.isUpperCase(i)) {
+                    //Append character + offset (taking into account wraparound)
+                    encoded.append((char) ('A' + (i - 'A' + offset) % 26));
                 }
+                //Append character + offset (taking into account wraparound)
+                else {
+                    encoded.append((char) ('a' + (i - 'a' + offset) % 26));
+                }
+                incConfident();
+            } else {
+                //Append characcter to StringBuilder object
+                encoded.append(i);
             }
-            if (i != args.length - 1) {
-                part.append(" ");
-            }
-
-            encoded.append(part);
         }
+        //Return encoded string
         return encoded.toString();
     }
 

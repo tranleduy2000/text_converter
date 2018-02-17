@@ -64,7 +64,9 @@
         <activity
             android:name="flynn.tim.ciphersolver.caesar.CaesarCipherActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name="flynn.tim.ciphersolver.atbash.AtbashActivity" />
+        <activity
+            android:name="flynn.tim.ciphersolver.atbash.AtbashActivity"
+            android:windowSoftInputMode="stateVisible" />
         <activity android:name="flynn.tim.ciphersolver.vigenere.VigenereCipherActivity" />
         <activity android:name="flynn.tim.ciphersolver.frequency.FrequencyActivity" />
         <activity android:name="flynn.tim.ciphersolver.rot13.Rot13CipherActivity" />

@@ -49,7 +49,7 @@ public class VigenereCipherActivity extends BaseActivity {
         setTitle(R.string.title_vigenere_cipher);
 
         final ListView listView = findViewById(R.id.listView3);
-        final EditText ciphertext = findViewById(R.id.editText2);
+        final EditText ciphertext = findViewById(R.id.edit_input);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         final EditText keyword = findViewById(R.id.editText4);
         final RadioButton encrypt = findViewById(R.id.radioButton3);

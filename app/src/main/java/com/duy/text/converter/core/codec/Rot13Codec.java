@@ -19,52 +19,18 @@ package com.duy.text.converter.core.codec;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.duy.text.converter.core.codec.interfaces.CodecImpl;
-
 /**
  * Created by Duy on 28-Aug-17.
  */
 
-public class Rot13Codec extends CodecImpl {
-    private String progress(String text) {
-        setMax(text.length());
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < text.length(); i++) {
-            incConfident();
-            char c = text.charAt(i);
-            if (c >= 'a' && c <= 'm') {
-                c += 13;
-            } else if (c >= 'A' && c <= 'M') {
-                c += 13;
-            } else if (c >= 'n' && c <= 'z') {
-                c -= 13;
-            } else if (c >= 'N' && c <= 'Z') {
-                c -= 13;
-            } else {
-                confident--;
-            }
-            result.append(c);
-        }
-        return result.toString();
-
+public class Rot13Codec extends CaesarCodec {
+    public Rot13Codec() {
+        super(13);
     }
-
-    @NonNull
-    @Override
-    public String decode(@NonNull String text) {
-        return progress(text);
-    }
-
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        return progress(text);
-    }
-
 
     @NonNull
     @Override
     public String getName(Context context) {
-        return "ROT";
+        return "ROT-13";
     }
 }

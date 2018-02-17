@@ -46,7 +46,7 @@ public class AtbashActivity extends BaseActivity {
         setupToolbar();
         setTitle(R.string.title_menu_atbash_cipher);
 
-        final EditText ciphertext = findViewById(R.id.editText2);
+        final EditText ciphertext = findViewById(R.id.edit_input);
         final Button solve = findViewById(R.id.button3);
         final ListView listview = findViewById(R.id.listView3);
 

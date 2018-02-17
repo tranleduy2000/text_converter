@@ -27,8 +27,8 @@ import static junit.framework.Assert.assertEquals;
  */
 public class CaesarCodecTest {
     private static final String TO_BE_ENCODE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String TO_BE_DECODE = "XYZABCDEFGHIJKLMNOPQRSTUVW";
-    private Codec codec = new CaesarCodec();
+    private static final String TO_BE_DECODE = "BCDEFGHIJKLMNOPQRSTUVWXYZA";
+    private Codec codec = new CaesarCodec(1);
 
     @Test
     public void testDecode() throws Exception {
@@ -43,7 +43,7 @@ public class CaesarCodecTest {
         String inp = "! !";
         String decode = codec.decode(inp);
         System.out.println("decode = '" + decode + "'");
-        assertEquals(decode, "   ");
+        assertEquals(decode, "! !");
     }
 
     @Test
