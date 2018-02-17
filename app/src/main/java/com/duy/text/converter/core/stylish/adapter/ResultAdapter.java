@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder>
+public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder>
         implements ItemTouchHelperAdapter {
     private static final String TAG = "StyleAdapter";
     private Context context;
@@ -42,7 +42,7 @@ public class StyleAdapter extends RecyclerView.Adapter<StyleAdapter.ViewHolder>
     private ArrayList<String> mItems = new ArrayList<>();
     private OnSwapStyleListener mOnSwapStyleListener;
 
-    public StyleAdapter(Context context, @LayoutRes int layout) {
+    public ResultAdapter(Context context, @LayoutRes int layout) {
         this.inflater = LayoutInflater.from(context);
         this.context = context;
         this.layout = layout;

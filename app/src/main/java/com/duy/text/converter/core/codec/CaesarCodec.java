@@ -33,7 +33,7 @@ public class CaesarCodec extends CodecImpl {
         this(1);
     }
 
-    CaesarCodec(int offset) {
+    public CaesarCodec(int offset) {
         this.offset = offset;
     }
 

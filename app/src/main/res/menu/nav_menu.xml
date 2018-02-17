@@ -30,7 +30,6 @@
 
     <item android:title="@string/title_menu_cipher">
         <menu>
-
             <item
                 android:id="@+id/action_caesar_cipher"
                 android:title="@string/title_menu_caesar_cipher" />

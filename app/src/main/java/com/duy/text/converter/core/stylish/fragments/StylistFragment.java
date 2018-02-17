@@ -38,7 +38,7 @@ import com.duy.text.converter.R;
 import com.duy.text.converter.core.stylish.StylistGenerator;
 import com.duy.text.converter.core.stylish.adapter.ItemTouchHelperCallback;
 import com.duy.text.converter.core.stylish.adapter.OnSwapStyleListener;
-import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
+import com.duy.text.converter.core.stylish.adapter.ResultAdapter;
 
 import java.util.ArrayList;
 
@@ -51,7 +51,7 @@ public class StylistFragment extends Fragment implements TextWatcher {
     public static final String KEY = "StylistFragment";
     private EditText mInput;
     private RecyclerView mListResult;
-    private StyleAdapter mAdapter;
+    private ResultAdapter mAdapter;
     private StylistGenerator mGenerator;
 
     public static StylistFragment newInstance() {
@@ -81,7 +81,7 @@ public class StylistFragment extends Fragment implements TextWatcher {
         mInput = view.findViewById(R.id.edit_input);
 
 
-        mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
+        mAdapter = new ResultAdapter(getActivity(), R.layout.list_item_style);
         mAdapter.setOnSwapStyleListener(new OnSwapStyleListener() {
             @Override
             public void onSwap(int fromPosition, int toPosition) {

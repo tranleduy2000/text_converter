@@ -23,114 +23,79 @@
 
     <include layout="@layout/appbar" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:orientation="vertical"
+        android:padding="8dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:text="SOLVE" />
-
-        <EditText
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/editText3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/button2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/button2"
-            android:layout_toStartOf="@+id/button2"
             android:height="4dp"
-            android:hint="Ciphertext..."
-            android:inputType="textCapCharacters" />
+            android:hint="Input...">
 
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edit_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/ckb_encrypt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Encrypt" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Decrypt" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/spinner_offset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/caesar_choices"
+                    android:padding="8dp" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Character Offset"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+            </LinearLayout>
+        </LinearLayout>
 
         <ListView
-            android:id="@+id/listView2"
+            android:id="@+id/list_result"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@+id/radioGroup"
-            android:layout_centerHorizontal="true"
-            android:clickable="false"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:paddingTop="16dp"
-            android:scrollbars="none" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText3">
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/editText3"
-                android:checked="false"
-                android:text="Encrypt" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/radioButton"
-                android:checked="false"
-                android:text="Decrypt" />
-        </RadioGroup>
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textView"
-            android:layout_alignEnd="@+id/textView"
-            android:layout_alignLeft="@+id/textView"
-
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:layout_marginTop="8dp"
-            android:entries="@array/caesar_choices"
-            android:paddingTop="8dp"
-            android:spinnerMode="dialog"
-            android:touchscreenBlocksFocus="true" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/button2"
-            android:layout_alignRight="@+id/button2"
-            android:layout_below="@+id/button2"
-            android:layout_marginEnd="80dp"
-            android:layout_marginRight="80dp"
-            android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/listView2"
-            android:layout_alignEnd="@+id/listView2"
-            android:layout_alignRight="@+id/listView2"
-            android:layout_marginBottom="18dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginRight="18dp"
-            android:text="Character Offset"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+            android:layout_height="wrap_content" />
 
 
-    </RelativeLayout>
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

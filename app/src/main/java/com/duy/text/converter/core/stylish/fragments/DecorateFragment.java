@@ -36,7 +36,7 @@ import android.widget.EditText;
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.stylish.DecorateTool;
-import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
+import com.duy.text.converter.core.stylish.adapter.ResultAdapter;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     private View mRootView;
     private EditText mInput;
     private RecyclerView mListResult;
-    private StyleAdapter mAdapter;
+    private ResultAdapter mAdapter;
 
 
     public static DecorateFragment newInstance() {
@@ -79,7 +79,7 @@ public class DecorateFragment extends Fragment implements TextWatcher {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mInput = mRootView.findViewById(R.id.edit_input);
-        mAdapter = new StyleAdapter(getActivity(), R.layout.list_item_style);
+        mAdapter = new ResultAdapter(getActivity(), R.layout.list_item_style);
 
         mListResult = mRootView.findViewById(R.id.recycler_view);
         mListResult.setLayoutManager(new LinearLayoutManager(getContext()));

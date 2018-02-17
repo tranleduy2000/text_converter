@@ -33,7 +33,7 @@ import android.widget.EditText;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.stylish.StylistGenerator;
-import com.duy.text.converter.core.stylish.adapter.StyleAdapter;
+import com.duy.text.converter.core.stylish.adapter.ResultAdapter;
 import com.duy.text.converter.pro.floating.FloatingView;
 
 import java.util.ArrayList;
@@ -47,7 +47,7 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
     private StylistGenerator mGenerator;
     private EditText mInput;
     private RecyclerView mListResult;
-    private StyleAdapter mAdapter;
+    private ResultAdapter mAdapter;
 
     @NonNull
     @Override
@@ -63,7 +63,7 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
         View view = LayoutInflater.from(getContext()).inflate(R.layout.floating_stylish, parent, false);
         mInput = view.findViewById(R.id.edit_input);
 
-        mAdapter = new StyleAdapter(getContext(), R.layout.list_item_style_floating);
+        mAdapter = new ResultAdapter(getContext(), R.layout.list_item_style_floating);
 
         mListResult = view.findViewById(R.id.recycler_view);
         mListResult.setLayoutManager(new LinearLayoutManager(getContext()));

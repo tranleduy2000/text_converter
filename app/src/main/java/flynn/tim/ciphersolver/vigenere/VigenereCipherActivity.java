@@ -46,6 +46,7 @@ public class VigenereCipherActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vigenere_cipher);
+        setupToolbar();
         setTitle(R.string.title_vigenere_cipher);
 
         final ListView listView = findViewById(R.id.listView3);
