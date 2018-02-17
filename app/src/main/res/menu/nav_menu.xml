@@ -30,9 +30,7 @@
 
     <item android:title="@string/title_menu_cipher">
         <menu>
-            <item
-                android:id="@+id/action_atbash_cipher"
-                android:title="@string/title_menu_atbash_cipher" />
+
             <item
                 android:id="@+id/action_caesar_cipher"
                 android:title="@string/title_menu_caesar_cipher" />
@@ -40,12 +38,8 @@
                 android:id="@+id/action_frequency_analysis"
                 android:title="@string/title_frequency_analysis" />
             <item
-                android:id="@+id/action_rot_13_cipher"
-                android:title="@string/title_rot_13_cipher" />
-            <item
                 android:id="@+id/action_vigenere_cipher"
                 android:title="@string/title_vigenere_cipher" />
-
         </menu>
     </item>
 
