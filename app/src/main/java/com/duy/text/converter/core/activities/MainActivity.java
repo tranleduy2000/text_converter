@@ -45,6 +45,7 @@ import com.duy.common.utils.StoreUtil;
 import com.duy.text.converter.BuildConfig;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.PagerSectionAdapter;
+import com.duy.text.converter.core.activities.base.InAppPurchaseActivityImpl;
 import com.duy.text.converter.core.fragments.AdsFragment;
 import com.duy.text.converter.core.help.HelpDialog;
 import com.duy.text.converter.pro.PagerSectionAdapterPro;

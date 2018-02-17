@@ -24,7 +24,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.duy.common.ads.AdsManager;
-import com.duy.text.converter.core.activities.BaseActivity;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.license.Premium;
 

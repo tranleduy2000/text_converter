@@ -28,7 +28,7 @@ import android.view.MenuItem;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.activities.BaseActivity;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 import com.duy.text.converter.pro.menu.DecodeAllProcessTextActivity;
 import com.duy.text.converter.pro.menu.EncodeAllProcessTextActivity;
 import com.duy.text.converter.pro.menu.StylishProcessTextActivity;

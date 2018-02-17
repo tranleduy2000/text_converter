@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.activities;
+package com.duy.text.converter.core.activities.base;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

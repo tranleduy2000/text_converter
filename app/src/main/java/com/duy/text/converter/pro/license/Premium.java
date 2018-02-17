@@ -24,7 +24,7 @@ import android.preference.PreferenceManager;
 
 import com.duy.common.purchase.InAppPurchaseHelper;
 import com.duy.common.utils.DLog;
-import com.duy.text.converter.core.activities.UpgradeActivity;
+import com.duy.text.converter.pro.activities.UpgradeActivity;
 
 /**
  * Created by Duy on 26-Jul-17.

@@ -44,7 +44,7 @@
         </activity>
 
         <activity android:name=".core.barcode.BarcodeEncodedActivity" />
-        <activity android:name=".core.activities.UpgradeActivity" />
+        <activity android:name=".pro.activities.UpgradeActivity" />
         <activity android:name=".pro.activities.CodecAllActivity" />
         <activity android:name=".core.activities.HashActivity" />
         <activity

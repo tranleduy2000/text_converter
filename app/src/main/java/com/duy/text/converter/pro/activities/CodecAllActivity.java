@@ -21,7 +21,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.activities.BaseActivity;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 import com.duy.text.converter.pro.menu.fragments.DecodeAllFragment;
 import com.duy.text.converter.pro.menu.fragments.EncodeAllFragment;
 
