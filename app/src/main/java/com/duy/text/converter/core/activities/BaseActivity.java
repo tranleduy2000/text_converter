@@ -31,7 +31,7 @@ import com.duy.text.converter.pro.themes.ThemeHelper;
 /**
  * Created by Duy on 9/30/2017.
  */
-public class BaseActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
+public abstract class BaseActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private static final String TAG = "BaseActivity";
     protected Toolbar toolbar;
 

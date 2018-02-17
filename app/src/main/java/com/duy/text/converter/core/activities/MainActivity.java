@@ -240,6 +240,9 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
             case R.id.action_hash:
                 startActivity(new Intent(this, HashActivity.class));
                 break;
+            case R.id.action_base_converter:
+                startActivity(new Intent(this, BaseConverterActivity.class));
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
