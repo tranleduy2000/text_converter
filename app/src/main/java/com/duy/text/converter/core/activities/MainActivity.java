@@ -63,6 +63,12 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kobakei.ratethisapp.RateThisApp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
+import flynn.tim.ciphersolver.atbash.AtbashActivity;
+import flynn.tim.ciphersolver.caesar.CaesarCipherActivity;
+import flynn.tim.ciphersolver.frequency.FrequencyActivity;
+import flynn.tim.ciphersolver.rot13.Rot13CipherActivity;
+import flynn.tim.ciphersolver.vigenere.VigenereCipherActivity;
+
 
 public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager.OnPageChangeListener, NavigationView.OnNavigationItemSelectedListener {
     private static final int REQ_CODE_SETTING = 1201;
@@ -248,6 +254,22 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
             case R.id.action_codec_file:
                 startActivity(new Intent(this, CodecFileActivity.class));
                 break;
+            case R.id.action_atbash_cipher:
+                startActivity(new Intent(this, AtbashActivity.class));
+                break;
+            case R.id.action_caesar_cipher:
+                startActivity(new Intent(this, CaesarCipherActivity.class));
+                break;
+            case R.id.action_frequency_analysis:
+                startActivity(new Intent(this, FrequencyActivity.class));
+                break;
+            case R.id.action_rot_13_cipher:
+                startActivity(new Intent(this, Rot13CipherActivity.class));
+                break;
+            case R.id.action_vigenere_cipher:
+                startActivity(new Intent(this, VigenereCipherActivity.class));
+                break;
+
         }
         return super.onOptionsItemSelected(item);
     }

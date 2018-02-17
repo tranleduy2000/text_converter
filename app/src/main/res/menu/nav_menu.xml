@@ -40,7 +40,7 @@
                 android:id="@+id/action_frequency_analysis"
                 android:title="Frequency Analysis" />
             <item
-                android:id="@+id/action_rot_13"
+                android:id="@+id/action_rot_13_cipher"
                 android:title="Rot-13 Cipher" />
             <item
                 android:id="@+id/action_vigenere_cipher"

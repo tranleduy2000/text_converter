@@ -19,7 +19,6 @@ package flynn.tim.ciphersolver.atbash;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -29,6 +28,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ import flynn.tim.ciphersolver.MyListAdapter;
 import flynn.tim.ciphersolver.Result;
 
 
-public class AtbashActivity extends AppCompatActivity {
+public class AtbashActivity extends BaseActivity {
 
     private ArrayList<Result> resultsList = new ArrayList<>();
 

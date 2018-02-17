@@ -18,11 +18,8 @@ package flynn.tim.ciphersolver.caesar;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,13 +30,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 
 import java.util.ArrayList;
 
 import flynn.tim.ciphersolver.MyListAdapter;
 import flynn.tim.ciphersolver.Result;
 
-public class CaesarCipherActivity extends AppCompatActivity {
+public class CaesarCipherActivity extends BaseActivity {
 
     private ArrayList<Result> resultsList = new ArrayList<>();
 
@@ -47,9 +45,8 @@ public class CaesarCipherActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_caesar_cipher);
-        ColorDrawable newColor = new ColorDrawable(getResources().getColor(R.color.accent_material_light));//your color from res
-        getSupportActionBar().setBackgroundDrawable(newColor);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+
         final EditText userString = findViewById(R.id.editText3);
         final ListView listview = findViewById((R.id.listView2));
         final RadioButton encrypt = findViewById(R.id.radioButton);

@@ -17,7 +17,6 @@
 package flynn.tim.ciphersolver.frequency;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -25,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -44,7 +44,7 @@ import java.util.Map;
 
 
 
-public class FrequencyActivity extends AppCompatActivity {
+public class FrequencyActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

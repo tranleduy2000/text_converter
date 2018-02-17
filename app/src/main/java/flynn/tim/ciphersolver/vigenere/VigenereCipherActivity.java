@@ -19,7 +19,6 @@ package flynn.tim.ciphersolver.vigenere;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
@@ -33,13 +32,14 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 
 import java.util.ArrayList;
 
 import flynn.tim.ciphersolver.MyListAdapter;
 import flynn.tim.ciphersolver.Result;
 
-public class VigenereCipherActivity extends AppCompatActivity {
+public class VigenereCipherActivity extends BaseActivity {
 
     private ArrayList<Result> resultsList = new ArrayList<>();
 

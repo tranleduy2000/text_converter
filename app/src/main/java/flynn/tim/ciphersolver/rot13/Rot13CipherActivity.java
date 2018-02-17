@@ -19,7 +19,6 @@ package flynn.tim.ciphersolver.rot13;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -30,6 +29,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.duy.text.converter.R;
+import com.duy.text.converter.core.activities.base.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ import flynn.tim.ciphersolver.Result;
 import flynn.tim.ciphersolver.caesar.CaesarCipher;
 
 
-public class Rot13CipherActivity extends AppCompatActivity {
+public class Rot13CipherActivity extends BaseActivity {
 
     private ArrayList<Result> resultsList = new ArrayList<>();
 
