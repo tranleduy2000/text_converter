@@ -27,7 +27,7 @@ import com.duy.text.converter.core.fragments.BaseConverterFragment;
  * Created by Duy on 2/17/2018.
  */
 
-public class BaseConverterActivity extends BaseActivity {
+public class NumberConverterActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -48,7 +48,7 @@
         <activity android:name=".pro.activities.CodecAllActivity" />
         <activity android:name=".core.activities.HashActivity" />
         <activity
-            android:name=".core.activities.BaseConverterActivity"
+            android:name=".core.activities.NumberConverterActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <!--Encode and decode menu-->
