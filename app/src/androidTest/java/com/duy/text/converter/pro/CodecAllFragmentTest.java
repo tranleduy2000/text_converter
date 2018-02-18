@@ -53,7 +53,7 @@ public class CodecAllFragmentTest {
     @Rule
     public ActivityTestRule<MainActivity> mRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
-    private static Matcher<? super View> hasData() {
+    public static Matcher<? super View> hasData() {
         return new TypeSafeMatcher<View>() {
             @Override
             protected boolean matchesSafely(View item) {
@@ -86,7 +86,7 @@ public class CodecAllFragmentTest {
                 .perform(closeSoftKeyboard());
 
         onView(allOf(withId(R.id.img_encode_all), isDisplayed())).perform(click());
-        onView(withId(R.id.list_decoded))
+        onView(withId(R.id.recycler_view))
                 .check(matches(hasData()))
                 .check(matches(withDataSize(CodecMethod.values().length)));
     }
@@ -106,7 +106,7 @@ public class CodecAllFragmentTest {
                 .perform(closeSoftKeyboard());
 
         onView(allOf(withId(R.id.img_decode_all), isDisplayed())).perform(click());
-        onView(withId(R.id.list_decoded))
+        onView(withId(R.id.recycler_view))
                 .check(matches(hasData()))
                 .check(matches(withDataSize(CodecMethod.values().length)));
     }

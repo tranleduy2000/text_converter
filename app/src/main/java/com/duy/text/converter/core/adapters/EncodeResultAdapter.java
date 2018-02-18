@@ -49,7 +49,7 @@ public class EncodeResultAdapter extends RecyclerView.Adapter<EncodeResultAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_encode_all,
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_encode_all,
                 parent, false);
         return new ViewHolder(view);
     }

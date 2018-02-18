@@ -1,4 +1,4 @@
-Stylish menu
-Encode all menu
-Decode all menu
-
+Caesar cipher
+Frequency analysis
+Vigenere cipher
+Improve base converter

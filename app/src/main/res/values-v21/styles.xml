@@ -16,6 +16,10 @@
 
 <resources>
 
+    <style name="BaseLightDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="rippleBackground">?android:selectableItemBackgroundBorderless</item>
+    </style>
+
     <style name="BaseDarkTheme" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

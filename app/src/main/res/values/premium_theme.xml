@@ -1,6 +1,10 @@
 <resources>
 
-    <style name="AppThemeLight.Dialog" parent="Theme.AppCompat.Light.Dialog">
+    <style name="BaseLightDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="rippleBackground">?android:selectableItemBackground</item>
+    </style>
+
+    <style name="AppThemeLight.Dialog" parent="BaseLightDialogTheme">
         <item name="colorPrimary">@color/light.colorPrimary</item>
         <item name="colorPrimaryDark">@color/light.colorPrimaryDark</item>
         <item name="colorAccent">@color/light.colorAccent</item>
@@ -21,6 +25,7 @@
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowEnterAnimation">@null</item>
         <item name="android:windowExitAnimation">@null</item>
+
     </style>
 
     <style name="AppThemeLight.Theme1">

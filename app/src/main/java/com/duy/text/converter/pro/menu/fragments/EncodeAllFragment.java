@@ -71,7 +71,7 @@ public class EncodeAllFragment extends Fragment {
         boolean processText = getArguments().getBoolean(KEY_PROCESS_TEXT);
 
 
-        RecyclerView recyclerView = view.findViewById(R.id.list_decoded);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mEncodeResultAdapter = new EncodeResultAdapter(getContext(), processText);
         if (processText && getActivity() instanceof OnTextSelectedListener) {

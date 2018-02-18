@@ -123,7 +123,8 @@ public class AdsManager {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-                if (!activity.isFinishing() && activity.isActivityVisible()) {
+                if (!activity.isFinishing() && activity.isActivityVisible()
+                        && !Premium.isPremiumUser(activity)) {
                     interstitialAd.show();
                 }
             }

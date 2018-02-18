@@ -76,7 +76,7 @@ public class DecodeAllFragment extends Fragment {
         String input = getArguments().getString(KEY_INPUT);
         boolean processText = getArguments().getBoolean(KEY_PROCESS_TEXT);
 
-        RecyclerView recyclerView = view.findViewById(R.id.list_decoded);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mDecodeResultAdapter = new DecodeResultAdapter(getContext(), processText);
         if (processText && getActivity() instanceof OnTextSelectedListener) {

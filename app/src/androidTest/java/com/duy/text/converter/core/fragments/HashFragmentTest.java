@@ -42,10 +42,10 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -65,8 +65,9 @@ public class HashFragmentTest {
 
     @Before
     public void selectCodecFragment() {
+        onView(withContentDescription(mRule.getActivity().getString(R.string.desc_open_drawer)))
+                .perform(click());
         onView(withText(mRule.getActivity().getString(R.string.tab_title_hash_function)))
-                .perform(scrollTo())
                 .perform(click());
     }
 
@@ -93,11 +94,6 @@ public class HashFragmentTest {
     @Test
     public void Sha512HashFunction_encode() throws InterruptedException {
         testEncode(new Sha512HashFunction(), "Sha512HashFunction");
-    }
-
-    @Test
-    public void UnixCryptHashFunction_encode() throws InterruptedException {
-        testEncode(new UnixCryptHashFunction(), "UnixCryptHashFunction");
     }
 
     private void testEncode(IHashFunction codec, String stringToBeType) throws InterruptedException {

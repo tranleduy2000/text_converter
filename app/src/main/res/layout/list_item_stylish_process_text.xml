@@ -23,7 +23,7 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?rippleBackground"
+    android:foreground="?selectableItemBackground"
     app:cardBackgroundColor="?cardBackgroundColor"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="true">
