@@ -26,13 +26,13 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
 import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
@@ -47,7 +47,8 @@ public class FloatingCodecServiceTest {
 
     @Test
     public void encode() {
-        openActionBarOverflowOrOptionsMenu(mRule.getActivity());
+        onView(withContentDescription(mRule.getActivity().getString(R.string.desc_open_drawer)))
+                .perform(click());
         onView(withText(mRule.getActivity().getString(R.string.action_open_floating_codec)))
                 .perform(click());
 
