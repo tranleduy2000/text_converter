@@ -33,7 +33,8 @@
             android:layout_weight="1"
             android:src="@drawable/ic_share_white_24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:tint="?imageTintColor" />
+            android:tint="?imageTintColor"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/btn_copy"
@@ -42,7 +43,8 @@
             android:layout_weight="1"
             android:src="@drawable/ic_content_copy_white_24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:tint="?imageTintColor" />
+            android:tint="?imageTintColor"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/btn_paste"
@@ -51,7 +53,8 @@
             android:layout_weight="1"
             android:src="@drawable/ic_content_paste_white_24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:tint="?imageTintColor" />
+            android:tint="?imageTintColor"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatImageButton
             android:id="@+id/btn_delete"
@@ -60,7 +63,8 @@
             android:layout_weight="1"
             android:src="@drawable/ic_backspace_black_24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:tint="?imageTintColor" />
+            android:tint="?imageTintColor"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_clear"
@@ -68,7 +72,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="CLR"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,7 +88,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="A"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -91,7 +97,8 @@
             android:layout_weight="1"
 
             android:text="B"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -99,7 +106,8 @@
             android:layout_weight="1"
 
             android:text="C"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -107,7 +115,8 @@
             android:layout_weight="1"
 
             android:text="D"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -115,7 +124,8 @@
             android:layout_weight="1"
 
             android:text="E"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -123,7 +133,8 @@
             android:layout_weight="1"
 
             android:text="F"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
     </LinearLayout>
 
     <LinearLayout
@@ -139,7 +150,8 @@
             android:layout_weight="1"
 
             android:text="5"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -147,7 +159,8 @@
             android:layout_weight="1"
 
             android:text="6"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -155,7 +168,8 @@
             android:layout_weight="1"
 
             android:text="7"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -163,14 +177,16 @@
             android:layout_weight="1"
 
             android:text="8"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="9"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
 
     </LinearLayout>
@@ -187,29 +203,32 @@
             android:layout_weight="1"
 
             android:text="0"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
             android:text="1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="3"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
         <android.support.v7.widget.AppCompatButton
             android:layout_width="0dp"
@@ -217,7 +236,8 @@
             android:layout_weight="1"
 
             android:text="4"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:typeface="monospace" />
 
     </LinearLayout>
 
