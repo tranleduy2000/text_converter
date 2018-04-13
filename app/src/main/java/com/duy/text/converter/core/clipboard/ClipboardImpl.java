@@ -32,7 +32,7 @@ public class ClipboardImpl implements IClipboard {
     @Nullable
     private ClipboardManager mClipboardManager;
 
-    public ClipboardImpl(@NonNull Context context) {
+    ClipboardImpl(@NonNull Context context) {
         this.mContext = context;
         mClipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
     }
@@ -55,7 +55,7 @@ public class ClipboardImpl implements IClipboard {
     }
 
     @Override
-    public boolean setClipboard(CharSequence content) {
+    public boolean setClipboard(@NonNull CharSequence content) {
         ClipData clip = ClipData.newPlainText("Copied Text", content);
         if (mClipboardManager != null) {
             mClipboardManager.setPrimaryClip(clip);

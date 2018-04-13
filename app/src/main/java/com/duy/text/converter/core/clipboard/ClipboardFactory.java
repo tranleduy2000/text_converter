@@ -17,6 +17,7 @@
 package com.duy.text.converter.core.clipboard;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Duy on 13-Apr-18.
@@ -27,8 +28,9 @@ public class ClipboardFactory {
         throw new RuntimeException();
     }
 
+    @NonNull
     public static IClipboard createClipboardManager(Context context) {
-      return new ClipboardImpl(context);
+        return new ClipboardImpl(context);
     }
 
 

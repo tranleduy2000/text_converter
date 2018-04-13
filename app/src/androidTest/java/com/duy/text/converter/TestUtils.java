@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-package com.duy.text.converter.core.clipboard;
-
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+package com.duy.text.converter;
 
 /**
  * Created by Duy on 13-Apr-18.
  */
 
-public interface IClipboard {
-    @Nullable
-    CharSequence getClipboard();
+public class TestUtils {
+    public static String duplicateString(String text, int count) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            builder.append(text);
+        }
+        return builder.toString();
+    }
 
-    boolean setClipboard(@NonNull CharSequence content);
+
 }

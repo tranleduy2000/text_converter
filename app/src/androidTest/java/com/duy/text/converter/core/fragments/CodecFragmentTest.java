@@ -22,6 +22,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
+import com.duy.text.converter.TestUtils;
 import com.duy.text.converter.core.activities.MainActivity;
 import com.duy.text.converter.core.codec.interfaces.Codec;
 
@@ -328,7 +329,7 @@ public class CodecFragmentTest {
         String errorText = mRule.getActivity().getString(R.string.message_out_of_memory);
         int count = 500000;
         String toBeDuplicated = "hello\n";
-        String text = duplicate(toBeDuplicated, count);
+        String text = TestUtils.duplicateString(toBeDuplicated, count);
 
         if (DLog.DEBUG) DLog.d(TAG, "testLargeData_failed: " + text.length());
 
@@ -345,15 +346,6 @@ public class CodecFragmentTest {
         onView(allOf(withId(R.id.edit_input), isDisplayed()))
                 .perform(clearText());
     }
-
-    private String duplicate(String text, int count) {
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < count; i++) {
-            builder.append(text);
-        }
-        return builder.toString();
-    }
-
 
     private void testEncode(Codec codec, String stringToBeType) throws InterruptedException {
         String selectionText = codec.getName(mRule.getActivity());
