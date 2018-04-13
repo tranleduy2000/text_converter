@@ -47,7 +47,6 @@ public class Premium {
     }
 
     public static boolean isFree(Context context) {
-       /* return context.getPackageName().equals(FREE_PACKAGE) || isCrack(context);*/
         return !isPremium(context);
     }
 
@@ -56,7 +55,7 @@ public class Premium {
         boolean premiumUser = com.duy.common.purchase.Premium.isPremiumUser(context);
         DLog.d(TAG, "proPackage = " + proPackage);
         DLog.d(TAG, "premiumUser = " + premiumUser);
-        return (proPackage || premiumUser) && false;
+        return (proPackage || premiumUser);
     }
 
     public static void upgrade(final Activity activity) {
