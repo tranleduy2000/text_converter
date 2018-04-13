@@ -23,6 +23,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -66,12 +67,24 @@ public class CaesarCipherActivity extends BaseActivity implements TextWatcher {
         mListResult.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         mInput.addTextChangedListener(this);
-        if (Premium.isPremium(this)){
+        if (Premium.isPremium(this)) {
             View containerAd = findViewById(R.id.container_ad);
             if (containerAd != null) containerAd.setVisibility(View.GONE);
-        }else {
+        } else {
             AdsManager.loadAds(this, findViewById(R.id.container_ad), findViewById(R.id.ad_view));
         }
+
+        mSpinnerOffset.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                generateResult();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void generateResult() {
