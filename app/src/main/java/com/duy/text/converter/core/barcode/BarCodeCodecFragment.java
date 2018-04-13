@@ -37,13 +37,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.clipboard.ClipboardUtil;
-import com.duy.text.converter.core.utils.ShareManager;
+import com.duy.text.converter.core.ui.menu.EditMenuViewHolder;
 import com.duy.text.converter.core.view.BaseEditText;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.MultiFormatReader;
@@ -90,25 +90,11 @@ public class BarCodeCodecFragment extends Fragment implements View.OnClickListen
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mInput = view.findViewById(R.id.edit_input);
-        view.findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShareManager.share(mInput.getText(), getContext());
-            }
-        });
-        view.findViewById(R.id.btn_copy).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
-            }
-        });
-        view.findViewById(R.id.btn_paste).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String clipboard = ClipboardUtil.getClipboard(getContext());
-                mInput.setText(clipboard);
-            }
-        });
+
+        new EditMenuViewHolder(
+                view.findViewById(R.id.edit_input),
+                (EditText) view.findViewById(R.id.edit_input))
+                .bind();
 
         String[] data = getResources().getStringArray(R.array.barcode_format);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, data);

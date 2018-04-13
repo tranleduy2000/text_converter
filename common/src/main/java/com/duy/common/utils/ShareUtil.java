@@ -17,10 +17,12 @@
 package com.duy.common.utils;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.widget.Toast;
 
@@ -77,14 +79,14 @@ public class ShareUtil {
         String url = String.format("http://play.google.com/store/apps/details?id=%s", appId);
         intent.putExtra(Intent.EXTRA_TEXT, url);
         intent.setType("text/plain");
-        context.startActivity(intent);
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+
+        }
     }
 
-    public static void shareThisApp(Activity context) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.putExtra(Intent.EXTRA_TEXT, "http://play.google.com/store/apps/details?id=" +
-                context.getPackageName());
-        intent.setType("text/plain");
-        context.startActivity(intent);
+    public static void shareThisApp(@NonNull Activity context) {
+        shareApp(context, context.getPackageName());
     }
 }

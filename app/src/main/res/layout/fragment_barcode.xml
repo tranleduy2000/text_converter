@@ -28,7 +28,9 @@
         android:layout_weight="0.7"
         android:orientation="horizontal">
 
-        <include layout="@layout/edit_menu" />
+        <include
+            android:id="@+id/edit_menu_input"
+            layout="@layout/edit_menu" />
 
         <com.duy.text.converter.core.view.RoundedBackgroundEditText
             android:id="@+id/edit_input"

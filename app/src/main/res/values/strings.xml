@@ -28,7 +28,6 @@
     <string name="message_cannot_decode">Can not decode this image</string>
     <string name="message_saved_in">Saved in</string>
 
-    <string name="title_select_image">Select Image</string>
 
     <string name="floating_notification_description">Tap to open</string>
     <string name="remove_ads">Get pro version</string>
@@ -56,6 +55,7 @@
     <string name="action_paste">Paste</string>
     <string name="action_copy">Copy</string>
     <string name="action_share_text">Share</string>
+    <string name="action_clear_all">Clear all</string>
 
     <string name="pref_title_theme">Theme</string>
     <string name="pref_title_user_interface">User interface</string>
@@ -90,21 +90,28 @@
     <string name="tab_title_barcode">Barcode</string>
     <string name="tab_title_hash_function">Hash</string>
     <string name="tab_title_file">File (Pro)</string>
-    <string name="tab_title_base">Base</string>
-    <string name="message_select_text_file">Please select text file</string>
-    <string name="desc_close_drawer">Close drawer</string>
-    <string name="desc_open_drawer">Open drawer</string>
+    <string name="tab_title_base">Base converter</string>
 
+    <string name="title_menu_more_app">More app</string>
+    <string name="title_menu_text_editor">Text editor</string>
+    <string name="title_menu_ascii_art">Ascii art</string>
     <string name="title_menu_cipher">Cipher</string>
     <string name="title_menu_caesar_cipher">Caesar cipher</string>
+    <string name="title_select_image">Select Image</string>
     <string name="title_frequency_analysis">Frequency Analysis</string>
     <string name="title_vigenere_cipher">Vigenère Cipher</string>
+
+    <string name="message_select_text_file">Please select text file</string>
+
+    <string name="desc_close_drawer">Close drawer</string>
+    <string name="desc_open_drawer">Open drawer</string>
+    <string name="desc_decode_all">Decode with all methods</string>
+    <string name="desc_encode_all">Encode with all methods</string>
+
     <string name="button_encrypt">Encrypt</string>
     <string name="button_decrypt">Decrypt</string>
     <string name="character_offset">Character Offset</string>
     <string name="hint_key">Key</string>
 
-    <string name="desc_decode_all">Decode with all methods</string>
-    <string name="desc_encode_all">Encode with all methods</string>
-    <string name="action_clear_all">Clear all</string>
+
 </resources>
