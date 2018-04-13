@@ -118,9 +118,9 @@ public class InAppPurchaseHelper {
         if (inv != null) {
             premiumPurchase = inv.getPurchase(Premium.SKU_PREMIUM);
             Premium.setPremiumUser(mActivity, premiumPurchase != null);
-//            if (BuildConfig.DEBUG) {
-//                Premium.setPremiumUser(mActivity, true);
-//            }
+            if (BuildConfig.DEBUG) {
+                Premium.setPremiumUser(mActivity, false);
+            }
             mActivity.updateUi(Premium.isPremiumUser(mActivity));
         }
     }

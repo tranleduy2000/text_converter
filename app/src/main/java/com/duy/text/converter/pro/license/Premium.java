@@ -56,7 +56,7 @@ public class Premium {
         boolean premiumUser = com.duy.common.purchase.Premium.isPremiumUser(context);
         DLog.d(TAG, "proPackage = " + proPackage);
         DLog.d(TAG, "premiumUser = " + premiumUser);
-        return proPackage || premiumUser;
+        return (proPackage || premiumUser) && false;
     }
 
     public static void upgrade(final Activity activity) {
