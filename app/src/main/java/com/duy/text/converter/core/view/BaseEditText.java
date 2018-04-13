@@ -45,6 +45,7 @@ public class BaseEditText extends android.support.v7.widget.AppCompatEditText {
     }
 
     private void setup(Context context) {
+        setSaveEnabled(false);
 //        AssetManager assetManager = context.getAssets();
 //        Typeface typeface = Typeface.createFromAsset(assetManager, "fonts/Roboto-Regular.ttf");
 //        setTypeface(typeface);
@@ -56,7 +57,7 @@ public class BaseEditText extends android.support.v7.widget.AppCompatEditText {
             super.setText(text, type);
         } catch (Throwable e) {
             e.printStackTrace();
-            setText("");
+            setError(getContext().getString(R.string.message_out_of_memory));
             Toast.makeText(getContext(), R.string.message_out_of_memory, Toast.LENGTH_SHORT).show();
         }
     }

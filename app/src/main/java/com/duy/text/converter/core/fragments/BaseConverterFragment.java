@@ -33,7 +33,7 @@ import android.widget.EditText;
 
 import com.duy.common.utils.ShareUtil;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.utils.ClipboardUtil;
+import com.duy.text.converter.core.clipboard.ClipboardUtil;
 
 import java.math.BigInteger;
 import java.util.HashMap;

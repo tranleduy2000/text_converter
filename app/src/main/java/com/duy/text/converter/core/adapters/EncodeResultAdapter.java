@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.utils.ClipboardUtil;
+import com.duy.text.converter.core.clipboard.ClipboardUtil;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.pro.menu.fragments.OnTextSelectedListener;
 

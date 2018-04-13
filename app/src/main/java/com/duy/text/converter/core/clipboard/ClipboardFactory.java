@@ -28,8 +28,7 @@ public class ClipboardFactory {
     }
 
     public static IClipboard createClipboardManager(Context context) {
-        // TODO: 13-Apr-18 impl
-        return null;
+      return new ClipboardImpl(context);
     }
 
 

@@ -42,7 +42,7 @@ import com.duy.text.converter.core.hashfunction.Sha1HashFunction;
 import com.duy.text.converter.core.hashfunction.Sha256HashFunction;
 import com.duy.text.converter.core.hashfunction.Sha384HashFunction;
 import com.duy.text.converter.core.hashfunction.Sha512HashFunction;
-import com.duy.text.converter.core.utils.ClipboardUtil;
+import com.duy.text.converter.core.clipboard.ClipboardUtil;
 import com.duy.text.converter.core.view.BaseEditText;
 import com.duy.text.converter.core.view.RoundedBackgroundEditText;
 

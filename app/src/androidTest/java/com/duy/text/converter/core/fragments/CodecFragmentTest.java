@@ -20,10 +20,12 @@ import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.activities.MainActivity;
 import com.duy.text.converter.core.codec.interfaces.Codec;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
@@ -39,6 +41,8 @@ import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
+import static android.support.test.espresso.matcher.ViewMatchers.hasErrorText;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withSpinnerText;
@@ -67,6 +71,7 @@ import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_BIG
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_MINI;
 import static com.duy.text.converter.core.codec.interfaces.CodecMethod.ZALGO_NORMAL;
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -78,6 +83,7 @@ import static org.hamcrest.CoreMatchers.is;
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CodecFragmentTest {
+    private static final String TAG = "CodecFragmentTest";
     @Rule
     public ActivityTestRule<MainActivity> mRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
@@ -167,7 +173,6 @@ public class CodecFragmentTest {
         testDecode(LOWER.getCodec(), LOWER.getCodec().encode("Decode LOWER"));
     }
 
-
     @Test
     public void MorseCodec_encode() throws InterruptedException {
         testEncode(MORSE_CODE.getCodec(), "Encode MORSE_CODE");
@@ -197,7 +202,6 @@ public class CodecFragmentTest {
     public void OctalCodec_decode() throws InterruptedException {
         testDecode(OCTAL.getCodec(), OCTAL.getCodec().encode("Decode OCTAL"));
     }
-
 
     @Test
     public void ReverserCodec_encode() throws InterruptedException {
@@ -319,6 +323,37 @@ public class CodecFragmentTest {
         testDecode(ZALGO_NORMAL.getCodec(), ZALGO_NORMAL.getCodec().encode("Decode ZALGO_NORMAL"));
     }
 
+    @Test
+    public void testLargeData_failed() {
+        String errorText = mRule.getActivity().getString(R.string.message_out_of_memory);
+        int count = 500000;
+        String toBeDuplicated = "hello\n";
+        String text = duplicate(toBeDuplicated, count);
+
+        if (DLog.DEBUG) DLog.d(TAG, "testLargeData_failed: " + text.length());
+
+        assertThat(text.length(), equalTo(count * toBeDuplicated.length()));
+
+        onView(allOf(withId(R.id.edit_input), isDisplayed()))
+                .perform(replaceText(text));
+        onView(allOf(withId(R.id.edit_input), isDisplayed()))
+                .check(matches(hasErrorText(errorText)));
+    }
+
+    @After
+    public void tearDown() {
+        onView(allOf(withId(R.id.edit_input), isDisplayed()))
+                .perform(clearText());
+    }
+
+    private String duplicate(String text, int count) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            builder.append(text);
+        }
+        return builder.toString();
+    }
+
 
     private void testEncode(Codec codec, String stringToBeType) throws InterruptedException {
         String selectionText = codec.getName(mRule.getActivity());
@@ -358,7 +393,7 @@ public class CodecFragmentTest {
     private boolean canType(String text) {
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
-            if (c < 32 || c > 126){
+            if (c < 32 || c > 126) {
                 return false;
             }
         }
