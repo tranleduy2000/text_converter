@@ -1,4 +1,0 @@
-Caesar cipher
-Frequency analysis
-Vigenere cipher
-Improve base converter
