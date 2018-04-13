@@ -20,6 +20,7 @@ import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -87,23 +88,32 @@ public class EditMenuViewHolder implements View.OnClickListener {
 
     }
 
-    private void clear() {
+    public void clear() {
         mEditText.getText().clear();
     }
 
-    private void share() {
+    public void share() {
         ShareUtil.shareText(mContext, mEditText.getText());
     }
 
-    private void paste() {
+    public void paste() {
         IClipboard clipboard = ClipboardFactory.createClipboardManager(mContext);
         CharSequence text = clipboard.getClipboard();
-        mEditText.setText(text);
+        int selectionStart = mEditText.getSelectionStart();
+        int selectionEnd = mEditText.getSelectionEnd();
+        Editable editable = mEditText.getText();
+        if (selectionEnd != selectionStart) {
+            editable.delete(selectionStart, selectionEnd);
+            editable.insert(selectionStart, text);
+        } else {
+            selectionStart = Math.max(0, selectionStart);
+            editable.insert(selectionStart, text);
+        }
+        mEditText.setSelection(selectionStart);
         mEditText.requestFocus();
-        mEditText.setSelection(mEditText.length());
     }
 
-    private void copy() {
+    public void copy() {
 
         IClipboard clipboard = ClipboardFactory.createClipboardManager(mContext);
         boolean success = clipboard.setClipboard(mEditText.getText());

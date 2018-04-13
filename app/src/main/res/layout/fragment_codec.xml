@@ -44,7 +44,7 @@
 
             <include
                 android:id="@+id/edit_menu_input"
-                layout="@layout/edit_menu_codec" />
+                layout="@layout/edit_menu" />
         </LinearLayout>
 
         <com.duy.text.converter.core.view.RoundedBackgroundEditText
@@ -105,7 +105,7 @@
 
             <include
                 android:id="@+id/edit_menu_output"
-                layout="@layout/edit_menu_codec" />
+                layout="@layout/edit_menu" />
 
         </LinearLayout>
 
