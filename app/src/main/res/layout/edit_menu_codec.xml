@@ -25,7 +25,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/img_copy"
+            android:id="@+id/btn_copy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/rippleBackground"
@@ -35,7 +35,7 @@
             android:tint="?imageTintColor" />
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/image_paste"
+            android:id="@+id/btn_paste"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/rippleBackground"
@@ -55,13 +55,14 @@
             android:tint="?imageTintColor" />
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/img_encode_all"
+            android:id="@+id/btn_clear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/rippleBackground"
-            android:contentDescription="@string/action_share_text"
+            android:contentDescription="@string/action_clear_all"
             android:padding="8dp"
-            android:src="@drawable/ic_done_all_black_24dp"
+            android:src="@drawable/ic_clear_black_24dp"
             android:tint="?imageTintColor" />
+
     </LinearLayout>
 </ScrollView>

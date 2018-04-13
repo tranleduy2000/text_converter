@@ -96,13 +96,13 @@ public class BarCodeCodecFragment extends Fragment implements View.OnClickListen
                 ShareManager.share(mInput.getText(), getContext());
             }
         });
-        view.findViewById(R.id.img_copy).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_copy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
             }
         });
-        view.findViewById(R.id.image_paste).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_paste).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String clipboard = ClipboardUtil.getClipboard(getContext());

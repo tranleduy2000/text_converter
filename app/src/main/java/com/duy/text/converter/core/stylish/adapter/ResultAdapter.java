@@ -136,7 +136,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ViewHolder
         ViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.txt_result);
-            imgCopy = itemView.findViewById(R.id.img_copy);
+            imgCopy = itemView.findViewById(R.id.btn_copy);
             imgShare = itemView.findViewById(R.id.btn_share);
             shareMsg = itemView.findViewById(R.id.img_share_msg);
         }

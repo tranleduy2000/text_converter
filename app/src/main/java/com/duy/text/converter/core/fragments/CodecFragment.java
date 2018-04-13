@@ -36,7 +36,7 @@ import android.widget.Spinner;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;
-import com.duy.text.converter.core.clipboard.ClipboardUtil;
+import com.duy.text.converter.core.ui.menu.EditMenuViewHolder;
 import com.duy.text.converter.core.utils.ShareManager;
 import com.duy.text.converter.core.view.BaseEditText;
 import com.duy.text.converter.core.view.RoundedBackgroundEditText;
@@ -119,12 +119,12 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
         mInput.addTextChangedListener(mInputWatcher);
         mOutput.addTextChangedListener(mOutputWatcher);
 
-        view.findViewById(R.id.image_paste).setOnClickListener(this);
-        view.findViewById(R.id.image_paste_out).setOnClickListener(this);
-        view.findViewById(R.id.img_copy).setOnClickListener(this);
-        view.findViewById(R.id.img_copy_out).setOnClickListener(this);
-        view.findViewById(R.id.btn_share).setOnClickListener(this);
-        view.findViewById(R.id.img_share_out).setOnClickListener(this);
+        EditMenuViewHolder menu = new EditMenuViewHolder(view.findViewById(R.id.edit_menu_input), mInput);
+        menu.bind();
+
+        menu = new EditMenuViewHolder(view.findViewById(R.id.edit_menu_output), mOutput);
+        menu.bind();
+
         view.findViewById(R.id.img_encode_all).setOnClickListener(this);
         view.findViewById(R.id.img_decode_all).setOnClickListener(this);
 
@@ -148,30 +148,6 @@ public class CodecFragment extends Fragment implements View.OnClickListener, Ada
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.img_copy:
-                ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
-
-                break;
-            case R.id.image_paste:
-                mInput.setText(ClipboardUtil.getClipboard(getContext()));
-
-                break;
-            case R.id.img_copy_out:
-                ClipboardUtil.setClipboard(getContext(), mOutput.getText().toString());
-
-                break;
-            case R.id.image_paste_out:
-                mOutput.setText(ClipboardUtil.getClipboard(getContext()));
-
-                break;
-            case R.id.btn_share:
-                shareText(mInput);
-
-                break;
-            case R.id.img_share_out:
-                shareText(mOutput);
-
-                break;
             case R.id.img_encode_all:
                 encodeAll();
                 break;

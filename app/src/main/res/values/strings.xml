@@ -103,4 +103,8 @@
     <string name="button_decrypt">Decrypt</string>
     <string name="character_offset">Character Offset</string>
     <string name="hint_key">Key</string>
+
+    <string name="desc_decode_all">Decode with all methods</string>
+    <string name="desc_encode_all">Encode with all methods</string>
+    <string name="action_clear_all">Clear all</string>
 </resources>

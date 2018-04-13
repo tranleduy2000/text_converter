@@ -30,7 +30,7 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/img_copy"
+            android:id="@+id/btn_copy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"

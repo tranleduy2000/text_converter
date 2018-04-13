@@ -34,7 +34,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/img_copy"
+                android:id="@+id/btn_copy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?rippleBackground"
@@ -44,7 +44,7 @@
                 android:tint="?imageTintColor" />
 
             <android.support.v7.widget.AppCompatImageView
-                android:id="@+id/image_paste"
+                android:id="@+id/btn_paste"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="?rippleBackground"

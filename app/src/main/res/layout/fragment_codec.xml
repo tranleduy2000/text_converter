@@ -27,7 +27,25 @@
         android:layout_weight="50"
         android:orientation="horizontal">
 
-        <include layout="@layout/edit_menu" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/img_encode_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/rippleBackground"
+                android:contentDescription="@string/desc_encode_all"
+                android:padding="8dp"
+                android:src="@drawable/ic_done_all_black_24dp"
+                android:tint="?imageTintColor" />
+
+            <include
+                android:id="@+id/edit_menu_input"
+                layout="@layout/edit_menu_codec" />
+        </LinearLayout>
 
         <com.duy.text.converter.core.view.RoundedBackgroundEditText
             android:id="@+id/edit_input"
@@ -70,7 +88,26 @@
         android:layout_weight="50"
         android:orientation="horizontal">
 
-        <include layout="@layout/edit_menu" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/img_decode_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/rippleBackground"
+                android:contentDescription="@string/desc_decode_all"
+                android:padding="8dp"
+                android:src="@drawable/ic_done_all_black_24dp"
+                android:tint="?imageTintColor" />
+
+            <include
+                android:id="@+id/edit_menu_output"
+                layout="@layout/edit_menu_codec" />
+
+        </LinearLayout>
 
         <com.duy.text.converter.core.view.RoundedBackgroundEditText
             android:id="@+id/edit_output"

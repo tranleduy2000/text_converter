@@ -91,8 +91,8 @@ public class FloatingCodecService extends FloatingView implements ViewPager.OnPa
         mInput.addTextChangedListener(mInputWatcher);
         mOutput.addTextChangedListener(mOutputWatcher);
 
-        view.findViewById(R.id.img_copy).setOnClickListener(this);
-        view.findViewById(R.id.image_paste).setOnClickListener(this);
+        view.findViewById(R.id.btn_copy).setOnClickListener(this);
+        view.findViewById(R.id.btn_paste).setOnClickListener(this);
         view.findViewById(R.id.img_copy_out).setOnClickListener(this);
         view.findViewById(R.id.image_paste_out).setOnClickListener(this);
 
@@ -106,10 +106,10 @@ public class FloatingCodecService extends FloatingView implements ViewPager.OnPa
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.img_copy) {
+        if (i == R.id.btn_copy) {
             ClipboardUtil.setClipboard(getContext(), mInput.getText().toString());
 
-        } else if (i == R.id.image_paste) {
+        } else if (i == R.id.btn_paste) {
             mInput.setText(ClipboardUtil.getClipboard(getContext()));
 
         } else if (i == R.id.img_copy_out) {
