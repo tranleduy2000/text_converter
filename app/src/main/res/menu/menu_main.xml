@@ -18,12 +18,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_install_ncalc"
-        android:icon="@drawable/ic_ncalc"
-        android:title="Natural calc"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/action_upgrade"
         android:icon="@drawable/ic_lock_open_white_24dp"
         android:title="@string/action_upgrade"
