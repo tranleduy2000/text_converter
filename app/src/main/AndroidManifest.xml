@@ -124,32 +124,6 @@
             </intent-filter>
         </activity>
 
-        <receiver
-            android:name=".pro.notification.EncodeReceiver"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_1" />
-                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_2" />
-                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_3" />
-                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_4" />
-                <action android:name="com.duy.text.converter.ACTION_ENCODE_STYLE_5" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name=".pro.notification.DecodeReceiver"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_1" />
-                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_2" />
-                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_3" />
-                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_4" />
-                <action android:name="com.duy.text.converter.ACTION_DECODE_STYLE_5" />
-            </intent-filter>
-        </receiver>
-
         <activity android:name="com.duy.text.converter.pro.SettingActivity" />
 
         <!--activity and service for floating converter-->

@@ -42,18 +42,6 @@ public class SettingFragment extends PreferenceFragment {
         // to their values. When their values change, their summaries are
         // updated to reflect the new value, per the Android Design
         // guidelines.
-        bindPreferenceSummaryToValue(findPreference("pref_encode_style_1"));
-        bindPreferenceSummaryToValue(findPreference("pref_encode_style_2"));
-        bindPreferenceSummaryToValue(findPreference("pref_encode_style_3"));
-        bindPreferenceSummaryToValue(findPreference("pref_encode_style_4"));
-        bindPreferenceSummaryToValue(findPreference("pref_encode_style_5"));
-
-        bindPreferenceSummaryToValue(findPreference("pref_decode_style_1"));
-        bindPreferenceSummaryToValue(findPreference("pref_decode_style_2"));
-        bindPreferenceSummaryToValue(findPreference("pref_decode_style_3"));
-        bindPreferenceSummaryToValue(findPreference("pref_decode_style_4"));
-        bindPreferenceSummaryToValue(findPreference("pref_decode_style_5"));
-
         bindPreferenceSummaryToValue(findPreference("pref_key_encode_menu"));
 
         bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_key_theme)));
@@ -65,8 +53,6 @@ public class SettingFragment extends PreferenceFragment {
         if (!Premium.isPremium(getActivity())) {
             findPreference(getString(R.string.pref_key_theme)).setEnabled(false);
             findPreference(getString(R.string.pref_key_category_floating_window)).setEnabled(false);
-            findPreference(getString(R.string.pref_key_enable_encode_notification)).setEnabled(false);
-            findPreference(getString(R.string.pref_key_enable_decode_notification)).setEnabled(false);
         }
     }
 

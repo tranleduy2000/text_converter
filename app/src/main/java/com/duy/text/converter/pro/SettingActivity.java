@@ -33,7 +33,6 @@ import com.duy.text.converter.pro.menu.DecodeAllProcessTextActivity;
 import com.duy.text.converter.pro.menu.EncodeAllProcessTextActivity;
 import com.duy.text.converter.pro.menu.StylishProcessTextActivity;
 import com.duy.text.converter.pro.notification.SettingFragment;
-import com.duy.text.converter.pro.notification.StyleNotificationManager;
 
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
 
@@ -73,11 +72,7 @@ public class SettingActivity extends BaseActivity implements SharedPreferences.O
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         super.onSharedPreferenceChanged(sharedPreferences, key);
-        if (key.equalsIgnoreCase(getString(R.string.pref_key_enable_encode_notification))) {
-            StyleNotificationManager.showNotificationEncodeIfNeed(this);
-        } else if (key.equalsIgnoreCase(getString(R.string.pref_key_enable_decode_notification))) {
-            StyleNotificationManager.showNotificationDecodeIfNeed(this);
-        } else if (key.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
+        if (key.equalsIgnoreCase(getString(R.string.pref_key_theme))) {
         } else if (key.equals(getString(R.string.pref_key_enable_progress_text))) {
             changeModeProcessTextMenu(sharedPreferences, key);
         }
