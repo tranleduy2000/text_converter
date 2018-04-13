@@ -18,6 +18,7 @@ package com.duy.text.converter.core.clipboard;
 
 import android.support.test.rule.ActivityTestRule;
 
+import com.duy.common.utils.DLog;
 import com.duy.text.converter.TestUtils;
 import com.duy.text.converter.core.activities.MainActivity;
 
@@ -31,32 +32,50 @@ import static org.hamcrest.core.IsEqual.equalTo;
  * Created by Duy on 13-Apr-18.
  */
 public class IClipboardTest {
+    private static final String TAG = "IClipboardTest";
     @Rule
     public ActivityTestRule<MainActivity> mRule = new ActivityTestRule<MainActivity>(MainActivity.class);
 
     @Test
-    public void getClipboard() throws Exception {
-        IClipboard clipboard = ClipboardFactory.createClipboardManager(mRule.getActivity());
-        String text = "Text";
-        clipboard.setClipboard(text);
-        CharSequence clipboardContent = clipboard.getClipboard();
-        assertThat(text, equalTo(clipboardContent));
+    public void getClipboard() throws Throwable {
+        mRule.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                IClipboard clipboard = ClipboardFactory.createClipboardManager(mRule.getActivity());
+                String text = "Text";
+                clipboard.setClipboard(text);
+                CharSequence clipboardContent = clipboard.getClipboard();
+                assertThat(text, equalTo(clipboardContent));
+            }
+        });
     }
 
     @Test
-    public void setClipboard_success() throws Exception {
-        IClipboard clipboard = ClipboardFactory.createClipboardManager(mRule.getActivity());
-        String text = "Text";
-        boolean result = clipboard.setClipboard(text);
-        assertThat(result, equalTo(true));
+    public void setClipboard_success() throws Throwable {
+        mRule.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                IClipboard clipboard = ClipboardFactory.createClipboardManager(mRule.getActivity());
+                String text = "Text";
+                boolean result = clipboard.setClipboard(text);
+                assertThat(result, equalTo(true));
+            }
+        });
+
     }
 
     @Test
-    public void setClipboard_failed() throws Exception {
-        String largeText = TestUtils.duplicateString("LargeText", 100000);
-        IClipboard clipboard = ClipboardFactory.createClipboardManager(mRule.getActivity());
-        boolean result = clipboard.setClipboard(largeText);
-        assertThat(result, equalTo(false));
+    public void setClipboard_failed() throws Throwable {
+        mRule.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                String largeText = TestUtils.duplicateString("LargeText", 500000);
+                if (DLog.DEBUG) DLog.d(TAG, "run: size " + largeText.getBytes().length);
+                IClipboard clipboard = ClipboardFactory.createClipboardManager(mRule.getActivity());
+                boolean result = clipboard.setClipboard(largeText);
+                assertThat(result, equalTo(true));
+            }
+        });
     }
 
 }
