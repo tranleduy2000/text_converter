@@ -259,6 +259,12 @@ public class MainActivity extends InAppPurchaseActivityImpl implements ViewPager
             case R.id.action_vigenere_cipher:
                 startActivity(new Intent(this, VigenereCipherActivity.class));
                 break;
+            case R.id.action_ascii_art:
+                StoreUtil.openApp(this, "com.duy.asciiart");
+                break;
+            case R.id.action_text_editor:
+                StoreUtil.openApp(this, "com.duy.text.editor");
+                break;
 
         }
         return super.onOptionsItemSelected(item);

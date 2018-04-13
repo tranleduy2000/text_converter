@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 /**
@@ -139,6 +140,7 @@ public class StoreUtil {
             Toast.makeText(activity, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
     public static boolean isAppInstalled(Context context, String appId) {
         try {
             context.getPackageManager().getApplicationInfo(appId, 0);
@@ -147,4 +149,27 @@ public class StoreUtil {
             return false;
         }
     }
+
+    public static boolean openApp(@NonNull Activity context, @NonNull String packageName) {
+        if (isAppInstalled(context, packageName)) {
+            PackageManager manager = context.getPackageManager();
+            try {
+                Intent i = manager.getLaunchIntentForPackage(packageName);
+                if (i == null) {
+                    return false;
+                    //throw new ActivityNotFoundException();
+                }
+                i.addCategory(Intent.CATEGORY_LAUNCHER);
+                context.startActivity(i);
+                return true;
+            } catch (ActivityNotFoundException e) {
+                return false;
+            }
+        } else {
+            gotoPlayStore(context, packageName);
+        }
+        return false;
+    }
+
+
 }

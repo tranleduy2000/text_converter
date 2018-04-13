@@ -55,10 +55,10 @@
     <item android:title="@string/title_menu_more_app">
         <menu>
             <item
-                android:id="@+id/action_install_text_editor"
+                android:id="@+id/action_text_editor"
                 android:title="@string/title_menu_text_editor" />
             <item
-                android:id="@+id/action_install_ascii_art"
+                android:id="@+id/action_ascii_art"
                 android:title="@string/title_menu_ascii_art" />
         </menu>
     </item>
