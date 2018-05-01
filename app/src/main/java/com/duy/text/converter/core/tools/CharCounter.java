@@ -24,17 +24,16 @@ import android.support.annotation.Nullable;
  * Created by Duy on 01-May-18.
  */
 
-public class WordCounterTool implements ITool {
+public class CharCounter implements ITool {
     @Nullable
     @Override
     public CharSequence getTitle(Context context) {
-        return "Word counter";
+        return "Char counter";
     }
 
     @NonNull
     @Override
-    public String process(String input) {
-        String[] split = input.split("\\s+");
-        return String.valueOf(split.length);
+    public String process(@NonNull String input) {
+        return String.valueOf(input.length());
     }
 }

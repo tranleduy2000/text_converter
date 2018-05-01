@@ -16,25 +16,16 @@
 
 package com.duy.text.converter.core.tools;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import junit.framework.TestCase;
 
 /**
  * Created by Duy on 01-May-18.
  */
-
-public interface ITool {
-    /**
-     * @return name of this tool
-     */
-    @Nullable
-    CharSequence getTitle(Context context);
-
-    /**
-     * Process input from user, if can not convert, return input
-     */
-    @NonNull
-    String process(@NonNull String input);
+public class CharCounterTest extends TestCase {
+    public void testProcess() throws Exception {
+        CharCounter charCounter = new CharCounter();
+        String result = charCounter.process("Hello");
+        assertEquals(result, "5");
+    }
 
 }

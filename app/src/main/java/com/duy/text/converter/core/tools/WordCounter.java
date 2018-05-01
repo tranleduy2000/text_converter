@@ -16,16 +16,25 @@
 
 package com.duy.text.converter.core.tools;
 
-import junit.framework.TestCase;
+import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Created by Duy on 01-May-18.
  */
-public class WordCounterToolTest extends TestCase {
-    public void testProcess() throws Exception {
-        WordCounterTool tool = new WordCounterTool();
-        String process = tool.process("Hello android");
-        assertEquals(process, "2");
+
+public class WordCounter implements ITool {
+    @Nullable
+    @Override
+    public CharSequence getTitle(Context context) {
+        return "Word counter";
     }
 
+    @NonNull
+    @Override
+    public String process(@NonNull String input) {
+        String[] split = input.split("\\s+");
+        return String.valueOf(split.length);
+    }
 }
