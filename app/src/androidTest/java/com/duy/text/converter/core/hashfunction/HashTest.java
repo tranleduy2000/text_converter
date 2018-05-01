@@ -23,10 +23,6 @@ import org.junit.Test;
  */
 
 public class HashTest {
-    @Test
-    public void md2() {
-        new Md2Hash().encode("Hello");
-    }
 
     @Test
     public void md5() {
