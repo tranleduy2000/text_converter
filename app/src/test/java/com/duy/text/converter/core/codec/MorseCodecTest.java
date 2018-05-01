@@ -16,8 +16,9 @@
 
 package com.duy.text.converter.core.codec;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Duy on 15-Jun-17.
@@ -29,12 +30,33 @@ public class MorseCodecTest {
 
     @Test
     public void encode() throws Exception {
-        Assert.assertEquals(codec.encode(TO_BE_ENCODE), TO_BE_DECODE);
+        assertEquals(codec.encode(TO_BE_ENCODE), TO_BE_DECODE);
     }
 
     @Test
     public void decode() throws Exception {
-        Assert.assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
+        assertEquals(codec.decode(TO_BE_DECODE), TO_BE_ENCODE);
     }
 
+    @Test
+    public void decode2() {
+        assertEquals("-- --- .-. ... . -.-. --- -.. . -.-. - . ... - ----- .---- ..--- ...-- ....- ..... -.... --... ---.. ----.",
+                codec.encode(TO_BE_ENCODE));
+    }
+
+    @Test
+    public void encode2() {
+        assertEquals(codec.encode("qwertyuiopasdfghjklzxcvbnm1234567890"),
+                "--.- .-- . .-. - -.-- ..- .. --- .--. .- ... -.. ..-. --. .... .--- -.- .-.." +
+                        " --.. -..- -.-. ...- -... -. -- .---- ..--- ...-- ....- ..... -.... --... -" +
+                        "--.. ----. -----");
+    }
+
+    @Test
+    public void decode3(){
+        assertEquals("--.- .-- . .-. - -.-- ..- .. --- .--. .- ... -.. ..-. --. .... .--- -" +
+                        ".- .-.. --.. -..- -.-. ...- -... -. -- .---- ..--- ...-- ....- ..... -.... -" +
+                        "-... ---.. ----. -----",
+                codec.encode("qwertyuiopasdfghjklzxcvbnm1234567890"));
+    }
 }
