@@ -19,12 +19,37 @@ package com.duy.text.converter.core.hashfunction;
 import org.junit.Test;
 
 /**
- * Created by Duy on 2/10/2018.
+ * Created by Duy on 01-May-18.
  */
-public class UnixCryptHashFunctionTest {
+
+public class HashTest {
     @Test
-    public void encode() throws Exception {
-        new UnixCryptHash().encode("UnixCryptHashFunctionTest");
+    public void md2() {
+        new Md2Hash().encode("Hello");
     }
 
+    @Test
+    public void md5() {
+        new Md5Hash().encode("Hello");
+    }
+
+    @Test
+    public void sha1() {
+        new Sha1Hash().encode("Hello");
+    }
+
+    @Test
+    public void sha256() {
+        new Sha256Hash().encode("Hello");
+    }
+
+    @Test
+    public void sha384() {
+        new Sha384Hash().encode("Hello");
+    }
+
+    @Test
+    public void sha512() {
+        new Sha512Hash().encode("Hello");
+    }
 }
