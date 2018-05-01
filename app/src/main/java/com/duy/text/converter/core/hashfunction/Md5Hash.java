@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 by Tran Le Duy
+ * Copyright (c) 2017 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,22 +21,24 @@ import android.support.annotation.NonNull;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
- * Created by Duy on 2/8/2018.
+ * Created by Duy on 11-Jul-17.
  */
 
-public class Sha384HashFunction implements IHashFunction {
+public class Md5Hash implements IHash {
     @NonNull
     @Override
     public String getName() {
-        return "SHA-384";
+        return "MD5";
     }
 
+    @NonNull
     @Override
-    public String encode(String text) {
+    public String encode(@NonNull String text) {
         try {
-            return DigestUtils.sha384Hex(text.getBytes());
+            return DigestUtils.md5Hex(text.getBytes());
         } catch (Exception e) {
             return "";
         }
     }
+
 }

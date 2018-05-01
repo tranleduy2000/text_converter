@@ -24,7 +24,7 @@ import org.junit.Test;
 public class Md5HashFunctionTest {
     @Test
     public void encode() throws Exception {
-        new Md5HashFunction().encode("Md5HashFunctionTest");
+        new Md5Hash().encode("Md5HashFunctionTest");
     }
 
 }

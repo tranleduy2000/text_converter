@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Tran Le Duy
+ * Copyright (c) 2018 by Tran Le Duy
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,14 +18,25 @@ package com.duy.text.converter.core.hashfunction;
 
 import android.support.annotation.NonNull;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 /**
- * Created by Duy on 08-Aug-17.
+ * Created by Duy on 2/8/2018.
  */
 
-public interface IHashFunction {
+public class Sha384Hash implements IHash {
     @NonNull
-    String getName();
+    @Override
+    public String getName() {
+        return "SHA-384";
+    }
 
-    String encode(String text);
-
+    @Override
+    public String encode(String text) {
+        try {
+            return DigestUtils.sha384Hex(text.getBytes());
+        } catch (Exception e) {
+            return "";
+        }
+    }
 }

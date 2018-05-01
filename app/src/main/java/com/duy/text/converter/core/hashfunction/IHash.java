@@ -18,27 +18,14 @@ package com.duy.text.converter.core.hashfunction;
 
 import android.support.annotation.NonNull;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 /**
- * Created by Duy on 11-Jul-17.
+ * Created by Duy on 08-Aug-17.
  */
 
-public class Md5HashFunction implements IHashFunction {
+public interface IHash {
     @NonNull
-    @Override
-    public String getName() {
-        return "MD5";
-    }
+    String getName();
 
-    @NonNull
-    @Override
-    public String encode(@NonNull String text) {
-        try {
-            return DigestUtils.md5Hex(text.getBytes());
-        } catch (Exception e) {
-            return "";
-        }
-    }
+    String encode(String text);
 
 }

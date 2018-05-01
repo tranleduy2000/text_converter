@@ -24,6 +24,6 @@ import org.junit.Test;
 public class Sha384HashFunctionTest {
     @Test
     public void encode() throws Exception {
-        new Sha384HashFunction().encode("Sha384HashFunctionTest");
+        new Sha384Hash().encode("Sha384HashFunctionTest");
     }
 }

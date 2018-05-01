@@ -18,27 +18,23 @@ package com.duy.text.converter.core.hashfunction;
 
 import android.support.annotation.NonNull;
 
-import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.codec.digest.UnixCrypt;
 
 /**
  * Created by Duy on 11-Jul-17.
  */
 
-public class Sha512HashFunction implements IHashFunction {
+public class UnixCryptHash implements IHash {
 
     @NonNull
     @Override
     public String getName() {
-        return "SHA-512";
+        return "Crypt (Unix)";
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
-        try {
-            return DigestUtils.sha512Hex(text.getBytes());
-        } catch (Exception e) {
-            return "";
-        }
+        return UnixCrypt.crypt(text.getBytes());
     }
 }

@@ -24,21 +24,23 @@ import org.apache.commons.codec.digest.DigestUtils;
  * Created by Duy on 11-Jul-17.
  */
 
-public class Sha1HashFunction implements IHashFunction {
+public class Sha256Hash implements IHash {
 
     @NonNull
     @Override
     public String getName() {
-        return "SHA-1";
+        return "SHA-256";
     }
 
     @NonNull
     @Override
     public String encode(@NonNull String text) {
         try {
-            return DigestUtils.sha1Hex(text.getBytes());
+            return DigestUtils.sha256Hex(text.getBytes());
         } catch (Exception e) {
             return "";
         }
     }
+
+
 }

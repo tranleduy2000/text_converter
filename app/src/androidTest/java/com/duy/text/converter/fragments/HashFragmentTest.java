@@ -22,12 +22,12 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.activities.MainActivity;
-import com.duy.text.converter.core.hashfunction.IHashFunction;
-import com.duy.text.converter.core.hashfunction.Md5HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha1HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha256HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha384HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha512HashFunction;
+import com.duy.text.converter.core.hashfunction.IHash;
+import com.duy.text.converter.core.hashfunction.Md5Hash;
+import com.duy.text.converter.core.hashfunction.Sha1Hash;
+import com.duy.text.converter.core.hashfunction.Sha256Hash;
+import com.duy.text.converter.core.hashfunction.Sha384Hash;
+import com.duy.text.converter.core.hashfunction.Sha512Hash;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -72,30 +72,30 @@ public class HashFragmentTest {
 
     @Test
     public void Md5HashFunction_encode() throws InterruptedException {
-        testEncode(new Md5HashFunction(), "Md5HashFunction");
+        testEncode(new Md5Hash(), "Md5HashFunction");
     }
 
     @Test
     public void Sha1HashFunction_encode() throws InterruptedException {
-        testEncode(new Sha1HashFunction(), "Sha1HashFunction");
+        testEncode(new Sha1Hash(), "Sha1HashFunction");
     }
 
     @Test
     public void Sha256HashFunction_encode() throws InterruptedException {
-        testEncode(new Sha256HashFunction(), "Sha256HashFunction");
+        testEncode(new Sha256Hash(), "Sha256HashFunction");
     }
 
     @Test
     public void Sha384HashFunction_encode() throws InterruptedException {
-        testEncode(new Sha384HashFunction(), "Sha384HashFunction");
+        testEncode(new Sha384Hash(), "Sha384HashFunction");
     }
 
     @Test
     public void Sha512HashFunction_encode() throws InterruptedException {
-        testEncode(new Sha512HashFunction(), "Sha512HashFunction");
+        testEncode(new Sha512Hash(), "Sha512HashFunction");
     }
 
-    private void testEncode(IHashFunction codec, String stringToBeType) throws InterruptedException {
+    private void testEncode(IHash codec, String stringToBeType) throws InterruptedException {
         String selectionText = codec.getName();
         onView(allOf(withId(R.id.spinner_hash_methods), isDisplayed())).perform(click());
         onData(allOf(is(instanceOf(String.class)), is(selectionText))).perform(click());

@@ -24,7 +24,7 @@ import org.junit.Test;
 public class UnixCryptHashFunctionTest {
     @Test
     public void encode() throws Exception {
-        new UnixCryptHashFunction().encode("UnixCryptHashFunctionTest");
+        new UnixCryptHash().encode("UnixCryptHashFunctionTest");
     }
 
 }

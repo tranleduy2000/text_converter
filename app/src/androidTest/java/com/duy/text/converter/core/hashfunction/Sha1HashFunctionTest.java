@@ -24,7 +24,7 @@ import org.junit.Test;
 public class Sha1HashFunctionTest {
     @Test
     public void encode() throws Exception {
-        new Sha1HashFunction().encode("Sha1HashFunctionTest");
+        new Sha1Hash().encode("Sha1HashFunctionTest");
     }
 
 }

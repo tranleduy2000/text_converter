@@ -24,7 +24,7 @@ import org.junit.Test;
 public class Sha256HashFunctionTest {
     @Test
     public void encode() throws Exception {
-        new Sha256HashFunction().encode("Sha256HashFunctionTest");
+        new Sha256Hash().encode("Sha256HashFunctionTest");
     }
 
 }

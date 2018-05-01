@@ -36,12 +36,12 @@ import android.widget.Spinner;
 
 import com.duy.common.utils.ShareUtil;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.hashfunction.IHashFunction;
-import com.duy.text.converter.core.hashfunction.Md5HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha1HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha256HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha384HashFunction;
-import com.duy.text.converter.core.hashfunction.Sha512HashFunction;
+import com.duy.text.converter.core.hashfunction.IHash;
+import com.duy.text.converter.core.hashfunction.Md5Hash;
+import com.duy.text.converter.core.hashfunction.Sha1Hash;
+import com.duy.text.converter.core.hashfunction.Sha256Hash;
+import com.duy.text.converter.core.hashfunction.Sha384Hash;
+import com.duy.text.converter.core.hashfunction.Sha512Hash;
 import com.duy.text.converter.clipboard.ClipboardUtil;
 import com.duy.text.converter.view.BaseEditText;
 import com.duy.text.converter.view.RoundedBackgroundEditText;
@@ -55,7 +55,7 @@ import java.util.ArrayList;
 public class HashFragment extends Fragment {
     private static final String TAG = "HashFragment";
     private final Handler mHandler = new Handler();
-    private ArrayList<IHashFunction> mHashFunctions = new ArrayList<>();
+    private ArrayList<IHash> mHashFunctions = new ArrayList<>();
     private BaseEditText mInput, mOutput;
     private Spinner mMethodSpinner;
     private final Runnable convertRunnable = new Runnable() {
@@ -93,11 +93,11 @@ public class HashFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mHashFunctions.clear();
-        mHashFunctions.add(new Md5HashFunction());
-        mHashFunctions.add(new Sha1HashFunction());
-        mHashFunctions.add(new Sha256HashFunction());
-        mHashFunctions.add(new Sha384HashFunction());
-        mHashFunctions.add(new Sha512HashFunction());
+        mHashFunctions.add(new Md5Hash());
+        mHashFunctions.add(new Sha1Hash());
+        mHashFunctions.add(new Sha256Hash());
+        mHashFunctions.add(new Sha384Hash());
+        mHashFunctions.add(new Sha512Hash());
     }
 
     @Override
@@ -137,7 +137,7 @@ public class HashFragment extends Fragment {
         });
 
         ArrayList<String> names = new ArrayList<>();
-        for (IHashFunction mHashFunction : mHashFunctions) {
+        for (IHash mHashFunction : mHashFunctions) {
             names.add(mHashFunction.getName());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
@@ -160,7 +160,7 @@ public class HashFragment extends Fragment {
     private void convert() {
         int index = mMethodSpinner.getSelectedItemPosition();
         try {
-            IHashFunction hashFunction = mHashFunctions.get(index);
+            IHash hashFunction = mHashFunctions.get(index);
             String encoded = hashFunction.encode(mInput.getText().toString());
             mOutput.setText(encoded);
         } catch (Throwable e) { //out of memory
