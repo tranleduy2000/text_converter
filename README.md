@@ -2,40 +2,65 @@
 Send your friends the most special text and mysterious text (Android)
 
 [<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width=300>](https://play.google.com/store/apps/details?id=duy.com.text_converter)
-
-- Upside down text ``(hello -> oןןǝɥ)``
-- Text to ascii ``(ab -> 97 98)`` and inverse
-- Text to binary ``(a -> 01100001)`` and inverse
-- Text to hex ``(ab -> 61  62)`` and inverse
-- Text to octal ``(ab -> 141 142)`` and inverse
-- Reverser text ``(abc def -> fed cba)``
-- Upper text ``(abc -> ABC)``
-- Lower text ``(ABC -> abc)``
-- Supper script ``ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹``
-- Sub script ``ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉``
-- Circle ``ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ``
-- Full width ``ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ``
-- Morse code ``-- --- .-. ... . / -.-. --- -.. . / - .-. .- -. ... .-.. .- - --- .-.``
-- Base64 encode, decode
-- More stylist text
-- And more ...
-
 ### PLEASE DON'T RE UP THIS APPLICATION. USE THIS APP FOR YOUR STUDY OR RESEARCH
 
-### License
-       Copyright 2017 by Tran Le Duy
+# Features
+## Codec
+- Ascii encoder/decoder
+- Binary encoder/decoder (a -> 01100001)
+- Hex encoder/decoder
+- Octal encoder/decoder
+- Reverser text (abc def -> fed cba) encoder/decoder
+- Upper case text (abc -> ABC) encoder/decoder
+- Lower case text (ABC -> abc) encoder/decoder
+- Upside down text (hello -> oןןǝɥ)
+- Supper script ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖqʳˢᵗᵘᵛʷˣʸᶻ_,;.?!/\'ᴬᴮᶜᴰᴱᶠᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾQᴿˢᵀᵁⱽᵂˣʸᶻ⁰¹²³⁴⁵⁶⁷⁸⁹
+- Sub script ₐbcdₑfgₕᵢⱼₖₗₘₙₒₚqᵣₛₜᵤᵥwₓyz_,;.?!/\'ₐBCDₑFGₕᵢⱼₖₗₘₙₒₚQᵣₛₜᵤᵥWₓYZ₀₁₂₃₄₅₆₇₈₉
+- International morse code encoder/decoder
+- Zalgo Big/Normal/Mini encoder/decoder
+- Base 32 encoder/decoder
+- Base 64 encoder/decoder
+- Url encoder/decoder
+- Random case
+- Caesar
+- Atbash encoder/decoder
+- ROT-13 codec
+- Nato codec
+- Unicode encoder/decoder
+- Wingding encoder/decoder
 
-       Licensed under the Apache License, Version 2.0 (the "License");
-       you may not use this file except in compliance with the License.
-       You may obtain a copy of the License at
+## Barcode encoder/decoder
+- AZTEC
+- CODABAR
+- CODE_39
+- CODE_128,
+- EAN_8
+- EAN_13
+- ITF
+- PDF_417,
+- QR_CODE
+- UPC_A
 
-           http://www.apache.org/licenses/LICENSE-2.0
+## Stylish text & decorate text generator
+- More than 200 style
 
-       Unless required by applicable law or agreed to in writing, software
-       distributed under the License is distributed on an "AS IS" BASIS,
-       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-       See the License for the specific language governing permissions and
-       limitations under the License.
+## Hash
+- MD5
+- SHA-1
+- SHA-256
+- SHA-384
+- SHA-512
+
+## Base converter
+Convert from base to other base (Hex, decmial, octal, binary)
+
+## Cipher
+- Caesar
+- Vignere
+
+## More feature
+- Frequency analysis
+
 
 ### Some Image
 
