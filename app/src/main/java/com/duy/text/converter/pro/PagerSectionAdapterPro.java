@@ -22,8 +22,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.barcode.BarCodeCodecFragment;
-import com.duy.text.converter.core.fragments.CodecFragment;
+import com.duy.text.converter.barcode.BarCodeCodecFragment;
+import com.duy.text.converter.fragments.CodecFragment;
 import com.duy.text.converter.core.stylish.fragments.DecorateFragment;
 import com.duy.text.converter.core.stylish.fragments.StylistFragment;
 

@@ -43,8 +43,8 @@ import android.widget.Toast;
 
 import com.duy.text.converter.R;
 import com.duy.text.converter.core.codec.interfaces.CodecUtil;
-import com.duy.text.converter.core.utils.FileUtil;
-import com.duy.text.converter.core.view.RoundedBackgroundEditText;
+import com.duy.text.converter.utils.FileUtil;
+import com.duy.text.converter.view.RoundedBackgroundEditText;
 
 import java.io.BufferedWriter;
 import java.io.File;

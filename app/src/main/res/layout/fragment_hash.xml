@@ -28,7 +28,7 @@
         android:orientation="horizontal">
 
 
-        <com.duy.text.converter.core.view.RoundedBackgroundEditText
+        <com.duy.text.converter.view.RoundedBackgroundEditText
             android:id="@+id/edit_input"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -95,7 +95,7 @@
                 android:tint="?imageTintColor" />
         </LinearLayout>
 
-        <com.duy.text.converter.core.view.RoundedBackgroundEditText
+        <com.duy.text.converter.view.RoundedBackgroundEditText
             android:id="@+id/edit_output"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

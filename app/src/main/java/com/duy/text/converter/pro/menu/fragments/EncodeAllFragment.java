@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.adapters.EncodeResultAdapter;
+import com.duy.text.converter.adapters.EncodeResultAdapter;
 import com.duy.text.converter.core.codec.interfaces.Codec;
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;
 

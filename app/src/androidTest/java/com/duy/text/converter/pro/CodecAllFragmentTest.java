@@ -21,7 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.activities.MainActivity;
+import com.duy.text.converter.activities.MainActivity;
 import com.duy.text.converter.core.codec.BinaryCodec;
 import com.duy.text.converter.core.codec.interfaces.Codec;
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;

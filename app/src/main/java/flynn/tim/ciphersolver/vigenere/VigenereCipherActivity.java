@@ -31,7 +31,7 @@ import android.widget.RadioButton;
 
 import com.duy.common.ads.AdsManager;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.activities.base.BaseActivity;
+import com.duy.text.converter.activities.base.BaseActivity;
 import com.duy.text.converter.core.stylish.adapter.ResultAdapter;
 import com.duy.text.converter.pro.license.Premium;
 

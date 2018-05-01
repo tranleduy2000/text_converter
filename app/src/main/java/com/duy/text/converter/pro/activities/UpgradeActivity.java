@@ -27,7 +27,7 @@ import android.view.View;
 import com.duy.common.activities.ActivityHelper;
 import com.duy.common.purchase.InAppPurchaseActivity;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.adapters.PremiumFeatureAdapter;
+import com.duy.text.converter.adapters.PremiumFeatureAdapter;
 
 /**
  * Created by Duy on 25-Dec-17.

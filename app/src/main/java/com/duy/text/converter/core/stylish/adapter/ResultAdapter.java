@@ -26,8 +26,8 @@ import android.widget.TextView;
 
 import com.duy.common.utils.DLog;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.clipboard.ClipboardUtil;
-import com.duy.text.converter.core.utils.ShareManager;
+import com.duy.text.converter.clipboard.ClipboardUtil;
+import com.duy.text.converter.utils.ShareManager;
 
 import java.util.ArrayList;
 import java.util.Collections;

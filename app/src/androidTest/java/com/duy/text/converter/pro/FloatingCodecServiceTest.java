@@ -19,7 +19,7 @@ package com.duy.text.converter.pro;
 import android.support.test.rule.ActivityTestRule;
 
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.activities.MainActivity;
+import com.duy.text.converter.activities.MainActivity;
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;
 
 import org.junit.Rule;

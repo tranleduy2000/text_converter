@@ -25,7 +25,7 @@ import android.widget.EditText;
 import com.duy.common.ads.AdsManager;
 import com.duy.common.views.ViewUtils;
 import com.duy.text.converter.R;
-import com.duy.text.converter.core.activities.base.BaseActivity;
+import com.duy.text.converter.activities.base.BaseActivity;
 import com.duy.text.converter.pro.license.Premium;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;

@@ -19,7 +19,7 @@ package com.duy.text.converter.pro.activities;
 import android.content.Intent;
 import android.support.test.rule.ActivityTestRule;
 
-import com.duy.text.converter.core.activities.MainActivity;
+import com.duy.text.converter.activities.MainActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

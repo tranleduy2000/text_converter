@@ -27,7 +27,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="com.duy.text.converter.core.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,16 +43,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".core.activities.HashActivity"
+            android:name=".activities.HashActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".core.activities.CodecFileActivity"
+            android:name=".activities.CodecFileActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".core.activities.NumberConverterActivity"
+            android:name=".activities.NumberConverterActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
-            android:name=".core.barcode.BarcodeEncodedActivity"
+            android:name=".barcode.BarcodeEncodedActivity"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".pro.activities.UpgradeActivity"
@@ -63,7 +63,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".core.activities.CaesarCipherActivity"
+            android:name=".activities.CaesarCipherActivity"
             android:windowSoftInputMode="stateVisible|adjustNothing" />
 
         <activity

@@ -20,7 +20,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.duy.text.converter.core.codec.interfaces.CodecImpl;
-import com.duy.text.converter.core.utils.CodePointUtil;
+import com.duy.text.converter.utils.CodePointUtil;
 
 import java.util.HashMap;
 import java.util.Map;

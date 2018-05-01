@@ -31,8 +31,8 @@ import android.view.ViewGroup;
 
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;
 import com.duy.text.converter.core.codec.interfaces.CodecUtil;
-import com.duy.text.converter.core.clipboard.ClipboardUtil;
-import com.duy.text.converter.core.view.BaseEditText;
+import com.duy.text.converter.clipboard.ClipboardUtil;
+import com.duy.text.converter.view.BaseEditText;
 import com.duy.text.converter.R;
 import com.duy.text.converter.pro.floating.FloatingView;
 

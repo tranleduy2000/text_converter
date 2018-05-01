@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.duy.text.converter.core.view.BaseTextView
+            <com.duy.text.converter.view.BaseTextView
                 android:id="@+id/txt_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
             android:layout_height="1dp"
             android:background="?android:listDivider" />
 
-        <com.duy.text.converter.core.view.BaseTextView
+        <com.duy.text.converter.view.BaseTextView
             android:id="@+id/txt_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -53,7 +53,7 @@
 
     </LinearLayout>
 
-    <com.duy.text.converter.core.view.BaseTextView
+    <com.duy.text.converter.view.BaseTextView
         android:id="@+id/txt_result"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
