@@ -36,13 +36,14 @@ import android.widget.Spinner;
 
 import com.duy.common.utils.ShareUtil;
 import com.duy.text.converter.R;
+import com.duy.text.converter.clipboard.ClipboardUtil;
 import com.duy.text.converter.core.hashfunction.IHash;
+import com.duy.text.converter.core.hashfunction.Md2Hash;
 import com.duy.text.converter.core.hashfunction.Md5Hash;
 import com.duy.text.converter.core.hashfunction.Sha1Hash;
 import com.duy.text.converter.core.hashfunction.Sha256Hash;
 import com.duy.text.converter.core.hashfunction.Sha384Hash;
 import com.duy.text.converter.core.hashfunction.Sha512Hash;
-import com.duy.text.converter.clipboard.ClipboardUtil;
 import com.duy.text.converter.view.BaseEditText;
 import com.duy.text.converter.view.RoundedBackgroundEditText;
 
@@ -93,6 +94,7 @@ public class HashFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mHashFunctions.clear();
+        mHashFunctions.add(new Md2Hash());
         mHashFunctions.add(new Md5Hash());
         mHashFunctions.add(new Sha1Hash());
         mHashFunctions.add(new Sha256Hash());
