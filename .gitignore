@@ -59,3 +59,7 @@ freeline_project_description.json
 
 /apppro/src/main/java/com/duy/text/converter/pro/license/Key.java
 /signing.properties
+free/release/output.json
+pro/release/output.json
+src/main/assets/help/
+src/main/res-cipher/layout/

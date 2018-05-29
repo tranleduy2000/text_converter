@@ -61,7 +61,7 @@ Convert from base to other base (Hex, decmial, octal, binary)
 ### More feature
 - Frequency analysis
 
-## License
+## GNU GPL 3.0 License
 
     Copyright (C) 2017-2018 Tran Le Duy
 
