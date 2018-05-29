@@ -40,7 +40,7 @@ import static aidl.util.IabHelper.QueryInventoryFinishedListener;
 
 public class InAppPurchaseHelper {
     //request code for the purchase flow
-    public static final int RC_REQUEST_UPGRADE = 10001;
+    public static final int RC_REQUEST_UPGRADE = 10021;
     private static final String TAG = "InAppPurchaseHelper";
     private InAppPurchaseActivity mActivity;
     private IabBroadcastReceiver mBroadcastReceiver;
@@ -73,29 +73,32 @@ public class InAppPurchaseHelper {
     }
 
     public void onCreate() {
-        mIabHelper = new IabHelper(mActivity, Premium.BASE64_KEY);
-        mIabHelper.enableDebugLogging(BuildConfig.DEBUG);
-        mIabHelper.startSetup(new OnIabSetupFinishedListener() {
-            @Override
-            public void onIabSetupFinished(IabResult result) {
-                if (!result.isSuccess()) {
-                    iabError(null);
-                    return;
-                }
-                if (mIabHelper == null) return;
+        try {
+            mIabHelper = new IabHelper(mActivity, Premium.BASE64_KEY);
+            mIabHelper.enableDebugLogging(BuildConfig.DEBUG);
+            mIabHelper.startSetup(new OnIabSetupFinishedListener() {
+                @Override
+                public void onIabSetupFinished(IabResult result) {
+                    if (!result.isSuccess()) {
+                        iabError(null);
+                        return;
+                    }
+                    if (mIabHelper == null) return;
 
-                mBroadcastReceiver = new IabBroadcastReceiver(mActivity);
-                IntentFilter intentFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
-                registerReceiver(mBroadcastReceiver, intentFilter);
-                DLog.d(TAG, "onIabSetupFinished: setup success");
-
-                try {
-                    mIabHelper.queryInventoryAsync(mGotInventoryListener);
-                } catch (Exception e) {
-                    iabError(e);
+                    mBroadcastReceiver = new IabBroadcastReceiver(mActivity);
+                    IntentFilter intentFilter = new IntentFilter(IabBroadcastReceiver.ACTION);
+                    registerReceiver(mBroadcastReceiver, intentFilter);
+                    if (DLog.DEBUG) DLog.d(TAG, "onIabSetupFinished: setup success");
+                    try {
+                        mIabHelper.queryInventoryAsync(mGotInventoryListener);
+                    } catch (Exception e) {
+                        iabError(e);
+                    }
                 }
-            }
-        });
+            });
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
     }
 
     private void registerReceiver(IabBroadcastReceiver mBroadcastReceiver, IntentFilter intentFilter) {
@@ -103,6 +106,7 @@ public class InAppPurchaseHelper {
     }
 
     public void checkPurchase(@Nullable Purchase info) {
+        if (DLog.DEBUG) DLog.d(TAG, "checkPurchase() called with: info = [" + info + "]");
         if (info != null) {
             if (info.getSku().equals(Premium.SKU_PREMIUM)) {
                 Premium.setPremiumUser(mActivity, true);
@@ -119,9 +123,8 @@ public class InAppPurchaseHelper {
         if (inv != null) {
             premiumPurchase = inv.getPurchase(Premium.SKU_PREMIUM);
             Premium.setPremiumUser(mActivity, premiumPurchase != null);
-//            if (BuildConfig.DEBUG) {
-//                Premium.setPremiumUser(mActivity, false);
-//            }
+            //for testing
+            if (BuildConfig.DEBUG) Premium.setPremiumUser(mActivity, false);
             mActivity.updateUi(Premium.isPremiumUser(mActivity));
         }
     }

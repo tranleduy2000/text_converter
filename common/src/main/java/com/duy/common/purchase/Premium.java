@@ -20,7 +20,8 @@ package com.duy.common.purchase;
 import android.content.Context;
 
 import com.duy.common.BuildConfig;
-import com.duy.common.utils.DLog;
+
+import static com.duy.common.purchase.Premium.Config.CLEAR_LICENSE_WHEN_REFUND;
 
 
 /**
@@ -28,16 +29,18 @@ import com.duy.common.utils.DLog;
  */
 
 public class Premium {
-    public static final String BASE64_KEY = BuildConfig.BASE64_KEY;
-
+    static final String BASE64_KEY;
     //SKU for my product: the premium upgrade
-    public static final String SKU_PREMIUM = "text_converter_premium";
-    private static final String TAG = "Premium";
-
+    static final String SKU_PREMIUM;
     /**
-     * Faster
+     * access faster
      */
     private static boolean IS_PREMIUM = false;
+
+    static {
+        BASE64_KEY = BuildConfig.BASE64_KEY.replaceAll("\\s+", "");
+        SKU_PREMIUM = "text_converter_premium";
+    }
 
     /**
      * Purchase user
@@ -45,22 +48,22 @@ public class Premium {
      * @param context - Android context
      */
     public static boolean isPremiumUser(Context context) {
-        return IS_PREMIUM || FileUtil.licenseCached(context);
+        return IS_PREMIUM || PremiumFileUtil.licenseCached(context);
     }
 
     /**
      * Purchase user
      */
     public static void setPremiumUser(Context context, boolean isPremium) {
-        DLog.d(TAG, "setPremiumUser() called with: context = [" + context + "], isPremium = [" + isPremium + "]");
         IS_PREMIUM = isPremium;
         if (isPremium) {
-            FileUtil.saveLicence(context);
+            PremiumFileUtil.saveLicence(context);
         } else {
-            FileUtil.clearLicence(context);
+            if (CLEAR_LICENSE_WHEN_REFUND) {
+                PremiumFileUtil.clearLicence(context);
+            }
         }
     }
-
 
     /**
      * @param context - the android context
@@ -70,5 +73,12 @@ public class Premium {
         return !isPremiumUser(context);
     }
 
+    static class Config {
+        /**
+         * Some device return null value when check purchase, so it can be clear license and show
+         * ads even user buy premium
+         */
+        static final boolean CLEAR_LICENSE_WHEN_REFUND = false;
+    }
 
 }

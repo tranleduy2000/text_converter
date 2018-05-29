@@ -20,9 +20,11 @@ package com.duy.common.purchase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 
 import com.duy.common.ads.StateActivity;
+import com.duy.common.utils.DLog;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import aidl.util.IabBroadcastReceiver;
@@ -31,21 +33,22 @@ import aidl.util.IabBroadcastReceiver;
 /**
  * Created by Duy on 9/14/2017.
  */
-
 public abstract class InAppPurchaseActivity extends StateActivity implements IabBroadcastReceiver.IabBroadcastListener {
+    public static final int REQUEST_CODE_UPGRADE = 6032;
+    private static final String TAG = "InAppPurchaseActivity";
+    private final Handler mHandler = new Handler();
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private InAppPurchaseHelper mInAppPurchaseHelper;
 
-    protected final Handler mHandler = new Handler();
-
-    protected FirebaseAnalytics mFirebaseAnalytics;
-    protected InAppPurchaseHelper mInAppPurchaseHelper;
-
+    @CallSuper
     @Deprecated
     public void updateUiPremium() {
-
+        if (DLog.DEBUG) DLog.d(TAG, "updateUiPremium() called");
+        throw new RuntimeException("Deprecated method, use updateUi(boolean premium)");
     }
 
     public void updateUi(boolean premium) {
-
+        if (DLog.DEBUG) DLog.d(TAG, "updateUi() called with: premium = [" + premium + "]");
     }
 
     @Override
@@ -85,7 +88,8 @@ public abstract class InAppPurchaseActivity extends StateActivity implements Iab
         super.onDestroy();
     }
 
-    protected void showDialogUpgrade() {
+    public void showDialogUpgrade() {
         mInAppPurchaseHelper.showDialogUprade();
     }
+
 }

@@ -18,6 +18,7 @@
 package com.duy.common.purchase;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,7 +30,7 @@ public class Installation {
     private static final String INSTALLATION = "INSTALLATION";
     private static String sID = null;
 
-    public synchronized static String id(Context context) {
+    public synchronized static String id(@NonNull Context context) {
         if (sID == null) {
             File installation = new File(context.getFilesDir(), INSTALLATION);
             try {

@@ -57,10 +57,12 @@
         <menu>
             <item
                 android:id="@+id/action_text_editor"
-                android:title="@string/title_menu_text_editor" />
+                android:title="@string/title_menu_text_editor"
+                android:visible="false" />
             <item
                 android:id="@+id/action_ascii_art"
-                android:title="@string/title_menu_ascii_art" />
+                android:title="@string/title_menu_ascii_art"
+                android:visible="true" />
         </menu>
     </item>
 </menu>

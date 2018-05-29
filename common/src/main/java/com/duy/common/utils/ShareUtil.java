@@ -76,11 +76,11 @@ public class ShareUtil {
     }
 
     public static void shareApp(Activity context, String appId) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        String url = String.format("http://play.google.com/store/apps/details?id=%s", appId);
-        intent.putExtra(Intent.EXTRA_TEXT, url);
-        intent.setType("text/plain");
         try {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            String url = String.format("http://play.google.com/store/apps/details?id=%s", appId);
+            intent.putExtra(Intent.EXTRA_TEXT, url);
+            intent.setType("text/plain");
             context.startActivity(intent);
         } catch (ActivityNotFoundException e) {
 
