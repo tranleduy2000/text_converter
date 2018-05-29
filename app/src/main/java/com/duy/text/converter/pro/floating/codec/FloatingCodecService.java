@@ -30,18 +30,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.duy.text.converter.R;
+import com.duy.text.converter.clipboard.ClipboardUtil;
 import com.duy.text.converter.core.codec.interfaces.CodecMethod;
 import com.duy.text.converter.core.codec.interfaces.CodecUtil;
-import com.duy.text.converter.clipboard.ClipboardUtil;
-import com.duy.text.converter.view.BaseEditText;
-import com.duy.text.converter.R;
 import com.duy.text.converter.pro.floating.FloatingView;
+import com.duy.text.converter.view.BaseEditText;
 
 /**
  * Created by Duy on 9/4/2017.
  */
 
 public class FloatingCodecService extends FloatingView implements ViewPager.OnPageChangeListener, View.OnClickListener {
+
     private BaseEditText mInput, mOutput;
     private ViewPager mConvertMethod;
     private TextWatcher mOutputWatcher = new TextWatcher() {
@@ -136,15 +137,14 @@ public class FloatingCodecService extends FloatingView implements ViewPager.OnPa
 
     @NonNull
     @Override
-    protected Notification createNotification() {
+    protected Notification createNotification(String notificationChannel) {
         Intent intent = new Intent(this, FloatingCodecService.class).setAction(ACTION_OPEN);
-        return new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this, notificationChannel)
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(R.string.floating_notification_description))
                 .setContentIntent(PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
-                .setPriority(NotificationCompat.PRIORITY_MIN)
-                .build();
+                .setPriority(NotificationCompat.PRIORITY_MIN);
+        return mBuilder.build();
     }
 
     @Override

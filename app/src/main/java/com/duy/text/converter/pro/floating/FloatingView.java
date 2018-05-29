@@ -20,12 +20,15 @@ package com.duy.text.converter.pro.floating;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.os.Build;
@@ -121,7 +124,7 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     protected abstract View onCreateView(@NonNull ViewGroup parent);
 
     @NonNull
-    protected abstract Notification createNotification();
+    protected abstract Notification createNotification(String notificationChannel);
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -140,8 +143,7 @@ public abstract class FloatingView extends Service implements OnTouchListener {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        startForeground(NOTIFICATION_ID, createNotification());
+        startForeground(NOTIFICATION_ID, createNotification(createNotificationChannel()));
 
         // Load margins, distances, etc
         ViewConfiguration vc = ViewConfiguration.get(getContext());
@@ -233,6 +235,21 @@ public abstract class FloatingView extends Service implements OnTouchListener {
             mInactiveButton.getChildAt(0).setBackgroundColor(0x30ff0000);
         }
         setAccentColor();
+    }
+
+    private String createNotificationChannel() {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
+            return "";
+        }
+        String channelId = getClass().getName();
+        String chanelName = getClass().getSimpleName();
+        NotificationChannel channel;
+        channel = new NotificationChannel(channelId, chanelName, NotificationManager.IMPORTANCE_NONE);
+        channel.setLightColor(Color.BLUE);
+        channel.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(channel);
+        return channelId;
     }
 
     protected void setAccentColor() {
@@ -991,4 +1008,5 @@ public abstract class FloatingView extends Service implements OnTouchListener {
             mDraggableIcon.animate().cancel();
         }
     }
+
 }

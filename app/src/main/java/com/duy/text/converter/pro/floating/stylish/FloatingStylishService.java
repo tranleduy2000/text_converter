@@ -78,9 +78,9 @@ public class FloatingStylishService extends FloatingView implements TextWatcher 
 
     @NonNull
     @Override
-    protected Notification createNotification() {
+    protected Notification createNotification(String notificationChannel) {
         Intent intent = new Intent(this, FloatingStylishService.class).setAction(ACTION_OPEN);
-        return new NotificationCompat.Builder(this)
+        return new NotificationCompat.Builder(this, notificationChannel)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(getString(R.string.action_floating_stylish))
                 .setContentText(getString(R.string.floating_notification_description))
