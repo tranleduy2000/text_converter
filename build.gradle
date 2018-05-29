@@ -27,8 +27,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath 'com.google.gms:google-services:3.1.0'
-        classpath 'io.fabric.tools:gradle:1.24.4'
+        classpath 'com.google.gms:google-services:3.2.0'
+        classpath 'io.fabric.tools:gradle:1.25.1'
     }
 }
 
@@ -44,9 +44,9 @@ allprojects {
 }
 
 ext{
-    buildToolsVersion = '27.0.2'
+    buildToolsVersion = '27.0.3'
     compileSdkVersion = 27
     targetSdkVersion = 27
     minSdkVersion = 14
-    androidSupportVersion = '27.0.2'
+    androidSupportVersion = '27.1.1'
 }
